@@ -1,0 +1,32 @@
+Feasibility check, part 3, run 2026-11-02T19:50:38+00:00
+
+G. Performance-file forecast matched against Elexon publications (UK local times)
+  2024-01-17 SP6: file 27611 MW (file publish 2024-01-16T08:45:00Z); first Elexon publication 01-15 08:45; Elexon publications with this value: none
+  2024-01-17 SP18: file 41150 MW (file publish 2024-01-16T08:45:00Z); first Elexon publication 01-16 08:45; Elexon publications with this value: 01-16 08:45
+  2024-01-17 SP30: file 39755 MW (file publish 2024-01-16T08:45:00Z); first Elexon publication 01-16 08:45; Elexon publications with this value: 01-16 08:45
+  2024-01-17 SP36: file 45832 MW (file publish 2024-01-16T08:45:00Z); first Elexon publication 01-16 08:45; Elexon publications with this value: 01-16 08:45
+  2024-07-17 SP6: file 19151 MW (file publish 2024-07-16T09:45:00Z); first Elexon publication 07-15 08:45; Elexon publications with this value: none
+  2024-07-17 SP18: file 24398 MW (file publish 2024-07-16T09:45:00Z); first Elexon publication 07-16 08:45; Elexon publications with this value: 07-16 08:45
+  2024-07-17 SP30: file 22851 MW (file publish 2024-07-16T09:45:00Z); first Elexon publication 07-16 08:45; Elexon publications with this value: 07-16 08:45
+  2024-07-17 SP36: file 27426 MW (file publish 2024-07-16T09:45:00Z); first Elexon publication 07-16 08:45; Elexon publications with this value: 07-16 08:45
+  2025-01-15 SP6: file 26036 MW (file publish 2025-01-14T08:45:00Z); first Elexon publication 01-13 08:45; Elexon publications with this value: 01-14 09:16, 01-14 09:46, 01-14 10:16, 01-14 10:46
+  2025-01-15 SP18: file 38081 MW (file publish 2025-01-14T08:45:00Z); first Elexon publication 01-14 08:45; Elexon publications with this value: 01-14 08:45
+  2025-01-15 SP30: file 38450 MW (file publish 2025-01-14T08:45:00Z); first Elexon publication 01-14 08:45; Elexon publications with this value: 01-14 08:45
+  2025-01-15 SP36: file 42650 MW (file publish 2025-01-14T08:45:00Z); first Elexon publication 01-14 08:45; Elexon publications with this value: 01-14 08:45
+  2025-07-16 SP6: file 19587 MW (file publish 2025-07-15T09:45:00Z); first Elexon publication 07-14 09:02; Elexon publications with this value: 07-15 09:16, 07-15 09:46, 07-15 10:16, 07-15 10:46
+  2025-07-16 SP18: file 25375 MW (file publish 2025-07-15T09:45:00Z); first Elexon publication 07-15 08:45; Elexon publications with this value: 07-15 08:45
+  2025-07-16 SP30: file 23538 MW (file publish 2025-07-15T09:45:00Z); first Elexon publication 07-15 08:45; Elexon publications with this value: 07-15 08:45
+  2025-07-16 SP36: file 27567 MW (file publish 2025-07-15T09:45:00Z); first Elexon publication 07-15 08:45; Elexon publications with this value: 07-15 08:45
+  2026-07-15 SP6: file 21197 MW (file publish 2026-07-14T08:33:00Z); first Elexon publication 07-13 08:45; Elexon publications with this value: 07-14 09:16, 07-14 09:46, 07-14 10:16, 07-14 10:46
+  2026-07-15 SP18: file 23179 MW (file publish 2026-07-14T08:33:00Z); first Elexon publication 07-14 08:45; Elexon publications with this value: 07-14 08:45
+  2026-07-15 SP30: file 19785 MW (file publish 2026-07-14T08:33:00Z); first Elexon publication 07-14 08:45; Elexon publications with this value: 07-14 08:45
+  2026-07-15 SP36: file 26141 MW (file publish 2026-07-14T08:33:00Z); first Elexon publication 07-14 08:45; Elexon publications with this value: 07-14 08:45
+  2026-10-28 SP6: file 20304 MW (file publish 2026-10-27T09:33:00Z); first Elexon publication 10-26 08:45; Elexon publications with this value: 10-26 16:18, 10-26 16:48, 10-26 17:17, 10-26 17:47
+  2026-10-28 SP18: file 29407 MW (file publish 2026-10-27T09:33:00Z); first Elexon publication 10-27 08:45; Elexon publications with this value: 10-27 08:45
+  2026-10-28 SP30: file 30218 MW (file publish 2026-10-27T09:33:00Z); first Elexon publication 10-27 08:45; Elexon publications with this value: 10-27 08:45
+  2026-10-28 SP36: file 36935 MW (file publish 2026-10-27T09:33:00Z); first Elexon publication 10-27 08:45; Elexon publications with this value: 10-27 08:45
+
+H. Model weights on Hugging Face
+  google/timesfm-2.5-200m-pytorch: licence tag ['license:apache-2.0']; revision 1d952420fba87f3c6dee4f240de0f1a0fbc790e3; created 2025-09-02T18:55:45.000Z; last modified 2025-10-02T17:21:38.000Z
+  amazon/chronos-2: licence tag ['license:apache-2.0']; revision 29ec3766d36d6f73f0696f85560a422f50e8498c; created 2025-10-30T14:54:39.000Z; last modified 2026-06-05T11:55:42.000Z
+  mistralai/Timestral-209M: licence tag ['license:other']; revision 9874d252ab0aae16f7f7c999f98f98d6ad7d8365; created 2026-10-14T08:52:36.000Z; last modified 2026-10-15T15:33:49.000Z

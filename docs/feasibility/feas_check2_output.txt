@@ -1,0 +1,25 @@
+Feasibility check, part 2, run 2026-11-02T19:39:07+00:00
+
+D. Performance-file outturn against INDO and NESO ND (MW, performance minus each)
+  2024-01-17 vs INDO: 48 periods; mean +0, mean abs 0, identical (within 1 MW) in 48
+  2024-01-17 vs ND: 48 periods; mean -94, mean abs 97, identical (within 1 MW) in 0
+  2025-01-15 vs INDO: 48 periods; mean +0, mean abs 0, identical (within 1 MW) in 48
+  2025-01-15 vs ND: 48 periods; mean -95, mean abs 109, identical (within 1 MW) in 0
+  2026-10-14 vs INDO: 48 periods; mean +0, mean abs 0, identical (within 1 MW) in 48
+  2026-10-14 vs ND: 0 periods; mean +nan, mean abs nan, identical (within 1 MW) in 0
+
+E. INDO publication lag and republication
+  columns: dataset, publishTime, startTime, settlementDate, settlementPeriod, demand
+  2024-01-17: 48 rows for 48 periods; publications per period: max 1; lag after period end (minutes): min 0, median 0, max 0
+  2025-01-15: 48 rows for 48 periods; publications per period: max 1; lag after period end (minutes): min 0, median 0, max 0
+  2026-10-14: 47 rows for 47 periods; publications per period: max 1; lag after period end (minutes): min 0, median 0, max 0
+
+F. Day-ahead forecast publication times in the performance file (UK local time)
+  target days: 2,042; days with more than one publish time: 0; days with any missing forecast half-hour: 0
+  days before target: {1: 2042}
+  2021: 275 days; earliest 08:45, latest 10:45; most common {'10:45': 214, '08:45': 61}
+  2022: 365 days; earliest 08:45, latest 10:45; most common {'10:45': 217, '08:45': 148}
+  2023: 365 days; earliest 08:45, latest 10:45; most common {'10:45': 217, '08:45': 148}
+  2024: 366 days; earliest 08:45, latest 10:45; most common {'10:45': 210, '08:45': 156}
+  2025: 365 days; earliest 08:45, latest 10:45; most common {'10:45': 184, '08:45': 89, '09:33': 66, '10:33': 26}
+  2026: 306 days; earliest 09:33, latest 11:03; most common {'09:33': 212, '10:33': 88, '11:03': 4, '10:03': 2}

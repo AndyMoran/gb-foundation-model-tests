@@ -1,0 +1,8 @@
+# Weather forecast files are kept locally, not in the repository; manifest.csv records their hashes
+prospective/weather/data/
+prospective/weather/collect.log
+*.grib2
+*.nc
+__pycache__/
+# Model weights are never committed
+*.safetensors
