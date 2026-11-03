@@ -6,3 +6,7 @@ prospective/weather/collect.log
 __pycache__/
 # Model weights are never committed
 *.safetensors
+
+# Downloaded inputs stay local until we decide whether to publish them; data/fetch_manifest.json records their hashes
+data/*
+!data/fetch_manifest.json
