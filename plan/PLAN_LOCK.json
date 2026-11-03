@@ -1,0 +1,110 @@
+{
+ "tag": "demand-plan",
+ "frozen_utc": "2026-11-03T18:04:29+00:00",
+ "parent_commit": "2b58c45389dd7442e30d505a9b22b563ca4c6ddc",
+ "files_sha256": {
+  "plan/PLAN.md": "93cf9fbfa74aafbfce7e99feda9a0a7180a1bbfcfe2675119f39600122379459",
+  "code/requirements-models.txt": "d541c53667cae23d7af467463adf7a28f2c332f36f3f001c85515f78ef1a83c0",
+  "code/baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+  "code/common.py": "b17109ca364505d227885f25a265ebe557c3b64d297b829c3dda7bd698f65804",
+  "code/fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af",
+  "code/freeze.py": "209749ade85305ea2788d7e590d647e5f2b06222fcb8c37c3f9134064a6f5b65",
+  "code/inputs.py": "16d07310e50e64bffee1cb045de7f9780dfc8220a2eb26156c4f66b3eff03cb4",
+  "code/models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+  "code/power.py": "d9d1d8ed7576e924260deca81327346fea80c4e6eba13bfdf3e775305e8deac6",
+  "code/run.py": "fee7af4fb1d0f43655cc0567f58b20557298b6a0928ce3eb42e2ea76b32189f3",
+  "code/selftest.py": "cd0ee6beca6b28a145b156f02ff678704b7e37de89bb2b46fb2d42ae3d6a5321",
+  "code/stats.py": "78f4751bbf2c6bab6d4ba4d25e4bdb8b3fa2c50594648fd43fa2d83a71e6bad5",
+  "code/synth.py": "140956f004bad903b436d62ad9b9a11a80a40c4e4f7505469f2ce713443234c5"
+ },
+ "data_sha256": {
+  "indo.csv": "fefa7d160288b3827190242d86aee7c6b7f4016b2f4e230da99e41429291a819",
+  "neso_dayahead_publications.csv": "3afb0faa6578f5b1859ffb6a6f556357081b41651b3ebdd82b23cbaa1aa35705",
+  "neso_forecast_performance.csv": "e042ed3f6140598ef22b7ab55c21d31ad64043848b43ba5a1165160a4ea9e014",
+  "neso_historic_nd.csv": "a9a961afb4ce3fefceeb3af677eb0fe5901a6292706a3ce8bab7ad2304f619dd",
+  "bank_holidays_ew.json": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af"
+ },
+ "data_fetched_utc": "2026-11-03T11:40:40+00:00",
+ "weights_sha256": {
+  "timesfm25": "2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8",
+  "chronos2": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+  "timestral": "1456effb9927e3daa8c7234f10497e3424233869245a9c72b8ecebaf7ad2b7fa"
+ },
+ "revisions": {
+  "timesfm25": [
+   "google/timesfm-2.5-200m-pytorch",
+   "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+  ],
+  "chronos2": [
+   "amazon/chronos-2",
+   "29ec3766d36d6f73f0696f85560a422f50e8498c"
+  ],
+  "timestral": [
+   "mistralai/Timestral-209M",
+   "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+  ]
+ },
+ "settings": {
+  "timesfm25": {
+   "max_context": 2688,
+   "max_horizon": 128,
+   "normalize_inputs": true,
+   "use_continuous_quantile_head": true,
+   "force_flip_invariance": true,
+   "infer_is_positive": true,
+   "fix_quantile_crossing": true,
+   "return_backcast": false,
+   "per_core_batch_size": 32
+  },
+  "chronos2": {
+   "context_length": 2688,
+   "cross_learning": false,
+   "limit_prediction_length": false,
+   "batch_size": 64,
+   "device_map": "cpu",
+   "quantile_levels": [
+    0.5
+   ]
+  },
+  "timestral": {
+   "symmetric_averaging": true,
+   "clip_nonnegative": true,
+   "device": "cpu",
+   "quantile": 0.5
+  }
+ },
+ "versions": {
+  "timesfm": "3.0.2",
+  "chronos-forecasting": "2.3.2",
+  "timestral": "1.0.0",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ },
+ "python": "3.11.18",
+ "constants": {
+  "ISSUE_TIME": "09:30",
+  "INPUT_CUTOFF": "08:30",
+  "CONTEXT_LEN": 2688,
+  "FILL_MAX": 2,
+  "TRAIN_DAYS": 365,
+  "FULL_START": "2024-01-01",
+  "FULL_END": "2026-10-31",
+  "POST_RELEASE": {
+   "timesfm25": "2025-09-15",
+   "chronos2": "2025-10-30",
+   "timestral": "2026-10-15"
+  },
+  "M_THRESHOLD": 0.1,
+  "BOOT_B": 2000,
+  "BOOT_BLOCK": 7,
+  "L1_SD_MW": 300.0,
+  "L1_DRAWS": 20,
+  "L1_FLAG": 0.05
+ },
+ "seeds": {
+  "bootstrap": 20261103,
+  "l1_first": 20261104
+ },
+ "power_sha256": "c330bd73cfeb9d8e4e2ae0f3e79bf500af4c336d009dd9585d7d97ca340cbb49"
+}
