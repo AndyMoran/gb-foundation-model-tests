@@ -1,0 +1,9 @@
+# Model environment for selftest.py --models and run.py real (plan Section 4.1).
+# Install torch first, CPU build:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+timesfm[torch]==3.0.2
+chronos-forecasting==2.3.2
+timestral @ git+https://github.com/mistralai/timestral@a534bdbd
+huggingface_hub
+numpy
+pandas
+requests
