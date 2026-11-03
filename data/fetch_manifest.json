@@ -1,0 +1,25 @@
+{
+ "fetched_utc": "2026-11-03T11:40:40+00:00",
+ "files": {
+  "indo.csv": {
+   "sha256": "fefa7d160288b3827190242d86aee7c6b7f4016b2f4e230da99e41429291a819",
+   "rows": 68734
+  },
+  "neso_dayahead_publications.csv": {
+   "sha256": "3afb0faa6578f5b1859ffb6a6f556357081b41651b3ebdd82b23cbaa1aa35705",
+   "rows": 2923252
+  },
+  "neso_forecast_performance.csv": {
+   "sha256": "e042ed3f6140598ef22b7ab55c21d31ad64043848b43ba5a1165160a4ea9e014",
+   "rows": 98034
+  },
+  "neso_historic_nd.csv": {
+   "sha256": "a9a961afb4ce3fefceeb3af677eb0fe5901a6292706a3ce8bab7ad2304f619dd",
+   "rows": 48814
+  },
+  "bank_holidays_ew.json": {
+   "sha256": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af",
+   "rows": 83
+  }
+ }
+}
