@@ -101,6 +101,22 @@ def full():
     print('written data/fetch_manifest.json')
 
 
+def compare(target='2025-01-16', periods=(6, 18, 36)):
+    """Does the NDF stream carry the same forecasts as the /evolution endpoint the feasibility check validated?
+    For each period, prints every publication up to 10:00 UK on D-1 from both sources, with the value."""
+    D = pd.Timestamp(target); cut = C.local(D - pd.Timedelta(days=1), '10:00')
+    ndf = pd.concat([ndf_chunk(D - pd.Timedelta(days=k)) for k in (2, 1)])
+    for sp in periods:
+        ev = rows(get(f'{ELEXON}/forecast/demand/day-ahead/evolution', settlementDate=target, settlementPeriod=sp,
+                      format='json').json())
+        ev['pub'] = pd.to_datetime(ev.publishTime, utc=True)
+        ev = ev[ev.pub <= cut].sort_values('pub')
+        n = ndf[(ndf.settlement_date == target) & (ndf.settlement_period == sp) & (ndf.publish_utc <= cut)].sort_values('publish_utc')
+        fmt = lambda t: t.tz_convert(C.UK).strftime('%d %H:%M')
+        print(f'SP{sp} evolution: ' + ', '.join(f'{fmt(t)}={v}' for t, v in zip(ev.pub, ev.nationalDemand)))
+        print(f'SP{sp} NDF:       ' + ', '.join(f'{fmt(t)}={v:.0f}' for t, v in zip(n.publish_utc, n.mw)))
+
+
 def gaps():
     """Missing INDO half-hours, and how many target days each candidate rule would exclude. Reads only INDO."""
     import inputs as I
@@ -128,4 +144,7 @@ def gaps():
 
 
 if __name__ == '__main__':
-    probe() if '--probe' in sys.argv else gaps() if '--gaps' in sys.argv else full()
+    if '--probe' in sys.argv: probe()
+    elif '--compare' in sys.argv: compare()
+    elif '--gaps' in sys.argv: gaps()
+    else: full()
