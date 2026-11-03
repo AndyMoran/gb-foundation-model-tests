@@ -20,17 +20,35 @@ def load_indo(path):
     return s.reindex(full), df
 
 
-def context(series, day, n=C.CONTEXT_LEN):
+def context(series, day, n=C.CONTEXT_LEN, fill_max=C.FILL_MAX):
     """The last n half-hours of `series` ending at or before the input cut-off for day D.
-    Returns (values, index) or raises ValueError if any half-hour is missing (the day is then excluded)."""
+
+    Gap rule (plan Section 2.4): a run of at most `fill_max` missing half-hours is filled by a straight line between
+    its two neighbours, but only when the later neighbour is itself inside the context (so nothing after the cut-off
+    is used). Longer runs, or a run at the end of the context, raise ValueError and the day is excluded. Fills apply
+    to model contexts only; targets, the regression and NESO are never filled.
+    Returns (values, index, filled), where `filled` lists the UTC starts of the filled half-hours."""
     end = C.input_end(day)                                  # end of the last allowed period
     last_start = end - C.HALF_HOUR
     idx = pd.date_range(last_start - (n - 1) * C.HALF_HOUR, last_start, freq='30min')
-    v = series.reindex(idx)
+    v = series.reindex(idx).astype(float)
+    filled = []
     if v.isna().any():
-        raise ValueError(f'context for {pd.Timestamp(day):%Y-%m-%d} has {int(v.isna().sum())} missing half-hours')
+        miss = v.isna().values; i = 0
+        while i < n:
+            if not miss[i]: i += 1; continue
+            j = i
+            while j < n and miss[j]: j += 1               # missing run is i .. j-1
+            a = idx[i] - C.HALF_HOUR; left = series.get(a, np.nan)
+            ok = (j - i) <= fill_max and j < n and np.isfinite(left)
+            if not ok:
+                raise ValueError(f'context for {pd.Timestamp(day):%Y-%m-%d} has {int(v.isna().sum())} missing half-hours '
+                                 f'(a run of {j - i} from {idx[i]:%Y-%m-%d %H:%M} UTC cannot be filled)')
+            right = v.iloc[j]; k = j - i
+            v.iloc[i:j] = left + (right - left) * np.arange(1, k + 1) / (k + 1)
+            filled += list(idx[i:j]); i = j
     assert idx[-1] + C.HALF_HOUR <= end
-    return v.values.astype(float), idx
+    return v.values.astype(float), idx, filled
 
 
 def targets(series, day):

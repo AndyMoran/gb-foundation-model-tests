@@ -8,7 +8,7 @@ forecasts real GB demand.
   C  NESO blanks are replaced by the most recent earlier publication; the 11:45 revision is never used
   D  the regression matches an independent implementation on six days, including both clock-change days
   E  statistics: a planted forecaster 15% better than the regression is detected; one with no gain is not
-  F  a gap in the data excludes the target day and every day whose context contains it, with reasons
+  F  gap rule: a run of at most 2 missing half-hours in a model context is filled on a straight line and listed;\n     longer runs, a run at the end of the context, and any missing outturn exclude the day
   G  (--models) each foundation model on synthetic contexts: horizon exact, finite, repeatable, responsive,
      batch-independent (a day forecast alone equals the same day forecast in a batch), and an L1 pilot of the
      300 MW perturbation; prints each weights file's SHA-256 for the lock file
@@ -81,13 +81,26 @@ def main(with_models):
                 f"E planted 15% gain detected (ratio {e85['ratio']:.3f}); no gain not detected (ratio {e100['ratio']:.3f})")
 
     # F
-    s3 = synth.demand(gaps=[(C.local('2025-02-03', '10:00'), C.local('2025-02-03', '11:00'))])
     import run as R
+    s3 = synth.demand(gaps=[(C.local('2025-02-03', '10:00'), C.local('2025-02-03', '10:30'))])       # 2 half-hours (inclusive)
     rec, excl = R.build_days(s3, pubs, B.Regression(s3, hol), pd.date_range('2025-02-01', '2025-02-08'))
-    bad = sorted({e['day'] for e in excl})
-    ok &= check(bad == ['2025-02-03', '2025-02-05', '2025-02-06', '2025-02-07', '2025-02-08'] and len(rec) == 3,
-                f'F a gap on 3 February 10:00-11:00 excludes 3 February (outturn) and, from 5 February, every day whose '
-                f'8-week context contains it; 4 February (context ends 08:30 on 3 February) is kept: {bad}')
+    bad = sorted({e['day'] for e in excl}); fl = rec[pd.Timestamp('2025-02-05')]['filled']
+    t0 = C.local('2025-02-03', '10:00').tz_convert('UTC'); a_, b_ = s3[t0 - C.HALF_HOUR], s3[t0 + 2 * C.HALF_HOUR]
+    line = np.isclose(rec[pd.Timestamp('2025-02-05')]['ctx'][list(I.context(s3, '2025-02-05')[1]).index(t0)], a_ + (b_ - a_) / 3)
+    ok &= check(bad == ['2025-02-03'] and len(rec) == 7 and len(fl) == 2 and line
+                and rec[pd.Timestamp('2025-02-04')]['filled'] == [],
+                f'F a 2-half-hour gap on 3 February: 3 February excluded (outturn never filled); later contexts fill it '
+                f'on a straight line and list the fill; 4 February needs no fill: excluded {bad}')
+    s4 = synth.demand(gaps=[(C.local('2025-02-03', '10:00'), C.local('2025-02-03', '11:00'))])       # 3 half-hours
+    rec4, excl4 = R.build_days(s4, pubs, B.Regression(s4, hol), pd.date_range('2025-02-01', '2025-02-08'))
+    s5 = synth.demand(gaps=[(C.local('2025-02-03', '08:00'), C.local('2025-02-03', '08:00'))])       # last context period of 4 Feb
+    end_refused = False
+    try: I.context(s5, '2025-02-04')
+    except ValueError: end_refused = True
+    ok &= check(sorted({e['day'] for e in excl4}) == ['2025-02-03', '2025-02-05', '2025-02-06', '2025-02-07', '2025-02-08']
+                and end_refused,
+                'F a 3-half-hour gap is not filled (those days are excluded); a gap in the last context half-hour is '
+                'not filled, since its later neighbour falls after the cut-off')
 
     # G
     if with_models:

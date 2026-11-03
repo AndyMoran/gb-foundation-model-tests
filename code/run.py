@@ -8,7 +8,8 @@ Modes
   real  The official run. Refuses without plan/PLAN_LOCK.json, and once an attempt has passed the gate. Each attempt
         is saved to results/attemptN/; the first attempt that passes every gate check is the run.
 
-Outputs: forecasts.csv (every forecaster, every target half-hour), daily_mae.csv, exclusions.csv, results.json.
+Outputs: forecasts.csv (every forecaster, every target half-hour), daily_mae.csv, exclusions.csv, context_fills.csv,
+results.json.
 """
 import os, sys, json, glob, datetime as dt, platform
 import numpy as np, pandas as pd
@@ -42,7 +43,7 @@ def build_days(series, pubs, reg, days):
         r = dict(day=D)
         try:
             r['y'], r['idx'] = I.targets(series, D)
-            r['ctx'], cidx = I.context(series, D)
+            r['ctx'], cidx, r['filled'] = I.context(series, D)
             assert cidx[-1] + C.HALF_HOUR <= C.input_end(D)
         except ValueError as e:
             excl.append(dict(day=f'{D:%Y-%m-%d}', scope='all', reason=str(e))); continue
@@ -189,10 +190,13 @@ def run(mode, outdir, synthetic=False, lock=None):
     pd.DataFrame(rows).to_csv(os.path.join(outdir, 'forecasts.csv'), index=False)
     dm.to_csv(os.path.join(outdir, 'daily_mae.csv'), index_label='day')
     pd.DataFrame(excl, columns=['day', 'scope', 'reason']).to_csv(os.path.join(outdir, 'exclusions.csv'), index=False)
+    fills = sorted({t for D in rec for t in rec[D]['filled']})
+    pd.DataFrame({'filled_start_utc': fills, 'n_target_days_using_it': [sum(t in rec[D]['filled'] for D in rec) for t in fills]}
+                 ).to_csv(os.path.join(outdir, 'context_fills.csv'), index=False)
     out = dict(mode=mode, synthetic=synthetic, run_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
                python=platform.python_version(), versions=M.versions(), settings=M.SETTINGS, revisions=M.REVISIONS,
                scripts={f: C.sha(os.path.join(HERE, f)) for f in sorted(os.listdir(HERE)) if f.endswith('.py')},
-               n_days=len(rec), n_excluded=len(excl), gates=G, gate_passed=bool(all(v for k, v in G.items() if not k.endswith('share'))),
+               n_days=len(rec), n_excluded=len(excl), n_context_fills=len(fills), gates=G, gate_passed=bool(all(v for k, v in G.items() if not k.endswith('share'))),
                results=res)
     if lock: out['plan_lock'] = lock
     json.dump(out, open(os.path.join(outdir, 'results.json'), 'w'), indent=1, default=str)

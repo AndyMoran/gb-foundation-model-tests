@@ -16,6 +16,7 @@ HALF_HOUR = pd.Timedelta(minutes=30)
 ISSUE_TIME = '09:30'            # UK local time on D-1: NESO's information cut-off (Section 3)
 INPUT_CUTOFF = '08:30'          # UK local time on D-1: model and regression inputs end at or before this (one-hour buffer)
 CONTEXT_LEN = 2688              # half-hours (8 weeks), the same for every model (Section 4.1)
+FILL_MAX = 2                    # model contexts only: runs of at most 2 missing half-hours are filled (Section 2.4)
 TRAIN_DAYS = 365                # regression training target days, D-366 .. D-2 (Section 4.2)
 
 FULL_START, FULL_END = '2024-01-01', '2026-10-31'          # full window, target days inclusive (Section 5)

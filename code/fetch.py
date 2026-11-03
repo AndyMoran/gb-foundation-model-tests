@@ -126,18 +126,12 @@ def gaps():
     print(f'{int(miss.sum())} missing half-hours in {len(runs)} runs; run lengths: '
           f'{pd.Series([n for _, n in runs]).value_counts().sort_index().to_dict()}')
     for t, n in runs[:40]: print(f'  {t.tz_convert(C.UK):%Y-%m-%d %H:%M} UK, {n} half-hour(s)')
-    for limit in (0, 2):
-        filled = s.copy()
-        for t, n in runs:                                    # straight line between the neighbours; short runs only
-            if n > limit: continue
-            a, b = t - C.HALF_HOUR, t + n * C.HALF_HOUR
-            if a in s.index and b in s.index and np.isfinite(s[a]) and np.isfinite(s[b]):
-                filled[t:b - C.HALF_HOUR] = s[a] + (s[b] - s[a]) * np.arange(1, n + 1) / (n + 1)
+    for limit in (0, C.FILL_MAX):
         lost_t = lost_c = 0
         for D in C.days():
             try: I.targets(s, D)
             except ValueError: lost_t += 1; continue
-            try: I.context(filled, D)
+            try: I.context(s, D, fill_max=limit)
             except ValueError: lost_c += 1
         print(f'rule "fill runs of <= {limit} in contexts only": {lost_t} days lost to missing outturn, '
               f'{lost_c} to missing context, of {len(C.days())}')
