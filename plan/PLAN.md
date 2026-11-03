@@ -2,7 +2,7 @@
 
 Analysis plan · draft for agreement, revision 3 · 3 November 2026 · Andy Moran (Heaviside Analytics)
 
-> **Status.** No model has been run on GB demand data, and no forecast of any kind has been scored. The author has seen the feasibility outputs (`docs/feasibility/`): the timing and values of a handful of NESO forecasts and outturns, used to fix the data and timing rules. He has also seen the row counts and missing half-hours of the full download (Section 2), used to set the gap rule. The plan will be committed and tagged before the first scored run; the tag's time is the evidence of timing.
+> **Status.** No foundation model has been run on GB demand data. The models have been run on synthetic series only (`code/selftest_models.txt`). One real-data forecast has been scored: the regression's, by the power check (Section 8), which computes its errors over the full window; no model forecast was involved. The author has seen the feasibility outputs (`docs/feasibility/`): the timing and values of a handful of NESO forecasts and outturns, used to fix the data and timing rules. He has also seen the row counts and missing half-hours of the full download (Section 2), used to set the gap rule. The plan will be committed and tagged before the first scored run; the tag's time is the evidence of timing.
 >
 > **Decisions.** The seven decisions in Section 12 were settled by the author on 3 November 2026. The power check (Section 8) has been run and its consequences recorded; no decision was changed.
 
@@ -135,7 +135,7 @@ The TimesFM extension's shape-matched placebo (L2) is not repeated: it needs a s
 | 0.90 | 0.88–0.94 / 0.96–0.99 / 1.00 | 0.01–0.03 / 0.01–0.05 / 0.04–0.07 |
 | 0.85 | 0.99 / 1.00 / 1.00 | 0.39–0.60 / 0.65–0.79 / 0.97–0.99 |
 
-The power check uses the same estimand, block length, p-value method and test family as Section 6, with 500 bootstrap draws per replication rather than 2,000. Each cell's Monte Carlo standard error is at most about 0.035 (200 replications).
+The power check uses the same estimand, block length, p-value method and test family as Section 6, with 500 bootstrap draws per replication rather than 2,000. Two sources of simulation error apply. With 200 replications, each cell's standard error is at most about 0.035. With 500 bootstrap draws, each replication's p-value is itself noisy (about ±0.01 near 0.05), which pulls rejection rates near the boundary slightly towards the nominal level. Both are small next to the ranges in the table, which are read qualitatively, not as point estimates.
 
 **What this means, decided before freezing (3 November 2026).** The study reliably detects a real gain of 10% or more, but can confirm that a gain exceeds 10% only when it is well above 10%. "Not shown to reach 10%" is therefore a likely answer even for a useful model. The author accepts this and freezes as planned:
 - m was set on substance (above) and is not changed to suit the power.
@@ -168,8 +168,8 @@ Every sentence names the window, the ratio and its interval.
 | Result | Sentence |
 | --- | --- |
 | No credible improvement | "Over [window], [model], zero-shot, did not forecast GB demand a day ahead credibly better than the simple regression (error ratio r; 90% interval a–b, descriptive)." |
-| Improvement, not practically meaningful | "Over [window], [model] forecast credibly better than the simple regression (error ratio r; 90% interval a–b, descriptive), but the gain was not shown to reach the [m]% threshold set in advance." |
-| Improvement; interval below 0.90 but threshold not confirmed after adjustment | Add to the second sentence: "The ratio's 90% interval (a–b, descriptive) lies below 0.90, but after adjustment for the six tests the gain is not confirmed to reach [m]%." |
+| Improvement confirmed; 90% interval reaches 0.90 or above | "Over [window], [model] forecast credibly better than the simple regression (error ratio r; 90% interval a–b, descriptive), but the gain was not shown to reach the [m]% threshold set in advance." |
+| Improvement confirmed; 90% interval wholly below 0.90; threshold not confirmed after adjustment | Use the second sentence, then add: "Unadjusted, the ratio's 90% interval (a–b, descriptive) excludes 0.90, so the estimated gain is above [m]%; after adjustment for the six tests it is not confirmed to reach [m]%." The two rows differ in what the data show: in the first, a gain below [m]% is consistent with them; in the second, the unadjusted evidence points above [m]% and only the adjustment holds the claim back. `run.py` records which row applies (`interval_below_threshold_but_not_confirmed`) |
 | Practically meaningful improvement | "Over [window], [model] forecast credibly better than the simple regression, by at least the [m]% set in advance as practically meaningful (error ratio r; 90% interval a–b, descriptive)." |
 | NESO comparison | "Against NESO's published forecast, [model]'s error ratio was r (90% interval a–b, descriptive). NESO's forecast uses weather information the model did not have." |
 
