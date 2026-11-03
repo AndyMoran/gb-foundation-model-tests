@@ -1,0 +1,28 @@
+PASS  A horizons around clock changes: {'2024-03-31': 77, '2024-06-12': 79, '2024-10-27': 81}
+PASS  A cut-offs: inputs end 08:30 and NESO at 09:30, UK local time, on D-1
+PASS  B changing everything after the cut-offs moves no forecaster (4 days, incl. both clock changes)
+PASS  C a blank takes the earlier publication; the 11:45 revision is never used
+PASS  D regression matches the independent implementation (max difference 6.1e-09 MW)
+PASS  E planted 15% gain detected (ratio 0.850); no gain not detected (ratio 1.000)
+PASS  F a 2-half-hour gap on 3 February: 3 February excluded (outturn never filled); later contexts fill it on a straight line and list the fill; 4 February needs no fill: excluded ['2025-02-03']
+PASS  F a 3-half-hour gap is not filled (those days are excluded); a gap in the last context half-hour is not filled, since its later neighbour falls after the cut-off
+PASS  G timesfm25: exact horizons 77/79/81, finite
+PASS  G timesfm25: repeat call identical
+PASS  G timesfm25: responsive to the last half-hour
+PASS  G timesfm25: a day forecast alone equals the same day in a batch (no cross-day pooling)
+INFO  timesfm25: L1 pilot, model ratio 0.951, regression ratio 1.019
+INFO  timesfm25: weights google/timesfm-2.5-200m-pytorch@1d952420 sha256 2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8
+PASS  G chronos2: exact horizons 77/79/81, finite
+PASS  G chronos2: repeat call identical
+PASS  G chronos2: responsive to the last half-hour
+PASS  G chronos2: a day forecast alone equals the same day in a batch (no cross-day pooling)
+INFO  chronos2: L1 pilot, model ratio 0.992, regression ratio 1.019
+INFO  chronos2: weights amazon/chronos-2@29ec3766 sha256 ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42
+PASS  G timestral: exact horizons 77/79/81, finite
+PASS  G timestral: repeat call identical
+PASS  G timestral: responsive to the last half-hour
+PASS  G timestral: a day forecast alone equals the same day in a batch (no cross-day pooling)
+INFO  timestral: L1 pilot, model ratio 1.009, regression ratio 1.019
+INFO  timestral: weights mistralai/Timestral-209M@9874d252 sha256 1456effb9927e3daa8c7234f10497e3424233869245a9c72b8ecebaf7ad2b7fa
+INFO  versions {'timesfm': '3.0.2', 'chronos-forecasting': '2.3.2', 'timestral': '1.0.0', 'torch': '2.15.0+cpu', 'numpy': '2.4.6', 'pandas': '3.1.0'}
+OVERALL: PASS
