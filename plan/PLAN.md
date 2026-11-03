@@ -61,7 +61,12 @@ All downloads are made once by `fetch.py`, saved, and hashed; the hashes go in t
 - **Point forecast:** the median (0.5 quantile).
 - **Days forecast independently:** each target day is forecast from its own context alone. Chronos-2 can share information across the series in a batch (`cross_learning`); it is set to False, and the self-test checks for every model that a day forecast alone equals the same day forecast within a batch.
 - **Settings:** every forecasting argument is written out in `models.py` and recorded with the forecasts; no setting relies on a library default. Settings follow each model's published usage guidance, fixed before any GB forecast is made, and are not tuned.
-- **Weights:** the run checks each weights file's SHA-256 before the first forecast; hashes are recorded at setup.
+- **Weights:** the run checks each weights file's SHA-256 before the first forecast. Recorded at setup (3 November 2026, `selftest.py --models`):
+  - TimesFM 2.5: `2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8`
+  - Chronos-2: `ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42`
+  - Timestral-209M: `1456effb9927e3daa8c7234f10497e3424233869245a9c72b8ecebaf7ad2b7fa`
+- **Environment:** Python 3.11, torch 2.15.0 (CPU), numpy 2.4.6, pandas 3.1.0, with the three libraries above (`requirements-models.txt`).
+- **L1 pilot (synthetic data, 12 days):** under 300 MW noise the regression's error rose 1.9%; the models' changed by −4.9% (TimesFM 2.5), −0.8% (Chronos-2) and +0.9% (Timestral). The noise is neither saturating nor inert, so the size stays at 300 MW.
 
 ### 4.2 The primary comparator: a weekly-lag regression
 
