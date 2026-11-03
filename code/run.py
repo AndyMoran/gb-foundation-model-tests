@@ -162,6 +162,12 @@ def evaluate(rec, models):
         res['exploratory'][f'{n}_vs_naive'] = S.compare(dm.loc[full, n], dm.loc[full, 'naive'], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
     res['exploratory']['regression_vs_naive'] = S.compare(dm.loc[full, 'regression'], dm.loc[full, 'naive'], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
     res['primary_tests_holm'] = S.holm(pv)
+    th = 1 - C.M_THRESHOLD                                   # Section 8, interpretation rule 2
+    for n in models['names']:
+        c = res['primary'][n]; h = res['primary_tests_holm']
+        c['ci90_upper_below_threshold'] = bool(c['ci90_descriptive'][1] < th)
+        c['threshold_confirmed_after_holm'] = h[f'{n}_meaningful']['rejected']
+        c['interval_below_threshold_but_not_confirmed'] = c['ci90_upper_below_threshold'] and not c['threshold_confirmed_after_holm']
     return res, dm
 
 
@@ -213,6 +219,8 @@ if __name__ == '__main__':
         lockf = os.path.join(C.ROOT, 'plan', 'PLAN_LOCK.json')
         if not os.path.exists(lockf): sys.exit('Real run refused: plan/PLAN_LOCK.json not found (plan not frozen).')
         lock = json.load(open(lockf))
+        changed = [f for f, h in lock['files_sha256'].items() if C.sha(os.path.join(C.ROOT, f)) != h]
+        if changed: sys.exit('Real run refused: changed since the freeze (a deviation; log it first): ' + ', '.join(changed))
         done = sorted(glob.glob(os.path.join(C.ROOT, 'results', 'attempt*')))
         for d in done:
             f = os.path.join(d, 'results.json')

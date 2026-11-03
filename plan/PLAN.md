@@ -4,7 +4,7 @@ Analysis plan · draft for agreement, revision 3 · 3 November 2026 · Andy Mora
 
 > **Status.** No model has been run on GB demand data, and no forecast of any kind has been scored. The author has seen the feasibility outputs (`docs/feasibility/`): the timing and values of a handful of NESO forecasts and outturns, used to fix the data and timing rules. He has also seen the row counts and missing half-hours of the full download (Section 2), used to set the gap rule. The plan will be committed and tagged before the first scored run; the tag's time is the evidence of timing.
 >
-> **Decisions.** The seven decisions in Section 12 were settled by the author on 3 November 2026. One item remains: the power check (Section 8), and whether its results change any decision, recorded before freezing.
+> **Decisions.** The seven decisions in Section 12 were settled by the author on 3 November 2026. The power check (Section 8) has been run and its consequences recorded; no decision was changed.
 
 ## 1. The question, and what the answer can and cannot show
 
@@ -126,6 +126,29 @@ The TimesFM extension's shape-matched placebo (L2) is not repeated: it needs a s
 
 **Power.** Before freezing, `power.py` simulates model forecasts with known true ratios (1.00, 0.95, 0.90, 0.85) by combining the regression's real errors on the full window with synthetic error components of the right size and correlation, and reports how often each primary test succeeds. The power check does not set m; it reports how precisely the study can estimate it. If power at a true ratio of 0.90 is very low, the author decides before freezing whether "not shown to reach 10%" is an acceptable likely answer, and records that decision here. m is never changed in light of model results. The power check reads no model forecast. **Disclosure:** it computes the regression's real errors on the full window before freezing; nothing about the models is learned from it.
 
+**Power check result (3 November 2026, `results/power.json`, 200 replications per cell).** The regression's mean daily error over the full window is 1,553 MW. The simulated model's errors share a fraction c of the regression's (c = 0.5, 0.7, 0.9). Each cell gives the share of replications in which the test rejects, as a range from the strictest Holm step (5%/6) to the loosest (5%):
+
+| True ratio | Improvement (ratio < 1), c = 0.5 / 0.7 / 0.9 | Meaningful (ratio < 0.90), c = 0.5 / 0.7 / 0.9 |
+| --- | --- | --- |
+| 1.00 | 0.03–0.05 / 0.01–0.07 / 0.04–0.08 | 0 / 0 / 0 |
+| 0.95 | 0.27–0.54 / 0.47–0.72 / 0.94–0.99 | 0 / 0 / 0 |
+| 0.90 | 0.88–0.94 / 0.96–0.99 / 1.00 | 0.01–0.03 / 0.01–0.05 / 0.04–0.07 |
+| 0.85 | 0.99 / 1.00 / 1.00 | 0.39–0.60 / 0.65–0.79 / 0.97–0.99 |
+
+The power check uses the same estimand, block length, p-value method and test family as Section 6, with 500 bootstrap draws per replication rather than 2,000. Each cell's Monte Carlo standard error is at most about 0.035 (200 replications).
+
+**What this means, decided before freezing (3 November 2026).** The study reliably detects a real gain of 10% or more, but can confirm that a gain exceeds 10% only when it is well above 10%. "Not shown to reach 10%" is therefore a likely answer even for a useful model. The author accepts this and freezes as planned:
+- m was set on substance (above) and is not changed to suit the power.
+- The threshold test stays primary. Demoting it would change the question from "better enough to switch?" to "better at all?".
+- The window cannot grow without breaking comparability with rung 2, whose weather archive starts in January 2024.
+- The conservative direction is deliberate: a heavier dependency needs a stronger case, so missing a marginal winner is the preferred error over adopting one on a noisy estimate.
+
+**Assumption.** Model and regression errors are expected to be highly correlated (c near 0.7–0.9), since neither sees weather and both should miss the same surprises. This is a judgement, not a measurement. If correlation is low (c = 0.5), the threshold test confirms a true 15% gain only 39–60% of the time.
+
+**Two interpretation rules, fixed now:**
+1. A failure to reject ratio ≥ 0.90 is reported as "not shown to reach 10%". It is never reported or read as evidence that the gain is below 10%.
+2. For every primary comparison, the ratio and its 90% interval are reported against 0.90 as well as 1. When the interval's upper bound is below 0.90 but the Holm-adjusted test does not reject, the report says so descriptively, giving the ratio and both bounds. A useful model must not disappear behind the conservative gate without a visible trace of the evidence.
+
 ## 9. Validity gate
 
 The official run is the first run whose outputs pass every check. A failed run is logged as a deviation, its outputs kept, and the cause fixed before a rerun.
@@ -146,6 +169,7 @@ Every sentence names the window, the ratio and its interval.
 | --- | --- |
 | No credible improvement | "Over [window], [model], zero-shot, did not forecast GB demand a day ahead credibly better than the simple regression (error ratio r; 90% interval a–b, descriptive)." |
 | Improvement, not practically meaningful | "Over [window], [model] forecast credibly better than the simple regression (error ratio r; 90% interval a–b, descriptive), but the gain was not shown to reach the [m]% threshold set in advance." |
+| Improvement; interval below 0.90 but threshold not confirmed after adjustment | Add to the second sentence: "The ratio's 90% interval (a–b, descriptive) lies below 0.90, but after adjustment for the six tests the gain is not confirmed to reach [m]%." |
 | Practically meaningful improvement | "Over [window], [model] forecast credibly better than the simple regression, by at least the [m]% set in advance as practically meaningful (error ratio r; 90% interval a–b, descriptive)." |
 | NESO comparison | "Against NESO's published forecast, [model]'s error ratio was r (90% interval a–b, descriptive). NESO's forecast uses weather information the model did not have." |
 

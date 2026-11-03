@@ -11,8 +11,8 @@ Run in this order, from this folder. No step before the tag runs a foundation mo
 | 5 | `python selftest.py --models` | synthetic data | yes, on synthetic data only |
 | 6 | `python run.py pipeline-test OUT --synthetic` | synthetic data, stand-in in every model slot | no |
 | 7 | `python power.py` | real INDO, regression errors only | no |
-| — | freeze: tag `demand-plan`, write `../plan/PLAN_LOCK.json` | | |
-| 8 | `python run.py real` | real data | yes, after the tag only |
+| 8 | `python freeze.py`, then `python freeze.py --tag` | checks; writes `../plan/PLAN_LOCK.json`, tags `demand-plan`, pushes | no |
+| 9 | `python run.py real` | real data; refuses if any locked file has changed | yes, after the tag only |
 
 | File | Contents |
 |---|---|
@@ -25,6 +25,7 @@ Run in this order, from this folder. No step before the tag runs a foundation mo
 | `run.py` | the run: forecasts, exclusions, L1 check, gates, results |
 | `selftest.py` | checks A–G |
 | `power.py` | power check from the regression's real errors |
-| `fetch.py` | download, probe and gap report |
+| `fetch.py` | download, probe, comparison and gap report |
+| `freeze.py` | the freeze: checks, lock file, tag |
 
 Data: "Contains BMRS data © Elexon Limited copyright and database right 2026"; "Supported by National Energy SO Open Data".
