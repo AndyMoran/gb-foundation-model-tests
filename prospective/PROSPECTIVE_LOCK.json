@@ -1,0 +1,45 @@
+{
+ "tag": "prospective-plan",
+ "frozen_utc": "2026-11-04T20:14:18+00:00",
+ "parent_commit": "cce3a3b15d564beb38d4259bfaf29db8ab7100a6",
+ "files_sha256": {
+  "prospective/PLAN.md": "9eea6eba8db2d2a5e340d6d0d2dfd4ac890caa05258f55fccd290119f861a549",
+  "prospective/forecasts/forecast_daily.py": "ccb7fb5960375707bd287c18d03befb8d23a8e0f6670d6ea7eda757b752c6ad1",
+  "code/common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4",
+  "code/inputs.py": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b",
+  "code/baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+  "code/models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+  "code/fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af",
+  "code/requirements-models.txt": "d541c53667cae23d7af467463adf7a28f2c332f36f3f001c85515f78ef1a83c0",
+  "data/bank_holidays_ew.json": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af"
+ },
+ "weights_sha256": {
+  "timesfm25": "2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8",
+  "chronos2": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+  "timestral": "1456effb9927e3daa8c7234f10497e3424233869245a9c72b8ecebaf7ad2b7fa"
+ },
+ "revisions": {
+  "timesfm25": [
+   "google/timesfm-2.5-200m-pytorch",
+   "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+  ],
+  "chronos2": [
+   "amazon/chronos-2",
+   "29ec3766d36d6f73f0696f85560a422f50e8498c"
+  ],
+  "timestral": [
+   "mistralai/Timestral-209M",
+   "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+  ]
+ },
+ "versions": {
+  "timesfm": "3.0.2",
+  "chronos-forecasting": "2.3.2",
+  "timestral": "1.0.0",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ },
+ "seed_scoring": 20270401,
+ "window_end": "2027-03-31"
+}
