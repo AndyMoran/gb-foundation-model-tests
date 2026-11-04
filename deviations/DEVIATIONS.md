@@ -86,3 +86,35 @@ Before attempt 2, the new code runs on the real data with the stand-in forecaste
 ### Lesson
 
 Every gate check must run at least once, before the freeze, on synthetic data with the real files' structure, and must be shown to fail on deliberately corrupted input. A check that has never run, or never failed, is not a check. (Added to `LESSONS_LEARNED.md` when the project closes.)
+
+## Deviation 2: the amendment lock reached GitHub after attempt 2, not before
+
+*Logged 4 November 2026 by Andy Moran.*
+
+### What happened
+
+`freeze.py --amend 1 --tag` wrote `plan/LOCK_AMENDMENT_1.json`, committed it (06c78fa) and created the tag `demand-plan-dev1` locally at 10:35:49 UTC. Its push to GitHub then failed: `git push` returned exit status 1. The script captured git's error message without printing it, so the cause cannot be established. The author started attempt 2 immediately afterwards, at about 10:36; `run.py real` did not refuse, because it checks that the locked files are unchanged, not that the lock has reached GitHub.
+
+GitHub's push record (the repository's Activity log) shows:
+
+| Time (UTC) | Push |
+| --- | --- |
+| 10:12:03 | 2753484: every fix that the amendment locks |
+| 10:33:44 | e02b62f: the self-test record and diagnostic output; the amendment's parent commit |
+| 15:30:27 | 06c78fa, the lock commit, pushed by the scheduled weather task's `git pull --rebase && git push` together with that day's weather commit |
+| 15:39:46 | attempt 2's results; the tag was pushed by hand at about the same time |
+
+Attempt 2 finished at 15:11:40 UTC. So the lock file and its tag did not have a server-side timestamp before the run, as the procedure in deviation 1 intended. The scheduled task did not cause the failure: it runs at 09:30 and 15:30 only, and the push failed at 10:35.
+
+### What evidence remains, and why it is enough
+
+- **The code attempt 2 ran was on GitHub before it started.** Attempt 2's `results.json` records the SHA-256 of every script it ran. Each equals the corresponding file in e02b62f, pushed at 10:33:44, before the run. The lock file adds nothing to this: it records the hashes of those same files, and of `DEVIATIONS.md` as it stood in e02b62f.
+- **Attempt 2's outputs reproduce attempt 1's exactly.** Every value in its `forecasts.csv` equals attempt 1's, and every primary, secondary, leakage and exploratory number attempt 1 reported is identical (the prediction in deviation 1). Attempt 1 ran under the original lock, after the original tag (`demand-plan`, pushed 3 November 2026 at 18:04 UTC). So even without the amendment's timestamp, the results are those of the code frozen on 3 November; the amendment changed only the checks and added outputs.
+- **What is lost:** a server-side record that the lock file itself existed before the run. That is a weaker record than intended, and it is stated here rather than repaired after the fact.
+
+### Changes
+
+None to this study's code, data or results; attempt 2 stands as the official run. Two lessons for later studies:
+
+1. `freeze.py` must print git's error when a push fails, rather than hide it.
+2. `run.py real` must refuse to start unless the lock, every amendment and its tag are on GitHub (for example, `git branch -r --contains` for the lock commit and `git ls-remote --tags` for the tag).
