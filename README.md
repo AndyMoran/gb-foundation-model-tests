@@ -2,7 +2,7 @@
 
 **Do zero-shot forecasting models (TimesFM 2.5, Timestral, Chronos-2) forecast GB national electricity demand a day ahead better than a simple regression, and by enough to matter? How do they compare with NESO's own published forecast?**
 
-Andy Moran (Heaviside Analytics) · MIT licence
+Andy Moran (Heaviside Analytics) · MIT licence · Results archived on Zenodo: DOI [10.5281/zenodo.23962005](https://doi.org/10.5281/zenodo.23962005)
 
 ## Result
 

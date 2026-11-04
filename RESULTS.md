@@ -1,6 +1,6 @@
 # Zero-shot forecasting models and GB electricity demand
 
-Results note · 4 November 2026 · Andy Moran (Heaviside Analytics)
+Results note · 4 November 2026 · Andy Moran (Heaviside Analytics) · DOI [10.5281/zenodo.23962005](https://doi.org/10.5281/zenodo.23962005)
 
 A preregistered test of three off-the-shelf forecasting models on Great Britain's national electricity demand, a day ahead. Plan: `plan/PLAN.md`, frozen at tag `demand-plan` (3 November 2026, 18:04 UTC) and locked in `plan/PLAN_LOCK.json`, with one amendment (`plan/LOCK_AMENDMENT_1.json`, tag `demand-plan-dev1`). Two deviations are logged in `deviations/DEVIATIONS.md` and summarised below.
 
