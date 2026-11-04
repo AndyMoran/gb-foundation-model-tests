@@ -1,0 +1,1264 @@
+{
+ "mode": "real",
+ "synthetic": false,
+ "run_utc": "2026-11-04T15:11:40+00:00",
+ "python": "3.11.18",
+ "versions": {
+  "timesfm": "3.0.2",
+  "chronos-forecasting": "2.3.2",
+  "timestral": "1.0.0",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ },
+ "settings": {
+  "timesfm25": {
+   "max_context": 2688,
+   "max_horizon": 128,
+   "normalize_inputs": true,
+   "use_continuous_quantile_head": true,
+   "force_flip_invariance": true,
+   "infer_is_positive": true,
+   "fix_quantile_crossing": true,
+   "return_backcast": false,
+   "per_core_batch_size": 32
+  },
+  "chronos2": {
+   "context_length": 2688,
+   "cross_learning": false,
+   "limit_prediction_length": false,
+   "batch_size": 64,
+   "device_map": "cpu",
+   "quantile_levels": [
+    0.5
+   ]
+  },
+  "timestral": {
+   "symmetric_averaging": true,
+   "clip_nonnegative": true,
+   "device": "cpu",
+   "quantile": 0.5
+  }
+ },
+ "revisions": {
+  "timesfm25": [
+   "google/timesfm-2.5-200m-pytorch",
+   "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+  ],
+  "chronos2": [
+   "amazon/chronos-2",
+   "29ec3766d36d6f73f0696f85560a422f50e8498c"
+  ],
+  "timestral": [
+   "mistralai/Timestral-209M",
+   "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+  ]
+ },
+ "run_batch": 64,
+ "scripts": {
+  "baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+  "common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4",
+  "fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af",
+  "freeze.py": "452a8da33c931966ac9b76bb7ba0685de752b7615f85a2bfdf3878860913f4dc",
+  "inputs.py": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b",
+  "models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+  "power.py": "d9d1d8ed7576e924260deca81327346fea80c4e6eba13bfdf3e775305e8deac6",
+  "run.py": "0ab98c19d03df1233a2d268792c41e1dbda19d3d4ee346741c27208fa488842c",
+  "selftest.py": "c69b5378ff1ea805ca267a551d8253e69b77f19705f59a3d93dd90fcce96353e",
+  "stats.py": "78f4751bbf2c6bab6d4ba4d25e4bdb8b3fa2c50594648fd43fa2d83a71e6bad5",
+  "synth.py": "99827a2b009a99a7e647039f3bafabcaa253a62a22f9a1bdc39e9295bcb3a5df"
+ },
+ "n_days": 1035,
+ "n_excluded": 0,
+ "n_context_fills": 1,
+ "gates": {
+  "1_data_hashes": true,
+  "2_no_lookahead": true,
+  "3_neso_selection_independent": true,
+  "4_timesfm25_finite_and_length": true,
+  "4_timesfm25_repeatable": true,
+  "5_timesfm25_responsive": true,
+  "4_chronos2_finite_and_length": true,
+  "4_chronos2_repeatable": true,
+  "5_chronos2_responsive": true,
+  "4_timestral_finite_and_length": true,
+  "4_timestral_repeatable": true,
+  "5_timestral_responsive": true,
+  "6_regression_independent": true,
+  "7_timesfm25_weights": true,
+  "7_chronos2_weights": true,
+  "7_timestral_weights": true
+ },
+ "gate_info": {
+  "3_neso_days_checked": 1035,
+  "3_neso_file_agreement_share": 0.9118499728211632,
+  "3_neso_file_halfhours_compared": 33114,
+  "3_neso_file_mismatch_days": 94,
+  "3_neso_file_mismatch_where": {
+   "in no publication": 2347,
+   "later on D-1": 564,
+   "on D": 8
+  },
+  "4_timesfm25_batch_size_effect_mw": 0.0,
+  "4_chronos2_batch_size_effect_mw": 0.0,
+  "4_timestral_batch_size_effect_mw": 0.005859375
+ },
+ "gate_passed": true,
+ "results": {
+  "primary": {
+   "timesfm25": {
+    "ratio": 1.009381154095504,
+    "ci90_descriptive": [
+     0.9780723897661695,
+     1.0421459910614206
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.695,
+     "0.90": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 1552.940314861214,
+    "ci90_upper_below_threshold": false,
+    "threshold_confirmed_after_holm": false,
+    "interval_below_threshold_but_not_confirmed": false
+   },
+   "chronos2": {
+    "ratio": 0.9281973171697412,
+    "ci90_descriptive": [
+     0.9024388279322983,
+     0.9546721662127303
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0,
+     "0.90": 0.962
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 1552.940314861214,
+    "ci90_upper_below_threshold": false,
+    "threshold_confirmed_after_holm": false,
+    "interval_below_threshold_but_not_confirmed": false
+   },
+   "timestral": {
+    "ratio": 0.9096891931755383,
+    "ci90_descriptive": [
+     0.8853793576511869,
+     0.9345674420249149
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0,
+     "0.90": 0.73
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 1552.940314861214,
+    "ci90_upper_below_threshold": false,
+    "threshold_confirmed_after_holm": false,
+    "interval_below_threshold_but_not_confirmed": false
+   }
+  },
+  "secondary": {
+   "timesfm25_vs_neso_full": {
+    "ratio": 2.2577728538734263,
+    "ci90_descriptive": [
+     2.179341922551628,
+     2.3369526155495732
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 694.2720940978786
+   },
+   "timesfm25_vs_neso_post_release": {
+    "ratio": 2.1785245975382734,
+    "ci90_descriptive": [
+     2.0576126006691697,
+     2.3130167944181528
+    ],
+    "n_days": 412,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1623.6455580569636,
+    "mae_comparator": 745.2959493281272
+   },
+   "chronos2_vs_neso_full": {
+    "ratio": 2.0761817250510117,
+    "ci90_descriptive": [
+     2.0022093321858425,
+     2.151080070072115
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 694.2720940978786
+   },
+   "chronos2_vs_neso_post_release": {
+    "ratio": 2.088409480656202,
+    "ci90_descriptive": [
+     1.9562515786498067,
+     2.2140277603364273
+    ],
+    "n_days": 367,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1558.753120708281,
+    "mae_comparator": 746.3828981558266
+   },
+   "timestral_vs_neso_full": {
+    "ratio": 2.0347829533772135,
+    "ci90_descriptive": [
+     1.96070755980645,
+     2.108498115676235
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 694.2720940978786
+   },
+   "timestral_vs_neso_post_release": {
+    "ratio": 2.5095512281322176,
+    "ci90_descriptive": [
+     2.4683987905689784,
+     3.1997409520630873
+    ],
+    "n_days": 17,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1765.3276961741728,
+    "mae_comparator": 703.4435784313725
+   }
+  },
+  "exploratory": {
+   "timesfm25_vs_regression_post_release": {
+    "ratio": 1.0244736786575,
+    "ci90_descriptive": [
+     0.9854724776355767,
+     1.0628650988150903
+    ],
+    "n_days": 412,
+    "p_one_sided": {
+     "1.00": 0.843
+    },
+    "mae_model": 1623.6455580569636,
+    "mae_comparator": 1584.8582466117002
+   },
+   "timesfm25_vs_naive": {
+    "ratio": 0.7482506648358405,
+    "ci90_descriptive": [
+     0.7169590337939745,
+     0.7802689523678911
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 2094.8978209059724
+   },
+   "chronos2_vs_regression_post_release": {
+    "ratio": 0.9645562530327817,
+    "ci90_descriptive": [
+     0.9232946800083127,
+     1.0060315883715079
+    ],
+    "n_days": 367,
+    "p_one_sided": {
+     "1.00": 0.0775
+    },
+    "mae_model": 1558.753120708281,
+    "mae_comparator": 1616.0313261224637
+   },
+   "chronos2_vs_naive": {
+    "ratio": 0.6880693748373561,
+    "ci90_descriptive": [
+     0.6582605073214501,
+     0.7196531942398701
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 2094.8978209059724
+   },
+   "timestral_vs_regression_post_release": {
+    "ratio": 1.088869912444828,
+    "ci90_descriptive": [
+     1.0183761605259236,
+     1.2064462138216598
+    ],
+    "n_days": 17,
+    "p_one_sided": {
+     "1.00": 0.9645
+    },
+    "mae_model": 1765.3276961741728,
+    "mae_comparator": 1621.247566856266
+   },
+   "timestral_vs_naive": {
+    "ratio": 0.6743493682498186,
+    "ci90_descriptive": [
+     0.6470656764087003,
+     0.7036978620187524
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 2094.8978209059724
+   },
+   "regression_vs_naive": {
+    "ratio": 0.7412964486208782,
+    "ci90_descriptive": [
+     0.7147574324752872,
+     0.7720419406676025
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1552.940314861214,
+    "mae_comparator": 2094.8978209059724
+   },
+   "timesfm25_vs_chronos2": {
+    "ratio": 1.087463985753922,
+    "ci90_descriptive": [
+     1.06375095462639,
+     1.1148165974520319
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 1441.4350339789119
+   },
+   "timesfm25_vs_timestral": {
+    "ratio": 1.1095890350988578,
+    "ci90_descriptive": [
+     1.0864670792663904,
+     1.1346393598211755
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 1412.693022075864
+   },
+   "chronos2_vs_timestral": {
+    "ratio": 1.0203455467351379,
+    "ci90_descriptive": [
+     1.0071473113882536,
+     1.0339742425516782
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.993
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 1412.693022075864
+   },
+   "mae_by_season": {
+    "timesfm25": {
+     "autumn": 1549.0,
+     "spring": 1642.4,
+     "summer": 1338.6,
+     "winter": 1763.4
+    },
+    "chronos2": {
+     "autumn": 1417.4,
+     "spring": 1548.7,
+     "summer": 1207.8,
+     "winter": 1611.1
+    },
+    "timestral": {
+     "autumn": 1384.0,
+     "spring": 1521.4,
+     "summer": 1173.4,
+     "winter": 1591.9
+    },
+    "regression": {
+     "autumn": 1530.9,
+     "spring": 1512.1,
+     "summer": 1332.2,
+     "winter": 1876.0
+    },
+    "naive": {
+     "autumn": 1958.6,
+     "spring": 2074.1,
+     "summer": 1642.1,
+     "winter": 2777.5
+    },
+    "neso": {
+     "autumn": 663.4,
+     "spring": 769.1,
+     "summer": 655.6,
+     "winter": 683.9
+    }
+   },
+   "mae_by_weekday": {
+    "timesfm25": {
+     "Friday": 1455.5,
+     "Monday": 1660.7,
+     "Saturday": 1518.6,
+     "Sunday": 1563.3,
+     "Thursday": 1543.8,
+     "Tuesday": 1620.2,
+     "Wednesday": 1610.3
+    },
+    "chronos2": {
+     "Friday": 1356.7,
+     "Monday": 1666.6,
+     "Saturday": 1479.7,
+     "Sunday": 1394.6,
+     "Thursday": 1374.6,
+     "Tuesday": 1490.5,
+     "Wednesday": 1326.9
+    },
+    "timestral": {
+     "Friday": 1333.9,
+     "Monday": 1598.8,
+     "Saturday": 1407.5,
+     "Sunday": 1372.9,
+     "Thursday": 1410.6,
+     "Tuesday": 1442.8,
+     "Wednesday": 1322.1
+    },
+    "regression": {
+     "Friday": 1494.7,
+     "Monday": 1615.3,
+     "Saturday": 1512.6,
+     "Sunday": 1476.1,
+     "Thursday": 1595.2,
+     "Tuesday": 1589.4,
+     "Wednesday": 1586.7
+    },
+    "naive": {
+     "Friday": 2096.0,
+     "Monday": 2241.8,
+     "Saturday": 1995.3,
+     "Sunday": 1839.9,
+     "Thursday": 2285.8,
+     "Tuesday": 2146.0,
+     "Wednesday": 2057.7
+    },
+    "neso": {
+     "Friday": 686.2,
+     "Monday": 686.6,
+     "Saturday": 677.7,
+     "Sunday": 703.3,
+     "Thursday": 705.7,
+     "Tuesday": 706.9,
+     "Wednesday": 693.8
+    }
+   },
+   "mae_by_holiday": {
+    "timesfm25": {
+     "bank holiday": 2548.7,
+     "other day": 1546.2
+    },
+    "chronos2": {
+     "bank holiday": 2386.9,
+     "other day": 1420.9
+    },
+    "timestral": {
+     "bank holiday": 2501.8,
+     "other day": 1389.0
+    },
+    "regression": {
+     "bank holiday": 1799.8,
+     "other day": 1547.6
+    },
+    "naive": {
+     "bank holiday": 3489.6,
+     "other day": 2064.6
+    },
+    "neso": {
+     "bank holiday": 790.1,
+     "other day": 692.2
+    }
+   },
+   "mae_by_time_of_day": {
+    "timesfm25": {
+     "00:00": 1008.5,
+     "00:30": 1006.6,
+     "01:00": 1012.2,
+     "01:30": 1016.9,
+     "02:00": 1031.9,
+     "02:30": 1023.9,
+     "03:00": 1038.1,
+     "03:30": 1026.8,
+     "04:00": 1032.0,
+     "04:30": 1036.9,
+     "05:00": 1061.2,
+     "05:30": 1129.8,
+     "06:00": 1194.2,
+     "06:30": 1297.1,
+     "07:00": 1392.6,
+     "07:30": 1429.8,
+     "08:00": 1460.4,
+     "08:30": 1524.3,
+     "09:00": 1672.8,
+     "09:30": 1804.9,
+     "10:00": 1937.8,
+     "10:30": 2056.6,
+     "11:00": 2186.2,
+     "11:30": 2265.7,
+     "12:00": 2339.4,
+     "12:30": 2367.4,
+     "13:00": 2375.1,
+     "13:30": 2365.3,
+     "14:00": 2341.3,
+     "14:30": 2301.5,
+     "15:00": 2238.0,
+     "15:30": 2151.2,
+     "16:00": 2021.5,
+     "16:30": 1939.3,
+     "17:00": 1797.4,
+     "17:30": 1699.7,
+     "18:00": 1576.8,
+     "18:30": 1499.3,
+     "19:00": 1454.5,
+     "19:30": 1439.6,
+     "20:00": 1420.5,
+     "20:30": 1402.9,
+     "21:00": 1394.1,
+     "21:30": 1360.0,
+     "22:00": 1348.2,
+     "22:30": 1291.8,
+     "23:00": 1253.9,
+     "23:30": 1207.9
+    },
+    "chronos2": {
+     "00:00": 873.4,
+     "00:30": 898.5,
+     "01:00": 898.9,
+     "01:30": 870.4,
+     "02:00": 874.1,
+     "02:30": 865.6,
+     "03:00": 868.5,
+     "03:30": 862.0,
+     "04:00": 862.5,
+     "04:30": 868.1,
+     "05:00": 882.2,
+     "05:30": 947.7,
+     "06:00": 1022.9,
+     "06:30": 1108.0,
+     "07:00": 1209.7,
+     "07:30": 1251.9,
+     "08:00": 1319.8,
+     "08:30": 1395.0,
+     "09:00": 1545.7,
+     "09:30": 1677.3,
+     "10:00": 1833.4,
+     "10:30": 1980.7,
+     "11:00": 2113.5,
+     "11:30": 2202.7,
+     "12:00": 2270.5,
+     "12:30": 2307.1,
+     "13:00": 2317.3,
+     "13:30": 2304.9,
+     "14:00": 2285.0,
+     "14:30": 2248.1,
+     "15:00": 2180.0,
+     "15:30": 2088.1,
+     "16:00": 1940.0,
+     "16:30": 1837.2,
+     "17:00": 1669.6,
+     "17:30": 1558.9,
+     "18:00": 1435.3,
+     "18:30": 1372.0,
+     "19:00": 1359.1,
+     "19:30": 1324.7,
+     "20:00": 1271.4,
+     "20:30": 1247.7,
+     "21:00": 1228.2,
+     "21:30": 1189.7,
+     "22:00": 1182.6,
+     "22:30": 1146.1,
+     "23:00": 1114.2,
+     "23:30": 1075.8
+    },
+    "timestral": {
+     "00:00": 865.0,
+     "00:30": 869.9,
+     "01:00": 878.0,
+     "01:30": 863.8,
+     "02:00": 872.2,
+     "02:30": 865.8,
+     "03:00": 870.9,
+     "03:30": 871.3,
+     "04:00": 873.4,
+     "04:30": 875.6,
+     "05:00": 893.6,
+     "05:30": 946.5,
+     "06:00": 1022.0,
+     "06:30": 1107.3,
+     "07:00": 1197.8,
+     "07:30": 1246.2,
+     "08:00": 1298.0,
+     "08:30": 1361.0,
+     "09:00": 1516.5,
+     "09:30": 1653.2,
+     "10:00": 1801.1,
+     "10:30": 1948.1,
+     "11:00": 2072.7,
+     "11:30": 2154.4,
+     "12:00": 2217.0,
+     "12:30": 2251.7,
+     "13:00": 2257.4,
+     "13:30": 2240.6,
+     "14:00": 2220.6,
+     "14:30": 2177.3,
+     "15:00": 2104.3,
+     "15:30": 2013.3,
+     "16:00": 1870.7,
+     "16:30": 1770.5,
+     "17:00": 1609.9,
+     "17:30": 1517.4,
+     "18:00": 1398.5,
+     "18:30": 1332.8,
+     "19:00": 1290.8,
+     "19:30": 1266.9,
+     "20:00": 1234.0,
+     "20:30": 1222.4,
+     "21:00": 1206.4,
+     "21:30": 1183.0,
+     "22:00": 1176.4,
+     "22:30": 1135.6,
+     "23:00": 1117.3,
+     "23:30": 1065.7
+    },
+    "regression": {
+     "00:00": 1090.8,
+     "00:30": 1108.9,
+     "01:00": 1113.9,
+     "01:30": 1101.0,
+     "02:00": 1101.1,
+     "02:30": 1090.4,
+     "03:00": 1098.7,
+     "03:30": 1081.2,
+     "04:00": 1090.0,
+     "04:30": 1083.9,
+     "05:00": 1056.0,
+     "05:30": 1106.7,
+     "06:00": 1146.0,
+     "06:30": 1253.4,
+     "07:00": 1341.8,
+     "07:30": 1406.6,
+     "08:00": 1465.1,
+     "08:30": 1545.6,
+     "09:00": 1710.6,
+     "09:30": 1864.3,
+     "10:00": 2032.2,
+     "10:30": 2165.2,
+     "11:00": 2295.5,
+     "11:30": 2368.2,
+     "12:00": 2421.2,
+     "12:30": 2443.0,
+     "13:00": 2430.5,
+     "13:30": 2405.1,
+     "14:00": 2373.9,
+     "14:30": 2320.3,
+     "15:00": 2220.9,
+     "15:30": 2134.4,
+     "16:00": 1990.2,
+     "16:30": 1897.4,
+     "17:00": 1732.5,
+     "17:30": 1613.9,
+     "18:00": 1457.2,
+     "18:30": 1362.6,
+     "19:00": 1302.0,
+     "19:30": 1280.9,
+     "20:00": 1246.1,
+     "20:30": 1238.5,
+     "21:00": 1239.6,
+     "21:30": 1203.7,
+     "22:00": 1183.5,
+     "22:30": 1130.3,
+     "23:00": 1116.7,
+     "23:30": 1078.6
+    },
+    "naive": {
+     "00:00": 1460.6,
+     "00:30": 1475.3,
+     "01:00": 1490.2,
+     "01:30": 1465.9,
+     "02:00": 1472.3,
+     "02:30": 1465.4,
+     "03:00": 1481.6,
+     "03:30": 1466.0,
+     "04:00": 1474.1,
+     "04:30": 1464.5,
+     "05:00": 1439.6,
+     "05:30": 1500.3,
+     "06:00": 1563.0,
+     "06:30": 1699.4,
+     "07:00": 1848.2,
+     "07:30": 1955.4,
+     "08:00": 2075.7,
+     "08:30": 2179.1,
+     "09:00": 2353.7,
+     "09:30": 2530.9,
+     "10:00": 2707.5,
+     "10:30": 2871.4,
+     "11:00": 3017.0,
+     "11:30": 3094.6,
+     "12:00": 3148.6,
+     "12:30": 3165.6,
+     "13:00": 3152.8,
+     "13:30": 3119.3,
+     "14:00": 3102.4,
+     "14:30": 3031.7,
+     "15:00": 2939.2,
+     "15:30": 2844.9,
+     "16:00": 2671.8,
+     "16:30": 2548.5,
+     "17:00": 2362.8,
+     "17:30": 2223.8,
+     "18:00": 2053.3,
+     "18:30": 1964.5,
+     "19:00": 1877.3,
+     "19:30": 1813.8,
+     "20:00": 1747.6,
+     "20:30": 1724.5,
+     "21:00": 1706.0,
+     "21:30": 1651.4,
+     "22:00": 1618.2,
+     "22:30": 1550.3,
+     "23:00": 1518.2,
+     "23:30": 1458.4
+    },
+    "neso": {
+     "00:00": 408.0,
+     "00:30": 398.1,
+     "01:00": 405.2,
+     "01:30": 414.2,
+     "02:00": 427.3,
+     "02:30": 422.5,
+     "03:00": 428.5,
+     "03:30": 416.0,
+     "04:00": 406.8,
+     "04:30": 389.4,
+     "05:00": 428.5,
+     "05:30": 452.4,
+     "06:00": 533.2,
+     "06:30": 581.5,
+     "07:00": 635.3,
+     "07:30": 667.1,
+     "08:00": 670.9,
+     "08:30": 696.8,
+     "09:00": 765.8,
+     "09:30": 843.2,
+     "10:00": 935.7,
+     "10:30": 989.9,
+     "11:00": 1042.7,
+     "11:30": 1055.4,
+     "12:00": 1057.4,
+     "12:30": 1078.7,
+     "13:00": 1085.5,
+     "13:30": 1072.4,
+     "14:00": 1055.6,
+     "14:30": 1042.9,
+     "15:00": 1029.8,
+     "15:30": 993.7,
+     "16:00": 964.6,
+     "16:30": 921.7,
+     "17:00": 831.9,
+     "17:30": 772.3,
+     "18:00": 699.9,
+     "18:30": 661.4,
+     "19:00": 639.1,
+     "19:30": 606.5,
+     "20:00": 584.6,
+     "20:30": 550.7,
+     "21:00": 562.3,
+     "21:30": 563.1,
+     "22:00": 572.3,
+     "22:30": 555.1,
+     "23:00": 507.9,
+     "23:30": 494.9
+    }
+   }
+  },
+  "primary_tests_holm": {
+   "timesfm25_improvement": {
+    "p": 0.695,
+    "p_holm": 1.0,
+    "rejected": false
+   },
+   "timesfm25_meaningful": {
+    "p": 1.0,
+    "p_holm": 1.0,
+    "rejected": false
+   },
+   "chronos2_improvement": {
+    "p": 0.0,
+    "p_holm": 0.0,
+    "rejected": true
+   },
+   "chronos2_meaningful": {
+    "p": 0.962,
+    "p_holm": 1.0,
+    "rejected": false
+   },
+   "timestral_improvement": {
+    "p": 0.0,
+    "p_holm": 0.0,
+    "rejected": true
+   },
+   "timestral_meaningful": {
+    "p": 0.73,
+    "p_holm": 1.0,
+    "rejected": false
+   }
+  },
+  "robustness_nd": {
+   "timesfm25_vs_regression": {
+    "ratio": 1.0010142717884043,
+    "ci90_descriptive": [
+     0.9698918290313792,
+     1.0366687244174213
+    ],
+    "n_days": 1017,
+    "p_one_sided": {
+     "1.00": 0.5925
+    },
+    "mae_model": 1557.7904732373752,
+    "mae_comparator": 1556.2120512570104
+   },
+   "chronos2_vs_regression": {
+    "ratio": 0.9211830119354391,
+    "ci90_descriptive": [
+     0.8962589825905445,
+     0.9487847948929972
+    ],
+    "n_days": 1017,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1433.5561045871607,
+    "mae_comparator": 1556.2120512570104
+   },
+   "timestral_vs_regression": {
+    "ratio": 0.9043695647013298,
+    "ci90_descriptive": [
+     0.8802347463576926,
+     0.9310161092415669
+    ],
+    "n_days": 1017,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1407.390815378266,
+    "mae_comparator": 1556.2120512570104
+   },
+   "n_days": 1017
+  },
+  "exploratory_neso_sensitivity": {
+   "label": "exploratory, added by deviation 1 after attempt 1; not preregistered",
+   "timesfm25_vs_neso_excluding_file_mismatch_days": {
+    "ratio": 2.292813414292176,
+    "ci90_descriptive": [
+     2.2075920783240193,
+     2.373582083682847
+    ],
+    "n_days": 941,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1570.1700465858544,
+    "mae_comparator": 684.8224268046636
+   },
+   "chronos2_vs_neso_excluding_file_mismatch_days": {
+    "ratio": 2.111879434787285,
+    "ci90_descriptive": [
+     2.0304721719814416,
+     2.1883959512003295
+    ],
+    "n_days": 941,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1446.2623996498896,
+    "mae_comparator": 684.8224268046636
+   },
+   "timestral_vs_neso_excluding_file_mismatch_days": {
+    "ratio": 2.0599124309253987,
+    "ci90_descriptive": [
+     1.9805704819166394,
+     2.1354170532711683
+    ],
+    "n_days": 941,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1410.6742299514256,
+    "mae_comparator": 684.8224268046636
+   },
+   "timesfm25_vs_neso_excluding_2025_03_05": {
+    "ratio": 2.2634220413701227,
+    "ci90_descriptive": [
+     2.188292200843277,
+     2.3421355825193193
+    ],
+    "n_days": 1034,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1566.407427472242,
+    "mae_comparator": 692.052740868444
+   },
+   "chronos2_vs_neso_excluding_2025_03_05": {
+    "ratio": 2.0820331337666462,
+    "ci90_descriptive": [
+     2.0081963261064164,
+     2.1563487705836586
+    ],
+    "n_days": 1034,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1440.876736802123,
+    "mae_comparator": 692.052740868444
+   },
+   "timestral_vs_neso_excluding_2025_03_05": {
+    "ratio": 2.039263849551334,
+    "ci90_descriptive": [
+     1.9650456782061965,
+     2.1129042502086626
+    ],
+    "n_days": 1034,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1411.2781364359348,
+    "mae_comparator": 692.052740868444
+   },
+   "timesfm25_vs_neso_file_values_on_mismatch_days": {
+    "ratio": 2.2824462848263742,
+    "ci90_descriptive": [
+     2.2073473458464683,
+     2.361450141933225
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 686.7669559966392
+   },
+   "chronos2_vs_neso_file_values_on_mismatch_days": {
+    "ratio": 2.098870688801698,
+    "ci90_descriptive": [
+     2.0267364610332206,
+     2.1719350042241787
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 686.7669559966392
+   },
+   "timestral_vs_neso_file_values_on_mismatch_days": {
+    "ratio": 2.0570195023809172,
+    "ci90_descriptive": [
+     1.9822919312491494,
+     2.129673737415142
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 686.7669559966392
+   },
+   "n_mismatch_days": 94
+  },
+  "L1": {
+   "timesfm25": {
+    "unperturbed": 1567.5086872560473,
+    "perturbed_mean": 1565.546458470982,
+    "ratio": 0.998748186341155,
+    "draws": [
+     1565.769728700367,
+     1564.056700536422,
+     1561.003211904593,
+     1566.8835677115467,
+     1565.0491206802337,
+     1567.0619352304134,
+     1565.246075045235,
+     1565.7184367773725,
+     1564.1391158235397,
+     1567.388690978718,
+     1563.311576768253,
+     1569.33659240409,
+     1565.911732107909,
+     1567.453232964273,
+     1570.0362335163115,
+     1564.2486635044104,
+     1560.3841372296283,
+     1566.64546507878,
+     1564.5662033332965,
+     1566.7187491242526
+    ],
+    "excess": -0.008869967127509315,
+    "flag": false
+   },
+   "chronos2": {
+    "unperturbed": 1441.4350339789119,
+    "perturbed_mean": 1440.7480752109664,
+    "ratio": 0.9995234202362564,
+    "draws": [
+     1440.0438540399728,
+     1442.6048527877329,
+     1436.5050956220693,
+     1443.1095227064627,
+     1445.823877848598,
+     1444.6377264253108,
+     1439.7666964822827,
+     1440.4669403016262,
+     1437.8016882283366,
+     1445.1207615093938,
+     1433.5428583833273,
+     1441.4071295253275,
+     1438.7523767046257,
+     1441.8187292672083,
+     1437.406467455882,
+     1441.3771696379588,
+     1443.2694677090992,
+     1442.9979073022507,
+     1439.1143530551713,
+     1439.394029226691
+    ],
+    "excess": -0.008094733232407947,
+    "flag": false
+   },
+   "timestral": {
+    "unperturbed": 1412.693022075864,
+    "perturbed_mean": 1424.0607795829535,
+    "ratio": 1.0080468702891907,
+    "draws": [
+     1423.345678547049,
+     1425.0625012767173,
+     1421.2996304424062,
+     1425.0225476900328,
+     1427.3733046735179,
+     1425.7646390670673,
+     1421.9677164189127,
+     1424.7484380173394,
+     1423.872377714246,
+     1426.1900062972315,
+     1419.440826317337,
+     1426.120418987977,
+     1424.1553986653169,
+     1424.142563320947,
+     1426.9739581255499,
+     1422.994422695366,
+     1423.6727422927595,
+     1423.934433682258,
+     1423.4740836757762,
+     1421.6599037512638
+    ],
+    "excess": 0.00042871682052636473,
+    "flag": false
+   },
+   "regression": {
+    "unperturbed": 1552.940314861214,
+    "perturbed_mean": 1564.7708525075025,
+    "ratio": 1.0076181534686643,
+    "draws": [
+     1564.5628695257792,
+     1564.863913715301,
+     1564.1225465490324,
+     1565.7027596140936,
+     1563.3590987518196,
+     1564.7496509736764,
+     1564.4348563417252,
+     1564.0826866188718,
+     1564.936667272597,
+     1564.6671973534546,
+     1565.235489029607,
+     1564.6957557248238,
+     1564.7261367324438,
+     1564.6023668226196,
+     1564.8124822121108,
+     1564.912517228453,
+     1564.339206757072,
+     1565.1123993912822,
+     1566.2361814374428,
+     1565.262268097844
+    ]
+   }
+  }
+ },
+ "plan_lock": {
+  "tag": "demand-plan",
+  "frozen_utc": "2026-11-03T18:04:29+00:00",
+  "parent_commit": "2b58c45389dd7442e30d505a9b22b563ca4c6ddc",
+  "files_sha256": {
+   "plan/PLAN.md": "93cf9fbfa74aafbfce7e99feda9a0a7180a1bbfcfe2675119f39600122379459",
+   "code/requirements-models.txt": "d541c53667cae23d7af467463adf7a28f2c332f36f3f001c85515f78ef1a83c0",
+   "code/baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+   "code/common.py": "b17109ca364505d227885f25a265ebe557c3b64d297b829c3dda7bd698f65804",
+   "code/fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af",
+   "code/freeze.py": "209749ade85305ea2788d7e590d647e5f2b06222fcb8c37c3f9134064a6f5b65",
+   "code/inputs.py": "16d07310e50e64bffee1cb045de7f9780dfc8220a2eb26156c4f66b3eff03cb4",
+   "code/models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+   "code/power.py": "d9d1d8ed7576e924260deca81327346fea80c4e6eba13bfdf3e775305e8deac6",
+   "code/run.py": "fee7af4fb1d0f43655cc0567f58b20557298b6a0928ce3eb42e2ea76b32189f3",
+   "code/selftest.py": "cd0ee6beca6b28a145b156f02ff678704b7e37de89bb2b46fb2d42ae3d6a5321",
+   "code/stats.py": "78f4751bbf2c6bab6d4ba4d25e4bdb8b3fa2c50594648fd43fa2d83a71e6bad5",
+   "code/synth.py": "140956f004bad903b436d62ad9b9a11a80a40c4e4f7505469f2ce713443234c5"
+  },
+  "data_sha256": {
+   "indo.csv": "fefa7d160288b3827190242d86aee7c6b7f4016b2f4e230da99e41429291a819",
+   "neso_dayahead_publications.csv": "3afb0faa6578f5b1859ffb6a6f556357081b41651b3ebdd82b23cbaa1aa35705",
+   "neso_forecast_performance.csv": "e042ed3f6140598ef22b7ab55c21d31ad64043848b43ba5a1165160a4ea9e014",
+   "neso_historic_nd.csv": "a9a961afb4ce3fefceeb3af677eb0fe5901a6292706a3ce8bab7ad2304f619dd",
+   "bank_holidays_ew.json": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af"
+  },
+  "data_fetched_utc": "2026-11-03T11:40:40+00:00",
+  "weights_sha256": {
+   "timesfm25": "2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8",
+   "chronos2": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+   "timestral": "1456effb9927e3daa8c7234f10497e3424233869245a9c72b8ecebaf7ad2b7fa"
+  },
+  "revisions": {
+   "timesfm25": [
+    "google/timesfm-2.5-200m-pytorch",
+    "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+   ],
+   "chronos2": [
+    "amazon/chronos-2",
+    "29ec3766d36d6f73f0696f85560a422f50e8498c"
+   ],
+   "timestral": [
+    "mistralai/Timestral-209M",
+    "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+   ]
+  },
+  "settings": {
+   "timesfm25": {
+    "max_context": 2688,
+    "max_horizon": 128,
+    "normalize_inputs": true,
+    "use_continuous_quantile_head": true,
+    "force_flip_invariance": true,
+    "infer_is_positive": true,
+    "fix_quantile_crossing": true,
+    "return_backcast": false,
+    "per_core_batch_size": 32
+   },
+   "chronos2": {
+    "context_length": 2688,
+    "cross_learning": false,
+    "limit_prediction_length": false,
+    "batch_size": 64,
+    "device_map": "cpu",
+    "quantile_levels": [
+     0.5
+    ]
+   },
+   "timestral": {
+    "symmetric_averaging": true,
+    "clip_nonnegative": true,
+    "device": "cpu",
+    "quantile": 0.5
+   }
+  },
+  "versions": {
+   "timesfm": "3.0.2",
+   "chronos-forecasting": "2.3.2",
+   "timestral": "1.0.0",
+   "torch": "2.15.0+cpu",
+   "numpy": "2.4.6",
+   "pandas": "3.1.0"
+  },
+  "python": "3.11.18",
+  "constants": {
+   "ISSUE_TIME": "09:30",
+   "INPUT_CUTOFF": "08:30",
+   "CONTEXT_LEN": 2688,
+   "FILL_MAX": 2,
+   "TRAIN_DAYS": 365,
+   "FULL_START": "2024-01-01",
+   "FULL_END": "2026-10-31",
+   "POST_RELEASE": {
+    "timesfm25": "2025-09-15",
+    "chronos2": "2025-10-30",
+    "timestral": "2026-10-15"
+   },
+   "M_THRESHOLD": 0.1,
+   "BOOT_B": 2000,
+   "BOOT_BLOCK": 7,
+   "L1_SD_MW": 300.0,
+   "L1_DRAWS": 20,
+   "L1_FLAG": 0.05
+  },
+  "seeds": {
+   "bootstrap": 20261103,
+   "l1_first": 20261104
+  },
+  "power_sha256": "c330bd73cfeb9d8e4e2ae0f3e79bf500af4c336d009dd9585d7d97ca340cbb49",
+  "amendments": [
+   {
+    "amendment": 1,
+    "deviation": "deviations/DEVIATIONS.md, Deviation 1",
+    "tag": "demand-plan-dev1",
+    "frozen_utc": "2026-11-04T10:35:49+00:00",
+    "parent_commit": "e02b62fd937aa1540dd503da3a96be21335c6992",
+    "files_changed": {
+     "code/common.py": {
+      "old": "b17109ca364505d227885f25a265ebe557c3b64d297b829c3dda7bd698f65804",
+      "new": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4"
+     },
+     "code/freeze.py": {
+      "old": "209749ade85305ea2788d7e590d647e5f2b06222fcb8c37c3f9134064a6f5b65",
+      "new": "452a8da33c931966ac9b76bb7ba0685de752b7615f85a2bfdf3878860913f4dc"
+     },
+     "code/inputs.py": {
+      "old": "16d07310e50e64bffee1cb045de7f9780dfc8220a2eb26156c4f66b3eff03cb4",
+      "new": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b"
+     },
+     "code/run.py": {
+      "old": "fee7af4fb1d0f43655cc0567f58b20557298b6a0928ce3eb42e2ea76b32189f3",
+      "new": "0ab98c19d03df1233a2d268792c41e1dbda19d3d4ee346741c27208fa488842c"
+     },
+     "code/selftest.py": {
+      "old": "cd0ee6beca6b28a145b156f02ff678704b7e37de89bb2b46fb2d42ae3d6a5321",
+      "new": "c69b5378ff1ea805ca267a551d8253e69b77f19705f59a3d93dd90fcce96353e"
+     },
+     "code/synth.py": {
+      "old": "140956f004bad903b436d62ad9b9a11a80a40c4e4f7505469f2ce713443234c5",
+      "new": "99827a2b009a99a7e647039f3bafabcaa253a62a22f9a1bdc39e9295bcb3a5df"
+     }
+    },
+    "deviations_sha256": "0b5469806d9bf4779a64518d3cbbe8efa02445798ea37232a3708a37e123009e",
+    "versions": {
+     "timesfm": "3.0.2",
+     "chronos-forecasting": "2.3.2",
+     "timestral": "1.0.0",
+     "torch": "2.15.0+cpu",
+     "numpy": "2.4.6",
+     "pandas": "3.1.0"
+    },
+    "constants_added": {
+     "RUN_BATCH": 64
+    }
+   }
+  ]
+ }
+}
