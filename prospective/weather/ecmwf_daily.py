@@ -17,7 +17,7 @@ Usage (from the folder holding this script):
 The open-data portal keeps only the most recent runs, so a missed day cannot be recovered later: run this daily.
 Attribution required by the licence: "Contains modified Copernicus/ECMWF data" (see ECMWF's Terms of Use).
 """
-import argparse, csv, datetime as dt, hashlib, os, sys, time
+import argparse, csv, datetime as dt, hashlib, os, socket, sys, time
 
 PARAMS = ['2t', 'ssrd', '10u', '10v', 'tcc']
 STEPS = list(range(0, 73, 3))
@@ -123,12 +123,17 @@ if __name__ == '__main__':
     a.add_argument('--check', action='store_true', help='run the offline self-test and stop')
     args = a.parse_args()
     if args.check: sys.exit(0 if self_test() else 1)
+    socket.setdefaulttimeout(120)        # a stalled connection raises after 2 minutes, so the retries and mirrors work
+    stamp = lambda: dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
+    print(f'=== start {stamp()}', flush=True)
     date = dt.date.fromisoformat(args.date) if args.date else dt.datetime.now(dt.timezone.utc).date()
     for attempt in range(3):                                            # the 00 UTC run appears around 07-08 UTC
         try:
             collect(date, args.run, args.resol, args.keep_raw); break
         except Exception as e:
-            print(f'attempt {attempt + 1} failed: {e}', file=sys.stderr)
+            print(f'attempt {attempt + 1} failed at {stamp()}: {e}', file=sys.stderr, flush=True)
             if attempt < 2: time.sleep(600)
     else:
+        print(f'=== end {stamp()}: FAILED', flush=True)
         sys.exit('collection failed for this run; try again later the same day, before it leaves the portal')
+    print(f'=== end {stamp()}: ok', flush=True)

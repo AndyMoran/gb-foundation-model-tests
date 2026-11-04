@@ -57,3 +57,9 @@ Keep the data files on your machine and back them up; at about 1–2 MB a day th
 ## Licence
 
 ECMWF open data is licensed CC-BY-4.0 under ECMWF's Terms of Use; commercial use is allowed with attribution. Any published result or redistributed file should carry: "Contains modified Copernicus/ECMWF data" or the attribution wording in ECMWF's Terms of Use.
+
+## Changes to the script
+
+- **4 November 2026.** The 09:30 run that day stopped mid-download without logging an error; the 15:30 run collected the day. Two changes: a two-minute network timeout (`socket.setdefaulttimeout(120)`), so a stalled connection raises an error and the existing retries and cloud copies take over; and timestamped `=== start` and `=== end` lines in `collect.log`. What is downloaded, and how it is cropped and hashed, is unchanged.
+
+Recommended Task Scheduler settings (task **Properties → Settings**): **Stop the task if it runs longer than 1 hour**, and **If the task is already running: Stop the existing instance**, so a hung run can never block the 15:30 safety net.
