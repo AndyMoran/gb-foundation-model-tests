@@ -3,6 +3,8 @@ Diagnose the two gate failures in results/attempt1 (deviation 1). Changes no loc
 
   A  Gate 3, NESO reconstruction (91.2% < 95%): how the performance file is laid out, where the mismatches fall,
      and which Elexon publication (if any) carries the value NESO's file records.
+  C  What the performance file records: Publish_Datetime by year, where its values first appear among Elexon
+     publications, and the single largest difference.
   B  Gate 4, Timestral repeatability: the gate re-forecast 3 days as a batch of 3 and compared them bit for bit with
      forecasts made in batches of up to 64. This separates "not repeatable" from "batch size changes the rounding".
 
@@ -54,6 +56,46 @@ for _, r in pick.iterrows():
     used = q[(q.mw - r.neso).abs() < 0.5].publish_utc.dt.tz_convert(C.UK).dt.strftime('%m-%d %H:%M').tolist()
     print(f'  {r.Date:%Y-%m-%d} SP{r.Settlement_Period}: ours {r.neso:.0f}, file {r.Demand_Forecast:.0f}; '
           f'file value in publications {hit[:4] or "none"}; ours in {used[:3]}')
+
+print('\n=== C. Which forecast does the performance file record? (2024-2026) ===')
+pw = perf.copy(); pw['Date'] = pd.to_datetime(pw['Date']); pw = pw[(pw.Date >= C.FULL_START) & (pw.Date <= C.FULL_END)]
+pt = pd.to_datetime(pw['Publish_Datetime'], utc=True)
+pw['pub_utc_time'] = pt.dt.strftime('%H:%M'); pw['pub_uk_time'] = pt.dt.tz_convert(C.UK).dt.strftime('%H:%M')
+pw['pub_day_offset'] = (pt.dt.tz_convert(C.UK).dt.normalize().dt.tz_localize(None) - pw.Date).dt.days
+pw['year'] = pw.Date.dt.year
+print('Publish_Datetime, UTC time of day, by year:'); print(pw.groupby('year').pub_utc_time.value_counts().unstack(0).fillna(0).astype(int).to_string())
+print('Publish_Datetime, UK time of day, by year:'); print(pw.groupby('year').pub_uk_time.value_counts().unstack(0).fillna(0).astype(int).to_string())
+print('Publish day relative to target day (days):', pw.pub_day_offset.value_counts().sort_index().to_dict())
+mmd = set(mm.Date)
+pw['mismatch_day'] = pw.Date.isin(mmd)
+print('UK publish time on mismatched vs matched days:')
+print(pw[pw.Settlement_Period == 30].groupby('mismatch_day').pub_uk_time.value_counts().unstack(0).fillna(0).astype(int).to_string())
+
+# For every mismatched half-hour: the earliest Elexon publication carrying the file's value, by class
+pubs['key'] = pubs.start_utc
+cls = []
+for _, r in mm.iterrows():
+    t = pd.Timestamp(r.start_utc); q = pubs[(pubs.start_utc == t) & ((pubs.mw - r.Demand_Forecast).abs() < 0.5)]
+    issue = C.issue_time(r.Date)
+    if q.empty: c = 'in no publication'
+    else:
+        first = q.publish_utc.min()
+        c = 'at or before 09:30 on D-1' if first <= issue else ('later on D-1' if first < C.local(r.Date, '00:00') else 'on D')
+    cls.append((r.Date, c))
+cl = pd.DataFrame(cls, columns=['Date', 'cls'])
+print('\nMismatched half-hours: where the file value first appears among Elexon publications:')
+print(cl.cls.value_counts().to_dict())
+print('Mismatched days by dominant class:', cl.groupby('Date').cls.agg(lambda s: s.value_counts().index[0]).value_counts().to_dict())
+print('Mismatched days (UK date):', sorted(f'{d:%Y-%m-%d}' for d in mmd))
+
+big = j.loc[j['diff'].abs().idxmax()]
+print(f'\nLargest difference: {big.Date:%Y-%m-%d} SP{big.Settlement_Period}: ours {big.neso:.0f} MW, file {big.Demand_Forecast:.0f} MW')
+row = perf[(pd.to_datetime(perf.Date) == big.Date) & (perf.Settlement_Period == big.Settlement_Period)]
+print(row.to_string())
+oth = j[j.Date == big.Date].sort_values('Settlement_Period')[['Settlement_Period', 'neso', 'Demand_Forecast']]
+print('that day, ours vs file:'); print(oth.to_string(index=False))
+out = fc[(fc.day == big.Date)][['period', 'outturn', 'neso']]
+print('that day, INDO outturn vs ours (SP15-25):'); print(out[(out.period >= 15) & (out.period <= 25)].to_string(index=False))
 
 print('\n=== B. Gate 4: Timestral repeatability ===')
 series, pubs2, hol, perf2, nd = R.load_data(False)
