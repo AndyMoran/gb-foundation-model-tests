@@ -52,6 +52,10 @@ Each model against the regression over the full window, labelled "inside possibl
 | Chronos-2 | 1,441 | 0.928 | 0.902–0.955 | **Yes** | Not shown |
 | Timestral | 1,413 | 0.910 | 0.885–0.935 | **Yes** | Not shown |
 
+The seasonal-naive floor (the same half-hour one week earlier; reported, not tested) had a mean daily error of 2,095 MW. Every forecaster beat it; the regression's error was 0.741 of it.
+
+![Each model's error ratio to the regression, with 90% intervals and the Holm-adjusted decisions](figures/fig1_ratios.png)
+
 The two right-hand columns are the six one-sided tests, Holm-adjusted together at a family-wise 5% level. One-sided p-values for "better at all", before adjustment: TimesFM 2.5 0.695; Chronos-2 and Timestral below 0.0005 (no bootstrap draw out of 2,000 reached a ratio of 1). For "better by 10%": TimesFM 2.5 1.000, Chronos-2 0.962, Timestral 0.730.
 
 The plan's sentences, written before any forecast was made:
@@ -74,6 +78,8 @@ The two intervals sit differently against the threshold. Chronos-2's lower bound
 | Chronos-2 | 2.076 | 2.002–2.151 | 2.088 | 1.956–2.214 | 367 |
 | Timestral | 2.035 | 1.961–2.108 | 2.510 | 2.468–3.200 | 17 |
 
+![Mean daily error for every forecaster, from seasonal naive at 2,095 MW to NESO at 694 MW](figures/fig2_error_ladder.png)
+
 NESO's mean daily error was 694 MW. Against NESO's published forecast, every model's error was about twice as large, and the regression's 2.24 times as large. NESO's forecast uses weather information the models did not have, and NESO's own operational modelling.
 
 One published NESO forecast was far from the outturn. On 5 March 2025, Elexon's 08:45 publication put demand at 13,625 MW for 12:00–12:30, against an outturn of 25,524 MW. NESO's own performance file holds 25,050 MW for that half-hour; this is the largest of the file mismatches (11,425 MW). So the published figure is probably a publication error rather than NESO's forecast as NESO recorded it. The plan scores what a user could see at 09:30, so it counts as published. Leaving the day out moves the NESO ratios by less than 0.01.
@@ -92,10 +98,14 @@ One published NESO forecast was far from the outturn. On 5 March 2025, Elexon's 
 
 None of these was tested. They describe where the errors lie.
 
+![Error by time of day, and each model's difference from the regression](figures/fig3_time_of_day.png)
+
+![Mean daily error by season and on bank holidays, for the regression, the three models and NESO](figures/fig4_season_holiday.png)
+
 - **Ranking.** Timestral had slightly smaller errors than Chronos-2 (Chronos-2's error divided by Timestral's: 1.020; 1.007–1.034), and both beat TimesFM 2.5.
 - **Seasons.** The models gained most in winter: Timestral's mean daily error was 1,592 MW against the regression's 1,876. In spring they did no better than the regression: 1,521 MW for Timestral against 1,512.
-- **Time of day.** The models gained most overnight. At 03:00, Chronos-2's mean error was 869 MW against the regression's 1,099. Every forecaster, NESO included, had its largest errors between 12:30 and 13:00, probably because that is when solar generation behind the meter, which the transmission network does not see, varies most.
-- **Bank holidays.** On bank holidays every model lost to the regression: the models' mean daily errors were 2,387–2,549 MW against the regression's 1,800. The regression has a bank-holiday term; the models know nothing of the calendar.
+- **Time of day.** Chronos-2 and Timestral gained most from midnight to late morning: about 230 MW a half-hour on the regression at 03:00, and 200–230 MW at 10:00. Their edge faded through the afternoon and was close to zero by evening. TimesFM 2.5 gained less overnight and was worse than the regression from mid-afternoon (by 174 MW at 20:00). Every forecaster, NESO included, had its largest errors between 12:30 and 13:00, probably because that is when solar generation behind the meter, which the transmission network does not see, varies most.
+- **Bank holidays.** On bank holidays every model lost to the regression: the models' mean daily errors were 2,387–2,549 MW against the regression's 1,800. The blind spot is the models' own. On bank holidays the regression's error rose by 16% over other days and NESO's by 14% (790 MW against 692); the models' rose by 65–80%. The regression has a bank-holiday term and NESO models the calendar; the zero-shot models know nothing of it.
 - **NESO's own record.** NESO's performance file agrees with Elexon's 09:30 record on 91.2% of daytime half-hours. Excluding the 94 days on which they differ moves the models' ratios to NESO to 2.293, 2.112 and 2.060 (TimesFM 2.5, Chronos-2, Timestral); using the file's values on those days gives 2.282, 2.099 and 2.057. The models' order is the same under every treatment, since each changes NESO's errors, which all three ratios share. These checks were added by deviation 1, after attempt 1, and are not preregistered.
 
 ## What this study cannot show
@@ -117,6 +127,7 @@ Off the shelf, with eight weeks of history and nothing else, two of the three mo
 - **Models:** TimesFM 2.5, `google/timesfm-2.5-200m-pytorch` @ `1d952420`, weights SHA-256 `2f776efe…`, `timesfm` 3.0.2. Chronos-2, `amazon/chronos-2` @ `29ec3766`, weights `ddcda3c7…`, `chronos-forecasting` 2.3.2, `cross_learning` off. Timestral-209M, `mistralai/Timestral-209M` @ `9874d252`, weights `1456effb…`, `timestral` 1.0.0 @ `a534bdbd`. Median forecasts; 64 days per call; every setting written out in `code/models.py`.
 - **Environment:** torch 2.15.0 (CPU), numpy 2.4.6, pandas 3.1.0, Python 3.11.18, Linux under WSL2.
 - **Data:** downloaded once on 3 November 2026 and hashed in `data/fetch_manifest.json`: Elexon initial national demand outturn and day-ahead demand forecast publications; NESO's day-ahead forecast performance file and historic demand data; GOV.UK bank holidays for England and Wales. One missing half-hour (03:30 on 29 December 2023) was filled in the models' inputs under the plan's gap rule; it lies in the input history of 54 target days.
+- **Figures:** drawn by `figures/make_figures.py` from `results/attempt2/results.json` alone.
 - **Outputs:** `results/attempt2/`: `results.json`, `forecasts.csv`, `daily_mae.csv`, `exclusions.csv`, `context_fills.csv` and `neso_file_mismatches.csv`. Attempt 1's outputs are kept unchanged in `results/attempt1/`.
 - **Statistics:** moving-block bootstrap over days, blocks of 7, 2,000 draws, seed 20261103; leakage check seeds 20261104 onwards.
 
