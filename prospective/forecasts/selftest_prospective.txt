@@ -4,5 +4,5 @@ PASS  P3 a missing latest half-hour raises the error that triggers a retry
 PASS  P4 end to end: 48 half-hours x 5 forecasters written, start time and hashes recorded; a second run does nothing
 PASS  P5 refuses to run before 08:35 on D-1, and refuses a real run without the lock
 PASS  P6 a push that reaches the remote is confirmed; one that cannot is reported as failed
-FAIL  P7 the three real models run inside the script (synthetic data): 48 finite half-hours each
-OVERALL: FAIL
+PASS  P7 the three real models run inside the script (synthetic data): 48 finite half-hours each
+OVERALL: PASS
