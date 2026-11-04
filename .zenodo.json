@@ -1,0 +1,11 @@
+{
+  "upload_type": "publication",
+  "publication_type": "report",
+  "title": "Zero-shot forecasting models and GB electricity demand: a preregistered test",
+  "creators": [{"name": "Moran, Andy", "affiliation": "Heaviside Analytics"}],
+  "description": "<p>A preregistered test of three off-the-shelf time-series foundation models (TimesFM 2.5, Chronos-2 and Timestral-209M), used zero-shot, on Great Britain's national electricity demand a day ahead, against a weekly-lag regression and NESO's published forecast, over 1 January 2024 to 31 October 2026 (1,035 days).</p><p><strong>Result.</strong> Chronos-2 and Timestral forecast credibly better than the regression, by about 7% and 9%; neither was shown to reach the 10% gain set in advance as the smallest worth switching for. TimesFM 2.5 was no better than the regression. NESO's forecast, which uses weather, had less than half the error of every model.</p><p>The archive contains the frozen plan and its lock, the deviation log, the code, the full outputs of both run attempts, the figures and the results note (RESULTS.md and RESULTS.pdf). Input data are not redistributed; their SHA-256 hashes are in data/fetch_manifest.json and fetch.py downloads them. Contains BMRS data &copy; Elexon Limited copyright and database right 2026. Supported by National Energy SO Open Data.</p>",
+  "keywords": ["electricity demand forecasting", "time-series foundation models", "zero-shot forecasting", "preregistration", "Great Britain", "NESO", "TimesFM", "Chronos-2", "Timestral"],
+  "license": "MIT",
+  "access_right": "open",
+  "language": "eng"
+}

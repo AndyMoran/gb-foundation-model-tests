@@ -4,14 +4,39 @@
 
 Andy Moran (Heaviside Analytics) · MIT licence
 
-## Status
+## Result
 
-- **Brief agreed, 2 November 2026:** [`docs/BRIEF.md`](docs/BRIEF.md).
-- **Feasibility checked:** [`docs/feasibility/FEASIBILITY.md`](docs/feasibility/FEASIBILITY.md), with the scripts and their outputs.
-- **Next:** a preregistered plan, frozen and tagged before any forecast is scored.
-- **Running now:** daily collection of ECMWF weather forecasts for Great Britain ([`prospective/weather/`](prospective/weather/)).
+Used zero-shot, Chronos-2 and Timestral forecast GB demand credibly better than a simple weekly-lag regression, by about 7% and 9%. Neither was shown to reach the 10% gain set in advance as the smallest worth switching for. TimesFM 2.5 was no better than the regression. NESO's forecast, which uses weather, had less than half the error of every model.
 
-No model has been run on GB demand data, and no forecast has been scored.
+| Model | Error ratio to the regression | 90% interval | Better at all? | Better by 10%? |
+| --- | --- | --- | --- | --- |
+| TimesFM 2.5 | 1.009 | 0.978–1.042 | No | Not shown |
+| Chronos-2 | 0.928 | 0.902–0.955 | Yes | Not shown |
+| Timestral | 0.910 | 0.885–0.935 | Yes | Not shown |
+
+Full window, 1 January 2024 to 31 October 2026 (1,035 days); six one-sided tests, Holm-adjusted. The results note, with figures, caveats and both deviations: [`RESULTS.md`](RESULTS.md) ([PDF](RESULTS.pdf)).
+
+![Each model's error ratio to the regression](figures/fig1_ratios.png)
+
+## What is where
+
+| Folder or file | Contents |
+| --- | --- |
+| [`RESULTS.md`](RESULTS.md) | The results note |
+| [`plan/`](plan/) | The preregistered plan, frozen at tag `demand-plan` (3 November 2026), its lock file, and amendment 1 (tag `demand-plan-dev1`) |
+| [`deviations/`](deviations/) | The deviation log and the diagnostic for attempt 1 |
+| [`code/`](code/) | Every script, with the run order in its README |
+| [`results/`](results/) | Both run attempts: attempt 1 failed the validity gate; attempt 2 is the official run. Also the power check |
+| [`figures/`](figures/) | The figures and the script that draws them from `results/attempt2/results.json` |
+| [`docs/`](docs/) | The brief and the feasibility check |
+| [`prospective/`](prospective/) | Forecasts on record before their outcomes (below) |
+
+To reproduce the run: `code/fetch.py` downloads the inputs and checks them against the hashes in `data/fetch_manifest.json`; `code/run.py real` refuses to start unless every locked file matches. The input data are not in this repository.
+
+## Next
+
+- **Prospective forecasts:** the three models forecasting each day before it happens, under a short plan frozen before any prospective day is scored.
+- **Weather:** the next study gives the models and the regression the same day-ahead weather forecasts, to see how much of NESO's lead they close. Daily collection of ECMWF weather forecasts for Great Britain is already running ([`prospective/weather/`](prospective/weather/)).
 
 ## The method
 
@@ -41,4 +66,4 @@ The weather manifest's first entries (forecast runs of 31 October to 2 November 
 
 ## Use of AI
 
-The author is responsible for all design decisions, modelling runs, interpretation and final content. AI tools (including Claude, ChatGPT, Microsoft Copilot, DeepSeek, Kimi and Z.ai) were used for drafting text, writing and testing scripts, checking outputs, and sanity-checking reasoning and code. The work is designed so that AI output is never taken on trust: results are calculated numerically from the data and checked against known ground truths, and assumptions are checked against original sources. All modelling is executed by the author, who retains full responsibility for the analysis and results.
+The author is responsible for all design decisions, modelling runs, interpretation and final content. AI tools (including Claude, ChatGPT, Microsoft Copilot, DeepSeek, Kimi and Z.ai) were used for drafting text, writing and testing scripts, checking outputs, and sanity-checking reasoning and code. The work is designed so that AI output is never taken on trust: results are calculated numerically from the data and checked against known ground truths, and assumptions are checked against original sources. Figures were drawn throughout the work, not only for publication, to check the results for accuracy, sense and explanatory power, and to draw out nuance and mistakes. All modelling is executed by the author, who retains full responsibility for the analysis and results.
