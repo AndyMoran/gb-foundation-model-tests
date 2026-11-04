@@ -1,0 +1,579 @@
+{
+ "mode": "real",
+ "synthetic": false,
+ "run_utc": "2026-11-03T23:29:31+00:00",
+ "python": "3.11.18",
+ "versions": {
+  "timesfm": "3.0.2",
+  "chronos-forecasting": "2.3.2",
+  "timestral": "1.0.0",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ },
+ "settings": {
+  "timesfm25": {
+   "max_context": 2688,
+   "max_horizon": 128,
+   "normalize_inputs": true,
+   "use_continuous_quantile_head": true,
+   "force_flip_invariance": true,
+   "infer_is_positive": true,
+   "fix_quantile_crossing": true,
+   "return_backcast": false,
+   "per_core_batch_size": 32
+  },
+  "chronos2": {
+   "context_length": 2688,
+   "cross_learning": false,
+   "limit_prediction_length": false,
+   "batch_size": 64,
+   "device_map": "cpu",
+   "quantile_levels": [
+    0.5
+   ]
+  },
+  "timestral": {
+   "symmetric_averaging": true,
+   "clip_nonnegative": true,
+   "device": "cpu",
+   "quantile": 0.5
+  }
+ },
+ "revisions": {
+  "timesfm25": [
+   "google/timesfm-2.5-200m-pytorch",
+   "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+  ],
+  "chronos2": [
+   "amazon/chronos-2",
+   "29ec3766d36d6f73f0696f85560a422f50e8498c"
+  ],
+  "timestral": [
+   "mistralai/Timestral-209M",
+   "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+  ]
+ },
+ "scripts": {
+  "baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+  "common.py": "b17109ca364505d227885f25a265ebe557c3b64d297b829c3dda7bd698f65804",
+  "fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af",
+  "freeze.py": "209749ade85305ea2788d7e590d647e5f2b06222fcb8c37c3f9134064a6f5b65",
+  "inputs.py": "16d07310e50e64bffee1cb045de7f9780dfc8220a2eb26156c4f66b3eff03cb4",
+  "models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+  "power.py": "d9d1d8ed7576e924260deca81327346fea80c4e6eba13bfdf3e775305e8deac6",
+  "run.py": "fee7af4fb1d0f43655cc0567f58b20557298b6a0928ce3eb42e2ea76b32189f3",
+  "selftest.py": "cd0ee6beca6b28a145b156f02ff678704b7e37de89bb2b46fb2d42ae3d6a5321",
+  "stats.py": "78f4751bbf2c6bab6d4ba4d25e4bdb8b3fa2c50594648fd43fa2d83a71e6bad5",
+  "synth.py": "140956f004bad903b436d62ad9b9a11a80a40c4e4f7505469f2ce713443234c5"
+ },
+ "n_days": 1035,
+ "n_excluded": 0,
+ "n_context_fills": 1,
+ "gates": {
+  "1_data_hashes": true,
+  "2_no_lookahead": true,
+  "3_neso_reconstruction": false,
+  "3_neso_match_share": 0.9118499728211632,
+  "4_timesfm25_finite_and_length": true,
+  "4_timesfm25_repeatable": true,
+  "5_timesfm25_responsive": true,
+  "4_chronos2_finite_and_length": true,
+  "4_chronos2_repeatable": true,
+  "5_chronos2_responsive": true,
+  "4_timestral_finite_and_length": true,
+  "4_timestral_repeatable": false,
+  "5_timestral_responsive": true,
+  "6_regression_independent": true,
+  "7_timesfm25_weights": true,
+  "7_chronos2_weights": true,
+  "7_timestral_weights": true
+ },
+ "gate_passed": false,
+ "results": {
+  "primary": {
+   "timesfm25": {
+    "ratio": 1.009381154095504,
+    "ci90_descriptive": [
+     0.9780723897661695,
+     1.0421459910614206
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.695,
+     "0.90": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 1552.940314861214,
+    "ci90_upper_below_threshold": false,
+    "threshold_confirmed_after_holm": false,
+    "interval_below_threshold_but_not_confirmed": false
+   },
+   "chronos2": {
+    "ratio": 0.9281973171697412,
+    "ci90_descriptive": [
+     0.9024388279322983,
+     0.9546721662127303
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0,
+     "0.90": 0.962
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 1552.940314861214,
+    "ci90_upper_below_threshold": false,
+    "threshold_confirmed_after_holm": false,
+    "interval_below_threshold_but_not_confirmed": false
+   },
+   "timestral": {
+    "ratio": 0.9096891931755383,
+    "ci90_descriptive": [
+     0.8853793576511869,
+     0.9345674420249149
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0,
+     "0.90": 0.73
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 1552.940314861214,
+    "ci90_upper_below_threshold": false,
+    "threshold_confirmed_after_holm": false,
+    "interval_below_threshold_but_not_confirmed": false
+   }
+  },
+  "secondary": {
+   "timesfm25_vs_neso_full": {
+    "ratio": 2.2577728538734263,
+    "ci90_descriptive": [
+     2.179341922551628,
+     2.3369526155495732
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 694.2720940978786
+   },
+   "timesfm25_vs_neso_post_release": {
+    "ratio": 2.1785245975382734,
+    "ci90_descriptive": [
+     2.0576126006691697,
+     2.3130167944181528
+    ],
+    "n_days": 412,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1623.6455580569636,
+    "mae_comparator": 745.2959493281272
+   },
+   "chronos2_vs_neso_full": {
+    "ratio": 2.0761817250510117,
+    "ci90_descriptive": [
+     2.0022093321858425,
+     2.151080070072115
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 694.2720940978786
+   },
+   "chronos2_vs_neso_post_release": {
+    "ratio": 2.088409480656202,
+    "ci90_descriptive": [
+     1.9562515786498067,
+     2.2140277603364273
+    ],
+    "n_days": 367,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1558.753120708281,
+    "mae_comparator": 746.3828981558266
+   },
+   "timestral_vs_neso_full": {
+    "ratio": 2.0347829533772135,
+    "ci90_descriptive": [
+     1.96070755980645,
+     2.108498115676235
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 694.2720940978786
+   },
+   "timestral_vs_neso_post_release": {
+    "ratio": 2.5095512281322176,
+    "ci90_descriptive": [
+     2.4683987905689784,
+     3.1997409520630873
+    ],
+    "n_days": 17,
+    "p_one_sided": {
+     "1.00": 1.0
+    },
+    "mae_model": 1765.3276961741728,
+    "mae_comparator": 703.4435784313725
+   }
+  },
+  "exploratory": {
+   "timesfm25_vs_regression_post_release": {
+    "ratio": 1.0244736786575,
+    "ci90_descriptive": [
+     0.9854724776355767,
+     1.0628650988150903
+    ],
+    "n_days": 412,
+    "p_one_sided": {
+     "1.00": 0.843
+    },
+    "mae_model": 1623.6455580569636,
+    "mae_comparator": 1584.8582466117002
+   },
+   "timesfm25_vs_naive": {
+    "ratio": 0.7482506648358405,
+    "ci90_descriptive": [
+     0.7169590337939745,
+     0.7802689523678911
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1567.5086872560473,
+    "mae_comparator": 2094.8978209059724
+   },
+   "chronos2_vs_regression_post_release": {
+    "ratio": 0.9645562530327817,
+    "ci90_descriptive": [
+     0.9232946800083127,
+     1.0060315883715079
+    ],
+    "n_days": 367,
+    "p_one_sided": {
+     "1.00": 0.0775
+    },
+    "mae_model": 1558.753120708281,
+    "mae_comparator": 1616.0313261224637
+   },
+   "chronos2_vs_naive": {
+    "ratio": 0.6880693748373561,
+    "ci90_descriptive": [
+     0.6582605073214501,
+     0.7196531942398701
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1441.4350339789119,
+    "mae_comparator": 2094.8978209059724
+   },
+   "timestral_vs_regression_post_release": {
+    "ratio": 1.088869912444828,
+    "ci90_descriptive": [
+     1.0183761605259236,
+     1.2064462138216598
+    ],
+    "n_days": 17,
+    "p_one_sided": {
+     "1.00": 0.9645
+    },
+    "mae_model": 1765.3276961741728,
+    "mae_comparator": 1621.247566856266
+   },
+   "timestral_vs_naive": {
+    "ratio": 0.6743493682498186,
+    "ci90_descriptive": [
+     0.6470656764087003,
+     0.7036978620187524
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1412.693022075864,
+    "mae_comparator": 2094.8978209059724
+   },
+   "regression_vs_naive": {
+    "ratio": 0.7412964486208782,
+    "ci90_descriptive": [
+     0.7147574324752872,
+     0.7720419406676025
+    ],
+    "n_days": 1035,
+    "p_one_sided": {
+     "1.00": 0.0
+    },
+    "mae_model": 1552.940314861214,
+    "mae_comparator": 2094.8978209059724
+   }
+  },
+  "primary_tests_holm": {
+   "timesfm25_improvement": {
+    "p": 0.695,
+    "p_holm": 1.0,
+    "rejected": false
+   },
+   "timesfm25_meaningful": {
+    "p": 1.0,
+    "p_holm": 1.0,
+    "rejected": false
+   },
+   "chronos2_improvement": {
+    "p": 0.0,
+    "p_holm": 0.0,
+    "rejected": true
+   },
+   "chronos2_meaningful": {
+    "p": 0.962,
+    "p_holm": 1.0,
+    "rejected": false
+   },
+   "timestral_improvement": {
+    "p": 0.0,
+    "p_holm": 0.0,
+    "rejected": true
+   },
+   "timestral_meaningful": {
+    "p": 0.73,
+    "p_holm": 1.0,
+    "rejected": false
+   }
+  },
+  "L1": {
+   "timesfm25": {
+    "unperturbed": 1567.5086872560473,
+    "perturbed_mean": 1565.546458470982,
+    "ratio": 0.998748186341155,
+    "draws": [
+     1565.769728700367,
+     1564.056700536422,
+     1561.003211904593,
+     1566.8835677115467,
+     1565.0491206802337,
+     1567.0619352304134,
+     1565.246075045235,
+     1565.7184367773725,
+     1564.1391158235397,
+     1567.388690978718,
+     1563.311576768253,
+     1569.33659240409,
+     1565.911732107909,
+     1567.453232964273,
+     1570.0362335163115,
+     1564.2486635044104,
+     1560.3841372296283,
+     1566.64546507878,
+     1564.5662033332965,
+     1566.7187491242526
+    ],
+    "excess": -0.008869967127509315,
+    "flag": false
+   },
+   "chronos2": {
+    "unperturbed": 1441.4350339789119,
+    "perturbed_mean": 1440.7480752109664,
+    "ratio": 0.9995234202362564,
+    "draws": [
+     1440.0438540399728,
+     1442.6048527877329,
+     1436.5050956220693,
+     1443.1095227064627,
+     1445.823877848598,
+     1444.6377264253108,
+     1439.7666964822827,
+     1440.4669403016262,
+     1437.8016882283366,
+     1445.1207615093938,
+     1433.5428583833273,
+     1441.4071295253275,
+     1438.7523767046257,
+     1441.8187292672083,
+     1437.406467455882,
+     1441.3771696379588,
+     1443.2694677090992,
+     1442.9979073022507,
+     1439.1143530551713,
+     1439.394029226691
+    ],
+    "excess": -0.008094733232407947,
+    "flag": false
+   },
+   "timestral": {
+    "unperturbed": 1412.693022075864,
+    "perturbed_mean": 1424.0607795829535,
+    "ratio": 1.0080468702891907,
+    "draws": [
+     1423.345678547049,
+     1425.0625012767173,
+     1421.2996304424062,
+     1425.0225476900328,
+     1427.3733046735179,
+     1425.7646390670673,
+     1421.9677164189127,
+     1424.7484380173394,
+     1423.872377714246,
+     1426.1900062972315,
+     1419.440826317337,
+     1426.120418987977,
+     1424.1553986653169,
+     1424.142563320947,
+     1426.9739581255499,
+     1422.994422695366,
+     1423.6727422927595,
+     1423.934433682258,
+     1423.4740836757762,
+     1421.6599037512638
+    ],
+    "excess": 0.00042871682052636473,
+    "flag": false
+   },
+   "regression": {
+    "unperturbed": 1552.940314861214,
+    "perturbed_mean": 1564.7708525075025,
+    "ratio": 1.0076181534686643,
+    "draws": [
+     1564.5628695257792,
+     1564.863913715301,
+     1564.1225465490324,
+     1565.7027596140936,
+     1563.3590987518196,
+     1564.7496509736764,
+     1564.4348563417252,
+     1564.0826866188718,
+     1564.936667272597,
+     1564.6671973534546,
+     1565.235489029607,
+     1564.6957557248238,
+     1564.7261367324438,
+     1564.6023668226196,
+     1564.8124822121108,
+     1564.912517228453,
+     1564.339206757072,
+     1565.1123993912822,
+     1566.2361814374428,
+     1565.262268097844
+    ]
+   }
+  }
+ },
+ "plan_lock": {
+  "tag": "demand-plan",
+  "frozen_utc": "2026-11-03T18:04:29+00:00",
+  "parent_commit": "2b58c45389dd7442e30d505a9b22b563ca4c6ddc",
+  "files_sha256": {
+   "plan/PLAN.md": "93cf9fbfa74aafbfce7e99feda9a0a7180a1bbfcfe2675119f39600122379459",
+   "code/requirements-models.txt": "d541c53667cae23d7af467463adf7a28f2c332f36f3f001c85515f78ef1a83c0",
+   "code/baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+   "code/common.py": "b17109ca364505d227885f25a265ebe557c3b64d297b829c3dda7bd698f65804",
+   "code/fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af",
+   "code/freeze.py": "209749ade85305ea2788d7e590d647e5f2b06222fcb8c37c3f9134064a6f5b65",
+   "code/inputs.py": "16d07310e50e64bffee1cb045de7f9780dfc8220a2eb26156c4f66b3eff03cb4",
+   "code/models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+   "code/power.py": "d9d1d8ed7576e924260deca81327346fea80c4e6eba13bfdf3e775305e8deac6",
+   "code/run.py": "fee7af4fb1d0f43655cc0567f58b20557298b6a0928ce3eb42e2ea76b32189f3",
+   "code/selftest.py": "cd0ee6beca6b28a145b156f02ff678704b7e37de89bb2b46fb2d42ae3d6a5321",
+   "code/stats.py": "78f4751bbf2c6bab6d4ba4d25e4bdb8b3fa2c50594648fd43fa2d83a71e6bad5",
+   "code/synth.py": "140956f004bad903b436d62ad9b9a11a80a40c4e4f7505469f2ce713443234c5"
+  },
+  "data_sha256": {
+   "indo.csv": "fefa7d160288b3827190242d86aee7c6b7f4016b2f4e230da99e41429291a819",
+   "neso_dayahead_publications.csv": "3afb0faa6578f5b1859ffb6a6f556357081b41651b3ebdd82b23cbaa1aa35705",
+   "neso_forecast_performance.csv": "e042ed3f6140598ef22b7ab55c21d31ad64043848b43ba5a1165160a4ea9e014",
+   "neso_historic_nd.csv": "a9a961afb4ce3fefceeb3af677eb0fe5901a6292706a3ce8bab7ad2304f619dd",
+   "bank_holidays_ew.json": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af"
+  },
+  "data_fetched_utc": "2026-11-03T11:40:40+00:00",
+  "weights_sha256": {
+   "timesfm25": "2f776efe6245e42b24bc4153ffdf61810140210e4bd3b01fb21f7aa779ab6ce8",
+   "chronos2": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42",
+   "timestral": "1456effb9927e3daa8c7234f10497e3424233869245a9c72b8ecebaf7ad2b7fa"
+  },
+  "revisions": {
+   "timesfm25": [
+    "google/timesfm-2.5-200m-pytorch",
+    "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+   ],
+   "chronos2": [
+    "amazon/chronos-2",
+    "29ec3766d36d6f73f0696f85560a422f50e8498c"
+   ],
+   "timestral": [
+    "mistralai/Timestral-209M",
+    "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+   ]
+  },
+  "settings": {
+   "timesfm25": {
+    "max_context": 2688,
+    "max_horizon": 128,
+    "normalize_inputs": true,
+    "use_continuous_quantile_head": true,
+    "force_flip_invariance": true,
+    "infer_is_positive": true,
+    "fix_quantile_crossing": true,
+    "return_backcast": false,
+    "per_core_batch_size": 32
+   },
+   "chronos2": {
+    "context_length": 2688,
+    "cross_learning": false,
+    "limit_prediction_length": false,
+    "batch_size": 64,
+    "device_map": "cpu",
+    "quantile_levels": [
+     0.5
+    ]
+   },
+   "timestral": {
+    "symmetric_averaging": true,
+    "clip_nonnegative": true,
+    "device": "cpu",
+    "quantile": 0.5
+   }
+  },
+  "versions": {
+   "timesfm": "3.0.2",
+   "chronos-forecasting": "2.3.2",
+   "timestral": "1.0.0",
+   "torch": "2.15.0+cpu",
+   "numpy": "2.4.6",
+   "pandas": "3.1.0"
+  },
+  "python": "3.11.18",
+  "constants": {
+   "ISSUE_TIME": "09:30",
+   "INPUT_CUTOFF": "08:30",
+   "CONTEXT_LEN": 2688,
+   "FILL_MAX": 2,
+   "TRAIN_DAYS": 365,
+   "FULL_START": "2024-01-01",
+   "FULL_END": "2026-10-31",
+   "POST_RELEASE": {
+    "timesfm25": "2025-09-15",
+    "chronos2": "2025-10-30",
+    "timestral": "2026-10-15"
+   },
+   "M_THRESHOLD": 0.1,
+   "BOOT_B": 2000,
+   "BOOT_BLOCK": 7,
+   "L1_SD_MW": 300.0,
+   "L1_DRAWS": 20,
+   "L1_FLAG": 0.05
+  },
+  "seeds": {
+   "bootstrap": 20261103,
+   "l1_first": 20261104
+  },
+  "power_sha256": "c330bd73cfeb9d8e4e2ae0f3e79bf500af4c336d009dd9585d7d97ca340cbb49"
+ }
+}
