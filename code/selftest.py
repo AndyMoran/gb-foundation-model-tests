@@ -10,6 +10,7 @@ forecasts real GB demand.
   E  statistics: a planted forecaster 15% better than the regression is detected; one with no gain is not
   F  gap rule: a run of at most 2 missing half-hours in a model context is filled on a straight line and listed;\n     longer runs, a run at the end of the context, and any missing outturn exclude the day
   H  deviation 1: the independent NESO selection (gate check 3) and the ND loader (robustness)
+  I  deviation 1: the gate rejects corrupted input (a NESO value off by 1 MW, a late revision, a non-repeatable model)
   G  (--models) each foundation model on synthetic contexts: horizon exact, finite, repeatable, responsive,
      batch-independent (a day forecast alone equals the same day forecast in a batch), and an L1 pilot of the
      300 MW perturbation; prints each weights file's SHA-256 for the lock file
@@ -21,6 +22,7 @@ import os, sys
 import numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import common as C, inputs as I, baselines as B, stats as S, models as M, synth
+import run as R
 
 log = []
 def check(ok, msg):
@@ -82,7 +84,6 @@ def main(with_models):
                 f"E planted 15% gain detected (ratio {e85['ratio']:.3f}); no gain not detected (ratio {e100['ratio']:.3f})")
 
     # F
-    import run as R
     s3 = synth.demand(gaps=[(C.local('2025-02-03', '10:00'), C.local('2025-02-03', '10:30'))])       # 2 half-hours (inclusive)
     rec, excl = R.build_days(s3, pubs, B.Regression(s3, hol), pd.date_range('2025-02-01', '2025-02-08'))
     bad = sorted({e['day'] for e in excl}); fl = rec[pd.Timestamp('2025-02-05')]['filled']
@@ -121,6 +122,26 @@ def main(with_models):
     except ValueError: refused = True
     ok &= check(nd_ok and refused, 'H ND loader: both date formats read, clock-change periods mapped, forecast rows '
                                    'dropped, an unknown date format refused')
+
+    # I (deviation 1): the gate rejects corrupted input, not only passes clean input
+    import copy
+    days_i = pd.date_range('2024-01-01', periods=70)
+    rec_i, _ = R.build_days(s, pubs, reg, days_i)
+    class Noisy:                                   # not repeatable: a forecaster that should fail check 4
+        def __init__(self): self.rng = np.random.default_rng()
+        def forecast(self, X, h): return M.StandIn().forecast(X, h) + self.rng.normal(0, 1, (len(X), h))
+    def gate(rec_, model):
+        mods = {'names': ['m'], 'm': model}; mods['m_fc'] = R.model_forecasts(model, rec_)
+        return R.gates('pipeline-test', rec_, mods, s, hol, pubs, None, None)[0]
+    clean = gate(rec_i, M.StandIn())
+    one = copy.deepcopy(rec_i); D1 = list(one)[30]; one[D1]['neso'][20] += 1.0          # one half-hour off by 1 MW
+    late = copy.deepcopy(rec_i); ind_i = I.NesoIndependent(pubs)                        # the 11:45 revision taken
+    for D in late: late[D]['neso'] = np.array([ind_i.value(t, C.local(D - pd.Timedelta(days=1), '12:00')) for t in late[D]['idx']])
+    g1, g2, g3 = gate(one, M.StandIn()), gate(late, M.StandIn()), gate(rec_i, Noisy())
+    ok &= check(all(clean.values()), f'I clean synthetic input passes every gate check ({len(clean)} checks)')
+    ok &= check(not g1['3_neso_selection_independent'] and not g2['3_neso_selection_independent'],
+                'I check 3 rejects one NESO half-hour altered by 1 MW, and a selection that takes the 11:45 revision')
+    ok &= check(not g3['4_m_repeatable'] and not all(g3.values()), 'I check 4 rejects a forecaster that is not repeatable, and the gate fails')
 
     # G
     if with_models:

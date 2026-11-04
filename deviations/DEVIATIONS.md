@@ -21,7 +21,7 @@ Every other check passed. As the plan requires, attempt 1's outputs are kept unc
 
 `deviations/diagnose_attempt1.py` (output in `diagnose_attempt1.txt`) examined both failures without changing any locked file.
 
-**Check 3 compared two different forecasts.** The check assumed NESO's performance file always records the forecast Elexon published at 08:45 UK time on D−1. That assumption rested on 18 matching cases in the feasibility check, and it is false on 94 of the 1,035 target days:
+**Check 3: on 94 days, NESO's file and Elexon's 09:30 record disagree.** The check assumed NESO's performance file always records the forecast Elexon published at 08:45 UK time on D−1. That assumption rested on 18 matching cases in the feasibility check. What the diagnostic observed, on 94 of the 1,035 target days:
 
 - On 78 days the file's values appear in no Elexon publication at all. On 16 days they first appear in a publication later on D−1, after the 09:30 issue time (eight half-hours only on D itself). None appears in a publication at or before 09:30.
 - On 69 of the 94 days, every half-hour from SP17 to SP48 differs: the file holds a different forecast for the whole day, not scattered errors.
@@ -29,9 +29,9 @@ Every other check passed. As the plan requires, attempt 1's outputs are kept unc
 - The file's `Publish_Datetime` cannot separate the cases. It reads 08:45 in winter and 10:45 in summer (UK time) in 2024, and 09:33 to 11:03 in 2026; 337 days labelled 10:45 match Elexon's 08:45 publication exactly. The feasibility check (finding F) had already found this column unreliable.
 - In every sampled mismatch, the value used is exactly Elexon's 08:45 publication, which is the forecast the plan defines (Section 3).
 
-So on those 94 days the file does not record the forecast that was public at the issue time, and it cannot validate a reconstruction of that forecast. As specified, check 3 could never pass with these data, however correct the reconstruction. **The threshold is not the problem, and it is not lowered; the comparison is replaced** (below).
+**Why NESO's file differs is not known.** It may hold an internal forecast that was never published, a later revision, or a value changed in NESO's own processing; the data cannot tell these apart, and this entry does not claim to. What is established is narrower: on those 94 days the file's values are not among the publications available at 09:30, so the file cannot validate a reconstruction of the forecast available then. As specified, check 3 could therefore never pass with these data, however correct the reconstruction. **The threshold is not the problem, and it is not lowered; the comparison is replaced** (below).
 
-One finding concerns NESO's published forecast itself. On 5 March 2025, Elexon's 08:45 publication has SP15 to SP26 falling to 13,625 MW, against outturn of 25,500 to 32,300 MW; NESO's performance file holds plausible values (25,050 MW at SP25). The plan scores the forecast that was public at 09:30, so this publication is used as it stands. It counts against NESO in the secondary comparison only, and the sensitivity checks below show its effect.
+One finding concerns NESO's published forecast itself. On 5 March 2025, Elexon's 08:45 publication has SP15 to SP26 falling to 13,625 MW, against outturn of 25,500 to 32,300 MW; NESO's performance file holds plausible values (25,050 MW at SP25). The plan scores the forecast that was public at 09:30, so this publication is used as it stands. It counts against NESO in the secondary comparison only. Its effect is shown by an exploratory check added by this deviation (below), not by any preregistered analysis.
 
 **Check 4 tested batch size, not repetition.** The plan asks for model outputs "identical on repetition". The check instead re-forecast three days as a batch of three and required bit-for-bit equality with forecasts made in a batch of 64. Batch size changes floating-point rounding. Measured directly:
 
@@ -43,6 +43,8 @@ One finding concerns NESO's published forecast itself. On 5 March 2025, Elexon's
 | A batch of 3, against the batch of 64 | 0.006 MW |
 
 Timestral is fully repeatable; the check was at fault. The self-test passed because it repeated the same batch.
+
+The measurement also shows that Timestral's forecasts depend on batch size, at the level of 0.006 MW. The plan did not fix the batch size; the code used 64 days per model call. This deviation pins it at 64 (`RUN_BATCH` in `common.py`, recorded in every results file and in the amendment), so attempt 2 uses exactly attempt 1's batches.
 
 **Other gaps found in the same review.** Checking `run.py` against the plan found three further omissions and one fragility:
 
@@ -57,10 +59,11 @@ The root cause of the check-3 failure is the same as for gaps 1 and 2: the synth
 
 | File | Change |
 | --- | --- |
-| `code/run.py` | **Check 3** replaced: every NESO value used must equal an independent selection from the raw Elexon publications (the non-blank publication with the latest `publishTime` at or before 09:30 on D−1), on every day and half-hour, exactly. Agreement with NESO's performance file is reported as information, with every mismatch listed in `neso_file_mismatches.csv` and classed by where the file's value first appears. **Check 4** repeats exactly the call that made the forecasts (the first batch, same days, same order); the batch-size effect is reported as information. Descriptive numbers move to `gate_info`, so only pass/fail checks decide the gate. Added: the ND robustness rescoring; NESO sensitivity checks (excluding the 94 days, and with the file's values on those days); the exploratory tables. Lock amendments are honoured |
+| `code/run.py` | **Check 3** replaced: every NESO value used must equal an independent selection from the raw Elexon publications (the non-blank publication with the latest `publishTime` at or before 09:30 on D−1), on every day and half-hour, exactly. Agreement with NESO's performance file is reported as information, with every mismatch listed in `neso_file_mismatches.csv` and classed by where the file's value first appears. **Check 4** repeats exactly the call that made the forecasts (the first batch, same days, same order); the batch-size effect is reported as information. Descriptive numbers move to `gate_info`, so only pass/fail checks decide the gate. Added: the ND robustness rescoring and the exploratory tables, both listed in the plan; and, **labelled exploratory and not preregistered,** NESO sensitivity checks under `exploratory_neso_sensitivity`: excluding the 94 days, excluding 5 March 2025 alone, and with the file's values on the 94 days. Lock amendments are honoured |
 | `code/inputs.py` | `NesoIndependent`, the second selection for check 3; `load_nd`, which keeps actual rows only and reads both of NESO's date formats, refusing any other; `neso_forecast` sorts its own input |
 | `code/synth.py` | Synthetic performance file (with whole days carrying a different forecast) and ND file (both date formats, forecast rows to be dropped), so the pipeline test runs every gate check |
-| `code/selftest.py` | Check H: the two NESO selections agree, a later cut-off is told apart, and the ND loader behaves |
+| `code/common.py` | `RUN_BATCH = 64`, the number of days per model call, previously written into `run.py` |
+| `code/selftest.py` | Check H: the two NESO selections agree, a later cut-off is told apart, and the ND loader behaves. Check I: the gate rejects corrupted input; one NESO half-hour altered by 1 MW, a selection that takes the 11:45 revision, and a forecaster that is not repeatable each fail, and clean input passes |
 | `code/freeze.py` | `--amend N`, which locks these fixes |
 
 **Not changed:** the plan text, the data, the weights, every model setting, the regression, the windows, the statistics, the threshold, the six primary tests, the leakage check, and how any forecast is computed. Where this entry and the plan's Section 9 differ on check 3 or 4, this entry applies from attempt 2.
@@ -73,6 +76,8 @@ The root cause of the check-3 failure is the same as for gaps 1 and 2: the synth
 - **Check 4 now does what the plan says.** It changes no forecast.
 - **No forecast is computed differently.** The models, contexts, batches and settings are unchanged. The `neso_forecast` change only sorts input the real loader already sorts.
 - **The additions are new outputs.** They add tables; they alter no existing number.
+- **The batch size is pinned at the value attempt 1 used,** so the batches are unchanged.
+- **The new checks can fail.** Self-test I shows each rejecting a deliberately corrupted input; a gate that cannot fail would prove nothing.
 
 **Prediction, recorded before attempt 2:** every value in attempt 2's `forecasts.csv` equals attempt 1's exactly, so every number in `results.json` under `primary`, `primary_tests_holm`, `secondary`, `exploratory` (the entries attempt 1 had) and `L1` is identical to attempt 1's. If any differs, that is logged as deviation 2 before the results are interpreted.
 
@@ -80,4 +85,4 @@ Before attempt 2, the new code runs on the real data with the stand-in forecaste
 
 ### Lesson
 
-Every gate check must run at least once, before the freeze, on synthetic data with the real files' structure. A check that has never run is not a check. (Added to `LESSONS_LEARNED.md` when the project closes.)
+Every gate check must run at least once, before the freeze, on synthetic data with the real files' structure, and must be shown to fail on deliberately corrupted input. A check that has never run, or never failed, is not a check. (Added to `LESSONS_LEARNED.md` when the project closes.)

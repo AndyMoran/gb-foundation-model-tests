@@ -22,6 +22,7 @@ TRAIN_DAYS = 365                # regression training target days, D-366 .. D-2 
 FULL_START, FULL_END = '2024-01-01', '2026-10-31'          # full window, target days inclusive (Section 5)
 POST_RELEASE = {'timesfm25': '2025-09-15', 'chronos2': '2025-10-30', 'timestral': '2026-10-15'}
 MODELS = ('timesfm25', 'chronos2', 'timestral')
+RUN_BATCH = 64                  # days per model call, every model (deviation 1: pinned and recorded; attempt 1 used 64)
 M_THRESHOLD = 0.10              # minimum useful reduction against the regression (Section 8)
 
 BOOT_B, BOOT_BLOCK = 2000, 7    # moving-block bootstrap over days (Section 6)

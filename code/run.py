@@ -68,9 +68,9 @@ def model_forecasts(model, rec, contexts=None):
         groups.setdefault(C.horizon(D), []).append(D)
     for (h, first), ds in groups.items():
         X = [contexts[D] if contexts is not None else rec[D]['ctx'] for D in ds]
-        for i in range(0, len(ds), 64):
-            F = model.forecast(X[i:i + 64], h)
-            for D, f in zip(ds[i:i + 64], F):
+        for i in range(0, len(ds), C.RUN_BATCH):
+            F = model.forecast(X[i:i + C.RUN_BATCH], h)
+            for D, f in zip(ds[i:i + C.RUN_BATCH], F):
                 out[D] = f[first:first + len(rec[D]['y'])]
     return out
 
@@ -152,7 +152,7 @@ def gates(mode, rec, models, series, hol, pubs, perf, lock):
         # 4 (deviation 1): repeat exactly the call that made the forecasts: the first batch, same days, same order
         groups = {}
         for D in rec: groups.setdefault(C.horizon(D), []).append(D)
-        (h, first), ds = next(iter(groups.items())); batch = ds[:64]
+        (h, first), ds = next(iter(groups.items())); batch = ds[:C.RUN_BATCH]
         F = models[name].forecast([rec[D]['ctx'] for D in batch], h)
         g[f'4_{name}_repeatable'] = all(np.array_equal(f[first:first + len(rec[D]['y'])], fc[D]) for D, f in zip(batch, F))
         small = model_forecasts(models[name], {D: rec[D] for D in batch[:3]})
@@ -219,7 +219,10 @@ def evaluate(rec, models, nd_map=None, perf_mm=None, hol=frozenset()):
     if perf_mm is not None and len(perf_mm):
         bad = set(pd.to_datetime(perf_mm.Date))
         keep = full & dm['neso'].notna() & ~dm.index.isin(bad)
-        sens = {f'{n}_vs_neso_excluding_file_mismatch_days': comp(n, 'neso', keep) for n in names}
+        sens = {'label': 'exploratory, added by deviation 1 after attempt 1; not preregistered',
+                **{f'{n}_vs_neso_excluding_file_mismatch_days': comp(n, 'neso', keep) for n in names}}
+        k5 = full & dm['neso'].notna() & (dm.index != pd.Timestamp('2025-03-05'))
+        sens.update({f'{n}_vs_neso_excluding_2025_03_05': comp(n, 'neso', k5) for n in names})
         alt = {D: rec[D]['neso'].copy() for D in rec if rec[D]['neso'] is not None}
         for r in perf_mm.itertuples():
             D = pd.Timestamp(r.Date)
@@ -229,7 +232,7 @@ def evaluate(rec, models, nd_map=None, perf_mm=None, hol=frozenset()):
         for n in names:
             sens[f'{n}_vs_neso_file_values_on_mismatch_days'] = S.compare(dm.loc[both, n], dm_alt.loc[dm.index[both]], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
         sens['n_mismatch_days'] = len(bad)
-        res['secondary_sensitivity'] = sens
+        res['exploratory_neso_sensitivity'] = sens
 
     # Exploratory tables (plan Section 6): between models; by season, weekday, holiday and time of day
     pairs = [(a, b) for i, a in enumerate(names) for b in names[i + 1:]]
@@ -289,7 +292,7 @@ def run(mode, outdir, synthetic=False, lock=None):
     pd.DataFrame({'filled_start_utc': fills, 'n_target_days_using_it': [sum(t in rec[D]['filled'] for D in rec) for t in fills]}
                  ).to_csv(os.path.join(outdir, 'context_fills.csv'), index=False)
     out = dict(mode=mode, synthetic=synthetic, run_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
-               python=platform.python_version(), versions=M.versions(), settings=M.SETTINGS, revisions=M.REVISIONS,
+               python=platform.python_version(), versions=M.versions(), settings=M.SETTINGS, revisions=M.REVISIONS, run_batch=C.RUN_BATCH,
                scripts={f: C.sha(os.path.join(HERE, f)) for f in sorted(os.listdir(HERE)) if f.endswith('.py')},
                n_days=len(rec), n_excluded=len(excl), n_context_fills=len(fills), gates=G, gate_info=info, gate_passed=bool(all(G.values())),
                results=res)

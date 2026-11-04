@@ -101,7 +101,8 @@ def amend(n, tag):
     if not changed: fail('no locked file has changed; nothing to amend')
     am = dict(amendment=n, deviation=f'deviations/DEVIATIONS.md, Deviation {n}', tag=name,
               frozen_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), parent_commit=git('rev-parse', 'HEAD'),
-              files_changed=changed, deviations_sha256=C.sha(log), versions=M.versions())
+              files_changed=changed, deviations_sha256=C.sha(log), versions=M.versions(),
+              constants_added=dict(RUN_BATCH=C.RUN_BATCH))
     print(json.dumps(am, indent=1))
     if not tag:
         print(f'\nAll checks pass. Run `python freeze.py --amend {n} --tag` to lock the amendment.'); return
