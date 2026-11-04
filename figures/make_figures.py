@@ -77,7 +77,7 @@ for i, m in enumerate(reversed(order)):
 ax.set_yticks(range(len(order))); ax.set_yticklabels([NAME[m] for m in reversed(order)], fontsize=10, color=INK)
 ax.tick_params(axis='y', length=0); ax.spines['left'].set_visible(False)
 ax.set_xlim(0, 2450); ax.set_xlabel('Mean daily absolute error (MW)'); ax.grid(axis='x', color=GRID, lw=0.6, zorder=0)
-frame(fig, "NESO's forecast has about half the error of every model",
+frame(fig, "NESO's forecast has less than half the error of every model",
       'Mean daily absolute error, day-ahead GB demand, 2024–2026. NESO uses weather; the others do not.')
 save(fig, 'fig2_error_ladder.png')
 

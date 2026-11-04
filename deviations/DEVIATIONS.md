@@ -122,3 +122,4 @@ None to this study's code, data or results; attempt 2 stands as the official run
 
 1. `freeze.py` must print git's error when a push fails, rather than hide it.
 2. `run.py real` must refuse to start unless the lock, every amendment and its tag are on GitHub (for example, `git branch -r --contains` for the lock commit and `git ls-remote --tags` for the tag).
+3. `run.py` must record its start time, as well as its finish time, in `results.json`. Attempt 2's start can be placed only between 10:35:49 (the lock commit, on the author's clock) and its finish.

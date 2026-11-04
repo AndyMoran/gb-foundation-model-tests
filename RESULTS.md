@@ -4,13 +4,15 @@ Results note · 4 November 2026 · Andy Moran (Heaviside Analytics)
 
 A preregistered test of three off-the-shelf forecasting models on Great Britain's national electricity demand, a day ahead. Plan: `plan/PLAN.md`, frozen at tag `demand-plan` (3 November 2026, 18:04 UTC) and locked in `plan/PLAN_LOCK.json`, with one amendment (`plan/LOCK_AMENDMENT_1.json`, tag `demand-plan-dev1`). Two deviations are logged in `deviations/DEVIATIONS.md` and summarised below.
 
-**Result.** Used zero-shot, two of the three models forecast GB demand credibly better than a simple weekly-lag regression: Chronos-2 by about 7% and Timestral by about 9%. Neither was shown to reach the 10% gain set in advance as the smallest worth switching for. TimesFM 2.5 was no better than the regression. NESO's own forecast, which uses weather, had about half the error of every model.
+**What the amendment changed.** Amendment 1 was written after attempt 1's results were seen. It replaced the comparator in gate check 3 and the procedure in gate check 4; added the robustness rescoring and exploratory tables the plan lists but attempt 1 had omitted, and three exploratory NESO sensitivity checks the plan did not list; made the NESO selection sort its own input; and fixed in code the number of days per model call, at the value attempt 1 had used. It changed nothing in the primary analysis: not the data, timing, forecasters, settings, windows, statistics, threshold or seeds. The evidence that the primary numbers were unaffected is the prediction, recorded before attempt 2, that they would be identical. They were.
+
+**Result.** Used zero-shot, two of the three models forecast GB demand credibly better than a simple weekly-lag regression: Chronos-2 by about 7% and Timestral by about 9%. Neither was shown to reach the 10% gain set in advance as the smallest worth switching for. TimesFM 2.5 was no better than the regression. NESO's own forecast, which uses weather, had less than half the error of every model.
 
 ## The question
 
 Do zero-shot forecasting models forecast GB national demand a day ahead better than a simple regression, and by enough to matter? How do they compare with NESO's published forecast?
 
-Every forecaster had the same information. At 09:30 UK time on the day before the target day, each saw national demand up to 08:30 that morning and forecast every half-hour of the next day. The models saw eight weeks of history and nothing else: no weather, no calendar, no training on GB data. The regression saw the same demand history, two lagged days (D−2 and D−7), the day of the week, bank holidays and the Christmas period. NESO's forecast is the one Elexon had published by 09:30.
+Every forecaster was issued at 09:30 UK time on the day before the target day (D−1), saw national demand up to 08:30 that morning, and forecast every half-hour of the next day. The models saw eight weeks of that history and nothing else: no weather and no calendar. They were used zero-shot: no fine-tuning, and no GB data supplied beyond each day's input history. They may nevertheless have seen GB demand in pre-training; see the leakage note below. The regression saw the same demand history through two lagged days (D−2 and D−7), plus the day of the week, bank holidays and the Christmas period. NESO's forecast is the one Elexon had published by 09:30; it also used weather, and NESO's own operational modelling.
 
 Each forecast was scored by its mean absolute error in megawatts over the half-hours of the target day, against NESO's initial national demand outturn. The scoring window is 1 January 2024 to 31 October 2026: 1,035 days, none excluded.
 
@@ -23,21 +25,21 @@ Each forecast was scored by its mean absolute error in megawatts over the half-h
 - **The NESO check compared two different forecasts.** On 94 days, NESO's performance file holds values that appear in no Elexon publication available at 09:30. The check was replaced by an exact, independent check against Elexon's raw publications; the threshold was not lowered.
 - **The repeatability check tested batch size, not repetition.** Timestral repeats exactly; a different batch size changes its forecasts by 0.006 MW.
 
-Both faults would have shown before the freeze had the plan's own procedure been followed in full. Section 11, step 2 asked for the scripts to be run on the real inputs with a stand-in forecaster; they were run only on synthetic data, which lacked NESO's performance file, so check 3 never ran until attempt 1.
+Both faults would have shown before the freeze had the plan's own procedure been followed in full. Section 11, step 2 asked for the scripts to be run on the real inputs with a stand-in forecaster. That run was not done, so check 3 first ran against NESO's real performance file in attempt 1. (The synthetic tests that were run had no performance file, so they could not catch it.)
 
 The author and the AI assistant saw attempt 1's results before these fixes. So the deviation log recorded a prediction before attempt 2 ran: every forecast, and every number attempt 1 reported, would be identical. **The prediction held.** For all 49,680 target half-hours, every forecaster's forecast is identical in the two attempts, and so is every primary, secondary and leakage number.
 
 **Deviation 2: the amendment's lock reached GitHub after attempt 2.** The timeline, in UTC, from GitHub's server-side push record (the repository's [Activity page](https://github.com/AndyMoran/gb-foundation-model-tests/activity)) and the run outputs:
 
-| Time, 4 November 2026 | Event | Record |
+| Time (UTC) | Event | Record |
 | --- | --- | --- |
-| 3 November, 23:29 | Attempt 1 finishes; its results are seen | `results/attempt1/results.json` |
-| 09:55–10:12 | The fixes and the deviation entry are pushed | commits `9927860`, `2753484` |
-| 10:33:44 | The fixed code, as attempt 2 ran it, is on GitHub | commit [`e02b62f`](https://github.com/AndyMoran/gb-foundation-model-tests/commit/e02b62fd937aa1540dd503da3a96be21335c6992) |
-| 10:35:49 | The lock file is committed locally; its push fails | commit `06c78fa`, author's clock |
-| shortly after | Attempt 2 starts (its start time was not recorded) | `results/attempt2/results.json` lists the amendment |
-| 15:11:40 | Attempt 2 finishes | `results/attempt2/results.json` |
-| 15:30:27 | The lock commit reaches GitHub | Activity page |
+| 3 Nov, 23:29 | Attempt 1 finishes; its results are seen | `results/attempt1/results.json` |
+| 4 Nov, 09:55–10:12 | The fixes and the deviation entry are pushed | commits `9927860`, `2753484` |
+| 4 Nov, 10:33:44 | The fixed code, as attempt 2 ran it, is on GitHub | commit [`e02b62f`](https://github.com/AndyMoran/gb-foundation-model-tests/commit/e02b62fd937aa1540dd503da3a96be21335c6992) |
+| 4 Nov, 10:35:49 | The lock file is committed locally; its push fails | commit `06c78fa`, author's clock |
+| 4 Nov, shortly after | Attempt 2 starts (its start time was not recorded) | `results/attempt2/results.json` lists the amendment |
+| 4 Nov, 15:11:40 | Attempt 2 finishes | `results/attempt2/results.json` |
+| 4 Nov, 15:30:27 | The lock commit reaches GitHub | Activity page |
 
 So the fixes were written after attempt 1's results were seen, and the lock file was public only after attempt 2. What was public before attempt 2 is the code it ran: the SHA-256 of every script, recorded in attempt 2's results, matches commit `e02b62f`. Anyone can check this by hashing the files at that commit. The identical-results prediction is the stronger defence; the timestamps alone would not exclude post-hoc changes to the checks, and are not offered as if they did.
 
@@ -48,7 +50,7 @@ Each model against the regression over the full window, labelled "inside possibl
 | Model | Mean daily error (MW) | Ratio to regression | 90% interval (descriptive) | Better at all? | Better by 10%? |
 | --- | --- | --- | --- | --- | --- |
 | Regression | 1,553 | — | — | — | — |
-| TimesFM 2.5 | 1,568 | 1.009 | 0.978–1.042 | No | No |
+| TimesFM 2.5 | 1,568 | 1.009 | 0.978–1.042 | No | Not shown |
 | Chronos-2 | 1,441 | 0.928 | 0.902–0.955 | **Yes** | Not shown |
 | Timestral | 1,413 | 0.910 | 0.885–0.935 | **Yes** | Not shown |
 
@@ -56,7 +58,7 @@ The seasonal-naive floor (the same half-hour one week earlier; reported, not tes
 
 ![Each model's error ratio to the regression, with 90% intervals and the Holm-adjusted decisions](figures/fig1_ratios.png)
 
-The two right-hand columns are the six one-sided tests, Holm-adjusted together at a family-wise 5% level. One-sided p-values for "better at all", before adjustment: TimesFM 2.5 0.695; Chronos-2 and Timestral below 0.0005 (no bootstrap draw out of 2,000 reached a ratio of 1). For "better by 10%": TimesFM 2.5 1.000, Chronos-2 0.962, Timestral 0.730.
+The 90% intervals use the preregistered bootstrap seed (20261103); recalculations with six other seeds put Chronos-2's lower bound between 0.8995 and 0.9007 (below). TimesFM 2.5 was not better at all, so for it the threshold question does not arise. The two right-hand columns are the six one-sided tests, Holm-adjusted together at a family-wise 5% level. One-sided p-values for "better at all", before adjustment: TimesFM 2.5 0.695; Chronos-2 and Timestral below 0.0005 (no bootstrap draw out of 2,000 reached a ratio of 1). For "better by 10%": TimesFM 2.5 1.000, Chronos-2 0.962, Timestral 0.730.
 
 The plan's sentences, written before any forecast was made:
 
@@ -80,19 +82,19 @@ The two intervals sit differently against the threshold. Chronos-2's lower bound
 
 ![Mean daily error for every forecaster, from seasonal naive at 2,095 MW to NESO at 694 MW](figures/fig2_error_ladder.png)
 
-NESO's mean daily error was 694 MW. Against NESO's published forecast, every model's error was about twice as large, and the regression's 2.24 times as large. NESO's forecast uses weather information the models did not have, and NESO's own operational modelling.
+NESO's mean daily error was 694 MW. Against NESO's published forecast, every model's error was more than twice as large (NESO's error was 44–49% of each model's), and the regression's 2.24 times as large. NESO's forecast uses weather information the models did not have, and NESO's own operational modelling.
 
 One published NESO forecast was far from the outturn. On 5 March 2025, Elexon's 08:45 publication put demand at 13,625 MW for 12:00–12:30, against an outturn of 25,524 MW. NESO's own performance file holds 25,050 MW for that half-hour; this is the largest of the file mismatches (11,425 MW). So the published figure is probably a publication error rather than NESO's forecast as NESO recorded it. The plan scores what a user could see at 09:30, so it counts as published. Leaving the day out moves the NESO ratios by less than 0.01.
 
 ## Checks on the results
 
-**Leakage (L1).** Adding random noise (standard deviation 300 MW) to every input half-hour, in 20 draws, raised the regression's error by 0.8%. The models' errors changed by −0.1% (TimesFM 2.5), −0.05% (Chronos-2) and +0.8% (Timestral). A model relying on memory of the exact series should degrade more than the regression; the flag needs an excess of 0.05. The largest excess was Timestral's, 0.0004, so no flag was raised. The models' near-insensitivity is itself notable. It may reflect the models smoothing independent noise across many input points, where the regression uses single lagged values; or it may mean they lean on learned seasonal patterns more than on the supplied history. It gives no support to the memory hypothesis, but cannot rule out that second reading. (The responsiveness check shows each model does react to its latest input.)
+**Leakage (L1).** Adding random noise (standard deviation 300 MW) to every input half-hour, in 20 draws, raised the regression's error by 0.8%. The models' errors changed by −0.1% (TimesFM 2.5), −0.05% (Chronos-2) and +0.8% (Timestral). A model relying on memory of the exact series should degrade more than the regression; the flag needs an excess of 0.05. The largest excess was Timestral's, 0.0004, so no flag was raised. The flag threshold, fixed in the plan, is large relative to the changes observed, so the check would fire only on a strong memory effect: no flag is weak evidence against memory, not strong evidence. The models' near-insensitivity is itself notable. It may reflect the models smoothing independent noise across many input points, where the regression uses single lagged values; or it may mean they lean on learned seasonal patterns more than on the supplied history. It gives no support to the memory hypothesis, but cannot rule out that second reading. (The responsiveness check shows each model does react to its latest input.)
 
 **Robustness.** Rescored against NESO's later ND series instead of the initial outturn, over the 1,017 days it covers, the ratios barely move: 1.001 (TimesFM 2.5), 0.921 (Chronos-2) and 0.904 (Timestral).
 
-**The filled half-hour.** Under the plan's gap rule (Section 4.1, decided before the freeze), one missing half-hour, 03:30 on 29 December 2023, was filled in the models' inputs; it lies in the input history of the 54 target days from 1 January to 23 February 2024. Leaving those days out (exploratory) gives ratios of 1.014, 0.931 and 0.914, against 1.009, 0.928 and 0.910.
+**The filled half-hour.** Under the plan's gap rule (Section 4.1, decided before the freeze), one missing half-hour, 03:30 on 29 December 2023, was filled in the models' inputs; it lies in the input history of the 54 target days from 1 January to 23 February 2024. The regression and the seasonal naive never used the filled value: where a lag fell on that half-hour, they took the same clock time one week further back, as the plan specifies for any missing lag. Leaving those days out (exploratory) gives ratios of 1.014, 0.931 and 0.914, against 1.009, 0.928 and 0.910.
 
-**After each model's release.** Over the days after each model was published, against the regression: TimesFM 2.5 1.024 (0.985–1.063; 412 days from 15 September 2025), Chronos-2 0.965 (0.923–1.006; 367 days from 30 October 2025) and Timestral 1.089 (1.018–1.206; 17 days from 15 October 2026). These windows show only that a model was published before the period, not that it never saw GB demand. For TimesFM 2.5 and Chronos-2, the ratio is a little worse after release than over the full window. That is weakly consistent with some benefit from training data, but it cannot establish it: the intervals overlap, the full window contains the post-release days, and the post-release windows cover about one year against nearly three. Seventeen days are too few to read anything into Timestral's figure.
+**After each model's release.** Over the days after each model was published, against the regression: TimesFM 2.5 1.024 (0.985–1.063; 412 days from 15 September 2025), Chronos-2 0.965 (0.923–1.006; 367 days from 30 October 2025) and Timestral 1.089 (1.018–1.206; 17 days from 15 October 2026). These windows show only that a model was published before the period, not that it never saw GB demand. For TimesFM 2.5 and Chronos-2, the ratio is a little worse after release than over the full window. That is weakly consistent with some benefit from training data, but it cannot establish it: the intervals overlap, the full window contains the post-release days, and the post-release windows cover about one year against nearly three. Seventeen days are too few to read anything into Timestral's figure, though its interval (1.018–1.206) excludes 1. Seventeen days hold only about two and a half of the bootstrap's 7-day blocks, so that interval understates the uncertainty.
 
 ## Exploratory findings
 
@@ -105,8 +107,8 @@ None of these was tested. They describe where the errors lie.
 - **Ranking.** Timestral had slightly smaller errors than Chronos-2 (Chronos-2's error divided by Timestral's: 1.020; 1.007–1.034), and both beat TimesFM 2.5.
 - **Seasons.** The models gained most in winter: Timestral's mean daily error was 1,592 MW against the regression's 1,876. In spring they did no better than the regression: 1,521 MW for Timestral against 1,512.
 - **Time of day.** Chronos-2 and Timestral gained most from midnight to late morning: about 230 MW a half-hour on the regression at 03:00, and 200–230 MW at 10:00. Their edge faded through the afternoon and was close to zero by evening. TimesFM 2.5 gained less overnight and was worse than the regression from mid-afternoon (by 174 MW at 20:00). Every forecaster, NESO included, had its largest errors between 12:30 and 13:00, probably because that is when solar generation behind the meter, which the transmission network does not see, varies most.
-- **Bank holidays.** On bank holidays every model lost to the regression: the models' mean daily errors were 2,387–2,549 MW against the regression's 1,800. The blind spot is the models' own. On bank holidays the regression's error rose by 16% over other days and NESO's by 14% (790 MW against 692); the models' rose by 65–80%. The regression has a bank-holiday term and NESO models the calendar; the zero-shot models know nothing of it.
-- **NESO's own record.** NESO's performance file agrees with Elexon's 09:30 record on 91.2% of daytime half-hours. Excluding the 94 days on which they differ moves the models' ratios to NESO to 2.293, 2.112 and 2.060 (TimesFM 2.5, Chronos-2, Timestral); using the file's values on those days gives 2.282, 2.099 and 2.057. The models' order is the same under every treatment, since each changes NESO's errors, which all three ratios share. These checks were added by deviation 1, after attempt 1, and are not preregistered.
+- **Bank holidays.** On bank holidays every model lost to the regression: the models' mean daily errors were 2,549 MW (TimesFM 2.5), 2,387 MW (Chronos-2) and 2,502 MW (Timestral), against the regression's 1,800. The blind spot is the models' own. Against other days, the regression's error on bank holidays rose by 16% (1,800 MW against 1,548) and NESO's by 14% (790 against 692); TimesFM 2.5's rose by 65% (against 1,546), Chronos-2's by 68% (1,421) and Timestral's by 80% (1,389). The regression has a bank-holiday term and NESO models the calendar; the zero-shot models know nothing of it.
+- **NESO's own record.** NESO's performance file agrees with Elexon's 09:30 record on 91.2% of daytime half-hours. Excluding the 94 days on which they differ moves the models' ratios to NESO to 2.293, 2.112 and 2.060 (TimesFM 2.5, Chronos-2, Timestral); using the file's values on those days gives 2.282, 2.099 and 2.057. The models' order is the same under every treatment. For the file-values treatment that is guaranteed, since only NESO's errors change and all three ratios share them. For the exclusion treatments both terms change, so the order is preserved in fact, not by construction. These checks were added by deviation 1, after attempt 1, and are not preregistered.
 
 ## What this study cannot show
 
@@ -114,6 +116,7 @@ These limits were stated in the plan before any forecast was made.
 
 - **Freedom from training leakage.** The models may have seen GB demand from 2024–2026 in training. The leakage check cannot rule that out. A prospective test, forecasting days that had not yet happened when the forecast was made, is the only clean defence; it starts after this note.
 - **Generality.** One series, one country, one horizon.
+- **The regression's calendar.** It uses England and Wales bank holidays only; Scottish holidays are not modelled. That is a deliberate simplification, stated in the plan (Section 4.2), not changed later.
 - **Fine-tuning.** Zero-shot only. A model trained on GB data might do better or worse.
 - **Weather.** Neither the models nor the regression saw weather. NESO did, which may explain much of its lead.
 - **Value.** The study measures accuracy in megawatts, not money.
