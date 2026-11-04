@@ -83,6 +83,10 @@ The root cause of the check-3 failure is the same as for gaps 1 and 2: the synth
 
 Before attempt 2, the new code runs on the real data with the stand-in forecaster (`run.py pipeline-test`), so checks 2, 3 and 6, the file comparison, the ND rescoring and the sensitivity checks run on the real files without any foundation model.
 
+### Addendum, 4 November 2026: the procedure that would have caught both faults
+
+A review of the results note pointed out a deeper cause. The plan's Section 11, step 2 required the scripts to be tested "on synthetic data and on the real inputs with stand-in forecasters only" before the freeze. Only the synthetic half was done. A stand-in run on the real inputs would have run check 3 against NESO's real performance file, and failed it, before the tag. That step was skipped, not just under-tested; this entry records it as the root cause of the check-3 failure.
+
 ### Lesson
 
 Every gate check must run at least once, before the freeze, on synthetic data with the real files' structure, and must be shown to fail on deliberately corrupted input. A check that has never run, or never failed, is not a check. (Added to `LESSONS_LEARNED.md` when the project closes.)
