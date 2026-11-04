@@ -1,0 +1,45 @@
+{
+ "amendment": 1,
+ "deviation": "deviations/DEVIATIONS.md, Deviation 1",
+ "tag": "demand-plan-dev1",
+ "frozen_utc": "2026-11-04T10:35:49+00:00",
+ "parent_commit": "e02b62fd937aa1540dd503da3a96be21335c6992",
+ "files_changed": {
+  "code/common.py": {
+   "old": "b17109ca364505d227885f25a265ebe557c3b64d297b829c3dda7bd698f65804",
+   "new": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4"
+  },
+  "code/freeze.py": {
+   "old": "209749ade85305ea2788d7e590d647e5f2b06222fcb8c37c3f9134064a6f5b65",
+   "new": "452a8da33c931966ac9b76bb7ba0685de752b7615f85a2bfdf3878860913f4dc"
+  },
+  "code/inputs.py": {
+   "old": "16d07310e50e64bffee1cb045de7f9780dfc8220a2eb26156c4f66b3eff03cb4",
+   "new": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b"
+  },
+  "code/run.py": {
+   "old": "fee7af4fb1d0f43655cc0567f58b20557298b6a0928ce3eb42e2ea76b32189f3",
+   "new": "0ab98c19d03df1233a2d268792c41e1dbda19d3d4ee346741c27208fa488842c"
+  },
+  "code/selftest.py": {
+   "old": "cd0ee6beca6b28a145b156f02ff678704b7e37de89bb2b46fb2d42ae3d6a5321",
+   "new": "c69b5378ff1ea805ca267a551d8253e69b77f19705f59a3d93dd90fcce96353e"
+  },
+  "code/synth.py": {
+   "old": "140956f004bad903b436d62ad9b9a11a80a40c4e4f7505469f2ce713443234c5",
+   "new": "99827a2b009a99a7e647039f3bafabcaa253a62a22f9a1bdc39e9295bcb3a5df"
+  }
+ },
+ "deviations_sha256": "0b5469806d9bf4779a64518d3cbbe8efa02445798ea37232a3708a37e123009e",
+ "versions": {
+  "timesfm": "3.0.2",
+  "chronos-forecasting": "2.3.2",
+  "timestral": "1.0.0",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ },
+ "constants_added": {
+  "RUN_BATCH": 64
+ }
+}
