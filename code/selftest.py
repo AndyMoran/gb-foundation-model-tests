@@ -9,6 +9,7 @@ forecasts real GB demand.
   D  the regression matches an independent implementation on six days, including both clock-change days
   E  statistics: a planted forecaster 15% better than the regression is detected; one with no gain is not
   F  gap rule: a run of at most 2 missing half-hours in a model context is filled on a straight line and listed;\n     longer runs, a run at the end of the context, and any missing outturn exclude the day
+  H  deviation 1: the independent NESO selection (gate check 3) and the ND loader (robustness)
   G  (--models) each foundation model on synthetic contexts: horizon exact, finite, repeatable, responsive,
      batch-independent (a day forecast alone equals the same day forecast in a batch), and an L1 pilot of the
      300 MW perturbation; prints each weights file's SHA-256 for the lock file
@@ -101,6 +102,25 @@ def main(with_models):
                 and end_refused,
                 'F a 3-half-hour gap is not filled (those days are excluded); a gap in the last context half-hour is '
                 'not filled, since its later neighbour falls after the cut-off')
+
+    # H (deviation 1)
+    ind = I.NesoIndependent(pubs); hdays = [pd.Timestamp('2024-01-01') + pd.Timedelta(days=i) for i in range(0, 1000, 23)]
+    agree = all(np.array_equal(np.array([ind.value(t, C.issue_time(d)) for t in C.target_starts(d)]), I.neso_forecast(pubs, d)[0])
+                for d in hdays)
+    late = any(not np.allclose(np.array([ind.value(t, C.local(d - pd.Timedelta(days=1), '12:00')) for t in C.target_starts(d)]),
+                               I.neso_forecast(pubs, d)[0]) for d in hdays)
+    ok &= check(agree and late, 'H the independent NESO selection agrees with the pipeline on 44 days, and a selection '
+                                'with a 12:00 cut-off (which would take the 11:45 revision) is told apart')
+    ndf = synth.historic_nd(s); ndm = I.load_nd(ndf)
+    d0, d1 = pd.Timestamp('2024-03-31'), pd.Timestamp('2025-03-30')
+    nd_ok = (np.isclose(ndm[(d0, 1)], s[C.target_starts(d0)[0]] + 95) and np.isclose(ndm[(d1, 46)], s[C.target_starts(d1)[45]] + 95)
+             and (d1, 47) not in ndm and ndm.get((ndf.SETTLEMENT_DATE.iloc[-1], 1)) is None
+             and not any(v == 1.0 for v in ndm.values()))
+    bad = ndf.head(3).copy(); bad['SETTLEMENT_DATE'] = '03/01/2024'
+    try: I.load_nd(bad); refused = False
+    except ValueError: refused = True
+    ok &= check(nd_ok and refused, 'H ND loader: both date formats read, clock-change periods mapped, forecast rows '
+                                   'dropped, an unknown date format refused')
 
     # G
     if with_models:

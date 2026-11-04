@@ -45,3 +45,36 @@ def holidays():
                                        '2024-01-01', '2024-03-29', '2024-04-01', '2024-05-06', '2024-12-25', '2024-12-26',
                                        '2025-01-01', '2025-04-18', '2025-04-21', '2025-05-05', '2025-12-25', '2025-12-26',
                                        '2026-01-01', '2026-04-03', '2026-04-06', '2026-05-04']}
+
+
+def performance_file(pubs, series, seed=3, share_other=0.08):
+    """Synthetic NESO performance file: for SP 17-48 of each day, the 08:45 Elexon value, except that on a share of
+    days the whole day carries a different forecast (as in the real file), and one row per clock-change duplicate."""
+    rng = np.random.default_rng(seed); rows = []
+    p = pubs.dropna(subset=['mw'])
+    issue = p[p.publish_utc.dt.tz_convert(C.UK).dt.strftime('%H:%M') == '08:45'].set_index('start_utc').mw
+    days = sorted({t.tz_convert(C.UK).normalize().tz_localize(None) for t in issue.index})
+    for D in days[1:]:
+        other = rng.random() < share_other
+        for k, t in enumerate(C.target_starts(D)):
+            if k < 16 or t not in issue.index: continue
+            v = float(issue[t]) + (rng.normal(0, 400) if other else 0.0)
+            rows.append(dict(Date=f'{D:%Y-%m-%d}', Settlement_Period=k + 1, Demand_Forecast=int(round(v)),
+                             Publish_Datetime=f'{D - pd.Timedelta(days=1):%Y-%m-%d}T09:45:00Z'))
+    return pd.DataFrame(rows)
+
+
+def historic_nd(series, offset=95.0):
+    """Synthetic NESO Historic Demand Data: ND = outturn + offset, dates in both formats NESO has used, plus
+    forecast ('F') rows that must be ignored."""
+    rows = []
+    days = sorted({t.tz_convert(C.UK).normalize().tz_localize(None) for t in series.index})[1:-1]
+    for D in days:
+        for k, t in enumerate(C.target_starts(D)):
+            d = f'{D:%Y-%m-%d}' if D.year % 2 == 0 else f'{D:%d-%b-%Y}'.upper()
+            rows.append(dict(SETTLEMENT_DATE=d, SETTLEMENT_PERIOD=k + 1, ND=float(series.get(t, np.nan)) + offset,
+                             FORECAST_ACTUAL_INDICATOR='A'))
+    last = days[-1] + pd.Timedelta(days=1)
+    rows += [dict(SETTLEMENT_DATE=f'{last:%Y-%m-%d}', SETTLEMENT_PERIOD=k + 1, ND=1.0, FORECAST_ACTUAL_INDICATOR='F')
+             for k in range(48)]
+    return pd.DataFrame(rows)

@@ -6,6 +6,11 @@ code, data and weights were fixed before any model forecast real GB demand.
 Run once, from code/, in the model environment, on the machine that holds the data and the cached weights:
     python freeze.py            checks only; prints what would be locked
     python freeze.py --tag      checks, writes the lock, commits, tags and pushes
+
+After a failed attempt, a fix is locked as an amendment (deviation N in deviations/DEVIATIONS.md):
+    python freeze.py --amend N          checks only; prints the files changed since the last lock
+    python freeze.py --amend N --tag    writes plan/LOCK_AMENDMENT_N.json, commits, tags demand-plan-devN, pushes
+The plan text (plan/PLAN.md), the data and the weights may not change in an amendment.
 """
 import os, sys, re, json, glob, platform, subprocess, datetime as dt
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
@@ -68,6 +73,46 @@ def checks():
     )
 
 
+def amend(n, tag):
+    git('fetch', '-q', 'origin')
+    if git('status', '--porcelain'): fail('uncommitted changes:\n' + git('status', '--short'))
+    if git('rev-parse', 'HEAD') != git('rev-parse', 'origin/main'): fail('local main differs from origin/main; pull or push first')
+    name = f'{TAG}-dev{n}'
+    if name in git('tag', '--list').split(): fail(f'tag {name} already exists')
+    lock = json.load(open(os.path.join(C.ROOT, 'plan', 'PLAN_LOCK.json')))
+    expected = dict(lock['files_sha256'])
+    for k in range(1, n):
+        f = os.path.join(C.ROOT, 'plan', f'LOCK_AMENDMENT_{k}.json')
+        if not os.path.exists(f): fail(f'amendment {k} not found; amendments are numbered in order')
+        expected.update({p: v['new'] for p, v in json.load(open(f))['files_changed'].items()})
+    if os.path.exists(os.path.join(C.ROOT, 'plan', f'LOCK_AMENDMENT_{n}.json')): fail(f'amendment {n} already exists')
+    log = os.path.join(C.ROOT, 'deviations', 'DEVIATIONS.md')
+    if not os.path.exists(log) or f'## Deviation {n}' not in open(log).read(): fail(f'no "## Deviation {n}" entry in deviations/DEVIATIONS.md')
+    if not git('ls-files', 'deviations/DEVIATIONS.md'): fail('deviations/DEVIATIONS.md is not committed')
+    now = {f: C.sha(os.path.join(C.ROOT, f)) for f in sorted(set(LOCKED_FILES) | set(expected))
+           if os.path.exists(os.path.join(C.ROOT, f))}
+    if now.get('plan/PLAN.md') != expected['plan/PLAN.md']: fail('plan/PLAN.md has changed; the plan text is never edited after the freeze')
+    for f, v in json.load(open(os.path.join(C.DATA, 'fetch_manifest.json')))['files'].items():
+        if C.sha(os.path.join(C.DATA, f)) != lock['data_sha256'].get(f): fail(f'data/{f} differs from the lock')
+    from huggingface_hub import hf_hub_download
+    for m, (repo, rev) in M.REVISIONS.items():
+        if C.sha(hf_hub_download(repo, 'model.safetensors', revision=rev)) != lock['weights_sha256'][m]: fail(f'{m} weights differ from the lock')
+    changed = {f: dict(old=expected.get(f), new=h) for f, h in now.items() if expected.get(f) != h}
+    if not changed: fail('no locked file has changed; nothing to amend')
+    am = dict(amendment=n, deviation=f'deviations/DEVIATIONS.md, Deviation {n}', tag=name,
+              frozen_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), parent_commit=git('rev-parse', 'HEAD'),
+              files_changed=changed, deviations_sha256=C.sha(log), versions=M.versions())
+    print(json.dumps(am, indent=1))
+    if not tag:
+        print(f'\nAll checks pass. Run `python freeze.py --amend {n} --tag` to lock the amendment.'); return
+    p = os.path.join(C.ROOT, 'plan', f'LOCK_AMENDMENT_{n}.json'); json.dump(am, open(p, 'w'), indent=1)
+    git('add', os.path.relpath(p, C.ROOT))
+    git('commit', '-q', '-m', f'Amendment {n}: fixes for deviation {n} locked before the next attempt')
+    git('tag', '-a', name, '-m', f'Lock amendment {n}, {am["frozen_utc"]}')
+    git('push', '-q', 'origin', 'main'); git('push', '-q', 'origin', name)
+    print(f'\nLocked. Tag {name} at {git("rev-parse", "HEAD")[:7]}, pushed. Next: python run.py real')
+
+
 def main(tag):
     lock = checks()
     print(json.dumps(lock, indent=1))
@@ -83,4 +128,5 @@ def main(tag):
 
 
 if __name__ == '__main__':
-    main('--tag' in sys.argv)
+    if '--amend' in sys.argv: amend(int(sys.argv[sys.argv.index('--amend') + 1]), '--tag' in sys.argv)
+    else: main('--tag' in sys.argv)

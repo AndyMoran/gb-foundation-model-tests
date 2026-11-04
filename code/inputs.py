@@ -74,10 +74,54 @@ def neso_forecast(pubs, day):
     any period has no usable publication."""
     idx = C.target_starts(day); cut = C.issue_time(day)
     p = pubs[(pubs.start_utc >= idx[0]) & (pubs.start_utc <= idx[-1]) & (pubs.publish_utc <= cut)]
-    p = p.dropna(subset=['mw'])
-    last = p.groupby('start_utc').tail(1).set_index('start_utc')
+    p = p.dropna(subset=['mw']).sort_values(['start_utc', 'publish_utc'], kind='mergesort')   # deviation 1: sort here,
+    last = p.groupby('start_utc').tail(1).set_index('start_utc')                               # not rely on the caller
     last = last.reindex(idx)
     if last['mw'].isna().any():
         raise ValueError(f'NESO forecast for {pd.Timestamp(day):%Y-%m-%d} lacks {int(last.mw.isna().sum())} periods')
     assert (last.publish_utc <= cut).all()
     return last['mw'].values.astype(float), last['publish_utc'].values
+
+
+def load_nd(path_or_df):
+    """NESO Historic Demand Data (robustness only, plan Section 6): returns {(day, settlement_period): ND in MW}.
+    Keeps actual rows only (FORECAST_ACTUAL_INDICATOR 'A', where the column exists). Dates are read in the two
+    formats NESO has used ('2024-01-31' and '31-JAN-2024'); any other format raises rather than being guessed."""
+    df = pd.read_csv(path_or_df, low_memory=False) if isinstance(path_or_df, str) else path_or_df.copy()
+    if 'FORECAST_ACTUAL_INDICATOR' in df:
+        df = df[df.FORECAST_ACTUAL_INDICATOR.astype(str).str.strip().str.upper() != 'F']
+    d = df.SETTLEMENT_DATE.astype(str).str.strip()
+    iso = d.str.match(r'^\d{4}-\d{2}-\d{2}'); mon = d.str.match(r'^\d{2}-[A-Za-z]{3}-\d{4}$')
+    if not (iso | mon).all():
+        raise ValueError(f'unrecognised SETTLEMENT_DATE format, e.g. {d[~(iso | mon)].iloc[0]!r}')
+    day = pd.Series(pd.NaT, index=df.index, dtype='datetime64[ns]')
+    day[iso] = pd.to_datetime(d[iso].str[:10], format='%Y-%m-%d')
+    day[mon] = pd.to_datetime(d[mon].str.title(), format='%d-%b-%Y')
+    out = pd.DataFrame({'day': day, 'sp': df.SETTLEMENT_PERIOD.astype(int), 'nd': pd.to_numeric(df.ND, errors='coerce')})
+    out = out.dropna().drop_duplicates(['day', 'sp'], keep='first')
+    return {(r.day, r.sp): r.nd for r in out.itertuples()}
+
+
+class NesoIndependent:
+    """Gate check 3 (deviation 1): a second, separately written selection of NESO's forecast from the raw Elexon
+    publications. For each target half-hour: the non-blank publication with the latest publishTime at or before
+    09:30 UK time on D-1. Uses sorted arrays and binary search, not the filtering and grouping of neso_forecast."""
+    def __init__(self, pubs):
+        p = pubs.dropna(subset=['mw'])
+        p = p.sort_values(['start_utc', 'publish_utc'], kind='mergesort')
+        self.t = p.start_utc.values.astype('datetime64[ns]').astype('int64')
+        self.pub = p.publish_utc.values.astype('datetime64[ns]').astype('int64')
+        self.mw = p.mw.values.astype(float)
+
+    def value(self, start, cut):
+        t = pd.Timestamp(start).value; c = pd.Timestamp(cut).value
+        lo, hi = np.searchsorted(self.t, t, 'left'), np.searchsorted(self.t, t, 'right')
+        k = lo + np.searchsorted(self.pub[lo:hi], c, 'right') - 1
+        return self.mw[k] if k >= lo else np.nan
+
+    def first_with_value(self, start, v):
+        """Earliest publish time (ns since epoch) of a publication for `start` carrying value v, or None."""
+        t = pd.Timestamp(start).value
+        lo, hi = np.searchsorted(self.t, t, 'left'), np.searchsorted(self.t, t, 'right')
+        k = np.nonzero(np.abs(self.mw[lo:hi] - v) < 0.5)[0]
+        return int(self.pub[lo + k[0]]) if len(k) else None

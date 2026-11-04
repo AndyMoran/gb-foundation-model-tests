@@ -9,7 +9,10 @@ Modes
         is saved to results/attemptN/; the first attempt that passes every gate check is the run.
 
 Outputs: forecasts.csv (every forecaster, every target half-hour), daily_mae.csv, exclusions.csv, context_fills.csv,
-results.json.
+neso_file_mismatches.csv, results.json.
+
+Deviation 1 (deviations/DEVIATIONS.md) changed gate checks 3 and 4, and added the robustness rescoring, the NESO
+sensitivity checks and the exploratory tables the plan lists; no forecast is computed differently.
 """
 import os, sys, json, glob, datetime as dt, platform
 import numpy as np, pandas as pd
@@ -25,14 +28,14 @@ def load_data(synthetic=False):
     if synthetic:
         import synth
         s = synth.demand(); pubs = synth.neso_publications(s); hol = synth.holidays()
-        perf = None; nd = None
+        perf = synth.performance_file(pubs, s); nd = I.load_nd(synth.historic_nd(s))
         return s, pubs, hol, perf, nd
     s, _ = I.load_indo(os.path.join(C.DATA, 'indo.csv'))
     pubs = I.load_neso(os.path.join(C.DATA, 'neso_dayahead_publications.csv'))
     hol = {pd.Timestamp(d) for d in json.load(open(os.path.join(C.DATA, 'bank_holidays_ew.json')))}
     perf = pd.read_csv(os.path.join(C.DATA, 'neso_forecast_performance.csv'))
     nd_path = os.path.join(C.DATA, 'neso_historic_nd.csv')
-    nd = pd.read_csv(nd_path) if os.path.exists(nd_path) else None
+    nd = I.load_nd(nd_path) if os.path.exists(nd_path) else None
     return s, pubs, hol, perf, nd
 
 
@@ -97,32 +100,64 @@ def l1(models, series, hol, rec):
     return res
 
 
+def neso_file_comparison(rec, perf, indep):
+    """NESO's performance file against the forecast used, SP 17-48 (descriptive since deviation 1). For each
+    mismatch: where the file's value first appears among the Elexon publications."""
+    p = perf.copy(); p['Date'] = pd.to_datetime(p['Date']).dt.normalize()
+    p = p.drop_duplicates(['Date', 'Settlement_Period'], keep='first')
+    p = p[(p.Settlement_Period >= 17) & (p.Settlement_Period <= 48)]
+    ours = [(D, k + 1, t, v) for D in rec if rec[D]['neso'] is not None
+            for k, (t, v) in enumerate(zip(rec[D]['idx'], rec[D]['neso']))]
+    o = pd.DataFrame(ours, columns=['Date', 'Settlement_Period', 'start_utc', 'ours'])
+    j = o.merge(p[['Date', 'Settlement_Period', 'Demand_Forecast']], on=['Date', 'Settlement_Period'])
+    j['match'] = (j.ours - j.Demand_Forecast).abs() < 0.5
+    mm = j[~j.match].copy()
+    def where(r):
+        f = indep.first_with_value(r.start_utc, r.Demand_Forecast)
+        if f is None: return 'in no publication'
+        f = pd.Timestamp(f, tz='UTC')
+        return 'at or before 09:30 on D-1' if f <= C.issue_time(r.Date) else (
+            'later on D-1' if f < C.local(r.Date, '00:00') else 'on D')
+    mm['file_value_first_published'] = [where(r) for r in mm.itertuples()] if len(mm) else []
+    share = float(j.match.mean()) if len(j) else 0.0
+    return share, len(j), mm.drop(columns='match')
+
+
 def gates(mode, rec, models, series, hol, pubs, perf, lock):
-    g = {}
+    """Returns (checks, info): checks are the pass/fail items of plan Section 9 as amended by deviation 1;
+    info holds descriptive numbers that never decide the gate."""
+    g, info = {}, {}
     if mode == 'real':
         g['1_data_hashes'] = all(C.sha(os.path.join(C.DATA, f)) == h for f, h in lock['data_sha256'].items())
     g['2_no_lookahead'] = all((rec[D]['neso'] is None) or (pd.to_datetime(rec[D]['neso_pub'], utc=True) <= C.issue_time(D)).all()
                               for D in rec)                       # inputs are asserted where they are built
+    # 3 (deviation 1): the NESO forecast used equals an independent selection from the raw Elexon publications
+    indep = I.NesoIndependent(pubs); diffs = []
+    for D in rec:
+        if rec[D]['neso'] is None: continue
+        cut = C.issue_time(D)
+        alt = np.array([indep.value(t, cut) for t in rec[D]['idx']])
+        diffs.append(np.nan if np.isnan(alt).any() else float(np.abs(alt - rec[D]['neso']).max()))
+    g['3_neso_selection_independent'] = bool(len(diffs) > 0 and np.nanmax(diffs) == 0.0 and not np.isnan(diffs).any())
+    info['3_neso_days_checked'] = len(diffs)
+    mm = None
     if perf is not None:
-        p = perf.copy(); p['Date'] = pd.to_datetime(p['Date']).dt.normalize()
-        p = p[(p.Settlement_Period >= 17) & (p.Settlement_Period <= 48)]
-        ours = []
-        for D in rec:
-            if rec[D]['neso'] is None: continue
-            for k, (t, v) in enumerate(zip(rec[D]['idx'], rec[D]['neso'])):
-                ours.append((D, k + 1, v))
-        o = pd.DataFrame(ours, columns=['Date', 'Settlement_Period', 'ours'])
-        j = o.merge(p[['Date', 'Settlement_Period', 'Demand_Forecast']], on=['Date', 'Settlement_Period'])
-        share = float((np.abs(j.ours - j.Demand_Forecast) < 0.5).mean()) if len(j) else 0.0
-        g['3_neso_reconstruction'] = share >= 0.95
-        g['3_neso_match_share'] = share
+        share, n, mm = neso_file_comparison(rec, perf, indep)
+        info['3_neso_file_agreement_share'] = share; info['3_neso_file_halfhours_compared'] = n
+        info['3_neso_file_mismatch_days'] = int(mm.Date.nunique())
+        info['3_neso_file_mismatch_where'] = mm.file_value_first_published.value_counts().to_dict()
     for name in models['names']:
         fc = models[name + '_fc']
         g[f'4_{name}_finite_and_length'] = all(np.isfinite(fc[D]).all() and len(fc[D]) == len(rec[D]['y']) for D in rec)
-        sample = [D for D in rec][:3]
-        again = model_forecasts(models[name], {D: rec[D] for D in sample})
-        g[f'4_{name}_repeatable'] = all(np.array_equal(again[D], fc[D]) for D in sample)
-        D = sample[0]; c = rec[D]['ctx'].copy(); c[-1] += 1000
+        # 4 (deviation 1): repeat exactly the call that made the forecasts: the first batch, same days, same order
+        groups = {}
+        for D in rec: groups.setdefault(C.horizon(D), []).append(D)
+        (h, first), ds = next(iter(groups.items())); batch = ds[:64]
+        F = models[name].forecast([rec[D]['ctx'] for D in batch], h)
+        g[f'4_{name}_repeatable'] = all(np.array_equal(f[first:first + len(rec[D]['y'])], fc[D]) for D, f in zip(batch, F))
+        small = model_forecasts(models[name], {D: rec[D] for D in batch[:3]})
+        info[f'4_{name}_batch_size_effect_mw'] = float(max(np.abs(small[D] - fc[D]).max() for D in small))
+        D = batch[0]; c = rec[D]['ctx'].copy(); c[-1] += 1000
         moved = model_forecasts(models[name], {D: rec[D]}, {D: c})[D]
         g[f'5_{name}_responsive'] = bool(np.abs(moved - fc[D]).max() > 1e-6)
     ok = True
@@ -135,10 +170,10 @@ def gates(mode, rec, models, series, hol, pubs, perf, lock):
         from huggingface_hub import hf_hub_download
         for name, (repo, rev) in M.REVISIONS.items():
             g[f'7_{name}_weights'] = C.sha(hf_hub_download(repo, 'model.safetensors', revision=rev)) == lock['weights_sha256'][name]
-    return g
+    return g, info, mm
 
 
-def evaluate(rec, models):
+def evaluate(rec, models, nd_map=None, perf_mm=None, hol=frozenset()):
     dm = pd.DataFrame({'regression': daily(rec, {D: rec[D]['regression'] for D in rec}),
                        'naive': daily(rec, {D: rec[D]['naive'] for D in rec}),
                        **{n: daily(rec, models[n + '_fc']) for n in models['names']}})
@@ -162,6 +197,59 @@ def evaluate(rec, models):
         res['exploratory'][f'{n}_vs_naive'] = S.compare(dm.loc[full, n], dm.loc[full, 'naive'], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
     res['exploratory']['regression_vs_naive'] = S.compare(dm.loc[full, 'regression'], dm.loc[full, 'naive'], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
     res['primary_tests_holm'] = S.holm(pv)
+    names = models['names']; fcs = {n: models[n + '_fc'] for n in names}
+    fcs['regression'] = {D: rec[D]['regression'] for D in rec}; fcs['naive'] = {D: rec[D]['naive'] for D in rec}
+    comp = lambda a, b, m: S.compare(dm.loc[m, a], dm.loc[m, b], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
+
+    # Robustness (plan Section 6): primary ratios rescored against NESO's later ND series, descriptive only
+    if nd_map is not None:
+        nd_mae = {}
+        for k, f in fcs.items():
+            v = {}
+            for D in rec:
+                y = np.array([nd_map.get((D, i + 1), np.nan) for i in range(len(rec[D]['y']))])
+                if np.isfinite(y).all(): v[D] = S.daily_mae(y, f[D])
+            nd_mae[k] = pd.Series(v)
+        dnd = pd.DataFrame(nd_mae); mnd = dnd.index[(dnd.index >= pd.Timestamp(C.FULL_START)) & (dnd.index <= pd.Timestamp(C.FULL_END))]
+        res['robustness_nd'] = {f'{n}_vs_regression': S.compare(dnd.loc[mnd, n], dnd.loc[mnd, 'regression'], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
+                                for n in names}
+        res['robustness_nd']['n_days'] = int(len(mnd))
+
+    # NESO sensitivity (deviation 1): the days on which NESO's own file records a different forecast
+    if perf_mm is not None and len(perf_mm):
+        bad = set(pd.to_datetime(perf_mm.Date))
+        keep = full & dm['neso'].notna() & ~dm.index.isin(bad)
+        sens = {f'{n}_vs_neso_excluding_file_mismatch_days': comp(n, 'neso', keep) for n in names}
+        alt = {D: rec[D]['neso'].copy() for D in rec if rec[D]['neso'] is not None}
+        for r in perf_mm.itertuples():
+            D = pd.Timestamp(r.Date)
+            if D in alt: alt[D][r.Settlement_Period - 1] = r.Demand_Forecast
+        dm_alt = daily({D: rec[D] for D in alt}, alt)
+        both = full & dm['neso'].notna()
+        for n in names:
+            sens[f'{n}_vs_neso_file_values_on_mismatch_days'] = S.compare(dm.loc[both, n], dm_alt.loc[dm.index[both]], C.BOOT_B, C.BOOT_BLOCK, SEED_BOOT)
+        sens['n_mismatch_days'] = len(bad)
+        res['secondary_sensitivity'] = sens
+
+    # Exploratory tables (plan Section 6): between models; by season, weekday, holiday and time of day
+    pairs = [(a, b) for i, a in enumerate(names) for b in names[i + 1:]]
+    for a, b in pairs: res['exploratory'][f'{a}_vs_{b}'] = comp(a, b, full)
+    cols = names + ['regression', 'naive', 'neso']
+    d = dm.loc[full, cols]
+    season = d.index.month.map({12: 'winter', 1: 'winter', 2: 'winter', 3: 'spring', 4: 'spring', 5: 'spring',
+                                6: 'summer', 7: 'summer', 8: 'summer', 9: 'autumn', 10: 'autumn', 11: 'autumn'})
+    res['exploratory']['mae_by_season'] = d.groupby(season).mean().round(1).to_dict()
+    res['exploratory']['mae_by_weekday'] = d.groupby(d.index.day_name()).mean().round(1).to_dict()
+    res['exploratory']['mae_by_holiday'] = d.groupby(np.where(d.index.isin(list(hol)), 'bank holiday', 'other day')).mean().round(1).to_dict()
+    tod = {k: {} for k in cols}
+    for D in d.index:
+        clock = [t.tz_convert(C.UK).strftime('%H:%M') for t in rec[D]['idx']]
+        for k in cols:
+            f = rec[D]['neso'] if k == 'neso' else fcs[k][D]
+            if f is None: continue
+            for c, e in zip(clock, np.abs(rec[D]['y'] - f)): tod[k].setdefault(c, []).append(e)
+    res['exploratory']['mae_by_time_of_day'] = {k: {c: round(float(np.mean(v)), 1) for c, v in sorted(t.items())} for k, t in tod.items()}
+
     th = 1 - C.M_THRESHOLD                                   # Section 8, interpretation rule 2
     for n in models['names']:
         c = res['primary'][n]; h = res['primary_tests_holm']
@@ -181,8 +269,8 @@ def run(mode, outdir, synthetic=False, lock=None):
     reg = B.Regression(series, hol)
     rec, excl = build_days(series, pubs, reg, C.days())
     for n in names: models[n + '_fc'] = model_forecasts(models[n], rec)
-    G = gates(mode, rec, models, series, hol, pubs, perf, lock)
-    res, dm = evaluate(rec, models)
+    G, info, perf_mm = gates(mode, rec, models, series, hol, pubs, perf, lock)
+    res, dm = evaluate(rec, models, nd, perf_mm, hol)
     res['L1'] = l1(models, series, hol, rec)
     os.makedirs(outdir)
     rows = []
@@ -196,17 +284,18 @@ def run(mode, outdir, synthetic=False, lock=None):
     pd.DataFrame(rows).to_csv(os.path.join(outdir, 'forecasts.csv'), index=False)
     dm.to_csv(os.path.join(outdir, 'daily_mae.csv'), index_label='day')
     pd.DataFrame(excl, columns=['day', 'scope', 'reason']).to_csv(os.path.join(outdir, 'exclusions.csv'), index=False)
+    if perf_mm is not None: perf_mm.to_csv(os.path.join(outdir, 'neso_file_mismatches.csv'), index=False)
     fills = sorted({t for D in rec for t in rec[D]['filled']})
     pd.DataFrame({'filled_start_utc': fills, 'n_target_days_using_it': [sum(t in rec[D]['filled'] for D in rec) for t in fills]}
                  ).to_csv(os.path.join(outdir, 'context_fills.csv'), index=False)
     out = dict(mode=mode, synthetic=synthetic, run_utc=dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
                python=platform.python_version(), versions=M.versions(), settings=M.SETTINGS, revisions=M.REVISIONS,
                scripts={f: C.sha(os.path.join(HERE, f)) for f in sorted(os.listdir(HERE)) if f.endswith('.py')},
-               n_days=len(rec), n_excluded=len(excl), n_context_fills=len(fills), gates=G, gate_passed=bool(all(v for k, v in G.items() if not k.endswith('share'))),
+               n_days=len(rec), n_excluded=len(excl), n_context_fills=len(fills), gates=G, gate_info=info, gate_passed=bool(all(G.values())),
                results=res)
     if lock: out['plan_lock'] = lock
     json.dump(out, open(os.path.join(outdir, 'results.json'), 'w'), indent=1, default=str)
-    print(json.dumps({'gates': G, 'gate_passed': out['gate_passed']}, indent=1, default=str))
+    print(json.dumps({'gates': G, 'gate_info': info, 'gate_passed': out['gate_passed']}, indent=1, default=str))
     return out
 
 
@@ -219,7 +308,12 @@ if __name__ == '__main__':
         lockf = os.path.join(C.ROOT, 'plan', 'PLAN_LOCK.json')
         if not os.path.exists(lockf): sys.exit('Real run refused: plan/PLAN_LOCK.json not found (plan not frozen).')
         lock = json.load(open(lockf))
-        changed = [f for f, h in lock['files_sha256'].items() if C.sha(os.path.join(C.ROOT, f)) != h]
+        expected = dict(lock['files_sha256']); amends = []
+        for af in sorted(glob.glob(os.path.join(C.ROOT, 'plan', 'LOCK_AMENDMENT_*.json'))):
+            a = json.load(open(af)); amends.append(a)
+            expected.update({f: v['new'] for f, v in a['files_changed'].items()})
+        lock = dict(lock, amendments=amends)
+        changed = [f for f, h in expected.items() if C.sha(os.path.join(C.ROOT, f)) != h]
         if changed: sys.exit('Real run refused: changed since the freeze (a deviation; log it first): ' + ', '.join(changed))
         done = sorted(glob.glob(os.path.join(C.ROOT, 'results', 'attempt*')))
         for d in done:
