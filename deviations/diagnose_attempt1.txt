@@ -1,0 +1,141 @@
+=== A. Gate 3: NESO reconstruction ===
+columns: ['Month', 'Date', 'Datetime', 'Settlement_Period', 'Demand_Forecast', 'Demand_Outturn', 'TRIAD_Avoidance_Estimate', 'TRIAD_Avoidance_Corrected_Demand_Outturn', 'APE', 'Absolute_Error', 'Publish_Datetime']
+  Month        Date              Datetime  Settlement_Period  Demand_Forecast  Demand_Outturn  TRIAD_Avoidance_Estimate  TRIAD_Avoidance_Corrected_Demand_Outturn  APE  Absolute_Error      Publish_Datetime
+0   Apr  2021-04-01  2021-04-01T00:30:00Z                  1            21570           19970                         0                                     19970  8.0            1600  2021-03-31T09:45:00Z
+1   Apr  2021-04-01  2021-04-01T01:00:00Z                  2            21130           20030                         0                                     20030  5.5            1100  2021-03-31T09:45:00Z
+2   Apr  2021-04-01  2021-04-01T01:30:00Z                  3            21272           20499                         0                                     20499  3.8             773  2021-03-31T09:45:00Z
+dtypes: {'Month': <StringDtype(storage='python', na_value=nan)>, 'Date': <StringDtype(storage='python', na_value=nan)>, 'Datetime': <StringDtype(storage='python', na_value=nan)>, 'Settlement_Period': dtype('int64'), 'Demand_Forecast': dtype('int64'), 'Demand_Outturn': dtype('int64'), 'TRIAD_Avoidance_Estimate': dtype('int64'), 'TRIAD_Avoidance_Corrected_Demand_Outturn': dtype('int64'), 'APE': dtype('float64'), 'Absolute_Error': dtype('int64'), 'Publish_Datetime': <StringDtype(storage='python', na_value=nan)>}
+Date samples: ['2022-03-30', '2023-09-18', '2024-01-29', '2024-07-09', '2022-02-25', '2025-11-15', '2023-09-26', '2024-11-30']
+default parse: range 2021-04-01 00:00:00 .. 2026-11-03 00:00:00, unparsed 0
+dayfirst: range 2021-01-04 00:00:00 .. 2026-12-10 00:00:00, unparsed 59328
+rows sharing a (Date, Settlement_Period): 8
+      Month       Date              Datetime  Settlement_Period  Demand_Forecast  Demand_Outturn  TRIAD_Avoidance_Estimate  TRIAD_Avoidance_Corrected_Demand_Outturn  APE  Absolute_Error      Publish_Datetime
+10225   Oct 2021-10-31  2021-10-31T01:00:00Z                  4            21200           21087                         0                                     21087  0.5             113  2021-10-30T09:45:00Z
+10226   Oct 2021-10-31  2021-10-31T01:00:00Z                  4            20950           21087                         0                                     21087  0.6             137  2021-10-30T09:45:00Z
+10227   Oct 2021-10-31  2021-10-31T01:30:00Z                  5            20710           20743                         0                                     20743  0.2              33  2021-10-30T09:45:00Z
+10228   Oct 2021-10-31  2021-10-31T01:30:00Z                  5            20650           20743                         0                                     20743  0.4              93  2021-10-30T09:45:00Z
+27697   Oct 2022-10-30  2022-10-30T01:00:00Z                  2            18150           18302                         0                                     18302  0.8             152  2022-10-29T09:45:00Z
+27698   Oct 2022-10-30  2022-10-30T01:00:00Z                  2            18020           18302                         0                                     18302  1.5             282  2022-10-29T09:45:00Z
+27699   Oct 2022-10-30  2022-10-30T01:30:00Z                  3            17840           17778                         0                                     17778  0.3              62  2022-10-29T09:45:00Z
+27700   Oct 2022-10-30  2022-10-30T01:30:00Z                  3            17883           17778                         0                                     17778  0.6             105  2022-10-29T09:45:00Z
+merged rows 33114 (ours SP17-48: 33114); match share 0.9118
+mismatches by year: {2024: 1193, 2025: 1726}
+mismatches by month: {1: 243, 2: 185, 3: 397, 4: 285, 5: 446, 6: 288, 7: 238, 8: 146, 9: 288, 10: 94, 11: 57, 12: 252}
+mismatches by settlement period: {17: 93, 18: 93, 19: 92, 20: 93, 21: 93, 22: 93, 23: 94, 24: 93, 25: 92, 26: 94, 27: 94, 28: 94, 29: 93, 30: 94, 31: 93, 32: 94, 33: 94, 34: 93, 35: 94, 36: 93, 37: 94, 38: 93, 39: 91, 40: 92, 41: 91, 42: 82, 43: 87, 44: 86, 45: 87, 46: 86, 47: 86, 48: 78}
+mismatches in BST / GMT: {True: 1814, False: 1105}
+days with any mismatch: 94; half-hours per such day: {20: 1, 21: 1, 23: 1, 24: 1, 25: 3, 27: 1, 29: 1, 30: 4, 31: 12, 32: 69}
+abs difference quantiles (MW): {0.1: 48.8, 0.5: 312.0, 0.9: 974.0, 1.0: 11425.0}
+
+Sample mismatches: which Elexon publications carry NESO-file value (UK times)
+  2024-01-06 SP17: ours 29935, file 29771; file value in publications none; ours in ['01-05 08:45']
+  2024-03-13 SP28: ours 28871, file 29407; file value in publications none; ours in ['03-12 08:45']
+  2024-05-20 SP21: ours 24152, file 24123; file value in publications none; ours in ['05-19 08:45']
+  2024-07-20 SP18: ours 21924, file 22393; file value in publications none; ours in ['07-19 08:45']
+  2024-10-15 SP34: ours 33199, file 33795; file value in publications none; ours in ['10-14 08:45']
+  2024-12-09 SP43: ours 34690, file 34737; file value in publications none; ours in ['12-08 08:45']
+  2025-01-12 SP26: ours 35670, file 35680; file value in publications none; ours in ['01-11 08:45']
+  2025-02-19 SP46: ours 27687, file 27692; file value in publications none; ours in ['02-18 08:45']
+  2025-03-20 SP37: ours 34850, file 34037; file value in publications ['03-19 11:47']; ours in ['03-19 08:45']
+  2025-04-15 SP25: ours 29260, file 29150; file value in publications none; ours in ['04-14 08:45']
+  2025-05-11 SP17: ours 16520, file 17680; file value in publications none; ours in ['05-10 08:45']
+  2025-06-10 SP37: ours 26994, file 26534; file value in publications ['06-09 11:47']; ours in ['06-09 08:45']
+  2025-07-01 SP18: ours 28227, file 27398; file value in publications none; ours in ['06-30 08:45']
+  2025-09-02 SP42: ours 29059, file 28946; file value in publications none; ours in ['09-01 08:45']
+  2025-09-20 SP48: ours 19060, file 19790; file value in publications none; ours in ['09-19 08:45']
+
+=== C. Which forecast does the performance file record? (2024-2026) ===
+Publish_Datetime, UTC time of day, by year:
+year           2024  2025  2026
+pub_utc_time                   
+08:33             0     0  5666
+08:45          7486  4270     0
+09:03             0     0    96
+09:33             0  4418  8542
+09:45         10082  8832     0
+10:03             0     0   192
+10:33             0     0    96
+Publish_Datetime, UK time of day, by year:
+year          2024  2025   2026
+pub_uk_time                    
+08:45         7486  4270      0
+09:33            0  3168  10080
+10:03            0     0     96
+10:33            0  1250   4224
+10:45        10082  8832      0
+11:03            0     0    192
+Publish day relative to target day (days): {-1: 49680}
+UK publish time on mismatched vs matched days:
+mismatch_day  False  True 
+pub_uk_time               
+08:45           208     37
+09:33           276      0
+10:03             2      0
+10:33           114      0
+10:45           337     57
+11:03             4      0
+
+Mismatched half-hours: where the file value first appears among Elexon publications:
+{'in no publication': 2347, 'later on D-1': 564, 'on D': 8}
+Mismatched days by dominant class: {'in no publication': 78, 'later on D-1': 16}
+Mismatched days (UK date): ['2024-01-06', '2024-01-10', '2024-01-13', '2024-01-27', '2024-03-02', '2024-03-12', '2024-03-13', '2024-03-28', '2024-04-01', '2024-04-17', '2024-04-28', '2024-05-02', '2024-05-16', '2024-05-20', '2024-05-21', '2024-05-22', '2024-05-25', '2024-06-10', '2024-07-09', '2024-07-11', '2024-07-20', '2024-07-28', '2024-08-19', '2024-08-23', '2024-09-21', '2024-09-24', '2024-10-09', '2024-10-15', '2024-10-23', '2024-11-19', '2024-11-20', '2024-12-06', '2024-12-07', '2024-12-08', '2024-12-09', '2024-12-14', '2024-12-18', '2024-12-19', '2024-12-26', '2025-01-05', '2025-01-12', '2025-01-14', '2025-01-17', '2025-02-01', '2025-02-14', '2025-02-16', '2025-02-18', '2025-02-19', '2025-02-26', '2025-03-05', '2025-03-08', '2025-03-09', '2025-03-18', '2025-03-19', '2025-03-20', '2025-03-21', '2025-03-24', '2025-03-30', '2025-04-07', '2025-04-14', '2025-04-15', '2025-04-16', '2025-04-17', '2025-04-18', '2025-05-03', '2025-05-04', '2025-05-05', '2025-05-11', '2025-05-13', '2025-05-14', '2025-05-24', '2025-05-31', '2025-06-01', '2025-06-02', '2025-06-10', '2025-06-11', '2025-06-12', '2025-06-28', '2025-06-29', '2025-06-30', '2025-07-01', '2025-07-08', '2025-07-09', '2025-07-10', '2025-08-05', '2025-08-17', '2025-08-26', '2025-09-02', '2025-09-03', '2025-09-05', '2025-09-06', '2025-09-07', '2025-09-08', '2025-09-20']/home/ndrew/gb-foundation-model-tests/code/run.py:35: DtypeWarning: Columns (22: FORECAST_ACTUAL_INDICATOR) have mixed types. Specify dtype option on import or set low_memory=False.
+  nd = pd.read_csv(nd_path) if os.path.exists(nd_path) else None
+
+
+Largest difference: 2025-03-05 SP25: ours 13625 MW, file 25050 MW
+      Month        Date              Datetime  Settlement_Period  Demand_Forecast  Demand_Outturn  TRIAD_Avoidance_Estimate  TRIAD_Avoidance_Corrected_Demand_Outturn  APE  Absolute_Error      Publish_Datetime
+68856   Mar  2025-03-05  2025-03-05T12:30:00Z                 25            25050           25524                         0                                     25524  1.9             474  2025-03-04T08:45:00Z
+that day, ours vs file:
+ Settlement_Period    neso  Demand_Forecast
+                17 23140.0            31510
+                18 21712.0            30591
+                19 20316.0            29641
+                20 18776.0            28396
+                21 17179.0            26958
+                22 15915.0            25939
+                23 14964.0            25360
+                24 14355.0            25323
+                25 13625.0            25050
+                26 16300.0            24859
+                27 23740.0            24790
+                28 24038.0            25012
+                29 24314.0            25212
+                30 24802.0            25631
+                31 25861.0            26635
+                32 27092.0            27812
+                33 28958.0            29631
+                34 30871.0            31488
+                35 32752.0            33302
+                36 33831.0            34294
+                37 35055.0            35427
+                38 36013.0            36286
+                39 36560.0            36730
+                40 35708.0            35730
+                41 34210.0            34091
+                42 32870.0            32620
+                43 31286.0            31043
+                44 29499.0            29266
+                45 27897.0            27673
+                46 26365.0            26150
+                47 24744.0            24538
+                48 23650.0            23450
+that day, INDO outturn vs ours (SP15-25):
+ period  outturn    neso
+     15  31026.0 25649.0
+     16  31777.0 25260.0
+     17  32343.0 23140.0
+     18  31811.0 21712.0
+     19  31609.0 20316.0
+     20  30585.0 18776.0
+     21  29100.0 17179.0
+     22  27784.0 15915.0
+     23  26978.0 14964.0
+     24  26167.0 14355.0
+     25  25524.0 13625.0
+
+=== B. Gate 4: Timestral repeatability ===
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files: 100%|██████████| 2/2 [00:00<00:00, 573.82it/s]
+horizon 79; original batch 64 days; gate sample ['2024-01-01', '2024-01-02', '2024-01-03']
+same batch of 64, run twice: max difference 0 MW
+batch of 64 now vs attempt 1 saved: max difference 0 MW
+batch of 3, run twice: max difference 0 MW
+batch of 3 vs batch of 64: max difference 0.00586 MW
