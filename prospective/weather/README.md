@@ -49,8 +49,10 @@ Push `manifest.csv` (not the data files) to the project's public repository **ev
 Once the repository exists, add the push to the scheduled command, so it happens automatically:
 
 ```
-cd ~/gb-foundation-model-tests/prospective/weather && ~/miniconda3/envs/wx/bin/python ecmwf_daily.py >> collect.log 2>&1 && git add manifest.csv && git commit -q -m "ECMWF forecasts $(date -u +%F)" && git push -q
+cd ~/gb-foundation-model-tests/prospective/weather && ~/miniconda3/envs/wx/bin/python ecmwf_daily.py >> collect.log 2>&1 && git add manifest.csv && git commit -q -m "ECMWF forecasts $(date -u +%F)" && git pull --rebase -q && git push -q
 ```
+
+The `git pull --rebase` (added 7 November 2026) takes in any commit made elsewhere since the last run, such as a document published from another machine, so the push is never rejected and never delayed to the next task's push.
 
 Keep the data files on your machine and back them up; at about 1–2 MB a day they fit comfortably on any drive.
 
