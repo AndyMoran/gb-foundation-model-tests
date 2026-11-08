@@ -1,0 +1,75 @@
+{
+ "target_day": "2026-11-09",
+ "issue_time_utc": "2026-11-08 09:30:00+00:00",
+ "run_started_utc": "2026-11-08T09:45:01+00:00",
+ "forecast_written_utc": "2026-11-08T09:45:22+00:00",
+ "test": false,
+ "stand_in": false,
+ "batch_days": 1,
+ "indo_cached_values_disagreeing_with_fetch": 0,
+ "last_input_halfhour_start_utc": "2026-11-08 08:00:00+00:00",
+ "input_cut_utc": "2026-11-08 08:30:00+00:00",
+ "input_sha256": "51d36703451e66a632ce1dac90583a682350c26314c94766aef8761174815531",
+ "context_fills_utc": [],
+ "forecasts_sha256": "8049ab627381282348528fb0e4aa15e7da05d829e1d67a4b63969873d8462b41",
+ "versions": {
+  "timesfm": "3.0.2",
+  "chronos-forecasting": "2.3.2",
+  "timestral": "1.0.0",
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ },
+ "settings": {
+  "timesfm25": {
+   "max_context": 2688,
+   "max_horizon": 128,
+   "normalize_inputs": true,
+   "use_continuous_quantile_head": true,
+   "force_flip_invariance": true,
+   "infer_is_positive": true,
+   "fix_quantile_crossing": true,
+   "return_backcast": false,
+   "per_core_batch_size": 32
+  },
+  "chronos2": {
+   "context_length": 2688,
+   "cross_learning": false,
+   "limit_prediction_length": false,
+   "batch_size": 64,
+   "device_map": "cpu",
+   "quantile_levels": [
+    0.5
+   ]
+  },
+  "timestral": {
+   "symmetric_averaging": true,
+   "clip_nonnegative": true,
+   "device": "cpu",
+   "quantile": 0.5
+  }
+ },
+ "revisions": {
+  "timesfm25": [
+   "google/timesfm-2.5-200m-pytorch",
+   "1d952420fba87f3c6dee4f240de0f1a0fbc790e3"
+  ],
+  "chronos2": [
+   "amazon/chronos-2",
+   "29ec3766d36d6f73f0696f85560a422f50e8498c"
+  ],
+  "timestral": [
+   "mistralai/Timestral-209M",
+   "9874d252ab0aae16f7f7c999f98f98d6ad7d8365"
+  ]
+ },
+ "lock_sha256": "3f952dda4f8a976f8203fbedc05d9c4761ac9c99357abc4490bfae9ac768e44c",
+ "code_sha256": {
+  "common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4",
+  "inputs.py": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b",
+  "baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d",
+  "models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416",
+  "fetch.py": "27d5755d122582621c64624171b3fa7626f6776ac4b43abb73e391a1829ee2af"
+ },
+ "script_sha256": "ccb7fb5960375707bd287c18d03befb8d23a8e0f6670d6ea7eda757b752c6ad1"
+}
