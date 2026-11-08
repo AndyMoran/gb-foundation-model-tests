@@ -1,0 +1,984 @@
+{
+ "source": "results/attempt2/forecasts.csv (rung 1, no weather)",
+ "correlations": {
+  "chronos2~timestral": 0.9484225598094175,
+  "chronos2~timesfm25": 0.8232437103513831,
+  "chronos2~regression": 0.757519983335772,
+  "timestral~timesfm25": 0.8505998859513225,
+  "timestral~regression": 0.7749774334538277,
+  "timesfm25~regression": 0.7372190538704758
+ },
+ "c_values": [
+  0.82,
+  0.9
+ ],
+ "reps": 200,
+ "bootstrap_draws": 1000,
+ "block": 7,
+ "levels": [
+  0.00625,
+  0.0125
+ ],
+ "cells": {
+  "Q1|chronos2|backtest|c0.82|0.02": [
+   0.1,
+   0.145
+  ],
+  "Q1|chronos2|backtest|c0.82|0.03": [
+   0.25,
+   0.365
+  ],
+  "Q1|chronos2|backtest|c0.82|0.05": [
+   0.77,
+   0.835
+  ],
+  "Q1|chronos2|backtest|c0.82|0.07": [
+   0.935,
+   0.945
+  ],
+  "Q1|chronos2|backtest|c0.82|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|chronos2|backtest|c0.9|0.02": [
+   0.265,
+   0.315
+  ],
+  "Q1|chronos2|backtest|c0.9|0.03": [
+   0.515,
+   0.58
+  ],
+  "Q1|chronos2|backtest|c0.9|0.05": [
+   0.94,
+   0.975
+  ],
+  "Q1|chronos2|backtest|c0.9|0.07": [
+   1.0,
+   1.0
+  ],
+  "Q1|chronos2|backtest|c0.9|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|chronos2|one winter|c0.82|0.02": [
+   0.035,
+   0.05
+  ],
+  "Q1|chronos2|one winter|c0.82|0.03": [
+   0.065,
+   0.075
+  ],
+  "Q1|chronos2|one winter|c0.82|0.05": [
+   0.14,
+   0.205
+  ],
+  "Q1|chronos2|one winter|c0.82|0.07": [
+   0.25,
+   0.32
+  ],
+  "Q1|chronos2|one winter|c0.82|0.10": [
+   0.46,
+   0.57
+  ],
+  "Q4a|chronos2|one winter|c0.82|0.02": [
+   0.04,
+   0.06
+  ],
+  "Q4a|chronos2|one winter|c0.82|0.04": [
+   0.09,
+   0.105
+  ],
+  "Q4a|chronos2|one winter|c0.82|0.06": [
+   0.135,
+   0.18
+  ],
+  "Q4a|chronos2|one winter|c0.82|0.08": [
+   0.19,
+   0.245
+  ],
+  "Q4a|chronos2|one winter|c0.82|0.10": [
+   0.245,
+   0.335
+  ],
+  "Q4b|chronos2|one winter|c0.82|0.02": [
+   0.045,
+   0.055
+  ],
+  "Q4b|chronos2|one winter|c0.82|0.04": [
+   0.11,
+   0.145
+  ],
+  "Q4b|chronos2|one winter|c0.82|0.06": [
+   0.155,
+   0.215
+  ],
+  "Q4b|chronos2|one winter|c0.82|0.08": [
+   0.14,
+   0.215
+  ],
+  "Q4b|chronos2|one winter|c0.82|0.10": [
+   0.265,
+   0.345
+  ],
+  "Q1|chronos2|one winter|c0.9|0.02": [
+   0.035,
+   0.08
+  ],
+  "Q1|chronos2|one winter|c0.9|0.03": [
+   0.075,
+   0.11
+  ],
+  "Q1|chronos2|one winter|c0.9|0.05": [
+   0.24,
+   0.3
+  ],
+  "Q1|chronos2|one winter|c0.9|0.07": [
+   0.39,
+   0.455
+  ],
+  "Q1|chronos2|one winter|c0.9|0.10": [
+   0.83,
+   0.85
+  ],
+  "Q4a|chronos2|one winter|c0.9|0.02": [
+   0.04,
+   0.06
+  ],
+  "Q4a|chronos2|one winter|c0.9|0.04": [
+   0.09,
+   0.115
+  ],
+  "Q4a|chronos2|one winter|c0.9|0.06": [
+   0.195,
+   0.27
+  ],
+  "Q4a|chronos2|one winter|c0.9|0.08": [
+   0.33,
+   0.385
+  ],
+  "Q4a|chronos2|one winter|c0.9|0.10": [
+   0.5,
+   0.585
+  ],
+  "Q4b|chronos2|one winter|c0.9|0.02": [
+   0.055,
+   0.065
+  ],
+  "Q4b|chronos2|one winter|c0.9|0.04": [
+   0.11,
+   0.145
+  ],
+  "Q4b|chronos2|one winter|c0.9|0.06": [
+   0.21,
+   0.245
+  ],
+  "Q4b|chronos2|one winter|c0.9|0.08": [
+   0.42,
+   0.47
+  ],
+  "Q4b|chronos2|one winter|c0.9|0.10": [
+   0.445,
+   0.555
+  ],
+  "Q1|chronos2|two winters|c0.82|0.02": [
+   0.05,
+   0.08
+  ],
+  "Q1|chronos2|two winters|c0.82|0.03": [
+   0.07,
+   0.105
+  ],
+  "Q1|chronos2|two winters|c0.82|0.05": [
+   0.23,
+   0.315
+  ],
+  "Q1|chronos2|two winters|c0.82|0.07": [
+   0.425,
+   0.56
+  ],
+  "Q1|chronos2|two winters|c0.82|0.10": [
+   0.82,
+   0.86
+  ],
+  "Q4a|chronos2|two winters|c0.82|0.02": [
+   0.045,
+   0.055
+  ],
+  "Q4a|chronos2|two winters|c0.82|0.04": [
+   0.09,
+   0.13
+  ],
+  "Q4a|chronos2|two winters|c0.82|0.06": [
+   0.25,
+   0.29
+  ],
+  "Q4a|chronos2|two winters|c0.82|0.08": [
+   0.32,
+   0.39
+  ],
+  "Q4a|chronos2|two winters|c0.82|0.10": [
+   0.525,
+   0.6
+  ],
+  "Q4b|chronos2|two winters|c0.82|0.02": [
+   0.06,
+   0.08
+  ],
+  "Q4b|chronos2|two winters|c0.82|0.04": [
+   0.105,
+   0.155
+  ],
+  "Q4b|chronos2|two winters|c0.82|0.06": [
+   0.17,
+   0.25
+  ],
+  "Q4b|chronos2|two winters|c0.82|0.08": [
+   0.335,
+   0.4
+  ],
+  "Q4b|chronos2|two winters|c0.82|0.10": [
+   0.555,
+   0.63
+  ],
+  "Q1|chronos2|two winters|c0.9|0.02": [
+   0.07,
+   0.115
+  ],
+  "Q1|chronos2|two winters|c0.9|0.03": [
+   0.12,
+   0.185
+  ],
+  "Q1|chronos2|two winters|c0.9|0.05": [
+   0.38,
+   0.47
+  ],
+  "Q1|chronos2|two winters|c0.9|0.07": [
+   0.745,
+   0.8
+  ],
+  "Q1|chronos2|two winters|c0.9|0.10": [
+   0.955,
+   0.975
+  ],
+  "Q4a|chronos2|two winters|c0.9|0.02": [
+   0.04,
+   0.07
+  ],
+  "Q4a|chronos2|two winters|c0.9|0.04": [
+   0.105,
+   0.175
+  ],
+  "Q4a|chronos2|two winters|c0.9|0.06": [
+   0.365,
+   0.465
+  ],
+  "Q4a|chronos2|two winters|c0.9|0.08": [
+   0.54,
+   0.64
+  ],
+  "Q4a|chronos2|two winters|c0.9|0.10": [
+   0.68,
+   0.755
+  ],
+  "Q4b|chronos2|two winters|c0.9|0.02": [
+   0.07,
+   0.11
+  ],
+  "Q4b|chronos2|two winters|c0.9|0.04": [
+   0.16,
+   0.22
+  ],
+  "Q4b|chronos2|two winters|c0.9|0.06": [
+   0.345,
+   0.425
+  ],
+  "Q4b|chronos2|two winters|c0.9|0.08": [
+   0.62,
+   0.69
+  ],
+  "Q4b|chronos2|two winters|c0.9|0.10": [
+   0.795,
+   0.85
+  ],
+  "Q1|timestral|backtest|c0.82|0.02": [
+   0.125,
+   0.18
+  ],
+  "Q1|timestral|backtest|c0.82|0.03": [
+   0.345,
+   0.395
+  ],
+  "Q1|timestral|backtest|c0.82|0.05": [
+   0.7,
+   0.75
+  ],
+  "Q1|timestral|backtest|c0.82|0.07": [
+   0.975,
+   0.985
+  ],
+  "Q1|timestral|backtest|c0.82|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|timestral|backtest|c0.9|0.02": [
+   0.26,
+   0.365
+  ],
+  "Q1|timestral|backtest|c0.9|0.03": [
+   0.54,
+   0.64
+  ],
+  "Q1|timestral|backtest|c0.9|0.05": [
+   0.965,
+   0.98
+  ],
+  "Q1|timestral|backtest|c0.9|0.07": [
+   1.0,
+   1.0
+  ],
+  "Q1|timestral|backtest|c0.9|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|timestral|one winter|c0.82|0.02": [
+   0.055,
+   0.075
+  ],
+  "Q1|timestral|one winter|c0.82|0.03": [
+   0.06,
+   0.075
+  ],
+  "Q1|timestral|one winter|c0.82|0.05": [
+   0.145,
+   0.19
+  ],
+  "Q1|timestral|one winter|c0.82|0.07": [
+   0.235,
+   0.3
+  ],
+  "Q1|timestral|one winter|c0.82|0.10": [
+   0.475,
+   0.56
+  ],
+  "Q4a|timestral|one winter|c0.82|0.02": [
+   0.045,
+   0.095
+  ],
+  "Q4a|timestral|one winter|c0.82|0.04": [
+   0.09,
+   0.12
+  ],
+  "Q4a|timestral|one winter|c0.82|0.06": [
+   0.165,
+   0.21
+  ],
+  "Q4a|timestral|one winter|c0.82|0.08": [
+   0.18,
+   0.235
+  ],
+  "Q4a|timestral|one winter|c0.82|0.10": [
+   0.31,
+   0.4
+  ],
+  "Q4b|timestral|one winter|c0.82|0.02": [
+   0.05,
+   0.08
+  ],
+  "Q4b|timestral|one winter|c0.82|0.04": [
+   0.085,
+   0.105
+  ],
+  "Q4b|timestral|one winter|c0.82|0.06": [
+   0.14,
+   0.17
+  ],
+  "Q4b|timestral|one winter|c0.82|0.08": [
+   0.185,
+   0.255
+  ],
+  "Q4b|timestral|one winter|c0.82|0.10": [
+   0.27,
+   0.335
+  ],
+  "Q1|timestral|one winter|c0.9|0.02": [
+   0.06,
+   0.09
+  ],
+  "Q1|timestral|one winter|c0.9|0.03": [
+   0.095,
+   0.12
+  ],
+  "Q1|timestral|one winter|c0.9|0.05": [
+   0.185,
+   0.24
+  ],
+  "Q1|timestral|one winter|c0.9|0.07": [
+   0.415,
+   0.535
+  ],
+  "Q1|timestral|one winter|c0.9|0.10": [
+   0.695,
+   0.77
+  ],
+  "Q4a|timestral|one winter|c0.9|0.02": [
+   0.04,
+   0.075
+  ],
+  "Q4a|timestral|one winter|c0.9|0.04": [
+   0.115,
+   0.15
+  ],
+  "Q4a|timestral|one winter|c0.9|0.06": [
+   0.235,
+   0.275
+  ],
+  "Q4a|timestral|one winter|c0.9|0.08": [
+   0.315,
+   0.355
+  ],
+  "Q4a|timestral|one winter|c0.9|0.10": [
+   0.495,
+   0.545
+  ],
+  "Q4b|timestral|one winter|c0.9|0.02": [
+   0.065,
+   0.09
+  ],
+  "Q4b|timestral|one winter|c0.9|0.04": [
+   0.15,
+   0.2
+  ],
+  "Q4b|timestral|one winter|c0.9|0.06": [
+   0.285,
+   0.36
+  ],
+  "Q4b|timestral|one winter|c0.9|0.08": [
+   0.365,
+   0.465
+  ],
+  "Q4b|timestral|one winter|c0.9|0.10": [
+   0.565,
+   0.635
+  ],
+  "Q1|timestral|two winters|c0.82|0.02": [
+   0.025,
+   0.03
+  ],
+  "Q1|timestral|two winters|c0.82|0.03": [
+   0.095,
+   0.13
+  ],
+  "Q1|timestral|two winters|c0.82|0.05": [
+   0.275,
+   0.315
+  ],
+  "Q1|timestral|two winters|c0.82|0.07": [
+   0.47,
+   0.56
+  ],
+  "Q1|timestral|two winters|c0.82|0.10": [
+   0.77,
+   0.83
+  ],
+  "Q4a|timestral|two winters|c0.82|0.02": [
+   0.03,
+   0.055
+  ],
+  "Q4a|timestral|two winters|c0.82|0.04": [
+   0.115,
+   0.155
+  ],
+  "Q4a|timestral|two winters|c0.82|0.06": [
+   0.185,
+   0.24
+  ],
+  "Q4a|timestral|two winters|c0.82|0.08": [
+   0.35,
+   0.43
+  ],
+  "Q4a|timestral|two winters|c0.82|0.10": [
+   0.575,
+   0.675
+  ],
+  "Q4b|timestral|two winters|c0.82|0.02": [
+   0.015,
+   0.025
+  ],
+  "Q4b|timestral|two winters|c0.82|0.04": [
+   0.11,
+   0.155
+  ],
+  "Q4b|timestral|two winters|c0.82|0.06": [
+   0.17,
+   0.23
+  ],
+  "Q4b|timestral|two winters|c0.82|0.08": [
+   0.35,
+   0.45
+  ],
+  "Q4b|timestral|two winters|c0.82|0.10": [
+   0.54,
+   0.605
+  ],
+  "Q1|timestral|two winters|c0.9|0.02": [
+   0.055,
+   0.095
+  ],
+  "Q1|timestral|two winters|c0.9|0.03": [
+   0.155,
+   0.24
+  ],
+  "Q1|timestral|two winters|c0.9|0.05": [
+   0.385,
+   0.47
+  ],
+  "Q1|timestral|two winters|c0.9|0.07": [
+   0.685,
+   0.795
+  ],
+  "Q1|timestral|two winters|c0.9|0.10": [
+   0.965,
+   0.975
+  ],
+  "Q4a|timestral|two winters|c0.9|0.02": [
+   0.065,
+   0.085
+  ],
+  "Q4a|timestral|two winters|c0.9|0.04": [
+   0.145,
+   0.19
+  ],
+  "Q4a|timestral|two winters|c0.9|0.06": [
+   0.335,
+   0.41
+  ],
+  "Q4a|timestral|two winters|c0.9|0.08": [
+   0.515,
+   0.625
+  ],
+  "Q4a|timestral|two winters|c0.9|0.10": [
+   0.76,
+   0.81
+  ],
+  "Q4b|timestral|two winters|c0.9|0.02": [
+   0.04,
+   0.07
+  ],
+  "Q4b|timestral|two winters|c0.9|0.04": [
+   0.12,
+   0.185
+  ],
+  "Q4b|timestral|two winters|c0.9|0.06": [
+   0.39,
+   0.495
+  ],
+  "Q4b|timestral|two winters|c0.9|0.08": [
+   0.655,
+   0.73
+  ],
+  "Q4b|timestral|two winters|c0.9|0.10": [
+   0.855,
+   0.885
+  ],
+  "Q1|timesfm25|backtest|c0.82|0.02": [
+   0.13,
+   0.185
+  ],
+  "Q1|timesfm25|backtest|c0.82|0.03": [
+   0.35,
+   0.39
+  ],
+  "Q1|timesfm25|backtest|c0.82|0.05": [
+   0.725,
+   0.8
+  ],
+  "Q1|timesfm25|backtest|c0.82|0.07": [
+   0.975,
+   0.99
+  ],
+  "Q1|timesfm25|backtest|c0.82|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|timesfm25|backtest|c0.9|0.02": [
+   0.285,
+   0.34
+  ],
+  "Q1|timesfm25|backtest|c0.9|0.03": [
+   0.525,
+   0.59
+  ],
+  "Q1|timesfm25|backtest|c0.9|0.05": [
+   0.97,
+   0.975
+  ],
+  "Q1|timesfm25|backtest|c0.9|0.07": [
+   1.0,
+   1.0
+  ],
+  "Q1|timesfm25|backtest|c0.9|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|timesfm25|one winter|c0.82|0.02": [
+   0.03,
+   0.06
+  ],
+  "Q1|timesfm25|one winter|c0.82|0.03": [
+   0.08,
+   0.1
+  ],
+  "Q1|timesfm25|one winter|c0.82|0.05": [
+   0.19,
+   0.24
+  ],
+  "Q1|timesfm25|one winter|c0.82|0.07": [
+   0.24,
+   0.295
+  ],
+  "Q1|timesfm25|one winter|c0.82|0.10": [
+   0.575,
+   0.68
+  ],
+  "Q4a|timesfm25|one winter|c0.82|0.02": [
+   0.035,
+   0.05
+  ],
+  "Q4a|timesfm25|one winter|c0.82|0.04": [
+   0.075,
+   0.115
+  ],
+  "Q4a|timesfm25|one winter|c0.82|0.06": [
+   0.17,
+   0.21
+  ],
+  "Q4a|timesfm25|one winter|c0.82|0.08": [
+   0.275,
+   0.3
+  ],
+  "Q4a|timesfm25|one winter|c0.82|0.10": [
+   0.32,
+   0.405
+  ],
+  "Q4b|timesfm25|one winter|c0.82|0.02": [
+   0.04,
+   0.05
+  ],
+  "Q4b|timesfm25|one winter|c0.82|0.04": [
+   0.035,
+   0.06
+  ],
+  "Q4b|timesfm25|one winter|c0.82|0.06": [
+   0.11,
+   0.15
+  ],
+  "Q4b|timesfm25|one winter|c0.82|0.08": [
+   0.18,
+   0.235
+  ],
+  "Q4b|timesfm25|one winter|c0.82|0.10": [
+   0.34,
+   0.405
+  ],
+  "Q1|timesfm25|one winter|c0.9|0.02": [
+   0.06,
+   0.07
+  ],
+  "Q1|timesfm25|one winter|c0.9|0.03": [
+   0.08,
+   0.115
+  ],
+  "Q1|timesfm25|one winter|c0.9|0.05": [
+   0.19,
+   0.245
+  ],
+  "Q1|timesfm25|one winter|c0.9|0.07": [
+   0.345,
+   0.44
+  ],
+  "Q1|timesfm25|one winter|c0.9|0.10": [
+   0.685,
+   0.775
+  ],
+  "Q4a|timesfm25|one winter|c0.9|0.02": [
+   0.055,
+   0.07
+  ],
+  "Q4a|timesfm25|one winter|c0.9|0.04": [
+   0.09,
+   0.13
+  ],
+  "Q4a|timesfm25|one winter|c0.9|0.06": [
+   0.24,
+   0.275
+  ],
+  "Q4a|timesfm25|one winter|c0.9|0.08": [
+   0.315,
+   0.4
+  ],
+  "Q4a|timesfm25|one winter|c0.9|0.10": [
+   0.545,
+   0.64
+  ],
+  "Q4b|timesfm25|one winter|c0.9|0.02": [
+   0.025,
+   0.05
+  ],
+  "Q4b|timesfm25|one winter|c0.9|0.04": [
+   0.1,
+   0.17
+  ],
+  "Q4b|timesfm25|one winter|c0.9|0.06": [
+   0.24,
+   0.295
+  ],
+  "Q4b|timesfm25|one winter|c0.9|0.08": [
+   0.39,
+   0.45
+  ],
+  "Q4b|timesfm25|one winter|c0.9|0.10": [
+   0.625,
+   0.685
+  ],
+  "Q1|timesfm25|two winters|c0.82|0.02": [
+   0.045,
+   0.05
+  ],
+  "Q1|timesfm25|two winters|c0.82|0.03": [
+   0.095,
+   0.135
+  ],
+  "Q1|timesfm25|two winters|c0.82|0.05": [
+   0.2,
+   0.27
+  ],
+  "Q1|timesfm25|two winters|c0.82|0.07": [
+   0.455,
+   0.54
+  ],
+  "Q1|timesfm25|two winters|c0.82|0.10": [
+   0.8,
+   0.86
+  ],
+  "Q4a|timesfm25|two winters|c0.82|0.02": [
+   0.03,
+   0.045
+  ],
+  "Q4a|timesfm25|two winters|c0.82|0.04": [
+   0.075,
+   0.115
+  ],
+  "Q4a|timesfm25|two winters|c0.82|0.06": [
+   0.21,
+   0.285
+  ],
+  "Q4a|timesfm25|two winters|c0.82|0.08": [
+   0.3,
+   0.39
+  ],
+  "Q4a|timesfm25|two winters|c0.82|0.10": [
+   0.565,
+   0.645
+  ],
+  "Q4b|timesfm25|two winters|c0.82|0.02": [
+   0.03,
+   0.04
+  ],
+  "Q4b|timesfm25|two winters|c0.82|0.04": [
+   0.115,
+   0.15
+  ],
+  "Q4b|timesfm25|two winters|c0.82|0.06": [
+   0.18,
+   0.27
+  ],
+  "Q4b|timesfm25|two winters|c0.82|0.08": [
+   0.34,
+   0.43
+  ],
+  "Q4b|timesfm25|two winters|c0.82|0.10": [
+   0.62,
+   0.725
+  ],
+  "Q1|timesfm25|two winters|c0.9|0.02": [
+   0.04,
+   0.08
+  ],
+  "Q1|timesfm25|two winters|c0.9|0.03": [
+   0.12,
+   0.175
+  ],
+  "Q1|timesfm25|two winters|c0.9|0.05": [
+   0.39,
+   0.47
+  ],
+  "Q1|timesfm25|two winters|c0.9|0.07": [
+   0.73,
+   0.84
+  ],
+  "Q1|timesfm25|two winters|c0.9|0.10": [
+   0.96,
+   0.965
+  ],
+  "Q4a|timesfm25|two winters|c0.9|0.02": [
+   0.015,
+   0.045
+  ],
+  "Q4a|timesfm25|two winters|c0.9|0.04": [
+   0.115,
+   0.15
+  ],
+  "Q4a|timesfm25|two winters|c0.9|0.06": [
+   0.365,
+   0.415
+  ],
+  "Q4a|timesfm25|two winters|c0.9|0.08": [
+   0.61,
+   0.68
+  ],
+  "Q4a|timesfm25|two winters|c0.9|0.10": [
+   0.85,
+   0.91
+  ],
+  "Q4b|timesfm25|two winters|c0.9|0.02": [
+   0.075,
+   0.1
+  ],
+  "Q4b|timesfm25|two winters|c0.9|0.04": [
+   0.18,
+   0.255
+  ],
+  "Q4b|timesfm25|two winters|c0.9|0.06": [
+   0.375,
+   0.435
+  ],
+  "Q4b|timesfm25|two winters|c0.9|0.08": [
+   0.69,
+   0.74
+  ],
+  "Q4b|timesfm25|two winters|c0.9|0.10": [
+   0.86,
+   0.92
+  ],
+  "Q1|regression|backtest|c0.82|0.02": [
+   0.15,
+   0.18
+  ],
+  "Q1|regression|backtest|c0.82|0.03": [
+   0.3,
+   0.375
+  ],
+  "Q1|regression|backtest|c0.82|0.05": [
+   0.645,
+   0.74
+  ],
+  "Q1|regression|backtest|c0.82|0.07": [
+   0.94,
+   0.955
+  ],
+  "Q1|regression|backtest|c0.82|0.10": [
+   0.99,
+   1.0
+  ],
+  "Q1|regression|backtest|c0.9|0.02": [
+   0.255,
+   0.315
+  ],
+  "Q1|regression|backtest|c0.9|0.03": [
+   0.465,
+   0.6
+  ],
+  "Q1|regression|backtest|c0.9|0.05": [
+   0.92,
+   0.935
+  ],
+  "Q1|regression|backtest|c0.9|0.07": [
+   0.995,
+   0.995
+  ],
+  "Q1|regression|backtest|c0.9|0.10": [
+   1.0,
+   1.0
+  ],
+  "Q1|regression|one winter|c0.82|0.02": [
+   0.065,
+   0.065
+  ],
+  "Q1|regression|one winter|c0.82|0.03": [
+   0.095,
+   0.13
+  ],
+  "Q1|regression|one winter|c0.82|0.05": [
+   0.165,
+   0.205
+  ],
+  "Q1|regression|one winter|c0.82|0.07": [
+   0.23,
+   0.305
+  ],
+  "Q1|regression|one winter|c0.82|0.10": [
+   0.425,
+   0.525
+  ],
+  "Q1|regression|one winter|c0.9|0.02": [
+   0.07,
+   0.08
+  ],
+  "Q1|regression|one winter|c0.9|0.03": [
+   0.07,
+   0.12
+  ],
+  "Q1|regression|one winter|c0.9|0.05": [
+   0.235,
+   0.3
+  ],
+  "Q1|regression|one winter|c0.9|0.07": [
+   0.32,
+   0.4
+  ],
+  "Q1|regression|one winter|c0.9|0.10": [
+   0.605,
+   0.65
+  ],
+  "Q1|regression|two winters|c0.82|0.02": [
+   0.055,
+   0.065
+  ],
+  "Q1|regression|two winters|c0.82|0.03": [
+   0.08,
+   0.11
+  ],
+  "Q1|regression|two winters|c0.82|0.05": [
+   0.2,
+   0.235
+  ],
+  "Q1|regression|two winters|c0.82|0.07": [
+   0.33,
+   0.42
+  ],
+  "Q1|regression|two winters|c0.82|0.10": [
+   0.645,
+   0.715
+  ],
+  "Q1|regression|two winters|c0.9|0.02": [
+   0.095,
+   0.12
+  ],
+  "Q1|regression|two winters|c0.9|0.03": [
+   0.145,
+   0.19
+  ],
+  "Q1|regression|two winters|c0.9|0.05": [
+   0.375,
+   0.465
+  ],
+  "Q1|regression|two winters|c0.9|0.07": [
+   0.61,
+   0.685
+  ],
+  "Q1|regression|two winters|c0.9|0.10": [
+   0.855,
+   0.885
+  ]
+ }
+}
