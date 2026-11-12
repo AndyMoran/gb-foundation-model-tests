@@ -1,0 +1,300 @@
+{
+ "note": "exploratory check E5, specified and committed before it was run (12 November 2026)",
+ "calendar_days": 35,
+ "results": {
+  "chronos2": {
+   "calendar gain (A / model with weather)": {
+    "all days": {
+     "ratio": 0.9339197988433379,
+     "ci90": [
+      0.9168926275734367,
+      0.9517315386563626
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 0.9428812283440047,
+     "ci90": [
+      0.9273675657175078,
+      0.9602184893044726
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 0.8330605542556088,
+     "ci90": [
+      0.7817695763483807,
+      0.8764002102410146
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 35
+    }
+   },
+   "Q3 with calendar (A / regression with weather)": {
+    "all days": {
+     "ratio": 0.9025317408602097,
+     "ci90": [
+      0.8710611902671005,
+      0.9333511903581747
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 0.8859131435149389,
+     "ci90": [
+      0.8567179274180997,
+      0.9147747404022136
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 1.185916225228561,
+     "ci90": [
+      0.9221174244923923,
+      1.3785851035967724
+     ],
+     "p_one_sided": 0.8205,
+     "n_days": 35
+    }
+   },
+   "Q3 without weather (B / regression without weather)": {
+    "all days": {
+     "ratio": 0.9267037697120618,
+     "ci90": [
+      0.8991208401271629,
+      0.9535141609033264
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 0.92081520078874,
+     "ci90": [
+      0.8948151084487191,
+      0.9469527164532081
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 1.025734312903121,
+     "ci90": [
+      0.7723468521555608,
+      1.190126978437224
+     ],
+     "p_one_sided": 0.3155,
+     "n_days": 35
+    }
+   },
+   "Q1 with calendar (A / model without weather)": {
+    "all days": {
+     "ratio": 0.6374862157508047,
+     "ci90": [
+      0.616322336441148,
+      0.6595660049250002
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 0.6320100556407588,
+     "ci90": [
+      0.6112684942919441,
+      0.6526342188067332
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 0.716578631297968,
+     "ci90": [
+      0.5957213639375234,
+      0.8019074430404245
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 35
+    }
+   }
+  },
+  "timestral": {
+   "calendar gain (A / model with weather)": {
+    "all days": {
+     "ratio": 1.0126344812646304,
+     "ci90": [
+      1.0056780983355496,
+      1.020365716334681
+     ],
+     "p_one_sided": 1.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 1.014891599337488,
+     "ci90": [
+      1.008099549733221,
+      1.0222548964285827
+     ],
+     "p_one_sided": 1.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 0.983656527364622,
+     "ci90": [
+      0.9603267774084554,
+      1.0079482937986526
+     ],
+     "p_one_sided": 0.114,
+     "n_days": 35
+    }
+   },
+   "Q3 with calendar (A / regression with weather)": {
+    "all days": {
+     "ratio": 1.0873936570995049,
+     "ci90": [
+      1.046127969165964,
+      1.130848591161476
+     ],
+     "p_one_sided": 1.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 1.070356856160173,
+     "ci90": [
+      1.0316511501304035,
+      1.1090249744488827
+     ],
+     "p_one_sided": 0.9975,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 1.3779094539006496,
+     "ci90": [
+      1.0554131172875687,
+      1.6618322316466876
+     ],
+     "p_one_sided": 0.982,
+     "n_days": 35
+    }
+   },
+   "Q3 without weather (B / regression without weather)": {
+    "all days": {
+     "ratio": 0.9201546207597744,
+     "ci90": [
+      0.8933152332903228,
+      0.9461250650735261
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 0.9145397170652395,
+     "ci90": [
+      0.8888388387252848,
+      0.9393013457254149
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 1.0145828205610992,
+     "ci90": [
+      0.7593754712343943,
+      1.237097354712369
+     ],
+     "p_one_sided": 0.34,
+     "n_days": 35
+    }
+   },
+   "Q1 with calendar (A / model without weather)": {
+    "all days": {
+     "ratio": 0.7828737151422499,
+     "ci90": [
+      0.7611268391324786,
+      0.8062391424678189
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 960
+    },
+    "ordinary days": {
+     "ratio": 0.7798369368020147,
+     "ci90": [
+      0.7569295018543069,
+      0.8037605054558581
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 925
+    },
+    "calendar days": {
+     "ratio": 0.8254522657716055,
+     "ci90": [
+      0.7375442241772561,
+      0.9131907548317802
+     ],
+     "p_one_sided": 0.0,
+     "n_days": 35
+    }
+   }
+  }
+ },
+ "mae_mw": {
+  "chronos2": {
+   "A calendar + weather": {
+    "all days": 915.5272751923345,
+    "ordinary days": 881.0078956407368,
+    "calendar days": 1827.825163341704
+   },
+   "B calendar only": {
+    "all days": 1427.8181997937188,
+    "ordinary days": 1389.7878754489204,
+    "calendar days": 2432.905343191964
+   },
+   "weather (scored)": {
+    "all days": 980.3060994383217,
+    "ordinary days": 934.3784446616496,
+    "calendar days": 2194.1084042503717
+   },
+   "no weather (scored)": {
+    "all days": 1436.1522689774001,
+    "ordinary days": 1393.9776555414664,
+    "calendar days": 2550.767052641369
+   }
+  },
+  "timestral": {
+   "A calendar + weather": {
+    "all days": 1103.0510140251492,
+    "ordinary days": 1064.4303545253897,
+    "calendar days": 2123.739872233073
+   },
+   "B calendar only": {
+    "all days": 1417.7276030217413,
+    "ordinary days": 1380.3162776907302,
+    "calendar days": 2406.4554867699035
+   },
+   "weather (scored)": {
+    "all days": 1089.2884198922418,
+    "ordinary days": 1048.8118684007632,
+    "calendar days": 2159.025852167039
+   },
+   "no weather (scored)": {
+    "all days": 1408.9769431391912,
+    "ordinary days": 1364.939648653277,
+    "calendar days": 2572.8197259812127
+   }
+  },
+  "regression": {
+   "weather (scored)": {
+    "all days": 1014.3989776135061,
+    "ordinary days": 994.4630600526592,
+    "calendar days": 1541.2767988644628
+   },
+   "no weather (scored)": {
+    "all days": 1540.7493165128262,
+    "ordinary days": 1509.301621279138,
+    "calendar days": 2371.8669762603026
+   }
+  }
+ }
+}
