@@ -30,13 +30,14 @@ Full window, 1 January 2024 to 31 October 2026 (1,035 days); six one-sided tests
 | [`figures/`](figures/) | The figures and the script that draws them from `results/attempt2/results.json` |
 | [`docs/`](docs/) | The brief and the feasibility check |
 | [`prospective/`](prospective/) | Forecasts on record before their outcomes (below) |
+| [`weather_study/`](weather_study/) | The second study, weather: its plan and lock (tag `weather-plan`), the backtest results note ([`weather_study/RESULTS.md`](weather_study/RESULTS.md)), results, and the daily weather inputs for the live window |
 
 To reproduce the run: `code/fetch.py` downloads the inputs and checks them against the hashes in `data/fetch_manifest.json`; `code/run.py real` refuses to start unless every locked file matches. The input data are not in this repository.
 
 ## Next
 
 - **Prospective forecasts:** the three models forecasting each day before it happens, under a short plan frozen before any prospective day is scored.
-- **Weather:** the next study gives the models and the regression the same day-ahead weather forecasts, to see how much of NESO's lead they close. Daily collection of ECMWF weather forecasts for Great Britain is already running ([`prospective/weather/`](prospective/weather/)).
+- **Weather:** the second study gave the models and the regression the same day-ahead weather forecasts. Over a 960-day backtest, weather cut mean daily error by 34% for the regression, 32% for Chronos-2, 23% for Timestral and 6% for TimesFM 2.5; Chronos-2 closed 62% of its gap to NESO. See [`weather_study/RESULTS.md`](weather_study/RESULTS.md). A live window runs to 31 March 2027 and reports in April.
 
 ## The method
 
