@@ -19,3 +19,20 @@
 - Q3, Chronos-2 ÷ this regression: 0.965 (0.928–1.001; p 0.0535; 960 days)
 - Q3, Timestral ÷ this regression: 1.072 (1.033–1.114; p 1.0000; 960 days)
 - Q3, TimesFM 2.5 ÷ this regression: 1.451 (1.392–1.510; p 1.0000; 960 days)
+
+## E4: calendar (added 12 November 2026, after publication)
+
+Ordinary days: all but 35 bank-holiday and 24 December to 2 January days.
+
+| Error ÷ regression's | All days, without weather | All days, with | Ordinary days, without | Ordinary days, with |
+| --- | --- | --- | --- | --- |
+| Chronos-2 | 0.932 (0.904–0.959) | 0.966 (0.931–1.001) | 0.924 (0.897–0.951) | 0.940 (0.907–0.971) |
+| Timestral | 0.914 (0.889–0.941) | 1.074 (1.034–1.115) | 0.904 (0.879–0.928) | 1.055 (1.017–1.092) |
+| TimesFM 2.5 | 1.017 (0.983–1.052) | 1.453 (1.394–1.510) | 1.018 (0.986–1.050) | 1.455 (1.397–1.515) |
+
+| Q1 on ordinary days | Ratio (90% interval) | Mean error on excluded days, without → with weather (MW) |
+| --- | --- | --- |
+| Chronos-2 | 0.670 (0.648–0.693) | 2,551 → 2,194 |
+| Timestral | 0.768 (0.746–0.791) | 2,573 → 2,159 |
+| TimesFM 2.5 | 0.942 (0.913–0.972) | 2,376 → 2,175 |
+| Regression | 0.659 (0.632–0.686) | 2,372 → 1,541 |

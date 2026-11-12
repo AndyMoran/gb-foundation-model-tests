@@ -10,7 +10,7 @@ Given the weather forecasts a forecaster really had at 09:30 on the day before, 
 
 - **Q1, confirmatory.** Weather improved every forecaster (error ratios 0.658 to 0.941; one-sided p < 0.0005 for each, against a level of 0.0125).
 - **Q2.** Weather closed 62% of Chronos-2's gap to NESO's forecast (456 MW a day), 45% of Timestral's and 11% of TimesFM's. NESO still leads: about 700 MW of daily error against Chronos-2's 980 MW.
-- **Q3.** The foundation models' 7–9% edge over the regression, found without weather, largely disappears with it: Chronos-2's error is 0.97 times the regression's, Timestral's 1.07 times.
+- **Q3.** The foundation models' 7–9% edge over the regression, found without weather, largely disappears with it: Chronos-2's error is 0.97 times the regression's, Timestral's 1.07 times. Part of this is the calendar, which only the regression has: on ordinary days, without bank holidays and Christmas, Chronos-2 keeps most of its edge (0.94), while Timestral still trails (E4, added after publication).
 - **Q4, descriptive.** The plan expected weather to help most in the evening and least at midday. For Chronos-2 and Timestral the backtest shows the reverse: the largest gains are overnight, and midday gains more than the rest of the day.
 - **Robustness.** The answers barely change without the days that used an older forecast, without the days around ECMWF's model upgrades, or without the correction for the forecast–reanalysis mismatch. In exploratory checks after review, Chronos-2 gains at least as much on the year of days after its release, which it cannot have seen, and TimesFM 2.5 about the same.
 
@@ -86,7 +86,7 @@ Without weather, Chronos-2 and Timestral had 7–9% less error than the regressi
 - "With the same weather, Timestral's error was 1.074 times the regression's (90% interval 1.034–1.115, descriptive), against 0.914 without weather in rung 1." The same caveat applies.
 - "With the same weather, TimesFM 2.5's error was 1.453 times the regression's (90% interval 1.394–1.510, descriptive), against 1.017 without weather in rung 1." The same caveat applies.
 
-An exploratory check (E3, below) measured that mismatch: putting the regression's ECMWF inputs on ERA5's scale changes its error by 0.1% and leaves these ratios unchanged.
+An exploratory check (E3, below) measured that mismatch: putting the regression's ECMWF inputs on ERA5's scale changes its error by 0.1% and leaves these ratios unchanged. A second check (E4, added after publication) finds that part of the shrinking edge is the calendar: the regression knows bank holidays and Christmas, the models do not, and weather helps the regression far more on those days. On the 925 ordinary days Chronos-2's error is 0.940 times the regression's (0.907–0.971) with weather, against 0.924 without.
 
 ## Q4: weather helps most overnight and at midday, not in the evening (descriptive)
 
@@ -154,7 +154,7 @@ In winter the regression's daily error falls by 861 MW (654 to 1,090), from 1,92
 
 ## Exploratory checks after review
 
-Three checks were added after review of this note's first draft. None was in the plan, and none changes a confirmatory result. They come from the run's saved forecasts, except E3, which reruns the regression once with one input changed (`exploratory.py`).
+Three checks were added after review of this note's first draft, and a fourth (E4) the day after publication. None was in the plan, and none changes a confirmatory result. They come from the run's saved forecasts, except E3, which reruns the regression once with one input changed (`exploratory.py`).
 
 **E1: days the models cannot have seen.** A model's weights cannot hold days after they were fixed, so the days after each model's public release are unseen by construction. The release date is an upper bound on the training cut-off, which may be earlier, so the post-release period is a conservative test.
 
@@ -170,6 +170,16 @@ On a year of days it cannot have seen, Chronos-2 gains at least as much from wea
 
 **E3: the regression's mismatch, measured.** With its ECMWF inputs put on ERA5's scale by reversing decision 13's factors, training unchanged, the regression's mean daily error is 1,015.8 MW against 1,014.4 MW as scored (ratio 1.001; 0.995–1.008). Q3 does not move: each model's error over this regression's is 0.965 for Chronos-2 (0.928–1.001), 1.072 for Timestral (1.033–1.114) and 1.451 for TimesFM 2.5 (1.392–1.510). The mismatch between forecast and reanalysis costs the regression almost nothing, so it does not explain Q3.
 
+**E4: the calendar (added 12 November 2026, after publication).** The regression has day-of-week, bank-holiday and Christmas terms; the models have no calendar, as in the first study. E4 repeats Q3 without the 35 days that are England and Wales bank holidays or fall from 24 December to 2 January.
+
+| Error ÷ regression's | All days, without weather | All days, with | Ordinary days, without | Ordinary days, with |
+| --- | --- | --- | --- | --- |
+| Chronos-2 | 0.932 (0.904–0.959) | 0.966 (0.931–1.001) | 0.924 (0.897–0.951) | 0.940 (0.907–0.971) |
+| Timestral | 0.914 (0.889–0.941) | 1.074 (1.034–1.115) | 0.904 (0.879–0.928) | 1.055 (1.017–1.092) |
+| TimesFM 2.5 | 1.017 (0.983–1.052) | 1.453 (1.394–1.510) | 1.018 (0.986–1.050) | 1.455 (1.397–1.515) |
+
+On the 35 calendar days, weather cuts the regression's mean error from 2,372 to 1,541 MW, but the models' only from about 2,400–2,600 to about 2,200. Without those days, Chronos-2 keeps most of its edge over the regression (6% with weather, 8% without), and its interval stays below 1. Timestral's reversal and TimesFM 2.5's deficit do not depend on them. Q1 on ordinary days barely changes (Chronos-2 0.670, Timestral 0.768, TimesFM 2.5 0.942, regression 0.659). The fair comparison of the models with the regression would give the models the same calendar; that is a test for a later study.
+
 ## Deviations, corrections and what is still to come
 
 Nothing was changed after the tag: no data, input, forecaster, setting, window, statistic, gate or result sentence. The backtest was scored once, and it passed every gate on that first run.
@@ -180,6 +190,8 @@ Nothing was changed after the tag: no data, input, forecaster, setting, window, 
 
 - The design brief says ECMWF moved its release to 07:34 UTC "from November 2025". The records show it moved with the run of 2 October 2025.
 - The plan dates the 186 fallback days "30 March to 1 October 2025". Those are the issue days; the target days that used the older run are the following days, 31 March to 2 October 2025.
+
+**After publication.** E4 was added on 12 November 2026, the day after this note was released, and the Q3 summary and section amended to report it. No published figure changed.
 
 **Reporting conventions.** "p < 0.0005" means that none of the 2,000 bootstrap draws reached a ratio of 1. The results file records these as 0. The tables by block and by season were computed after the freeze by a separate script (`descriptive_tables.py`) from this run's saved forecasts, with the plan's resampling; it checks its figures against the scored results before writing, and scores nothing again. The seasons are meteorological, because the plan did not define them.
 
