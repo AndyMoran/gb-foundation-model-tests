@@ -10,7 +10,7 @@ Given the weather forecasts a forecaster really had at 09:30 on the day before, 
 
 - **Q1, confirmatory.** Weather improved every forecaster (error ratios 0.658 to 0.941; one-sided p < 0.0005 for each, against a level of 0.0125).
 - **Q2.** Weather closed 62% of Chronos-2's gap to NESO's forecast (456 MW a day), 45% of Timestral's and 11% of TimesFM's. NESO still leads: about 700 MW of daily error against Chronos-2's 980 MW.
-- **Q3.** The foundation models' 7–9% edge over the regression, found without weather, largely disappears with it: Chronos-2's error is 0.97 times the regression's, Timestral's 1.07 times. Part of this is the calendar, which only the regression has: on ordinary days, without bank holidays and Christmas, Chronos-2 keeps most of its edge (0.94), while Timestral still trails (E4, added after publication).
+- **Q3.** The foundation models' 7–9% edge over the regression, found without weather, largely disappears with it: Chronos-2's error is 0.97 times the regression's, Timestral's 1.07 times. Part of this is the calendar, which only the regression has: on ordinary days, without bank holidays and Christmas, Chronos-2 keeps most of its edge (0.94), while Timestral still trails (E4, added after publication). Given the regression's calendar as well as weather (E5, exploratory), Chronos-2's error falls to 0.903 times the regression's (0.871–0.933), about 10% less; Timestral's does not improve (1.087).
 - **Q4, descriptive.** The plan expected weather to help most in the evening and least at midday. For Chronos-2 and Timestral the backtest shows the reverse: the largest gains are overnight, and midday gains more than the rest of the day.
 - **Robustness.** The answers barely change without the days that used an older forecast, without the days around ECMWF's model upgrades, or without the correction for the forecast–reanalysis mismatch. In exploratory checks after review, Chronos-2 gains at least as much on the year of days after its release, which it cannot have seen, and TimesFM 2.5 about the same.
 
@@ -154,7 +154,7 @@ In winter the regression's daily error falls by 861 MW (654 to 1,090), from 1,92
 
 ## Exploratory checks after review
 
-Three checks were added after review of this note's first draft, and a fourth (E4) the day after publication. None was in the plan, and none changes a confirmatory result. They come from the run's saved forecasts, except E3, which reruns the regression once with one input changed (`exploratory.py`).
+Three checks were added after review of this note's first draft, and two more (E4, E5) the day after publication. None was in the plan, and none changes a confirmatory result. They come from the run's saved forecasts, except E3, which reruns the regression once with one input changed (`exploratory.py`).
 
 **E1: days the models cannot have seen.** A model's weights cannot hold days after they were fixed, so the days after each model's public release are unseen by construction. The release date is an upper bound on the training cut-off, which may be earlier, so the post-release period is a conservative test.
 
@@ -178,7 +178,20 @@ On a year of days it cannot have seen, Chronos-2 gains at least as much from wea
 | Timestral | 0.914 (0.889–0.941) | 1.074 (1.034–1.115) | 0.904 (0.879–0.928) | 1.055 (1.017–1.092) |
 | TimesFM 2.5 | 1.017 (0.983–1.052) | 1.453 (1.394–1.510) | 1.018 (0.986–1.050) | 1.455 (1.397–1.515) |
 
-On the 35 calendar days, weather cuts the regression's mean error from 2,372 to 1,541 MW, but the models' only from about 2,400–2,600 to about 2,200. Without those days, Chronos-2 keeps most of its edge over the regression (6% with weather, 8% without), and its interval stays below 1. Timestral's reversal and TimesFM 2.5's deficit do not depend on them. Q1 on ordinary days barely changes (Chronos-2 0.670, Timestral 0.768, TimesFM 2.5 0.942, regression 0.659). The fair comparison of the models with the regression would give the models the same calendar; that is a test for a later study.
+On the 35 calendar days, weather cuts the regression's mean error from 2,372 to 1,541 MW, but the models' only from about 2,400–2,600 to about 2,200. Without those days, Chronos-2 keeps most of its edge over the regression (6% with weather, 8% without), and its interval stays below 1. Timestral's reversal and TimesFM 2.5's deficit do not depend on them. Q1 on ordinary days barely changes (Chronos-2 0.670, Timestral 0.768, TimesFM 2.5 0.942, regression 0.659). The fair comparison gives the models the same calendar; E5 does so.
+
+**E5: the models given the calendar (specified and committed before it was run, 12 November 2026).** Chronos-2 and Timestral were given the regression's own calendar (six day-of-week indicators, bank holiday, 24 December to 2 January) as inputs for every half-hour of context and forecast day, with the scored weather (arm A) and without it (arm B). Their settings and the 960 days are unchanged; a check first reproduced the scored forecasts to within 0.008 MW. TimesFM 2.5 was left out, because it learns covariate effects only from its eight-week context, which rarely holds a bank holiday and never a Christmas. Full tables: [`results/calendar.md`](results/calendar.md).
+
+| Ratio of mean daily error (90% interval) | All days | Ordinary days | Calendar days |
+| --- | --- | --- | --- |
+| Chronos-2: calendar + weather ÷ weather alone | 0.934 (0.917–0.952) | 0.943 (0.927–0.960) | 0.833 (0.782–0.876) |
+| Chronos-2: calendar + weather ÷ regression with weather | 0.903 (0.871–0.933) | 0.886 (0.857–0.915) | 1.186 (0.922–1.379) |
+| Timestral: calendar + weather ÷ weather alone | 1.013 (1.006–1.020) | 1.015 (1.008–1.022) | 0.984 (0.960–1.008) |
+| Timestral: calendar + weather ÷ regression with weather | 1.087 (1.046–1.131) | 1.070 (1.032–1.109) | 1.378 (1.055–1.662) |
+
+Given the same inputs as the regression, Chronos-2's mean daily error is 916 MW against the regression's 1,014: about 10% less, an edge whose interval stays below 1. The calendar helped it on ordinary days (6%) as well as on calendar days (17%), which the expectation stated in advance did not foresee; on calendar days it still trails the regression (1,828 against 1,541 MW). Timestral does not use the calendar: its error rises slightly. Without weather, the calendar barely moves either model (Chronos-2 1,436 to 1,428 MW), so the two inputs work together.
+
+Three cautions. E5 is exploratory, on days already examined closely, and it does not replace the confirmatory Q3. Chronos-2's edge sits at the 10% that the first study set in advance as the smallest gain worth switching for, with an interval from about 7% to 13%. And the regression is not the strongest trained model: a gradient-boosted model with the same inputs may close the gap. E5 is the last analysis of this backtest. Testing what it suggests, against a gradient-boosted model, on days no one has examined, is the next study.
 
 ## Deviations, corrections and what is still to come
 
@@ -191,7 +204,7 @@ Nothing was changed after the tag: no data, input, forecaster, setting, window, 
 - The design brief says ECMWF moved its release to 07:34 UTC "from November 2025". The records show it moved with the run of 2 October 2025.
 - The plan dates the 186 fallback days "30 March to 1 October 2025". Those are the issue days; the target days that used the older run are the following days, 31 March to 2 October 2025.
 
-**After publication.** E4 was added on 12 November 2026, the day after this note was released, and the Q3 summary and section amended to report it. No published figure changed.
+**After publication.** E4 and E5 were added on 12 November 2026, the day after this note was released, and the Q3 summary and section amended to report them. E5's design and expectation were committed before it was run. No published figure changed. E5 is the last analysis of this backtest; anything further is a new, preregistered study.
 
 **Reporting conventions.** "p < 0.0005" means that none of the 2,000 bootstrap draws reached a ratio of 1. The results file records these as 0. The tables by block and by season were computed after the freeze by a separate script (`descriptive_tables.py`) from this run's saved forecasts, with the plan's resampling; it checks its figures against the scored results before writing, and scores nothing again. The seasons are meteorological, because the plan did not define them.
 
