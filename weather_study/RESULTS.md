@@ -215,6 +215,7 @@ Nothing was changed after the tag: no data, input, forecaster, setting, window, 
 
 ## Limits
 
+- **Unequal calendar (a design oversight).** The plan gave the regression day-of-week, bank-holiday and Christmas terms and the models none, carried over from the first study, where the models deliberately saw history alone. Once both sides had weather, that made Q3 an unequal comparison. It was not caught before the freeze; it was found the day after publication and examined in E4 and E5.
 - **Training leakage.** The backtest falls in a period the foundation models may have seen in training. Memory could bias the gains either way: a model that remembers GB demand has less to gain from weather; one that remembers how demand followed the weather may gain more than on unseen days. The live window is the check; on the days after their release (E1), Chronos-2 and TimesFM 2.5 show no sign of it.
 - **One weather source, three variables, one national figure.** ECMWF's open data at 0.25°, reduced to national temperature, wind and solar radiation. Better or more local weather could do more.
 - **Zero-shot only.** No model was fine-tuned. The regression is the only forecaster that learns from GB data.
