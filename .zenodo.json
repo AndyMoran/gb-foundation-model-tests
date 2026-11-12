@@ -5,7 +5,8 @@
   "creators": [
     {
       "name": "Moran, Andy",
-      "affiliation": "Heaviside Analytics"
+      "affiliation": "Heaviside Analytics",
+      "orcid": "0009-0004-2194-8084"
     }
   ],
   "description": "<p>The second study in a series testing off-the-shelf time-series foundation models (Chronos-2, Timestral-209M and TimesFM 2.5), used zero-shot, on Great Britain's national electricity demand a day ahead. It gives the models and a weekly-lag regression the same honestly timed weather: ECMWF open-data forecasts as public at the 09:30 issue time, with an ERA5 history.</p><p><strong>Result (preregistered backtest, 960 days, 16 March 2024 to 31 October 2026).</strong> Weather cut mean daily error by 34% for the regression, 32% for Chronos-2, 23% for Timestral and 6% for TimesFM 2.5, each confirmed at a 5% study-wide error rate. Chronos-2 closed 62% of its gap to NESO's forecast. The models' edge over the regression found without weather largely disappears with it. The backtest overlaps the models' possible training data; a live window to 31 March 2027 is the descriptive check and will be reported in part 2.</p><p>The plan, code and inputs were frozen and hashed (tag weather-plan, 10 November 2026) before any model forecast demand with real weather; the backtest was scored once and passed every gate check. The archive contains the plan and lock, the results note (weather_study/RESULTS.md), the scored outputs and the power analyses. The weather-processing code is at github.com/AndyMoran/gb-weather-private. Contains BMRS data &copy; Elexon Limited copyright and database right 2026. Supported by National Energy SO Open Data. Contains modified Copernicus Climate Change Service information 2026. ECMWF open data are licensed under CC BY 4.0.</p>",

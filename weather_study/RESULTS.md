@@ -2,6 +2,8 @@
 
 Andy Moran (Heaviside Analytics) · 12 November 2026 · results note, part 1 of 2
 
+DOI [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799) · ORCID [0009-0004-2194-8084](https://orcid.org/0009-0004-2194-8084) · release [`weather-results-backtest`](https://github.com/AndyMoran/gb-foundation-model-tests/releases/tag/weather-results-backtest)
+
 Given the weather forecasts a forecaster really had at 09:30 on the day before, all four forecasters forecast GB electricity demand better, each confirmed at the study's 5% error rate over 960 backtest days. Mean daily error fell by 34% for a regression, 32% for Chronos-2, 23% for Timestral and 6% for TimesFM 2.5. These gains are measured on a backtest that overlaps the foundation models' possible training data; the clean test is the live window, which reports in April 2027. This note is the first of two: it gives the confirmatory result; the second, in April, gives the live window's descriptive check.
 
 ## Summary

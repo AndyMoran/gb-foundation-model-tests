@@ -37,7 +37,7 @@ To reproduce the run: `code/fetch.py` downloads the inputs and checks them again
 ## Next
 
 - **Prospective forecasts:** the three models forecasting each day before it happens, under a short plan frozen before any prospective day is scored.
-- **Weather:** the second study gave the models and the regression the same day-ahead weather forecasts. Over a 960-day backtest, weather cut mean daily error by 34% for the regression, 32% for Chronos-2, 23% for Timestral and 6% for TimesFM 2.5; Chronos-2 closed 62% of its gap to NESO. See [`weather_study/RESULTS.md`](weather_study/RESULTS.md). A live window runs to 31 March 2027 and reports in April.
+- **Weather:** the second study gave the models and the regression the same day-ahead weather forecasts. Over a 960-day backtest, weather cut mean daily error by 34% for the regression, 32% for Chronos-2, 23% for Timestral and 6% for TimesFM 2.5; Chronos-2 closed 62% of its gap to NESO. See [`weather_study/RESULTS.md`](weather_study/RESULTS.md) (DOI [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799)). A live window runs to 31 March 2027 and reports in April.
 
 ## The method
 
