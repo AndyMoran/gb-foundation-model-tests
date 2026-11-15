@@ -31,6 +31,7 @@ Full window, 1 January 2024 to 31 October 2026 (1,035 days); six one-sided tests
 | [`docs/`](docs/) | The brief and the feasibility check |
 | [`prospective/`](prospective/) | Forecasts on record before their outcomes (below) |
 | [`weather_study/`](weather_study/) | The second study, weather: its plan and lock (tag `weather-plan`), the backtest results note ([`weather_study/RESULTS.md`](weather_study/RESULTS.md)), results, and the daily weather inputs for the live window |
+| [`next_study/`](next_study/) | The next stage, in design: a standing live benchmark. Rules [`BENCHMARK_RULES.md`](BENCHMARK_RULES.md) (draft), project file [`PROJECT.md`](PROJECT.md), assumptions [`ASSUMPTIONS.md`](ASSUMPTIONS.md), and the power checks; start at [`next_study/README.md`](next_study/README.md) |
 
 To reproduce the run: `code/fetch.py` downloads the inputs and checks them against the hashes in `data/fetch_manifest.json`; `code/run.py real` refuses to start unless every locked file matches. The input data are not in this repository.
 
@@ -38,6 +39,7 @@ To reproduce the run: `code/fetch.py` downloads the inputs and checks them again
 
 - **Prospective forecasts:** the three models forecasting each day before it happens, under a short plan frozen before any prospective day is scored.
 - **Weather:** the second study gave the models and the regression the same day-ahead weather forecasts. Over a 960-day backtest, weather cut mean daily error by 34% for the regression, 32% for Chronos-2, 23% for Timestral and 6% for TimesFM 2.5; Chronos-2 closed 62% of its gap to NESO. See [`weather_study/RESULTS.md`](weather_study/RESULTS.md) (DOI [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799)). A live window runs to 31 March 2027 and reports in April.
+- **A standing benchmark:** a live, preregistered benchmark of the same models against a weather regression and LightGBM, on equal weather and calendar inputs, with compute cost and a break-even price reported. Its first confirmatory window is summer 2027, because power checks showed a winter window cannot settle a 10% difference. The rules are drafted and not yet in force. See [`next_study/README.md`](next_study/README.md).
 
 ## The method
 
