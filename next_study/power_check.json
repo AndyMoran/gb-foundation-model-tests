@@ -1,0 +1,178 @@
+{
+ "note": "specified and committed 15 November 2026 before running",
+ "alpha": 0.025,
+ "bar": 0.9,
+ "reps": 1000,
+ "c_measured": 0.54,
+ "c_values": [
+  0.54,
+  0.7
+ ],
+ "inputs": {
+  "/home/claude/gb-foundation-model-tests/weather_study/results/forecasts.csv": "b5f16561dcf1a26f8d7910bcca95cd137f677760c6f80153349034d4a85f7328",
+  "/home/claude/gb-foundation-model-tests/weather_study/results/calendar_forecasts.csv": "976e27ef28d0eef1ddf351c6557af9f771c308b94f389fe0f06b84ec86c8e2fe"
+ },
+ "cells": {
+  "winter 100 days (Dec-Mar)|c=0.54|edge=0.05": {
+   "below_1": 0.155,
+   "below_bar": 0.01,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.54|edge=0.075": {
+   "below_1": 0.276,
+   "below_bar": 0.03,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.54|edge=0.1": {
+   "below_1": 0.353,
+   "below_bar": 0.054,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.54|edge=0.125": {
+   "below_1": 0.465,
+   "below_bar": 0.106,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.7|edge=0.05": {
+   "below_1": 0.198,
+   "below_bar": 0.008,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.7|edge=0.075": {
+   "below_1": 0.292,
+   "below_bar": 0.015,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.7|edge=0.1": {
+   "below_1": 0.42,
+   "below_bar": 0.058,
+   "reps": 1000
+  },
+  "winter 100 days (Dec-Mar)|c=0.7|edge=0.125": {
+   "below_1": 0.594,
+   "below_bar": 0.111,
+   "reps": 1000
+  },
+  "winter 120 days (Dec-Mar)|c=0.54|edge=0.05": {
+   "below_1": 0.153,
+   "below_bar": 0.008,
+   "reps": 1000
+  },
+  "winter 120 days (Dec-Mar)|c=0.54|edge=0.075": {
+   "below_1": 0.227,
+   "below_bar": 0.018,
+   "reps": 1000
+  },
+  "winter 120 days (Dec-Mar)|c=0.54|edge=0.1": {
+   "below_1": 0.3315,
+   "below_bar": 0.0365,
+   "reps": 2000
+  },
+  "winter 120 days (Dec-Mar)|c=0.54|edge=0.125": {
+   "below_1": 0.517,
+   "below_bar": 0.079,
+   "reps": 1000
+  },
+  "winter 120 days (Dec-Mar)|c=0.7|edge=0.05": {
+   "below_1": 0.194,
+   "below_bar": 0.002,
+   "reps": 1000
+  },
+  "winter 120 days (Dec-Mar)|c=0.7|edge=0.075": {
+   "below_1": 0.322,
+   "below_bar": 0.015,
+   "reps": 1000
+  },
+  "winter 120 days (Dec-Mar)|c=0.7|edge=0.1": {
+   "below_1": 0.5085,
+   "below_bar": 0.035,
+   "reps": 2000
+  },
+  "winter 120 days (Dec-Mar)|c=0.7|edge=0.125": {
+   "below_1": 0.685,
+   "below_bar": 0.104,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.54|edge=0.05": {
+   "below_1": 0.165,
+   "below_bar": 0.001,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.54|edge=0.075": {
+   "below_1": 0.29,
+   "below_bar": 0.013,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.54|edge=0.1": {
+   "below_1": 0.488,
+   "below_bar": 0.044,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.54|edge=0.125": {
+   "below_1": 0.646,
+   "below_bar": 0.105,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.7|edge=0.05": {
+   "below_1": 0.23,
+   "below_bar": 0.001,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.7|edge=0.075": {
+   "below_1": 0.425,
+   "below_bar": 0.012,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.7|edge=0.1": {
+   "below_1": 0.615,
+   "below_bar": 0.03,
+   "reps": 1000
+  },
+  "winter 150 days (Nov-Mar)|c=0.7|edge=0.125": {
+   "below_1": 0.787,
+   "below_bar": 0.114,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.54|edge=0.05": {
+   "below_1": 0.374,
+   "below_bar": 0.0,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.54|edge=0.075": {
+   "below_1": 0.733,
+   "below_bar": 0.005,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.54|edge=0.1": {
+   "below_1": 0.916,
+   "below_bar": 0.039,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.54|edge=0.125": {
+   "below_1": 0.986,
+   "below_bar": 0.168,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.7|edge=0.05": {
+   "below_1": 0.525,
+   "below_bar": 0.0,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.7|edge=0.075": {
+   "below_1": 0.877,
+   "below_bar": 0.002,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.7|edge=0.1": {
+   "below_1": 0.979,
+   "below_bar": 0.032,
+   "reps": 1000
+  },
+  "summer 180 days (Apr-Sep)|c=0.7|edge=0.125": {
+   "below_1": 0.999,
+   "below_bar": 0.232,
+   "reps": 1000
+  }
+ },
+ "decision": "next winter"
+}
