@@ -65,7 +65,7 @@ The weather manifest's first entries (forecast runs of 31 October to 2 November 
 
 ## Background
 
-[`docs/background/BRIEF_2_ladder.md`](docs/background/BRIEF_2_ladder.md) sets out a longer programme this study could start: prices, forecast value, and an independent audit service. This repository covers only the demand study.
+[`docs/background/BRIEF_2_ladder.md`](docs/background/BRIEF_2_ladder.md) sets out a longer programme this study could start: prices, forecast value, and an independent audit service. This repository covers only the demand study. The service idea has since been dropped; see [`PROJECT.md`](PROJECT.md) §5.
 
 ## Use of AI
 
