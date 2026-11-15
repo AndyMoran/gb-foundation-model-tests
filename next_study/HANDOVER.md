@@ -17,12 +17,12 @@ A standing benchmark, not a one-off study: zero-shot foundation models against t
 
 ## Next steps, in order
 
-1. Andy settles the four bracketed items in `BENCHMARK_RULES.md`: compute budget (3.3), cost metrics (5.5), standing reviewer (9.6), infrastructure for daily runs (10.2).
+1. Andy settles the three bracketed items in `BENCHMARK_RULES.md`: compute budget (3.3), standing reviewer (9.7), infrastructure for daily runs (10.2). D-1 (user and £ value) and the cost metrics were settled on 15 November: see `PROJECT.md` §2 and rules 5.5–5.6.
 2. Commit and tag `benchmark-rules-v1`.
 3. Write checkpoint 1's plan, citing rules by number. It must resolve:
    - Timestral's calendar encoding: the categorical route (target encoding), and whether the mirror pass is exempt (`mistralai/timestral#9`);
    - LightGBM tuning: only on the past, with a search budget fixed before scoring (lesson 12);
-   - cost metrics: wall time and peak memory at least (lesson 6);
+   - the compute price for rule 5.5: a published cloud rate, its source and date;
    - the input table and its gate check (lesson 1);
    - the 10% rationale.
 4. Move the daily pipeline off Andy's laptop before the window opens.

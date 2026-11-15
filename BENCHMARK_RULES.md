@@ -18,7 +18,7 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 2.2 **The benchmark does not establish:**
 - model quality in general, or on any other series, market, horizon or country;
-- commercial value: a lower error is not shown to be worth money, and cost is measured, not valued;
+- commercial value: the benchmark does not value a lower error in money. National demand error is not paid for by any one party, so any price would be an assumption. Rule 5.6's break-even price is arithmetic on measured quantities, for each user to compare with their own price; it is not a valuation;
 - performance in a season, or a year, other than the one a checkpoint covers. A summer result says nothing confirmed about winter (rule 6.2);
 - performance of any model revision other than the pinned one (rule 3.3);
 - that a model is "best". The confirmatory tests compare named pairs; descriptive rankings are not tests.
@@ -48,7 +48,7 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 4.2 **Encoding.** The harness passes covariates through each model's documented interface. Where a documented interface has a known defect, the harness may use a workaround, provided it is declared and justified in the checkpoint plan before the window opens and reported with every result it affects. (Example: Timestral's calendar rows, `mistralai/timestral#9`.)
 
-4.3 **Configuration is frozen at window opening.** A developer may submit a configuration up to the notice date (rule 3.4). Otherwise the developer's documented defaults are used. Configuration does not change during a window; a configuration dispute is handled by rule 9.4.
+4.3 **Configuration is frozen at window opening.** A developer may submit a configuration up to the notice date (rule 3.4). Otherwise the developer's documented defaults are used. Configuration does not change during a window; a configuration dispute is handled by rule 9.5.
 
 4.4 **Training cutoff.** An entrant is eligible for a day only if that day falls after the later of the revision's release date and its stated training-data cutoff. Trained baselines are eligible for every day, because they use only data available at each issue time.
 
@@ -68,7 +68,14 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 5.4 **Outturn revisions.** Scores use the outturn as first published. Later revisions are reported descriptively if they change any ratio by more than 0.005.
 
-5.5 **Cost.** Every checkpoint reports, per entrant: wall-clock time per forecast; hardware used; and [the cost metrics fixed in checkpoint 1's plan]. Cost is descriptive and is not weighed against accuracy by any rule.
+5.5 **Cost.** Every checkpoint reports, per entrant: wall-clock time per forecast; peak memory; hardware used; and compute cost per day, priced at a published on-demand rate for equivalent cloud hardware, with the rate, its source and its date stated in the checkpoint plan. Cost covers compute only; staff time to build, tune and maintain a model is not measured, and every report says so. Cost is descriptive and is not weighed against accuracy by any rule.
+
+5.6 **Break-even price.** For each entrant against each trained baseline, every checkpoint reports, descriptively:
+- energy error saved per day, in MWh: 24 × (baseline's mean daily MAE − entrant's mean daily MAE), in MW, with its 90% interval (rule 5.2);
+- extra compute cost per day, in £: entrant's minus baseline's (rule 5.5);
+- the break-even price, in £/MWh: extra cost divided by error saved, with the range implied by the interval.
+
+If the entrant saves no error, the break-even is reported as "none: no accuracy gain". If it saves error at no extra cost, it is reported as "any price: more accurate and no more costly". The break-even is a threshold for a user to compare with their own price for forecast error; the benchmark does not say what that price is (rule 2.2).
 
 ## 6. Checkpoints and windows
 
@@ -130,17 +137,19 @@ Outcome (b) is a positive result that missed a decision threshold, not a failure
 
 9.1 **Standing.** Anyone may dispute a score, an input, a configuration or the harness, by opening a repository issue labelled `dispute`. A model's developer may dispute anything about that model's entry.
 
-9.2 **Timetable.** The maintainer acknowledges a dispute within 14 days. He publishes a reasoned response within 60 days, saying whether the dispute is upheld, partly upheld or not upheld, with any reproduction code.
+9.2 **Notice before publication.** Each entrant's developer receives that entrant's results and the full method at least 10 working days before a checkpoint report is published. A demonstrated data or method error is fixed before publication; if the fix changes results materially, the notice period restarts. Disputes that are not errors do not delay publication; the developer's reply is attached (rule 9.6).
 
-9.3 **If upheld,** the fix follows rule 8: forward from the next forecast, an addendum for past scores, and any verdict withdrawn rather than revised.
+9.3 **Timetable.** The maintainer acknowledges a dispute within 14 days. He publishes a reasoned response within 60 days, saying whether the dispute is upheld, partly upheld or not upheld, with any reproduction code.
 
-9.4 **Configuration disputes.** A developer who says their model was misconfigured may supply a configuration. It is run on the disputed window and reported in an addendum, labelled as configured after the window. The original scores and verdicts stand. The new configuration applies from the next window.
+9.4 **If upheld,** the fix follows rule 8: forward from the next forecast, an addendum for past scores, and any verdict withdrawn rather than revised.
 
-9.5 **Right of reply.** Whatever the outcome, a developer may submit a statement of up to 500 words. It is published unedited in `benchmark/RESPONSES.md` and linked beside that model's results in every later report that shows them.
+9.5 **Configuration disputes.** A developer who says their model was misconfigured may supply a configuration. It is run on the disputed window and reported in an addendum, labelled as configured after the window. The original scores and verdicts stand. The new configuration applies from the next window.
 
-9.6 **Independence.** Where a dispute concerns the maintainer's own judgement rather than a reproducible error, he may ask an independent reviewer to adjudicate. The reviewer's name and opinion are published with the response. [Whether to name a standing reviewer.]
+9.6 **Right of reply.** Whatever the outcome, a developer may submit a statement of up to 500 words. It is published unedited in `benchmark/RESPONSES.md` and linked beside that model's results in every later report that shows them.
 
-9.7 Disputes, responses and outcomes stay public, including those not upheld.
+9.7 **Independence.** Where a dispute concerns the maintainer's own judgement rather than a reproducible error, he may ask an independent reviewer to adjudicate. The reviewer's name and opinion are published with the response. [Whether to name a standing reviewer.]
+
+9.8 Disputes, responses and outcomes stay public, including those not upheld.
 
 ## 10. Maintainer
 

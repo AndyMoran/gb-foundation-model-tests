@@ -21,11 +21,11 @@ Every artifact must change a decision someone makes.
 | What inputs a model must be given to be competitive | Same; model developers | Equal-input design (rule 4.1); encoding notes (rule 4.2) |
 | Whether to fix a covariate defect | Model developer | Upstream reports (e.g. `mistralai/timestral#9`) |
 
-**Open: user and £ value (decision D-1).** National INDO demand is mainly NESO's to forecast, and the users above forecast their own portfolios. INDO is a test bed: the result transfers to their decision only by analogy. Rule 2.2 also excludes commercial value, so the benchmark has no £ figure. Three options, to be decided before the rules are tagged:
+**User and £ value (decision D-1, settled 15 November 2026).** The user is the head of a forecasting team deciding whether to adopt a foundation model. National INDO demand is a test bed: no single party pays for its error, so the benchmark does not value error in money (rule 2.2). Instead, each checkpoint reports a break-even price (rule 5.6): the £/MWh of forecast error at which an entrant's accuracy gain pays for its extra compute cost. A user compares that with their own price. The benchmark measures; the user values.
 
-1. **Keep it as it is.** The user is the forecasting team; the evidence is accuracy and cost; there is no £ figure. This is the most defensible option, but the weakest against the "every artifact has a £ number" principle.
-2. **Add a descriptive £ layer.** Price each entrant's error difference at imbalance cost, set against compute cost, and label it illustrative. This makes the stakes concrete, but it makes a valuation the rules would then need to bound.
-3. **Add a second series closer to a user's decision,** such as a portfolio-like demand series. This is the most relevant option, but the largest, and it would need its own power check.
+The battery project's criterion, that every artifact carries a £ number for an asset owner, does not apply to this thread. The benchmark is a separate line of work, with a capped commitment of three checkpoints (rule 1.3). It is not part of the battery objective.
+
+Considered and not taken: pricing INDO error at imbalance cost (a valuation the data cannot support), and adding a portfolio-like demand series (deferred to the checkpoint 3 review, rule 6.4).
 
 ## 3. How the work is done
 
@@ -68,7 +68,7 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 
 | Step | Work | Gate | Target |
 |---|---|---|---|
-| 1 | Settle D-1 and the four bracketed items in the rules; tag `benchmark-rules-v1` | **G1:** rules tagged | December 2026 |
+| 1 | Settle the three bracketed items in the rules (compute budget 3.3, standing reviewer 9.7, infrastructure 10.2); tag `benchmark-rules-v1` | **G1:** rules tagged | December 2026 |
 | 2 | Build LightGBM, tuned only on the past within a fixed search budget (lesson 12); backtest it on the weather study's days | — | January 2027 |
 | 3 | Measure c for the Chronos-2–LightGBM pair; rerun the summer power cell for both pairs at alpha 0.025 (R1) | **G2:** power | January 2027 |
 | 4 | Run the power cell at a true edge of zero to check the bootstrap's false-positive rate (R12) | **G3:** size | January 2027 |
@@ -108,7 +108,8 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 - **Cut: other horizons, series and countries.** Revisit at the checkpoint 3 review (rule 6.4).
 - **Cut: a forecasting service or consultancy** built on the benchmark.
 - **Cut: further analysis of the weather study's backtest.** E5 was its last analysis.
-- **Deferred: a £ layer**, pending D-1.
+- **Cut: valuing forecast error in £.** The break-even price (rule 5.6) is reported instead.
+- **Deferred: a portfolio-like demand series.** For the checkpoint 3 review (rule 6.4).
 
 ## 6. Risks
 
@@ -124,9 +125,8 @@ Two risks from outside the benchmark:
 ## 7. Publication and outreach
 
 ### 7.1 Before each checkpoint report
-- Each entrant's developer receives that entrant's results and the full method at least 10 working days before publication. [Requires amending draft rule 9 before the tag.]
-- A demonstrated data or method error is fixed before publication. If the fix changes results materially, the notice period restarts. Every correction is logged publicly with its reason (rule 8).
-- Disputes that are not errors are published with the developer's reply attached (rule 9.5). Results are not withheld.
+- Developers receive their entrant's results and the method at least 10 working days before publication (rule 9.2). Every correction is logged publicly with its reason (rule 8).
+- Disputes that are not errors are published with the developer's reply attached (rule 9.6). Results are not withheld.
 - Before the first report, check the licence terms for publishing derived forecasts: ECMWF open data, NESO data, and each model's licence. [PROVISIONAL; see `ASSUMPTIONS.md`.]
 
 ### 7.2 Outreach
@@ -177,4 +177,6 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-15 | Rules document written and tagged before checkpoint 1's plan | The plan cites rules by number |
 | 2026-11-15 | Outcome headlines fixed in advance (rule 7.6) | Stops the result being reframed after it is known |
 | 2026-11-15 | Gate fallbacks for G2–G4 written before evaluation (§4) | Choice provably made before results are seen |
-| [date] | D-1: user and £ value: [option] | [reason] |
+| 2026-11-15 | D-1: the user is the forecasting team; no £ valuation; each checkpoint reports MWh saved, compute cost and a break-even £/MWh, descriptively (rule 5.6) | National demand error has no single owner who pays for it, so a valuation would be an assumption; the break-even lets each user apply their own price |
+| 2026-11-15 | The battery project's £ criterion does not apply; the benchmark is a separate thread with a capped commitment | Avoid drift between the two objectives |
+| 2026-11-15 | Developers get 10 working days' notice before each report (rule 9.2) | Adopted from the battery project's publication policy |
