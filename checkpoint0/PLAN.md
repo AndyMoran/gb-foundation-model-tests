@@ -35,7 +35,7 @@ The existing forecasts are used as saved, unchanged, and checked against these h
 | TimesFM 2.5 | `timesfm25_weather` | Yes | No (8-week context; weather study, E5) | Yes |
 | Weather regression | `regression_weather` | Yes | Yes | Yes |
 | **LightGBM**, defaults | new | Yes | Yes | Yes |
-| **LightGBM**, alternative settings | new | Yes | Yes | Sensitivity only (§5) |
+| **LightGBM**, S1 and S2 settings | new | Yes | Yes | Sensitivity only (§5) |
 | Timestral | `timestral_A` (E5) | Yes | Yes, affected by a defect | No |
 | Timestral | `timestral_weather` | Yes | No | No |
 
@@ -58,13 +58,19 @@ Trees need no centred or interaction terms, so the regression's Tc, Tc² and Tc 
 - `seed = 20261115` with `deterministic = True`, so runs repeat exactly;
 - day of week declared categorical.
 
-**Sensitivity settings, fixed now.** Defaults are known to cost accuracy: on 58 time series, randomly generated configurations cut mean squared error by up to 17.45% against the default (Barros, Cerqueira and Soares, PRICAI 2021, LNAI 13031, pp. 454–465). That paper proposes alternative defaults for time series.
+**Sensitivity settings, fixed now.** Defaults are not neutral. In load forecasting, Nguyen et al. (Engineering, Technology & Applied Science Research, 2024) find that "using default hyperparameter values may result in large errors in load forecasting". On 58 time series, randomly generated configurations cut mean squared error by up to 17.45% against the default (Barros, Cerqueira and Soares, PRICAI 2021). That paper's proposed alternative defaults were not accessible before the freeze. Two configurations published for electricity load forecasting are used instead, each run in full as a sensitivity:
 
-[One of the following two sentences stays at the tag:
-- "The sensitivity run uses the alternative defaults proposed by Barros, Cerqueira and Soares (2021): [values]."
-- "The alternative defaults proposed by Barros, Cerqueira and Soares (2021) were not accessible before the freeze. The sensitivity run instead uses 500 trees at learning rate 0.05, with other settings as the primary run. This is a plausible manual setting, not the paper's recommendation."]
+| Run | Source | Settings |
+|---|---|---|
+| S1 | Misiurek, Olkuski and Zyśk, *Energies* 19(13), 3211 (2026), doi:10.3390/en19133211: national load (Poland) against the TSO's forecast, rolling-window training | 500 trees, learning rate 0.05, 31 leaves, maximum depth 8, at least 20 rows per leaf, row sampling 0.8 (every iteration), column sampling 0.8 |
+| S2 | Uzzaman et al., *Electricity* 7(4), 143 (2026), doi:10.3390/electricity7040143: distribution feeders (Bangladesh) | 500 trees, learning rate 0.03, 31 leaves; other settings at their defaults |
 
-Both runs use the same features, window, objective and seed. Neither is tuned, early-stopped or searched.
+These are configurations other researchers chose for other load series, not settings tuned for this one. They test one direction (more trees, slower learning, and in S1 sampling and a depth limit) rather than bracketing every plausible setting. Three departures from the sources are made, and the same in every run:
+- objective L1, as in the primary run;
+- no early stopping (S1's source used it), because this plan forbids it;
+- `bagging_freq = 1` with the seed fixed, because LightGBM ignores row sampling unless a frequency is set.
+
+All three runs use the same features, window and seed. None is tuned or searched.
 
 **Clock-change days:** forecasts are made per local slot and mapped to the target day's settlement periods by the regression's rules (`C.target_starts`, `C.clock`).
 
@@ -76,7 +82,7 @@ Both runs use the same features, window, objective and seed. Neither is tuned, e
 
 These run on the full backtest period (lesson 9). Only check 5 touches outturn, and only with corrupted inputs.
 
-1. **Coverage.** Both LightGBM runs produce a finite forecast for every half-hour of every backtest day that the regression covers, or each missing one is listed with the reason.
+1. **Coverage.** All three LightGBM runs produce a finite forecast for every half-hour of every backtest day that the regression covers, or each missing one is listed with the reason.
 2. **Leakage.** The training-window assertion holds on every day. A deliberately leaked feature (the target day's own demand, given as a lag) is shown to make the assertion or the coverage check fail.
 3. **Determinism.** Two runs on the WP2 sample days are identical to the last digit.
 4. **Feature build.** A second, independent build of the feature matrix for 10 days, written with plain loops, matches the first exactly.
@@ -89,7 +95,7 @@ These run on the full backtest period (lesson 9). Only check 5 touches outturn, 
 ### WP2: cost
 
 - **Days:** 20 backtest days, 5 in each meteorological season, drawn at random within each season with seed 20261115. The list is committed before any timing.
-- **Forecasters:** Chronos-2 (E5 arm A configuration), TimesFM 2.5, Timestral (both configurations), the regression, and LightGBM (both settings).
+- **Forecasters:** Chronos-2 (E5 arm A configuration), TimesFM 2.5, Timestral (both configurations), the regression, and LightGBM (all three settings).
 - **Machine:** all on the same machine, in one session, on CPU only, with the same fixed thread count for every forecaster (PyTorch and LightGBM thread settings), and no other heavy work running. CPU model, cores, RAM, operating system and library versions are recorded.
 - **Timed:**
   - wall-clock time per forecast day, from loading that day's inputs to writing its forecasts, including fitting where a forecaster fits (LightGBM and the regression re-fit daily);
@@ -112,7 +118,7 @@ Every result is given in MW and as a ratio.
 **Tables:**
 1. Each forecaster's mean daily error, and its ratio to LightGBM (defaults), over all 960 days.
 2. LightGBM (defaults) against the regression: the ratio and the MW difference.
-3. Tables 1 and 2 repeated for LightGBM with the sensitivity settings.
+3. Tables 1 and 2 repeated for LightGBM with S1 and with S2.
 4. Tables 1 and 2 by meteorological season, pooled across years.
 5. Chronos-2 against LightGBM, before and after Chronos-2's release (20 October 2025), read as in the weather study's leakage check.
 6. The error correlation c between Chronos-2 and LightGBM (defaults), and Chronos-2's edge over it, on the summer 180-day windows and the winter 120-day windows, by the method of `next_study/summer_edge.py`. These feed gate G2 (`PROJECT.md` §4), whose power rerun is a separate script, committed before it runs.
@@ -140,7 +146,7 @@ The note and any post lead with two sentences of equal weight. The first covers 
 | Interval wholly above 1 | "The LightGBM model was Z% less accurate than a weather regression given the same information: with library defaults, the trained tree model did not beat the linear one." |
 | Interval includes 1 | "The LightGBM model and a weather regression given the same information were about equally accurate (ratio R, 90% interval L–U)." |
 
-A third sentence follows if the sensitivity settings change either reading (from one row of a table to another): "With [the alternative settings], [the changed reading]." A change of reading is itself a finding, and it is reported rather than resolved.
+A third sentence follows if S1 or S2 changes either reading (from one row of a table to another): "With the settings of [source], [the changed reading]." If both change it, both are named. A change of reading is itself a finding, and it is reported rather than resolved.
 
 Every lead ends: "A live, preregistered test starts on 1 April 2027."
 
@@ -150,7 +156,7 @@ These tables are the whole analysis. Further cuts, models or settings wait for c
 
 ## 9. Order of work
 
-1. Settle §5's sensitivity sentence (24-hour limit for obtaining the paper's values). Commit, and tag `checkpoint0-plan`.
+1. Commit, and tag `checkpoint0-plan`.
 2. Commit the WP2 day list.
 3. Write the LightGBM script in `gb-weather-private`, where the weather inputs are. Run WP1 on Andy's machine, logging every revision (§5).
 4. Commit the script; record its hash in `REVISIONS.md`.
