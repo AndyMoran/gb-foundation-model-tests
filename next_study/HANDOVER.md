@@ -28,6 +28,16 @@ A standing benchmark, not a one-off study: zero-shot foundation models against t
 4. Move the daily pipeline off Andy's laptop before the window opens.
 5. Freeze checkpoint 1's plan by March 2027.
 
+## Checkpoint 0 (15 November 2026)
+
+Plan frozen at tag `checkpoint0-plan`; all WP1 checks passed first time; scored by the committed `score.py`. Mean daily error: Chronos-2 (calendar and weather) 916 MW, weather regression 1,014, LightGBM (defaults) 1,134; S1 and S2 settings 1,061 and 1,094, still behind the regression. LightGBM matches the regression in summer and is 29% worse in winter (December to February). No leakage signature (Chronos-2 / LightGBM 0.807 before release, 0.808 after). Cost (WP2) runner committed; timing pending. Results: `checkpoint0/results.md`.
+
+### Questions for checkpoint 1's plan, from checkpoint 0
+
+- **Why LightGBM lost, two hypotheses, neither tested.** (a) Trees cannot extrapolate beyond the temperatures in their training data, which would hurt on cold days. (b) Structure: the regression fits 48 per-slot models with explicit Tc, Tc², wind and Tc × wind (wind chill) terms; LightGBM fits one model across all slots, and S1 and S2 changed its size and learning rate but not that structure. The two lead to different designs: (a) argues for the regression as the main trained bar; (b) argues for a per-slot LightGBM, or one given the regression's temperature terms. The first backtest analysis in checkpoint 1's plan should be a pre-specified per-slot LightGBM, before any tuning.
+- **Whether to add one pre-specified combination** (for example the simple average of Chronos-2 and the regression) as an entrant.
+- **Winter.** The trained baseline is weakest in winter, and winter carries no confirmatory claim. Make the winter descriptive tables prominent in every report, and let the checkpoint 3 review weigh the pooled-winter option partly on this.
+
 ## Still running from the weather study
 
 - The prospective weather window runs from 20 November 2026 to 31 March 2027 and reports in April 2027 (descriptive). The first daily push is 19 November; check with `tail -8 ~/gb-weather-data/push.log` after 10:30.
