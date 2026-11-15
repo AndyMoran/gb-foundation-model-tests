@@ -107,7 +107,7 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 - **Cut: probabilistic and quantile scoring.** It may be added by amendment between windows; it is not in checkpoint 1.
 - **Cut: other horizons, series and countries.** Revisit at the checkpoint 3 review (rule 6.4).
 - **Cut: a forecasting service or consultancy** built on the benchmark.
-- **Cut: further analysis of the weather study's backtest.** E5 was its last analysis.
+- **Cut: further analysis of the weather study's backtest.** E5 was its last analysis. Checkpoint 0 is a separate study with its own plan.
 - **Cut: valuing forecast error in £.** The break-even price (rule 5.6) is reported instead.
 - **Deferred: a portfolio-like demand series.** For the checkpoint 3 review (rule 6.4).
 
@@ -180,3 +180,4 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-15 | D-1: the user is the forecasting team; no £ valuation; each checkpoint reports MWh saved, compute cost and a break-even £/MWh, descriptively (rule 5.6) | National demand error has no single owner who pays for it, so a valuation would be an assumption; the break-even lets each user apply their own price |
 | 2026-11-15 | The battery project's £ criterion does not apply; the benchmark is a separate thread with a capped commitment | Avoid drift between the two objectives |
 | 2026-11-15 | Developers get 10 working days' notice before each report (rule 9.2) | Adopted from the battery project's publication policy |
+| 2026-11-15 | Checkpoint 0: a backtest first look adding LightGBM (`checkpoint0/PLAN.md`), descriptive only | A new study, not E6 of the weather backtest; it builds the LightGBM backtest gate G2 needs anyway |
