@@ -1,0 +1,867 @@
+{
+ "note": "checkpoint 0, exploratory and descriptive; plan frozen at tag checkpoint0-plan",
+ "n_days": 960,
+ "days_dropped": [],
+ "mean_daily_mae_mw": {
+  "chronos2_A": 915.5,
+  "timesfm25_weather": 1473.8,
+  "regression_weather": 1014.4,
+  "lightgbm_default": 1134.2,
+  "timestral_A": 1103.1,
+  "timestral_weather": 1089.3,
+  "lightgbm_s1": 1060.6,
+  "lightgbm_s2": 1094.5
+ },
+ "t1_vs_lightgbm": {
+  "lightgbm_default": {
+   "chronos2_A": {
+    "ratio": 0.8072,
+    "ci90": [
+     0.7785,
+     0.8367
+    ],
+    "mw_a": 915.5,
+    "mw_b": 1134.2,
+    "mw_diff": -218.7,
+    "n_days": 960
+   },
+   "timesfm25_weather": {
+    "ratio": 1.2994,
+    "ci90": [
+     1.2425,
+     1.3543
+    ],
+    "mw_a": 1473.8,
+    "mw_b": 1134.2,
+    "mw_diff": 339.6,
+    "n_days": 960
+   },
+   "regression_weather": {
+    "ratio": 0.8944,
+    "ci90": [
+     0.8692,
+     0.9197
+    ],
+    "mw_a": 1014.4,
+    "mw_b": 1134.2,
+    "mw_diff": -119.8,
+    "n_days": 960
+   },
+   "timestral_A": {
+    "ratio": 0.9725,
+    "ci90": [
+     0.942,
+     1.0061
+    ],
+    "mw_a": 1103.1,
+    "mw_b": 1134.2,
+    "mw_diff": -31.2,
+    "n_days": 960
+   },
+   "timestral_weather": {
+    "ratio": 0.9604,
+    "ci90": [
+     0.9298,
+     0.9931
+    ],
+    "mw_a": 1089.3,
+    "mw_b": 1134.2,
+    "mw_diff": -44.9,
+    "n_days": 960
+   }
+  },
+  "lightgbm_s1": {
+   "chronos2_A": {
+    "ratio": 0.8632,
+    "ci90": [
+     0.8366,
+     0.8932
+    ],
+    "mw_a": 915.5,
+    "mw_b": 1060.6,
+    "mw_diff": -145.1,
+    "n_days": 960
+   },
+   "timesfm25_weather": {
+    "ratio": 1.3896,
+    "ci90": [
+     1.3346,
+     1.4474
+    ],
+    "mw_a": 1473.8,
+    "mw_b": 1060.6,
+    "mw_diff": 413.2,
+    "n_days": 960
+   },
+   "regression_weather": {
+    "ratio": 0.9564,
+    "ci90": [
+     0.9344,
+     0.9794
+    ],
+    "mw_a": 1014.4,
+    "mw_b": 1060.6,
+    "mw_diff": -46.2,
+    "n_days": 960
+   },
+   "timestral_A": {
+    "ratio": 1.04,
+    "ci90": [
+     1.0069,
+     1.0789
+    ],
+    "mw_a": 1103.1,
+    "mw_b": 1060.6,
+    "mw_diff": 42.4,
+    "n_days": 960
+   },
+   "timestral_weather": {
+    "ratio": 1.027,
+    "ci90": [
+     0.9942,
+     1.0643
+    ],
+    "mw_a": 1089.3,
+    "mw_b": 1060.6,
+    "mw_diff": 28.7,
+    "n_days": 960
+   }
+  },
+  "lightgbm_s2": {
+   "chronos2_A": {
+    "ratio": 0.8364,
+    "ci90": [
+     0.8074,
+     0.8664
+    ],
+    "mw_a": 915.5,
+    "mw_b": 1094.5,
+    "mw_diff": -179.0,
+    "n_days": 960
+   },
+   "timesfm25_weather": {
+    "ratio": 1.3465,
+    "ci90": [
+     1.2939,
+     1.4022
+    ],
+    "mw_a": 1473.8,
+    "mw_b": 1094.5,
+    "mw_diff": 379.3,
+    "n_days": 960
+   },
+   "regression_weather": {
+    "ratio": 0.9268,
+    "ci90": [
+     0.9037,
+     0.9507
+    ],
+    "mw_a": 1014.4,
+    "mw_b": 1094.5,
+    "mw_diff": -80.1,
+    "n_days": 960
+   },
+   "timestral_A": {
+    "ratio": 1.0078,
+    "ci90": [
+     0.9752,
+     1.0437
+    ],
+    "mw_a": 1103.1,
+    "mw_b": 1094.5,
+    "mw_diff": 8.5,
+    "n_days": 960
+   },
+   "timestral_weather": {
+    "ratio": 0.9952,
+    "ci90": [
+     0.9634,
+     1.0305
+    ],
+    "mw_a": 1089.3,
+    "mw_b": 1094.5,
+    "mw_diff": -5.3,
+    "n_days": 960
+   }
+  }
+ },
+ "t2_lightgbm_vs_regression": {
+  "lightgbm_default": {
+   "ratio": 1.1181,
+   "ci90": [
+    1.088,
+    1.1485
+   ],
+   "mw_a": 1134.2,
+   "mw_b": 1014.4,
+   "mw_diff": 119.8,
+   "n_days": 960
+  },
+  "lightgbm_s1": {
+   "ratio": 1.0456,
+   "ci90": [
+    1.0227,
+    1.0704
+   ],
+   "mw_a": 1060.6,
+   "mw_b": 1014.4,
+   "mw_diff": 46.2,
+   "n_days": 960
+  },
+  "lightgbm_s2": {
+   "ratio": 1.079,
+   "ci90": [
+    1.0518,
+    1.107
+   ],
+   "mw_a": 1094.5,
+   "mw_b": 1014.4,
+   "mw_diff": 80.1,
+   "n_days": 960
+  }
+ },
+ "t4_by_season": {
+  "DJF": {
+   "n_days": 180,
+   "vs_lightgbm": {
+    "lightgbm_default": {
+     "chronos2_A": {
+      "ratio": 0.7101,
+      "ci90": [
+       0.6558,
+       0.7693
+      ],
+      "mw_a": 972.3,
+      "mw_b": 1369.3,
+      "mw_diff": -397.0,
+      "n_days": 180
+     },
+     "timesfm25_weather": {
+      "ratio": 1.127,
+      "ci90": [
+       0.9999,
+       1.2743
+      ],
+      "mw_a": 1543.2,
+      "mw_b": 1369.3,
+      "mw_diff": 173.9,
+      "n_days": 180
+     },
+     "regression_weather": {
+      "ratio": 0.7779,
+      "ci90": [
+       0.7171,
+       0.8369
+      ],
+      "mw_a": 1065.2,
+      "mw_b": 1369.3,
+      "mw_diff": -304.1,
+      "n_days": 180
+     }
+    },
+    "lightgbm_s1": {
+     "chronos2_A": {
+      "ratio": 0.789,
+      "ci90": [
+       0.7333,
+       0.8556
+      ],
+      "mw_a": 972.3,
+      "mw_b": 1232.3,
+      "mw_diff": -260.0,
+      "n_days": 180
+     },
+     "timesfm25_weather": {
+      "ratio": 1.2523,
+      "ci90": [
+       1.1111,
+       1.4186
+      ],
+      "mw_a": 1543.2,
+      "mw_b": 1232.3,
+      "mw_diff": 310.9,
+      "n_days": 180
+     },
+     "regression_weather": {
+      "ratio": 0.8644,
+      "ci90": [
+       0.8104,
+       0.9172
+      ],
+      "mw_a": 1065.2,
+      "mw_b": 1232.3,
+      "mw_diff": -167.1,
+      "n_days": 180
+     }
+    },
+    "lightgbm_s2": {
+     "chronos2_A": {
+      "ratio": 0.7504,
+      "ci90": [
+       0.691,
+       0.8139
+      ],
+      "mw_a": 972.3,
+      "mw_b": 1295.8,
+      "mw_diff": -323.5,
+      "n_days": 180
+     },
+     "timesfm25_weather": {
+      "ratio": 1.1909,
+      "ci90": [
+       1.0573,
+       1.3412
+      ],
+      "mw_a": 1543.2,
+      "mw_b": 1295.8,
+      "mw_diff": 247.4,
+      "n_days": 180
+     },
+     "regression_weather": {
+      "ratio": 0.822,
+      "ci90": [
+       0.7587,
+       0.8828
+      ],
+      "mw_a": 1065.2,
+      "mw_b": 1295.8,
+      "mw_diff": -230.6,
+      "n_days": 180
+     }
+    }
+   },
+   "lightgbm_vs_regression": {
+    "lightgbm_default": {
+     "ratio": 1.2855,
+     "ci90": [
+      1.1919,
+      1.3978
+     ],
+     "mw_a": 1369.3,
+     "mw_b": 1065.2,
+     "mw_diff": 304.1,
+     "n_days": 180
+    },
+    "lightgbm_s1": {
+     "ratio": 1.1569,
+     "ci90": [
+      1.0886,
+      1.2347
+     ],
+     "mw_a": 1232.3,
+     "mw_b": 1065.2,
+     "mw_diff": 167.1,
+     "n_days": 180
+    },
+    "lightgbm_s2": {
+     "ratio": 1.2165,
+     "ci90": [
+      1.1304,
+      1.3186
+     ],
+     "mw_a": 1295.8,
+     "mw_b": 1065.2,
+     "mw_diff": 230.6,
+     "n_days": 180
+    }
+   }
+  },
+  "MAM": {
+   "n_days": 261,
+   "vs_lightgbm": {
+    "lightgbm_default": {
+     "chronos2_A": {
+      "ratio": 0.8053,
+      "ci90": [
+       0.7525,
+       0.8674
+      ],
+      "mw_a": 955.2,
+      "mw_b": 1186.2,
+      "mw_diff": -231.0,
+      "n_days": 261
+     },
+     "timesfm25_weather": {
+      "ratio": 1.3184,
+      "ci90": [
+       1.2398,
+       1.4087
+      ],
+      "mw_a": 1563.9,
+      "mw_b": 1186.2,
+      "mw_diff": 377.7,
+      "n_days": 261
+     },
+     "regression_weather": {
+      "ratio": 0.8983,
+      "ci90": [
+       0.869,
+       0.9294
+      ],
+      "mw_a": 1065.6,
+      "mw_b": 1186.2,
+      "mw_diff": -120.6,
+      "n_days": 261
+     }
+    },
+    "lightgbm_s1": {
+     "chronos2_A": {
+      "ratio": 0.8591,
+      "ci90": [
+       0.7974,
+       0.9238
+      ],
+      "mw_a": 955.2,
+      "mw_b": 1111.9,
+      "mw_diff": -156.6,
+      "n_days": 261
+     },
+     "timesfm25_weather": {
+      "ratio": 1.4065,
+      "ci90": [
+       1.3202,
+       1.5004
+      ],
+      "mw_a": 1563.9,
+      "mw_b": 1111.9,
+      "mw_diff": 452.0,
+      "n_days": 261
+     },
+     "regression_weather": {
+      "ratio": 0.9584,
+      "ci90": [
+       0.9325,
+       0.9853
+      ],
+      "mw_a": 1065.6,
+      "mw_b": 1111.9,
+      "mw_diff": -46.3,
+      "n_days": 261
+     }
+    },
+    "lightgbm_s2": {
+     "chronos2_A": {
+      "ratio": 0.8329,
+      "ci90": [
+       0.7782,
+       0.8963
+      ],
+      "mw_a": 955.2,
+      "mw_b": 1146.9,
+      "mw_diff": -191.7,
+      "n_days": 261
+     },
+     "timesfm25_weather": {
+      "ratio": 1.3635,
+      "ci90": [
+       1.2824,
+       1.4507
+      ],
+      "mw_a": 1563.9,
+      "mw_b": 1146.9,
+      "mw_diff": 417.0,
+      "n_days": 261
+     },
+     "regression_weather": {
+      "ratio": 0.9291,
+      "ci90": [
+       0.9007,
+       0.9585
+      ],
+      "mw_a": 1065.6,
+      "mw_b": 1146.9,
+      "mw_diff": -81.3,
+      "n_days": 261
+     }
+    }
+   },
+   "lightgbm_vs_regression": {
+    "lightgbm_default": {
+     "ratio": 1.1132,
+     "ci90": [
+      1.0761,
+      1.1498
+     ],
+     "mw_a": 1186.2,
+     "mw_b": 1065.6,
+     "mw_diff": 120.6,
+     "n_days": 261
+    },
+    "lightgbm_s1": {
+     "ratio": 1.0434,
+     "ci90": [
+      1.0145,
+      1.0725
+     ],
+     "mw_a": 1111.9,
+     "mw_b": 1065.6,
+     "mw_diff": 46.3,
+     "n_days": 261
+    },
+    "lightgbm_s2": {
+     "ratio": 1.0763,
+     "ci90": [
+      1.0434,
+      1.1093
+     ],
+     "mw_a": 1146.9,
+     "mw_b": 1065.6,
+     "mw_diff": 81.3,
+     "n_days": 261
+    }
+   }
+  },
+  "JJA": {
+   "n_days": 276,
+   "vs_lightgbm": {
+    "lightgbm_default": {
+     "chronos2_A": {
+      "ratio": 0.8561,
+      "ci90": [
+       0.8184,
+       0.8909
+      ],
+      "mw_a": 830.8,
+      "mw_b": 970.4,
+      "mw_diff": -139.6,
+      "n_days": 276
+     },
+     "timesfm25_weather": {
+      "ratio": 1.2735,
+      "ci90": [
+       1.1949,
+       1.3474
+      ],
+      "mw_a": 1235.8,
+      "mw_b": 970.4,
+      "mw_diff": 265.4,
+      "n_days": 276
+     },
+     "regression_weather": {
+      "ratio": 1.0098,
+      "ci90": [
+       0.976,
+       1.048
+      ],
+      "mw_a": 979.9,
+      "mw_b": 970.4,
+      "mw_diff": 9.5,
+      "n_days": 276
+     }
+    },
+    "lightgbm_s1": {
+     "chronos2_A": {
+      "ratio": 0.9065,
+      "ci90": [
+       0.8676,
+       0.9436
+      ],
+      "mw_a": 830.8,
+      "mw_b": 916.4,
+      "mw_diff": -85.7,
+      "n_days": 276
+     },
+     "timesfm25_weather": {
+      "ratio": 1.3484,
+      "ci90": [
+       1.2669,
+       1.4217
+      ],
+      "mw_a": 1235.8,
+      "mw_b": 916.4,
+      "mw_diff": 319.3,
+      "n_days": 276
+     },
+     "regression_weather": {
+      "ratio": 1.0692,
+      "ci90": [
+       1.0361,
+       1.1036
+      ],
+      "mw_a": 979.9,
+      "mw_b": 916.4,
+      "mw_diff": 63.4,
+      "n_days": 276
+     }
+    },
+    "lightgbm_s2": {
+     "chronos2_A": {
+      "ratio": 0.88,
+      "ci90": [
+       0.8429,
+       0.9183
+      ],
+      "mw_a": 830.8,
+      "mw_b": 944.1,
+      "mw_diff": -113.3,
+      "n_days": 276
+     },
+     "timesfm25_weather": {
+      "ratio": 1.309,
+      "ci90": [
+       1.2264,
+       1.3822
+      ],
+      "mw_a": 1235.8,
+      "mw_b": 944.1,
+      "mw_diff": 291.7,
+      "n_days": 276
+     },
+     "regression_weather": {
+      "ratio": 1.0379,
+      "ci90": [
+       1.0029,
+       1.0744
+      ],
+      "mw_a": 979.9,
+      "mw_b": 944.1,
+      "mw_diff": 35.8,
+      "n_days": 276
+     }
+    }
+   },
+   "lightgbm_vs_regression": {
+    "lightgbm_default": {
+     "ratio": 0.9903,
+     "ci90": [
+      0.9533,
+      1.0236
+     ],
+     "mw_a": 970.4,
+     "mw_b": 979.9,
+     "mw_diff": -9.5,
+     "n_days": 276
+    },
+    "lightgbm_s1": {
+     "ratio": 0.9353,
+     "ci90": [
+      0.9039,
+      0.9636
+     ],
+     "mw_a": 916.4,
+     "mw_b": 979.9,
+     "mw_diff": -63.4,
+     "n_days": 276
+    },
+    "lightgbm_s2": {
+     "ratio": 0.9635,
+     "ci90": [
+      0.932,
+      0.9971
+     ],
+     "mw_a": 944.1,
+     "mw_b": 979.9,
+     "mw_diff": -35.8,
+     "n_days": 276
+    }
+   }
+  },
+  "SON": {
+   "n_days": 243,
+   "vs_lightgbm": {
+    "lightgbm_default": {
+     "chronos2_A": {
+      "ratio": 0.8502,
+      "ci90": [
+       0.7974,
+       0.9114
+      ],
+      "mw_a": 927.1,
+      "mw_b": 1090.4,
+      "mw_diff": -163.3,
+      "n_days": 243
+     },
+     "timesfm25_weather": {
+      "ratio": 1.4638,
+      "ci90": [
+       1.3746,
+       1.5771
+      ],
+      "mw_a": 1596.1,
+      "mw_b": 1090.4,
+      "mw_diff": 505.7,
+      "n_days": 243
+     },
+     "regression_weather": {
+      "ratio": 0.8814,
+      "ci90": [
+       0.8519,
+       0.9215
+      ],
+      "mw_a": 961.0,
+      "mw_b": 1090.4,
+      "mw_diff": -129.3,
+      "n_days": 243
+     }
+    },
+    "lightgbm_s1": {
+     "chronos2_A": {
+      "ratio": 0.8896,
+      "ci90": [
+       0.8307,
+       0.9527
+      ],
+      "mw_a": 927.1,
+      "mw_b": 1042.1,
+      "mw_diff": -115.0,
+      "n_days": 243
+     },
+     "timesfm25_weather": {
+      "ratio": 1.5316,
+      "ci90": [
+       1.4298,
+       1.6408
+      ],
+      "mw_a": 1596.1,
+      "mw_b": 1042.1,
+      "mw_diff": 554.0,
+      "n_days": 243
+     },
+     "regression_weather": {
+      "ratio": 0.9222,
+      "ci90": [
+       0.8946,
+       0.9567
+      ],
+      "mw_a": 961.0,
+      "mw_b": 1042.1,
+      "mw_diff": -81.1,
+      "n_days": 243
+     }
+    },
+    "lightgbm_s2": {
+     "chronos2_A": {
+      "ratio": 0.8745,
+      "ci90": [
+       0.8187,
+       0.9359
+      ],
+      "mw_a": 927.1,
+      "mw_b": 1060.1,
+      "mw_diff": -133.0,
+      "n_days": 243
+     },
+     "timesfm25_weather": {
+      "ratio": 1.5056,
+      "ci90": [
+       1.4119,
+       1.6195
+      ],
+      "mw_a": 1596.1,
+      "mw_b": 1060.1,
+      "mw_diff": 536.0,
+      "n_days": 243
+     },
+     "regression_weather": {
+      "ratio": 0.9065,
+      "ci90": [
+       0.8767,
+       0.9432
+      ],
+      "mw_a": 961.0,
+      "mw_b": 1060.1,
+      "mw_diff": -99.1,
+      "n_days": 243
+     }
+    }
+   },
+   "lightgbm_vs_regression": {
+    "lightgbm_default": {
+     "ratio": 1.1346,
+     "ci90": [
+      1.0869,
+      1.1753
+     ],
+     "mw_a": 1090.4,
+     "mw_b": 961.0,
+     "mw_diff": 129.3,
+     "n_days": 243
+    },
+    "lightgbm_s1": {
+     "ratio": 1.0844,
+     "ci90": [
+      1.0447,
+      1.1187
+     ],
+     "mw_a": 1042.1,
+     "mw_b": 961.0,
+     "mw_diff": 81.1,
+     "n_days": 243
+    },
+    "lightgbm_s2": {
+     "ratio": 1.1031,
+     "ci90": [
+      1.0582,
+      1.1416
+     ],
+     "mw_a": 1060.1,
+     "mw_b": 961.0,
+     "mw_diff": 99.1,
+     "n_days": 243
+    }
+   }
+  }
+ },
+ "t5_release": {
+  "split": "2025-10-30",
+  "before": {
+   "ratio": 0.8067,
+   "ci90": [
+    0.7657,
+    0.8476
+   ],
+   "mw_a": 887.2,
+   "mw_b": 1099.7,
+   "mw_diff": -212.5,
+   "n_days": 593
+  },
+  "after": {
+   "ratio": 0.8078,
+   "ci90": [
+    0.7714,
+    0.8465
+   ],
+   "mw_a": 961.3,
+   "mw_b": 1189.9,
+   "mw_diff": -228.7,
+   "n_days": 367
+  }
+ },
+ "t6_for_g2": {
+  "summer 180 days (Apr-Sep)": {
+   "c": 0.5886,
+   "years": [
+    180,
+    180,
+    180
+   ],
+   "ratio": 0.8514,
+   "ci90": [
+    0.8124,
+    0.8756
+   ],
+   "mw_a": 878.9,
+   "mw_b": 1032.4,
+   "mw_diff": -153.5,
+   "n_days": 540
+  },
+  "winter 120 days (Dec-Mar)": {
+   "c": 0.578,
+   "years": [
+    120,
+    120
+   ],
+   "ratio": 0.7041,
+   "ci90": [
+    0.6556,
+    0.7496
+   ],
+   "mw_a": 975.8,
+   "mw_b": 1385.9,
+   "mw_diff": -410.1,
+   "n_days": 240
+  }
+ },
+ "t7_cost": "reported separately (WP2)",
+ "headline": "In a backtest the foundation models may have seen in training, Chronos-2 forecast GB demand 19.3% more accurately than a LightGBM model with library defaults, on equal inputs. The LightGBM model was 11.8% less accurate than a weather regression given the same information: with library defaults, the trained tree model did not beat the linear one. A live, preregistered test starts on 1 April 2027."
+}
