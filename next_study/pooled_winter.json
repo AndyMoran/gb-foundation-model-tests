@@ -1,0 +1,90 @@
+{
+ "note": "specified and committed 15 November 2026 before running",
+ "seed": 20261117,
+ "reps": 2000,
+ "pools": {
+  "pooled winters, 2 x 120 days (Dec-Mar)": {
+   "days": 240,
+   "c": 0.54,
+   "ratio": 0.8778,
+   "interval_90": [
+    0.8215,
+    0.9398
+   ],
+   "power": {
+    "5.0%": {
+     "edge": 0.05,
+     "below_1": 0.2545,
+     "below_bar": 0.0025
+    },
+    "7.5%": {
+     "edge": 0.075,
+     "below_1": 0.453,
+     "below_bar": 0.012
+    },
+    "10.0%": {
+     "edge": 0.1,
+     "below_1": 0.661,
+     "below_bar": 0.05
+    },
+    "12.5%": {
+     "edge": 0.125,
+     "below_1": 0.8185,
+     "below_bar": 0.12
+    },
+    "measured edge": {
+     "edge": 0.1222,
+     "below_1": 0.8055,
+     "below_bar": 0.1225
+    },
+    "low end of interval": {
+     "edge": 0.0602,
+     "below_1": 0.3235,
+     "below_bar": 0.002
+    }
+   }
+  },
+  "pooled winters, 2 x 150 days (Nov-Mar)": {
+   "days": 300,
+   "c": 0.5297,
+   "ratio": 0.9025,
+   "interval_90": [
+    0.8501,
+    0.9626
+   ],
+   "power": {
+    "5.0%": {
+     "edge": 0.05,
+     "below_1": 0.275,
+     "below_bar": 0.001
+    },
+    "7.5%": {
+     "edge": 0.075,
+     "below_1": 0.489,
+     "below_bar": 0.0115
+    },
+    "10.0%": {
+     "edge": 0.1,
+     "below_1": 0.7135,
+     "below_bar": 0.039
+    },
+    "12.5%": {
+     "edge": 0.125,
+     "below_1": 0.886,
+     "below_bar": 0.123
+    },
+    "measured edge": {
+     "edge": 0.0975,
+     "below_1": 0.699,
+     "below_bar": 0.031
+    },
+    "low end of interval": {
+     "edge": 0.0374,
+     "below_1": 0.187,
+     "below_bar": 0.0015
+    }
+   }
+  }
+ },
+ "reading": "winter stays descriptive"
+}
