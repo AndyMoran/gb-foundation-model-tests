@@ -87,6 +87,9 @@ Each risk lists the warning sign and what to do now.
 **R11. The chain of exploratory checks may grow again.** Lesson 4 applied to E4 and E5. Each new reviewer suggestion invites another check.
 *Now:* each checkpoint plan names its exploratory checks. Anything else waits for the next checkpoint's plan.
 
+**R12. The block bootstrap may undercover.** The credit project found that block-bootstrap intervals undercover. If they do here, the confirmatory false-positive rate exceeds 0.025.
+*Now:* simulate at a true edge of zero before freezing checkpoint 1's plan (`PROJECT.md`, gate G3).
+
 ## Part 3: what worked, and stays
 
 - Committing each analysis script before running it, and its outputs after. Three power scripts this way gave four hashes of evidence in one morning.
