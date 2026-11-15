@@ -1,0 +1,74 @@
+{
+ "note": "specified and committed 15 November 2026 before running",
+ "seed": 20261116,
+ "reps": 2000,
+ "windows": {
+  "winter 100 days (Dec-Mar)": {
+   "days": 200,
+   "ratio": 0.8855,
+   "interval_90": [
+    0.8208,
+    0.9602
+   ],
+   "c": 0.555,
+   "years": [
+    100,
+    100
+   ]
+  },
+  "winter 120 days (Dec-Mar)": {
+   "days": 240,
+   "ratio": 0.8778,
+   "interval_90": [
+    0.8186,
+    0.9365
+   ],
+   "c": 0.54,
+   "years": [
+    120,
+    120
+   ]
+  },
+  "winter 150 days (Nov-Mar)": {
+   "days": 300,
+   "ratio": 0.9025,
+   "interval_90": [
+    0.8464,
+    0.9621
+   ],
+   "c": 0.5297,
+   "years": [
+    150,
+    150
+   ]
+  },
+  "summer 180 days (Apr-Sep)": {
+   "days": 540,
+   "ratio": 0.8921,
+   "interval_90": [
+    0.8501,
+    0.923
+   ],
+   "c": 0.4705,
+   "years": [
+    180,
+    180,
+    180
+   ]
+  }
+ },
+ "summer_power": {
+  "measured edge": {
+   "edge": 0.1079,
+   "c": 0.4705,
+   "below_1": 0.9365,
+   "below_bar": 0.057
+  },
+  "low end of interval": {
+   "edge": 0.077,
+   "c": 0.4705,
+   "below_1": 0.7215,
+   "below_bar": 0.005
+  }
+ }
+}
