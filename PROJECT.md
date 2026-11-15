@@ -10,6 +10,14 @@ Publish a standing, preregistered benchmark that answers one question on fair te
 
 The aim is a public reference point that a forecasting team can use before switching models, and that model developers can be measured against. It is not a service and not a product.
 
+### Related work and what is distinct
+
+Live, pre-registered forecasting benchmarks already exist. TS-Arena (Meyer et al., Paderborn University; arXiv 2512.20761) requires forecasts before the ground truth exists, runs on energy series, and lists Chronos-2. EnFoBench reports accuracy alongside computational cost for building energy. This benchmark does not claim to be the first of its kind. What it adds:
+- GB national demand, with weather forecasts as they were available at issue time;
+- equal weather and calendar inputs for every forecaster, foundation and trained;
+- confirmatory tests, powered and fixed in advance, with fixed outcome headlines;
+- a break-even price per entrant (rule 5.6).
+
 ## 2. The decision test
 
 Every artifact must change a decision someone makes.
@@ -69,8 +77,8 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 | Step | Work | Gate | Target |
 |---|---|---|---|
 | 1 | Settle the three bracketed items in the rules (compute budget 3.3, standing reviewer 9.7, infrastructure 10.2); tag `benchmark-rules-v1` | **G1:** rules tagged | December 2026 |
-| 2 | Build LightGBM, tuned only on the past within a fixed search budget (lesson 12); backtest it on the weather study's days | — | January 2027 |
-| 3 | Measure c for the Chronos-2–LightGBM pair; rerun the summer power cell for both pairs at alpha 0.025 (R1) | **G2:** power | January 2027 |
+| 2 | Build LightGBM and backtest it on the weather study's days: checkpoint 0 (`checkpoint0/PLAN.md`) | — | December 2026 |
+| 3 | From checkpoint 0's table 6, rerun the summer power cell for the Chronos-2–LightGBM pair at alpha 0.025, at the measured edge and at c − 0.05, c and c + 0.05 (R1) | **G2:** power | January 2027 |
 | 4 | Run the power cell at a true edge of zero to check the bootstrap's false-positive rate (R12) | **G3:** size | January 2027 |
 | 5 | Resolve Timestral's encoding (categorical route; mirror pass) and record it as a declared workaround (rule 4.2) | — | February 2027 |
 | 6 | Move daily runs off the laptop; add a missed-day alert; run unattended | **G4:** pipeline | Running by 1 March 2027 |
@@ -78,7 +86,7 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 
 ### Gate fallbacks, fixed before each gate is evaluated
 
-**G2 (power), evaluated on backtest forecasts only:**
+**G2 (power), evaluated on backtest forecasts only.** Power is reported as a table: for each pair, at its measured summer edge and at the low end of that edge's interval, at c − 0.05, c and c + 0.05, where c is the pair's measured summer error correlation. The measured c is a backtest estimate, so the decision reads the c − 0.05 column. A pair with no measured edge (ratio interval including or above 1) cannot be confirmatory.
 
 | Order | Condition | Then |
 |---|---|---|
@@ -135,6 +143,7 @@ Rules: one narrow ask; offer before asking; email the first author, not the last
 | Group | Who | Number |
 |---|---|---|
 | Model developers | The Chronos, TimesFM and Timestral teams | 3 |
+| Benchmark builders | The TS-Arena team (Paderborn University) | 1 |
 | System operator | NESO's demand forecasting team | 2 |
 | Practitioners | Forecasters at suppliers, traders and aggregators | 4 |
 | Academic | Researchers in energy and time-series forecasting | 3–4 |
@@ -180,4 +189,6 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-15 | D-1: the user is the forecasting team; no £ valuation; each checkpoint reports MWh saved, compute cost and a break-even £/MWh, descriptively (rule 5.6) | National demand error has no single owner who pays for it, so a valuation would be an assumption; the break-even lets each user apply their own price |
 | 2026-11-15 | The battery project's £ criterion does not apply; the benchmark is a separate thread with a capped commitment | Avoid drift between the two objectives |
 | 2026-11-15 | Developers get 10 working days' notice before each report (rule 9.2) | Adopted from the battery project's publication policy |
+| 2026-11-15 | Related work (TS-Arena, EnFoBench) acknowledged; the benchmark's distinct contribution stated (§1) | Live pre-registered benchmarks already exist |
+| 2026-11-15 | G2 power read at c − 0.05 | The measured c comes from backtest days the models may have seen |
 | 2026-11-15 | Checkpoint 0: a backtest first look adding LightGBM (`checkpoint0/PLAN.md`), descriptive only | A new study, not E6 of the weather backtest; it builds the LightGBM backtest gate G2 needs anyway |

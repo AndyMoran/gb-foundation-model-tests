@@ -4,67 +4,103 @@ Andy Moran (Heaviside Analytics) · 15 November 2026 · **Status: draft plan, no
 
 **The question:** on the weather study's backtest, with equal weather and calendar inputs, how does a trained LightGBM model compare with the foundation models and with the weather regression?
 
-This is a new, exploratory study. It is not part of the weather study, whose last analysis was E5, and it is not a confirmatory test of the benchmark (`BENCHMARK_RULES.md` rule 7). Every result is descriptive. The benchmark's confirmatory test is checkpoint 1, on live days from 1 April 2027.
+## 1. What this is, and is not
 
-It also does work the benchmark needs anyway. LightGBM's backtest forecasts feed gate G2 (`PROJECT.md` §4): the power check for the Chronos-2–LightGBM pair.
+This is a new, exploratory study on backtest days. It is not part of the weather study, whose last analysis was E5. It is not a live benchmark either: the standing benchmark's first live checkpoint opens on 1 April 2027 (`BENCHMARK_RULES.md`, rule 6.1). It is called checkpoint 0 because it builds the LightGBM forecaster that the benchmark uses, and its results feed gate G2 (`PROJECT.md` §4). Every result is descriptive.
 
-## 1. What has been seen before this plan
+## 2. Non-claims
 
-Every foundation-model and regression forecast and error in the backtest is published: `weather_study/RESULTS.md`, E1–E5 and `results/`. No LightGBM model has been fitted, tuned or run on these data, and no LightGBM error has been computed. The only new forecaster is LightGBM, so the only new information this study produces is how LightGBM does.
+Checkpoint 0 does not establish:
+- live performance: the foundation models may have seen these days in training;
+- the best a trained model can do: LightGBM is untuned;
+- a ranking of model families: it compares five specific forecasters on one series;
+- anything for other series, horizons or countries: one series (GB national demand, INDO), day ahead;
+- commercial value: cost is measured, not priced.
 
-## 2. Forecasters compared
+The note states these before any result.
+
+## 3. What has been seen before this plan
+
+Every foundation-model and regression forecast and error in the backtest is published: `weather_study/RESULTS.md`, E1–E5 and `results/`. No LightGBM model has been fitted, tuned or run on these data, and no LightGBM error has been computed. No forecaster's compute time has been measured (`weather_study/LESSONS.md`, lesson 6).
+
+## 4. Forecasters compared
 
 The existing forecasts are used as saved, unchanged, and checked against these hashes:
 - `weather_study/results/forecasts.csv`: b5f16561dcf1a26f8d7910bcca95cd137f677760c6f80153349034d4a85f7328
 - `weather_study/results/calendar_forecasts.csv`: 976e27ef28d0eef1ddf351c6557af9f771c308b94f389fe0f06b84ec86c8e2fe
 
-| Forecaster | Column | Weather | Calendar |
-|---|---|---|---|
-| Chronos-2 | `chronos2_A` (E5) | Yes | Yes |
-| Timestral | `timestral_A` (E5) | Yes | Yes, but see the caveat below |
-| Timestral | `timestral_weather` | Yes | No |
-| TimesFM 2.5 | `timesfm25_weather` | Yes | No (8-week context; see the weather study, E5) |
-| Weather regression | `regression_weather` | Yes | Yes |
-| **LightGBM** | new | Yes | Yes |
+| Forecaster | Column | Weather | Calendar | Ranked |
+|---|---|---|---|---|
+| Chronos-2 | `chronos2_A` (E5) | Yes | Yes | Yes |
+| TimesFM 2.5 | `timesfm25_weather` | Yes | No (8-week context; weather study, E5) | Yes |
+| Weather regression | `regression_weather` | Yes | Yes | Yes |
+| **LightGBM**, defaults | new | Yes | Yes | Yes |
+| **LightGBM**, alternative settings | new | Yes | Yes | Sensitivity only (§5) |
+| Timestral | `timestral_A` (E5) | Yes | Yes, affected by a defect | No |
+| Timestral | `timestral_weather` | Yes | No | No |
 
-Timestral is shown both ways because its calendar input is affected by a covariate defect (`mistralai/timestral#9`): with the calendar it did worse in E5 (calendar gain 1.013). Both rows are reported, and neither is chosen as "Timestral's result".
+Timestral's calendar input is affected by a covariate defect (`mistralai/timestral#9`), so it is shown both ways and is not ranked. Any ranking compares Chronos-2, TimesFM 2.5, LightGBM (defaults) and the regression.
 
-## 3. LightGBM, fixed before any run
+## 5. LightGBM, fixed before any run
 
 **Information:** exactly the regression's (`gb-weather-private`, `weather/regression_weather.py`):
 - **Clock slot:** the local half-hour, 0–47.
 - **Calendar:** day of week as a category; bank holiday (England and Wales); 24 December to 2 January.
-- **Lags:** demand at D−2 (falling back to D−9 if missing) and at D−7 (falling back to D−14), same slot.
-- **Weather:** temperature, wind and solar for the half-hour, unadjusted, by the regression's splice rule (`weather_for`): D's built inputs where they cover the half-hour, otherwise ERA5.
+- **Lags:** demand at D−2 (falling back to D−9) and at D−7 (falling back to D−14), same slot.
+- **Weather:** temperature, wind and solar for the half-hour, unadjusted, by the regression's splice rule (`weather_for`).
 
-Trees need no centred or interaction terms, so the regression's Tc, Tc², Tc × wind are not built.
+Trees need no centred or interaction terms, so the regression's Tc, Tc² and Tc × wind are not built.
 
-**Training:** one model across all slots. It is re-fitted for each target day D on every half-hour of the complete days D−366 to D−2 whose target, lags and weather are finite. That is the regression's training window and retraining frequency. The script asserts that no training day is later than D−2.
+**Training:** one model across all slots. It is re-fitted for each target day D on every half-hour of the complete days D−366 to D−2 whose target, lags and weather are finite. That is the regression's window and retraining frequency. The script asserts that no training day is later than D−2.
 
-**Settings:** LightGBM's defaults (100 trees, learning rate 0.1, 31 leaves, at least 20 rows per leaf), with three exceptions:
+**Primary settings: LightGBM's defaults** (100 trees, learning rate 0.1, 31 leaves, at least 20 rows per leaf), with three exceptions:
 - `objective = 'l1'`, because the score is mean absolute error;
 - `seed = 20261115` with `deterministic = True`, so runs repeat exactly;
 - day of week declared categorical.
 
-There is no tuning, no early stopping and no search. The LightGBM version is pinned and recorded. Any change to this section after the first scored run is a deviation, logged with its date and reason.
+**Sensitivity settings, fixed now.** Defaults are known to cost accuracy: on 58 time series, randomly generated configurations cut mean squared error by up to 17.45% against the default (Barros, Cerqueira and Soares, PRICAI 2021, LNAI 13031, pp. 454–465). That paper proposes alternative defaults for time series.
+
+[One of the following two sentences stays at the tag:
+- "The sensitivity run uses the alternative defaults proposed by Barros, Cerqueira and Soares (2021): [values]."
+- "The alternative defaults proposed by Barros, Cerqueira and Soares (2021) were not accessible before the freeze. The sensitivity run instead uses 500 trees at learning rate 0.05, with other settings as the primary run. This is a plausible manual setting, not the paper's recommendation."]
+
+Both runs use the same features, window, objective and seed. Neither is tuned, early-stopped or searched.
 
 **Clock-change days:** forecasts are made per local slot and mapped to the target day's settlement periods by the regression's rules (`C.target_starts`, `C.clock`).
 
-**Cost:** the run records wall-clock time and peak memory per forecast day, and the hardware.
+**Revisions before the freeze:** every change to the LightGBM script before the scored run, including each check that failed and the fix, is logged in `checkpoint0/REVISIONS.md` with its date, the commit and the reason. The record shows the path, not only the endpoint. Any change after the scored run is a deviation, logged the same way.
 
-## 4. Checks before scoring
+## 6. Work packages
 
-These run on the full backtest period (lesson 9). None of them computes an error against outturn.
+### WP1: checks before scoring
 
-1. **Coverage.** A finite forecast for every half-hour of every backtest day that the regression covers, or each missing one listed with the reason.
+These run on the full backtest period (lesson 9). Only check 5 touches outturn, and only with corrupted inputs.
+
+1. **Coverage.** Both LightGBM runs produce a finite forecast for every half-hour of every backtest day that the regression covers, or each missing one is listed with the reason.
 2. **Leakage.** The training-window assertion holds on every day. A deliberately leaked feature (the target day's own demand, given as a lag) is shown to make the assertion or the coverage check fail.
-3. **Determinism.** Two runs on 20 days, spread across the period, are identical to the last digit.
+3. **Determinism.** Two runs on the WP2 sample days are identical to the last digit.
 4. **Feature build.** A second, independent build of the feature matrix for 10 days, written with plain loops, matches the first exactly.
-5. **Corruption.** With demand shuffled across days, LightGBM's error on 20 days rises by more than half. This is the one check that touches outturn, and it uses only corrupted inputs.
+5. **Corruption.**
+   - **Corruption:** complete days of the demand series are permuted with seed 20261115 before any feature is built. Targets and lags then come from unrelated days, while weather and calendar keep their true dates, so no input carries information about the target.
+   - **Comparator:** for each target day D and clock slot, the median of the corrupted training targets for that slot over D−366 to D−2. That is the same window and data LightGBM sees. The median is used because, with no information in the inputs, it is the best forecast under the L1 objective.
+   - **Pass:** primary-settings LightGBM's mean daily error on the WP2 sample days, against true outturn, is at least 0.9 times the comparator's.
+   - **Rationale:** a model with no information can beat the no-information forecast only by chance or through leaked information. The 10% margin allows for chance over 20 days.
 
-The LightGBM script is committed, with its hash recorded here, after these checks pass and before the scored run: [hash].
+### WP2: cost
 
-## 5. Scoring, fixed now
+- **Days:** 20 backtest days, 5 in each meteorological season, drawn at random within each season with seed 20261115. The list is committed before any timing.
+- **Forecasters:** Chronos-2 (E5 arm A configuration), TimesFM 2.5, Timestral (both configurations), the regression, and LightGBM (both settings).
+- **Machine:** all on the same machine, in one session, on CPU only, with the same fixed thread count for every forecaster (PyTorch and LightGBM thread settings), and no other heavy work running. CPU model, cores, RAM, operating system and library versions are recorded.
+- **Timed:**
+  - wall-clock time per forecast day, from loading that day's inputs to writing its forecasts, including fitting where a forecaster fits (LightGBM and the regression re-fit daily);
+  - model loading time once per forecaster, reported separately;
+  - peak resident memory per forecaster.
+
+  One untimed warm-up day precedes each forecaster's timed days. The report gives the median and range over the 20 days.
+- **Check:** each foundation model's forecasts from the timing run must match its saved backtest forecasts to within 1 MW on every half-hour. That confirms the timed configuration is the one scored. Any mismatch is reported.
+- **Scope:** cost is reported in time and memory only. No £ figure is computed in checkpoint 0.
+
+### WP3: scoring
 
 Scoring follows the weather study:
 - daily mean absolute error over each day's half-hours;
@@ -74,45 +110,50 @@ Scoring follows the weather study:
 Every result is given in MW and as a ratio.
 
 **Tables:**
-1. Each forecaster's mean daily error, and its ratio to LightGBM, over all 960 days.
-2. LightGBM's ratio to the regression.
-3. Tables 1 and 2 by meteorological season, pooled across years.
-4. Chronos-2 against LightGBM, before and after Chronos-2's release date, read as in the weather study's leakage check.
-5. The error correlation c between Chronos-2 and LightGBM, on winter and summer days, by the method in `next_study/power_check.py`. This feeds gate G2. The G2 power rerun is a separate script, committed before it runs.
-6. LightGBM's cost (§3).
+1. Each forecaster's mean daily error, and its ratio to LightGBM (defaults), over all 960 days.
+2. LightGBM (defaults) against the regression: the ratio and the MW difference.
+3. Tables 1 and 2 repeated for LightGBM with the sensitivity settings.
+4. Tables 1 and 2 by meteorological season, pooled across years.
+5. Chronos-2 against LightGBM, before and after Chronos-2's release (20 October 2025), read as in the weather study's leakage check.
+6. The error correlation c between Chronos-2 and LightGBM (defaults), and Chronos-2's edge over it, on the summer 180-day windows and the winter 120-day windows, by the method of `next_study/summer_edge.py`. These feed gate G2 (`PROJECT.md` §4), whose power rerun is a separate script, committed before it runs.
+7. Cost (WP2).
 
-No p-values are reported, and nothing is called significant.
+**Reading rule:** no p-values are reported, and nothing is called significant. A difference between two forecasters is described only where the 90% interval of their ratio excludes 1. Separate intervals for each forecaster are not compared, because the comparison is paired. Otherwise they are described as about equally accurate.
 
-## 6. Headlines, fixed now
+## 7. Headlines, fixed now
 
-The note and any post lead with the sentence that matches table 1's Chronos-2 row (the ratio is Chronos-2's error over LightGBM's):
+The note and any post lead with two sentences of equal weight. The first covers Chronos-2 against LightGBM (table 1); the second covers LightGBM against the regression (table 2). Each takes the form that matches its interval:
 
-| Result | Headline |
+**Chronos-2 against LightGBM** (ratio = Chronos-2's error ÷ LightGBM's):
+
+| Result | Sentence |
 |---|---|
-| Interval wholly below 1 | "In a backtest with equal inputs, Chronos-2 forecast GB demand Z% more accurately than a LightGBM model with library defaults. The models may have seen these days in training; a live test starts on 1 April 2027." |
-| Interval wholly above 1 | "In a backtest with equal inputs, a LightGBM model with library defaults forecast GB demand Z% more accurately than Chronos-2. A live test starts on 1 April 2027." |
-| Interval includes 1 | "In a backtest with equal inputs, Chronos-2 and a LightGBM model with library defaults forecast GB demand about equally well (ratio R, 90% interval L–U). A live test starts on 1 April 2027." |
+| Interval wholly below 1 | "In a backtest the foundation models may have seen in training, Chronos-2 forecast GB demand Z% more accurately than a LightGBM model with library defaults, on equal inputs." |
+| Interval wholly above 1 | "In a backtest the foundation models may have seen in training, a LightGBM model with library defaults forecast GB demand Z% more accurately than Chronos-2, on equal inputs." |
+| Interval includes 1 | "In a backtest the foundation models may have seen in training, Chronos-2 and a LightGBM model with library defaults forecast GB demand about equally well, on equal inputs (ratio R, 90% interval L–U)." |
 
-The second sentence follows from table 2, in the same three forms: "LightGBM was [Z% better than / Z% worse than / about as accurate as] the weather regression."
+**LightGBM against the regression** (ratio = LightGBM's error ÷ the regression's):
 
-"With library defaults" stays in every headline. An untuned LightGBM shows what a trained model does with little effort, not the best a trained model can do.
+| Result | Sentence |
+|---|---|
+| Interval wholly below 1 | "The LightGBM model was Z% more accurate than a weather regression given the same information." |
+| Interval wholly above 1 | "The LightGBM model was Z% less accurate than a weather regression given the same information: with library defaults, the trained tree model did not beat the linear one." |
+| Interval includes 1 | "The LightGBM model and a weather regression given the same information were about equally accurate (ratio R, 90% interval L–U)." |
 
-## 7. Limits, stated in the note before any result
+A third sentence follows if the sensitivity settings change either reading (from one row of a table to another): "With [the alternative settings], [the changed reading]." A change of reading is itself a finding, and it is reported rather than resolved.
 
-- Backtest days fall in a period the foundation models may have seen in training.
-- LightGBM is untuned. A tuned model may do better.
-- Timestral's calendar input is affected by a known defect.
-- One series (GB national demand, INDO), one horizon (day ahead), one country.
+Every lead ends: "A live, preregistered test starts on 1 April 2027."
 
 ## 8. Analysis budget
 
-This plan's tables are the whole analysis. Further cuts, models or settings wait for checkpoint 1's plan (`next_study/LESSONS.md`, R11).
+These tables are the whole analysis. Further cuts, models or settings wait for checkpoint 1's plan (`next_study/LESSONS.md`, R11).
 
 ## 9. Order of work
 
-1. This plan is committed and tagged `checkpoint0-plan`.
-2. The LightGBM script is written in `gb-weather-private`, where the weather inputs are. It is run on Andy's machine, and the §4 checks are passed.
-3. The script is committed, and its hash is recorded in §4 by an amendment commit.
-4. The scored run.
-5. Forecasts and results are committed. `checkpoint0/score.py` is committed before it runs, and its outputs after.
-6. A two-page note, `checkpoint0/RESULTS.md`, and a post, each checked line by line against the results (lesson 11).
+1. Settle §5's sensitivity sentence (24-hour limit for obtaining the paper's values). Commit, and tag `checkpoint0-plan`.
+2. Commit the WP2 day list.
+3. Write the LightGBM script in `gb-weather-private`, where the weather inputs are. Run WP1 on Andy's machine, logging every revision (§5).
+4. Commit the script; record its hash in `REVISIONS.md`.
+5. Run WP2 and the scored LightGBM runs.
+6. Commit the forecasts. Commit `checkpoint0/score.py` before it runs, and its outputs after.
+7. Write a two-page note, `checkpoint0/RESULTS.md`, and a post, each checked line by line against the results (lesson 11).
