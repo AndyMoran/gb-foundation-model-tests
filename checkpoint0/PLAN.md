@@ -1,6 +1,6 @@
 # Checkpoint 0: a backtest first look with LightGBM
 
-Andy Moran (Heaviside Analytics) · 15 November 2026 · **Status: draft plan, not yet tagged**
+Andy Moran (Heaviside Analytics) · 15 November 2026 · **Status: frozen at tag `checkpoint0-plan`**
 
 **The question:** on the weather study's backtest, with equal weather and calendar inputs, how does a trained LightGBM model compare with the foundation models and with the weather regression?
 
