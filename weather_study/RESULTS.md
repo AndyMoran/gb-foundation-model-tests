@@ -2,7 +2,7 @@
 
 Andy Moran (Heaviside Analytics) · 12 November 2026, corrected 16 November 2026 · results note, part 1 of 2
 
-Version 2 (corrected): DOI [version 2 DOI] · version 1: DOI [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799) · ORCID [0009-0004-2194-8084](https://orcid.org/0009-0004-2194-8084) · release [`weather-results-backtest-v2`](https://github.com/AndyMoran/gb-foundation-model-tests/releases/tag/weather-results-backtest-v2)
+Version 2 (corrected): DOI [10.5281/zenodo.24284719](https://doi.org/10.5281/zenodo.24284719) · version 1: DOI [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799) · ORCID [0009-0004-2194-8084](https://orcid.org/0009-0004-2194-8084) · release [`weather-results-backtest-v2`](https://github.com/AndyMoran/gb-foundation-model-tests/releases/tag/weather-results-backtest-v2)
 
 > **Correction (16 November 2026).** Version 1 of this note reported that weather improved TimesFM 2.5's forecast by 6%, confirmed. That was wrong. The pipeline called TimesFM with up to 64 days at a time. With weather, TimesFM fits one regression across every day in a call, so each forecast depended on the other days in its batch, including later days' demand. Forecast one day at a time, weather did not improve TimesFM 2.5 (error ratio 1.034; p = 0.947). Its other figures change with it, and those that cannot be recomputed from the correction are withdrawn (marked ¹). Nothing else in the note changes: every figure for the regression, Chronos-2 and Timestral, and E5, is as published. Details, checks and outputs: [`CORRECTIONS.md`](CORRECTIONS.md).
 
