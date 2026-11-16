@@ -43,4 +43,6 @@ The two sets of forecasts differ by up to 6,801 MW on a half-hour. The median, o
 
 **What this does not settle.** The batched forecasts combined two things: pooling the weather regression across 64 days, which gives it more data, and look-ahead within each batch. The correction removes both. It does not measure how much of the published gain came from each. A pooled regression using only past days would answer that, but it would be a new analysis, not a correction.
 
+**Reported upstream.** [google-research/timesfm#577](https://github.com/google-research/timesfm/issues/577), with a minimal reproduction (`gb-weather-private`, `weather/timesfm_batch_repro.py`). Batched with one other series, a synthetic series' forecast moved by up to 1.23, on a level of about 10 and a covariate effect of about ±2.
+
 **Release.** Version 2 of `RESULTS.md`, with this correction, was released on 16 November 2026 as tag `weather-results-backtest-v2`, DOI [10.5281/zenodo.24284719](https://doi.org/10.5281/zenodo.24284719). Version 1 stays available at [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799).
