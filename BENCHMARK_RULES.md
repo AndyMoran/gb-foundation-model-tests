@@ -58,6 +58,8 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 4.7 **Publication before outturn.** Each day's forecasts are committed to the public repository before the start of day D. The commit time is the evidence that no forecast saw the outturn.
 
+4.8 **One issue day per call.** Every entrant's forecasts, live or backtest, are made one issue day per call, so that no forecast can draw on another day's data. Before an entrant's first window, a call-mode check runs its forecasts for at least 20 days both one day per call and in any batch the harness might use. If they differ by more than 1 MW on any half-hour, only one-day-per-call forecasts are allowed. The check, and the reason for this rule, are recorded in `ENTRANTS.md`. Reason: weather study correction 1 (`weather_study/CORRECTIONS.md`). There, TimesFM 2.5 fitted one covariate regression across a 64-day batch, which let each forecast draw on later days' demand.
+
 ## 5. Scoring
 
 5.1 **Metric.** Each entrant's daily mean absolute error over the 48 half-hours of day D, against INDO outturn as first published. Comparisons are ratios of mean daily MAE: entrant over baseline.
