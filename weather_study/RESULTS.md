@@ -6,7 +6,7 @@ Version 2 (corrected): DOI [version 2 DOI] · version 1: DOI [10.5281/zenodo.241
 
 > **Correction (16 November 2026).** Version 1 of this note reported that weather improved TimesFM 2.5's forecast by 6%, confirmed. That was wrong. The pipeline called TimesFM with up to 64 days at a time. With weather, TimesFM fits one regression across every day in a call, so each forecast depended on the other days in its batch, including later days' demand. Forecast one day at a time, weather did not improve TimesFM 2.5 (error ratio 1.034; p = 0.947). Its other figures change with it, and those that cannot be recomputed from the correction are withdrawn (marked ¹). Nothing else in the note changes: every figure for the regression, Chronos-2 and Timestral, and E5, is as published. Details, checks and outputs: [`CORRECTIONS.md`](CORRECTIONS.md).
 
-Given the weather forecasts a forecaster really had at 09:30 on the day before, three of the four forecasters forecast GB electricity demand better, each confirmed at the study's 5% error rate over 960 backtest days. Mean daily error fell by 34% for a regression, 32% for Chronos-2 and 23% for Timestral; TimesFM 2.5 did not improve (correction 1). These gains are measured on a backtest that overlaps the foundation models' possible training data; the clean test is the live window, which reports in April 2027. This note is the first of two: it gives the confirmatory result; the second, in April, gives the live window's descriptive check.
+Given the weather forecasts a forecaster really had at 09:30 on the day before, three of the four forecasters predicted GB electricity demand better, each confirmed at the study's 5% error rate over 960 backtest days. Mean daily error fell by 34% for a regression, 32% for Chronos-2 and 23% for Timestral; TimesFM 2.5 did not improve (correction 1). These gains are measured on a backtest that overlaps the foundation models' possible training data; the clean test is the live window, which reports in April 2027. This note is the first of two: it gives the confirmatory result; the second, in April, gives the live window's descriptive check.
 
 ## Summary
 
@@ -47,9 +47,9 @@ Three of the four hypotheses are rejected at 0.0125: for the regression, Chronos
 | Timestral | 1,409 | 1,089 | 0.773 | 0.751–0.796 | < 0.0005 |
 | TimesFM 2.5 (corrected) | 1,567 | 1,620 | 1.034 | 0.999–1.068 | 0.947 |
 
-**Read with the leakage caveat.** The backtest overlaps the period the foundation models may have seen in training, and memory could bias the gains either way. A model that remembers GB demand forecasts well without weather and has less to gain; one that remembers how demand followed the weather may gain more than it would on days it has not seen. The live window, from 20 November 2026, contains only days after every model's weights were fixed.
+**Read with the leakage caveat.** The backtest overlaps the period the foundation models may have seen in training, and memory could bias the gains either way. A model that remembers GB demand will forecast well without weather and have less to gain; one that remembers how demand followed the weather may gain more than it would on days it has not seen. The live window, from 20 November 2026, contains only days after every model's weights were fixed.
 
-In the plan's words, written before the results:
+The plan's result sentences, written before the results, with the figures filled in:
 
 - "Over the backtest (16 March 2024 to 31 October 2026), weather improved the regression's day-ahead forecast of GB demand: mean daily error fell by 34% (error ratio 0.658; 90% interval 0.631–0.686, descriptive), confirmed at the study's 5% error rate."
 - "Over the backtest (16 March 2024 to 31 October 2026), weather improved Chronos-2's day-ahead forecast of GB demand: mean daily error fell by 32% (error ratio 0.683; 90% interval 0.658–0.707, descriptive), confirmed at the study's 5% error rate." The backtest falls in a period the model may have seen in training. The prospective window, which it cannot have seen, is the descriptive check on this result.
@@ -84,7 +84,7 @@ Without weather, Chronos-2 and Timestral had 7–9% less error than the regressi
 | Timestral | 1.074 | 1.034–1.115 | 0.914 |
 | TimesFM 2.5 (corrected) | 1.597 | 1.530–1.662 | 1.017 |
 
-- "With the same weather, Chronos-2's error was 0.966 times the regression's (90% interval 0.931–1.001, descriptive), against 0.932 without weather in rung 1. The regression trains on reanalysis and forecasts with ECMWF; in winter this mismatch is worth about 100–200 MW, so part of any edge may be the regression's."
+- "With the same weather, Chronos-2's error was 0.966 times the regression's (90% interval 0.931–1.001, descriptive), against 0.932 without weather in rung 1. The regression trains on reanalysis and forecasts with ECMWF; in winter this mismatch is worth about 100–200 MW, so part of any edge may be the regression's." (The plan's caveat, written before the results. E3, below, measured the mismatch: about 1 MW of daily error, so it does not explain Q3.)
 - "With the same weather, Timestral's error was 1.074 times the regression's (90% interval 1.034–1.115, descriptive), against 0.914 without weather in rung 1." The same caveat applies.
 - "With the same weather, TimesFM 2.5's error was 1.597 times the regression's (90% interval 1.530–1.662, descriptive), against 1.017 without weather in rung 1." The same caveat applies. (Corrected; version 1 reported 1.453.)
 
@@ -104,7 +104,7 @@ The plan predicted that weather would help more in the evening than overnight (Q
 | Timestral | −11.2 | −14.7 to −7.4 | +3.1 | +0.8 to +5.6 |
 | TimesFM 2.5 (corrected) | −3.3 | −8.1 to +1.1 | −5.0 | −9.1 to −0.3 |
 
-A point is a percentage point of error cut: for Chronos-2, the evening's 27.8% less overnight's 39.4% is −11.6 points. The plan's hypotheses were set in these percentage terms. In megawatts the picture changes: midday has the largest errors and the largest cut for Chronos-2, Timestral and the regression (see the block table below). One possible reading, untested: overnight demand responds strongly to temperature through electric heating, and at midday rooftop solar cuts the demand the grid sees, which the solar input tracks. The formal Q4 tests belonged to the live window, where they are descriptive for lack of power.
+A point is a percentage point of error cut: for Chronos-2, the evening's 27.8% less overnight's 39.4% is −11.6 points. The plan's hypotheses were set in these percentage terms. In megawatts the picture changes: midday has the largest errors and the largest cut for Chronos-2, Timestral and the regression (see the block table below). One possible reading, untested: overnight demand responds strongly to temperature through electric heating, and at midday rooftop solar cuts the demand the grid sees, which the solar input tracks. The formal Q4 tests belonged to the live window, where, for lack of power, they are descriptive only.
 
 ## Robustness and descriptive checks
 
@@ -156,7 +156,7 @@ In winter the regression's daily error falls by 861 MW (654 to 1,090), from 1,92
 
 ## Exploratory checks after review
 
-Three checks were added after review of this note's first draft, and two more (E4, E5) the day after publication. None was in the plan, and none changes a confirmatory result. Their TimesFM 2.5 figures came from the batched version 1 forecasts and are withdrawn¹. They come from the run's saved forecasts, except E3, which reruns the regression once with one input changed (`exploratory.py`).
+Three checks were added after review of this note's first draft, and two more (E4, E5) on the day of publication, after it. None was in the plan, and none changes a confirmatory result. Their TimesFM 2.5 figures came from the batched version 1 forecasts and are withdrawn¹. They come from the run's saved forecasts, except E3, which reruns the regression once with one input changed (`exploratory.py`).
 
 **E1: days the models cannot have seen.** A model's weights cannot hold days after they were fixed, so the days after each model's public release are unseen by construction. The release date is an upper bound on the training cut-off, which may be earlier, so the post-release period is a conservative test.
 
@@ -182,7 +182,7 @@ On a year of days it cannot have seen, Chronos-2 gains at least as much from wea
 
 On the 35 calendar days, weather cuts the regression's mean error from 2,372 to 1,541 MW, but the models' only from about 2,400–2,600 to about 2,200. Without those days, Chronos-2 keeps most of its edge over the regression (6% with weather, 8% without), and its interval stays below 1. Timestral's reversal does not depend on them. Q1 on ordinary days barely changes (Chronos-2 0.670, Timestral 0.768, regression 0.659; TimesFM 2.5's figure is withdrawn¹). The fair comparison gives the models the same calendar; E5 does so.
 
-**E5: the models given the calendar (specified and committed before it was run, 12 November 2026).** Chronos-2 and Timestral were given the regression's own calendar (six day-of-week indicators, bank holiday, 24 December to 2 January) as inputs for every half-hour of context and forecast day, with the scored weather (arm A) and without it (arm B). Their settings and the 960 days are unchanged; a check first reproduced the scored forecasts to within 0.008 MW. TimesFM 2.5 was left out, because it learns covariate effects only from its eight-week context, which rarely holds a bank holiday and never a Christmas. Full tables: [`results/calendar.md`](results/calendar.md).
+**E5: the models given the calendar (specified and committed before it was run, 12 November 2026).** Chronos-2 and Timestral were given the regression's own calendar (six day-of-week indicators, bank holiday, 24 December to 2 January) as inputs for every half-hour of context and forecast day, with the scored weather (arm A) and without it (arm B). Their settings and the 960 days are unchanged; a check first reproduced the scored forecasts to within 0.008 MW. TimesFM 2.5 was left out, because it learns covariate effects only from its eight-week context, which rarely holds a bank holiday and at most one Christmas period. Full tables: [`results/calendar.md`](results/calendar.md).
 
 | Ratio of mean daily error (90% interval) | All days | Ordinary days | Calendar days |
 | --- | --- | --- | --- |
@@ -197,7 +197,7 @@ Three cautions. E5 is exploratory, on days already examined closely, and it does
 
 ## Deviations, corrections and what is still to come
 
-Nothing was changed after the tag: no data, input, forecaster, setting, window, statistic or gate. The backtest was scored once, and it passed every gate on that first run. One result was corrected after publication (correction 1, below).
+No planned data, input, forecaster, setting, window, statistic or gate was changed after the tag. The backtest was scored once, and it passed every gate on that first run. After publication, one error in how the pipeline called TimesFM 2.5 was found and corrected: its forecasts were remade one day per call instead of in batches of up to 64 days, and re-evaluated with the plan's unchanged statistics (correction 1, below).
 
 **One departure from the plan's order.** The plan (Section 10) puts a single results note after 31 March 2027. This note reports the backtest now, because all four confirmatory tests are in the backtest and are final once it is scored, and because waiting would not buy a confirmatory test: by the plan's own rule, fixed before any result, the live window is descriptive, since its power to detect a 5% gain was at most 24%. Nothing in the live window depends on this note: those forecasts are made automatically by frozen code. The weather-processing code, which the plan kept private until the results, is published with this note.
 
@@ -208,7 +208,7 @@ Nothing was changed after the tag: no data, input, forecaster, setting, window, 
 
 **Correction 1 (16 November 2026): TimesFM 2.5 forecast one day per call.** Version 1's TimesFM 2.5 forecasts with weather were made in calls of up to 64 days. With covariates, TimesFM fits one regression across every series in a call, so each day's forecast depended on the others in its batch. The regression for day D was fitted partly on later days' contexts, which contain demand after D's issue time, including D's own outturn. Checkpoint 0 of the next study found it: one-day calls differed from the scored forecasts by up to 5,643 MW on a half-hour. A correction script, committed before it ran (`timesfm_correction.py`), checked that the study's evaluation reproduces version 1's Q1–Q3 from the scored forecasts and that batched calls reproduce TimesFM's scored forecasts exactly. It then reran TimesFM one day per call on all 960 days and re-evaluated. TimesFM 2.5's Q1, Q2, Q3, Q4 and robustness ratios above are the corrected ones. Figures that came only from batched sensitivity runs or from E1–E4 are withdrawn (¹). Every other forecaster's results are unchanged. Chronos-2 runs with cross-learning off and Timestral treats each series separately: both reproduce their scored forecasts one day per call to within 0.01 MW. The correction removes both the pooling and the look-ahead; it does not measure how much of version 1's gain came from each. Full record: [`CORRECTIONS.md`](CORRECTIONS.md); outputs: [`correction1/`](correction1/).
 
-**After publication.** E4 and E5 were added on 12 November 2026, the day after this note was released, and the Q3 summary and section amended to report them. E5's design and expectation were committed before it was run. No published figure changed. E5 is the last analysis of this backtest; anything further is a new, preregistered study.
+**After publication.** E4 and E5 were added on 12 November 2026, a few hours after this note was released, and the Q3 summary and section amended to report them. E5's design and expectation were committed before it was run. No published figure changed. E5 is the last analysis of this backtest; anything further is a new, preregistered study.
 
 **Reporting conventions.** "p < 0.0005" means that none of the 2,000 bootstrap draws reached a ratio of 1. The results file records these as 0. The tables by block and by season were computed after the freeze by a separate script (`descriptive_tables.py`) from this run's saved forecasts, with the plan's resampling; it checks its figures against the scored results before writing, and scores nothing again. The seasons are meteorological, because the plan did not define them.
 
@@ -219,7 +219,7 @@ Nothing was changed after the tag: no data, input, forecaster, setting, window, 
 
 ## Limits
 
-- **Unequal calendar (a design oversight).** The plan gave the regression day-of-week, bank-holiday and Christmas terms and the models none, carried over from the first study, where the models deliberately saw history alone. Once both sides had weather, that made Q3 an unequal comparison. It was not caught before the freeze; it was found the day after publication and examined in E4 and E5.
+- **Unequal calendar (a design oversight).** The plan gave the regression day-of-week, bank-holiday and Christmas terms and the models none, carried over from the first study, where the models deliberately saw history alone. Once both sides had weather, that made Q3 an unequal comparison. It was not caught before the freeze; it was found a few hours after publication and examined in E4 and E5.
 - **Training leakage.** The backtest falls in a period the foundation models may have seen in training. Memory could bias the gains either way: a model that remembers GB demand has less to gain from weather; one that remembers how demand followed the weather may gain more than on unseen days. The live window is the check; on the days after its release (E1), Chronos-2 shows no sign of it.
 - **One weather source, three variables, one national figure.** ECMWF's open data at 0.25°, reduced to national temperature, wind and solar radiation. Better or more local weather could do more.
 - **Zero-shot only.** No model was fine-tuned. The regression is the only forecaster that learns from GB data.
@@ -232,6 +232,7 @@ Nothing was changed after the tag: no data, input, forecaster, setting, window, 
 - **Plan and lock:** this folder holds the plan (`PLAN.md`), the power analysis (`power.py`, `power.json`), the list of ECMWF model changes (`cycle_changes.csv`) and `WEATHER_LOCK.json`, which holds the hashes of the code, inputs, weights and environments. Tag `weather-plan`, 10 November 2026.
 - **Code:** the weather-processing code is public at [AndyMoran/gb-weather-private](https://github.com/AndyMoran/gb-weather-private). Its state at the tag `weather-plan` is the frozen code; `WEATHER_LOCK.json` holds the hash of every frozen file. The scripts written after the freeze (`descriptive_tables.py`, `exploratory.py`, `calendar_study.py`, `timesfm_correction.py`) are in the same repository, outside the lock.
 - **Results:** [`results/`](results/) holds the scored run's `results.json` (lock hash beginning 0194af07), the forecasts of every forecaster for every half-hour (`forecasts.csv`), the daily errors, and the descriptive and exploratory tables. [`power_addendum.py`](power_addendum.py) and its output are the live-window power addendum.
+- **Wording fixes in version 2:** besides correction 1, version 2 corrects the release timing of E4 and E5 (the same day, not the day after), marks the plan's Q3 caveat about the mismatch as superseded by E3, says an eight-week context can hold one Christmas period, and makes four small wording changes. No figure for the regression, Chronos-2 or Timestral changes.
 - **Correction 1:** [`correction1/`](correction1/) holds TimesFM 2.5's one-day-per-call forecasts and the side-by-side evaluation. `results/` is unchanged from version 1, so its TimesFM 2.5 weather forecasts are the batched ones.
 - **Daily inputs** for the live window are pushed to `inputs/` before each target day.
 - **Backtest inputs:** see [`results/README.md`](results/README.md) for where they are and how to rebuild them.
