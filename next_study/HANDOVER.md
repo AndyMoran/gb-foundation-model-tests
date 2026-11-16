@@ -1,47 +1,66 @@
-# Next study: where things stand (15 November 2026)
+# Where things stand (16 November 2026)
 
-Read this first in a new session. Then read `BENCHMARK_RULES.md`, `next_study/CORRECTIONS.md` and `weather_study/LESSONS.md`.
+Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, and `checkpoint0/RESULTS.md`.
 
-## What the next study is
+## The project
 
-A standing benchmark, not a one-off study: zero-shot foundation models against trained baselines for GB day-ahead demand, on equal weather and calendar inputs, on live days no model can have seen, with cost measured. A minimum of three checkpoints, reviewed at the third. Rules: `BENCHMARK_RULES.md` (draft, untagged).
+A standing, preregistered benchmark. Zero-shot foundation models are tested against trained baselines for GB day-ahead demand (INDO), on equal weather and calendar inputs, on live days no model can have seen, with cost measured. It commits to a minimum of three checkpoints, reviewed at the third. Rules: `BENCHMARK_RULES.md` (draft, untagged). Why and how: `PROJECT.md`.
 
-## Decided
+## Done
 
-- **The live window is summer.** Checkpoint 1 runs from 1 April 2027 (first 180 days) and is confirmatory. Checkpoint 2, winter 2027–28, is descriptive. Checkpoint 3, summer 2028, is confirmatory, with the review.
-- **Why summer:** winter cannot settle a 10% edge. Power at a true 10% edge is 33–62% for one winter and 66–71% for two pooled. Summer 180 days gives 93.7% at the backtest's summer edge (10.8%, c = 0.47), and 72.2% at the low end of its interval (7.7%). Files: `power_check.*`, `summer_edge.*`, `pooled_winter.*`.
-- **c correction:** the power-check specification (`332631e`) called c = 0.7 pessimistic; it is optimistic. Recorded in `CORRECTIONS.md`, not edited. The measured c (0.54 winter, 0.47 summer) is the reference. In E5 the regression already had the calendar, so 0.54 is a measurement, not a bound.
-- **Confirmatory claim:** Chronos-2 (with calendar and weather) has lower mean daily MAE than each trained baseline (weather regression, LightGBM), one-sided, family-wise 0.05 split equally. The 10% bar is descriptive; its chance is about 6% even at the backtest edge.
-- **Outcome headlines are fixed** in rule 7.6. Outcome (b), "credibly better, but not by the 10% margin set as worth switching for", is the likeliest and is a positive result.
-- **Caveat to carry:** the backtest edges come from days the models may have seen in training, so the 72% lower-bound sensitivity anchors the brief.
+**Weather study** (`weather_study/`):
+- Published 12 November 2026.
+- Corrected on 16 November as version 2, DOI 10.5281/zenodo.24284719. Version 1 (10.5281/zenodo.24161799) stays available.
+- **Correction 1:** TimesFM 2.5 with covariates fits one regression across every series in a call. The scored backtest batched 64 days, so each forecast drew on later days. Forecast one day per call, weather did not improve TimesFM (1.034, p = 0.947, against the published 0.941). The confirmed improvements are three: the regression, Chronos-2 and Timestral. Record: `weather_study/CORRECTIONS.md`; outputs: `weather_study/correction1/`.
+- Reported upstream as google-research/timesfm#577, with a minimal reproduction (`gb-weather-private/weather/timesfm_batch_repro.py`).
+- Andy's LinkedIn post on the weather results was corrected in place, with comments.
+
+**Benchmark design** (`next_study/`, `PROJECT.md`, `BENCHMARK_RULES.md`):
+- **Windows.** Confirmatory claims in summer only. Checkpoint 1 runs from 1 April 2027 (first 180 days); checkpoint 2, winter 2027–28, is descriptive; checkpoint 3, summer 2028, is confirmatory, with the review.
+- **Power.** Summer 180 days gives 93.7% at the backtest's summer edge over the regression (10.8%, c = 0.47), and 72.2% at the low end of its interval. No winter window, single or two pooled, reaches 80% at a 10% edge.
+- **c correction.** The power-check specification called c = 0.7 pessimistic; it is optimistic (`next_study/CORRECTIONS.md`).
+- **D-1.** The user is a forecasting team. There is no £ valuation; each checkpoint reports a break-even price (rule 5.6).
+- **Draft rule 4.8** (from the weather correction): every model forecasts one day per call, with a call-mode check before entry.
+
+**Checkpoint 0** (`checkpoint0/`): LightGBM added on the weather study's 960 backtest days, exploratory.
+- **Process.** Plan frozen at tag `checkpoint0-plan` before any run. All checks passed first time, and scoring used the committed `score.py`.
+- **Mean daily error:** Chronos-2 (calendar and weather) 916 MW, regression 1,014, LightGBM defaults 1,134, S1 1,061, S2 1,094, TimesFM 2.5 (corrected) 1,620.
+- **Findings:**
+  - LightGBM matches the regression in summer and is 29% worse in winter (two winters).
+  - Chronos-2 shows no leakage signature (0.807 before release, 0.808 after).
+- **Cost:** the regression 0.22 s a day, Chronos-2 1.85, TimesFM one day per call 10.63.
+- **Outputs:** the note is `checkpoint0/RESULTS.md`; every change is in `checkpoint0/REVISIONS.md`. Andy posted it on LinkedIn on 16 November.
 
 ## Next steps, in order
 
-1. Andy settles the three bracketed items in `BENCHMARK_RULES.md`: compute budget (3.3), standing reviewer (9.7), infrastructure for daily runs (10.2). D-1 (user and £ value) and the cost metrics were settled on 15 November: see `PROJECT.md` §2 and rules 5.5–5.6.
-2. Commit and tag `benchmark-rules-v1`.
-3. Write checkpoint 1's plan, citing rules by number. It must resolve:
-   - Timestral's calendar encoding: the categorical route (target encoding), and whether the mirror pass is exempt (`mistralai/timestral#9`);
-   - LightGBM tuning: only on the past, with a search budget fixed before scoring (lesson 12);
-   - the compute price for rule 5.5: a published cloud rate, its source and date;
-   - the input table and its gate check (lesson 1);
-   - the 10% rationale.
-4. Move the daily pipeline off Andy's laptop before the window opens.
-5. Freeze checkpoint 1's plan by March 2027.
+1. **19 November, after 10:30:** check the weather study's first live push, with `tail -8 ~/gb-weather-data/push.log`. The live window starts on 20 November.
+2. **Settle the rules (December):**
+   - the three bracketed items: compute budget (3.3), standing reviewer (9.7), infrastructure for daily runs (10.2);
+   - which trained baselines form checkpoint 1's confirmatory family, since default LightGBM proved the weaker bar.
 
-## Checkpoint 0 (15 November 2026)
+   Then commit and tag `benchmark-rules-v1`.
+3. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
+   - **G2:** power for the Chronos-2–LightGBM pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end (checkpoint 0, `results.md` table 6).
+   - **G3:** the 7-day bootstrap's false-positive rate at a true edge of zero.
+4. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
+   - a pre-specified per-slot LightGBM, which tests the structure hypothesis;
+   - each forecaster's error on the highest-demand days (top 10% by outturn), which tests the extrapolation hypothesis.
 
-Plan frozen at tag `checkpoint0-plan`; all WP1 checks passed first time; scored by the committed `score.py`. Mean daily error: Chronos-2 (calendar and weather) 916 MW, weather regression 1,014, LightGBM (defaults) 1,134; S1 and S2 settings 1,061 and 1,094, still behind the regression. LightGBM matches the regression in summer and is 29% worse in winter (December to February). No leakage signature (Chronos-2 / LightGBM 0.807 before release, 0.808 after). Cost (WP2) runner committed; timing pending. Results: `checkpoint0/results.md`.
+   It must also settle:
+   - Timestral's calendar encoding (the categorical route; `mistralai/timestral#9`);
+   - LightGBM tuning, on the past only, with a fixed budget;
+   - the compute price for rule 5.5;
+   - the input table and its gate check;
+   - the 10% rationale;
+   - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression.
+5. **Move the daily pipeline off Andy's laptop by 1 March 2027.** It must then run unattended for at least 28 days before 1 April (gate G4).
 
-### Questions for checkpoint 1's plan, from checkpoint 0
+## Watch
 
-- **Why LightGBM lost, two hypotheses, neither tested.** (a) Trees cannot extrapolate beyond the temperatures in their training data, which would hurt on cold days. (b) Structure: the regression fits 48 per-slot models with explicit Tc, Tc², wind and Tc × wind (wind chill) terms; LightGBM fits one model across all slots, and S1 and S2 changed its size and learning rate but not that structure. The two lead to different designs: (a) argues for the regression as the main trained bar; (b) argues for a per-slot LightGBM, or one given the regression's temperature terms. The first backtest analysis in checkpoint 1's plan should be a pre-specified per-slot LightGBM, before any tuning.
-- **Whether to add one pre-specified combination** (for example the simple average of Chronos-2 and the regression) as an entrant.
-- **Winter.** The trained baseline is weakest in winter, and winter carries no confirmatory claim. Make the winter descriptive tables prominent in every report, and let the checkpoint 3 review weigh the pooled-winter option partly on this.
-
-## Still running from the weather study
-
-- The prospective weather window runs from 20 November 2026 to 31 March 2027 and reports in April 2027 (descriptive). The first daily push is 19 November; check with `tail -8 ~/gb-weather-data/push.log` after 10:30.
-- If Mistral replies on `mistralai/timestral#9`, record the outcome in `weather_study/RESULTS.md`.
+- **The weather study's live window** runs from 20 November 2026 to 31 March 2027 and reports in April 2027. Read TimesFM's live result against its corrected backtest.
+- **Upstream replies:** record them in the relevant corrections file or note.
+  - Mistral on `mistralai/timestral#9`.
+  - Google on `google-research/timesfm#577`.
 
 ## Standing constraints
 
@@ -49,4 +68,7 @@ Plan frozen at tag `checkpoint0-plan`; all WP1 checks passed first time; scored 
 - The Copernicus CDS key lives only in `~/.cdsapirc` and is never written to any file, script or commit.
 - Model weights and data folders are never committed.
 - Any script that produces a result is committed before it runs; its outputs are committed after.
-- Committed files are never edited to fix errors; the fix goes in `CORRECTIONS.md`.
+- Committed files are never edited to fix errors; the fix goes in a `CORRECTIONS.md` or `REVISIONS.md`.
+- Every source is opened before it is cited, including sources a reviewer supplies (lesson 23).
+- Headlines fixed by a plan lead every note and post that reports the result. Context follows; it does not replace them (lesson 24).
+- Tags cannot be pushed from Claude's workspace. Andy creates and pushes them.
