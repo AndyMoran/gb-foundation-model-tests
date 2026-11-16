@@ -17,6 +17,30 @@ The published note (`RESULTS.md`, DOI 10.5281/zenodo.24161799) is not edited. Er
 - reruns the study's evaluation, unchanged, with TimesFM's corrected forecasts;
 - reports TimesFM's Q1–Q4 and descriptive readings beside the published ones.
 
-TimesFM's figures from batched sensitivity runs and from the exploratory checks E1–E3 are withdrawn, not rerun.
+TimesFM's figures from batched sensitivity runs and from the exploratory checks E1–E4 are withdrawn, not rerun. So are its rows in the descriptive block and season tables.
 
-**Effect.** [Pending the run.]
+**Checks.** Both passed before the rerun. The evaluation, rerun on the scored forecasts, reproduced the published Q1–Q3 for every forecaster. TimesFM, rerun in its scored batches, reproduced its scored forecasts exactly (maximum difference 0.0000 MW).
+
+**Effect.** Run 15 November 2026, 20:59–23:49, on Andy's machine. Outputs are in `correction1/`.
+
+| Measure | Published (batched) | Corrected (one day per call) |
+|---|---|---|
+| Mean daily error with weather (MW) | 1,474 | 1,620 |
+| Q1: with weather ÷ without | 0.941 (0.913–0.968), p < 0.0005 | 1.034 (0.999–1.068), p = 0.947 |
+| Q2: gap to NESO closed | 93 MW, 11% | −53 MW, −6% |
+| Q3: with weather ÷ regression with weather | 1.453 (1.394–1.510) | 1.597 (1.530–1.662) |
+| Q1 without fallback days | 0.943 (0.913–0.974) | 1.043 (1.004–1.080) |
+| Q1 on winter days | 0.875 (0.827–0.926) | 0.985 (0.924–1.050) |
+
+The two sets of forecasts differ by up to 6,801 MW on a half-hour. The median, over days, of each day's largest difference is 927 MW. Every other forecaster's results are unchanged.
+
+**What changes in the published note:**
+- **Q1 for TimesFM 2.5 is no longer rejected.** The note's summary, "all four forecasters forecast GB electricity demand better, each confirmed", is wrong for TimesFM 2.5. Forecast one day at a time, weather did not reduce its error (ratio 1.034; p = 0.947). The confirmed improvements are three: the regression, Chronos-2 and Timestral.
+- **Q2 for TimesFM 2.5 is reversed.** Weather widened its gap to NESO slightly, by 53 MW, rather than closing it by 11%.
+- **Q3 for TimesFM 2.5 is larger.** Its error is 1.60 times the regression's, not 1.45.
+- **TimesFM 2.5's other-mode figure (0.952), its block, season and holiday figures, and its rows in E1–E4 are withdrawn.**
+- **The other forecasters' results stand,** including everything about Chronos-2, Timestral, the regression and E5.
+
+**What this does not settle.** The batched forecasts combined two things: pooling the weather regression across 64 days, which gives it more data, and look-ahead within each batch. The correction removes both. It does not measure how much of the published gain came from each. A pooled regression using only past days would answer that, but it would be a new analysis, not a correction.
+
+**Release.** A corrected version of `RESULTS.md` is published under a new version DOI, with this record linked from its first paragraph. The original version stays available under its own DOI.
