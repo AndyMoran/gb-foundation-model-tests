@@ -115,6 +115,6 @@ I used AI tools in this work: Claude, ChatGPT, Microsoft Copilot, DeepSeek, Kimi
 - Uzzaman, M. T., Kar, P. C., Rumee, S. T. A. and Zaber, M. I. (2026), [Cross-zonal short-term load forecasting in resource-constrained distribution grids](https://www.mdpi.com/2673-4826/7/4/143), *Electricity* 7(4), 143.
 - Yang, L., Ren, R., Gu, X. and Sun, L. (2023), [Interactive generalized additive model and its applications in electric load forecasting](https://arxiv.org/abs/2310.15662), KDD 2023; arXiv 2310.15662.
 - März, A. and Rasul, K. (2024), [Forecasting with hyper-trees](https://arxiv.org/abs/2405.07836), arXiv 2405.07836.
-- TNEI Services (2024), *QWID FLEXER: Final Report*, report 15929-03-R0 for National Grid ESO, 10 April 2024 (NIA project; published on NESO's website).
+- TNEI Services (2024), [*QWID FLEXER: Final Report*](https://www.neso.energy/document/353991/download), report 15929-03-R0 for National Grid ESO, 10 April 2024 (NIA project; published by NESO).
 - Barros, F. S., Cerqueira, V. and Soares, C. (2021), [Empirical study on the impact of different sets of parameters of gradient boosting algorithms for time-series forecasting with LightGBM](https://link.springer.com/chapter/10.1007/978-3-030-89188-6_34), PRICAI 2021.
 - The weather study: [10.5281/zenodo.24284719](https://doi.org/10.5281/zenodo.24284719) (version 2, corrected).
