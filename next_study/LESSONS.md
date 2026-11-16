@@ -1,6 +1,6 @@
 # Lessons from designing the benchmark
 
-Andy Moran (Heaviside Analytics) · 15 November 2026
+Andy Moran (Heaviside Analytics) · 15 November 2026, updated 16 November 2026
 
 This file continues `weather_study/LESSONS.md` (lessons 1–12). It covers the period from the weather study's results to the draft benchmark rules: the exploratory checks, the Timestral investigation, the power checks and the benchmark design. Part 1 lists mistakes made and how each was caught. Part 2 lists where the benchmark is most likely to go wrong next, and what to do now. Part 3 lists practices that worked.
 
@@ -50,6 +50,25 @@ The Copernicus CDS key was shared in conversation and had to be regenerated.
 Decisions, numbers and open items accumulated in a long chat until the context had to be summarised.
 *Fix:* keep state in the repository: a handover file updated at each milestone, the rules, the corrections and the lessons. A new session starts from the files, not from memory.
 
+**22. A model's forecast depended on what else was in the call.**
+TimesFM 2.5 with covariates fits one regression across every series in a call. The weather study batched 64 consecutive days for speed, so each day's forecast drew on later days' demand. That was look-ahead, and it reversed a published confirmatory result (weather study correction 1). It was caught only because checkpoint 0's cost check required every timed forecaster to reproduce its scored forecasts.
+*Fix:* forecast one issue day per call. Before a model enters, run it on at least 20 days both one day per call and batched; if the two differ, batching is barred (draft rule 4.8). Any reproduction check is worth running even when it seems redundant.
+
+**23. Reviewers supplied sources that did not hold up.**
+In two days of review, outside feedback supplied five citations or quotations that failed on checking:
+- a paper whose DOI could not be found;
+- a configuration attributed to the wrong journal;
+- a quotation that appears nowhere;
+- a system operator's "own methodology" that was a consultant's report, and was misdescribed even there;
+- a study that "beat the system operator" only because it forecast an hour ahead.
+
+Two more were real but said less than claimed. The pattern matches lesson 15: confident, specific and plausible.
+*Fix:* open every source before citing it, whoever supplies it. Check that it says what the citation claims, at the stated scale and horizon. If only the abstract is accessible, say so in the citation. Cite a relayed claim as relayed ("März and Rasul, citing Godahewa et al.").
+
+**24. Pressure to reframe a fixed headline after the result.**
+Once checkpoint 0's result was known, three separate suggestions would have led with something other than the plan's fixed headline: the regression comparison, LightGBM's credentials, a "confirmation, not discovery" framing. Each was reasonable as context, and each would have made the opening a choice made after seeing the result.
+*Fix:* the fixed headline leads, quoted if need be, and context follows straight after. Quoting it with a link to the tagged plan turned the constraint into a credibility point.
+
 ## Part 2: where it is most likely to go wrong next
 
 Each risk lists the warning sign and what to do now.
@@ -98,4 +117,6 @@ Each risk lists the warning sign and what to do now.
 - Measuring an assumption rather than arguing about it: the summer edge took one short script.
 - Fixing the outcome headlines before any result.
 - Checking each review's claims against the files before adopting them.
-- Filing upstream issues with a minimal reproduction (`mistralai/timestral#9`).
+- Filing upstream issues with a minimal reproduction (`mistralai/timestral#9`, `google-research/timesfm#577`).
+- Requiring every timed forecaster to reproduce its scored forecasts: the check that caught lesson 22.
+- Correcting a published result openly: a notice in the note, a new version DOI, the original left available, and the public post edited with a comment.
