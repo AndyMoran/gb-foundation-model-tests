@@ -1,0 +1,490 @@
+{
+ "days_csv": "tails/days.csv",
+ "days_csv_sha256": "d9c6b6a5b1f7c06c168a13521484dbd957cd091510caff44c5eacfbad0a93f7c",
+ "script_sha256": "5ba35a0465548a37fe7fa6f09a93e9f8f9cfd898b9d9d760dbdaa064931456b2",
+ "set_sizes": {
+  "T1": 96,
+  "T1b": 96,
+  "T2": 96,
+  "T3": 35,
+  "T4": 0
+ },
+ "cases": {
+  "A_lose_supported": {
+   "passed": true,
+   "expected": {
+    "chronos2_A": "above",
+    "lightgbm_s1": "above",
+    "h1": [
+     "supported",
+     "all T1 conditions met; T4 clause not assessed"
+    ]
+   },
+   "got": {
+    "chronos2_A": "above",
+    "lightgbm_s1": "above",
+    "h1": [
+     "supported",
+     "all T1 conditions met; T4 clause not assessed"
+    ]
+   },
+   "mismatches": [],
+   "n_mismatches": 0,
+   "days_not_scored": [
+    "2024-03-17"
+   ],
+   "lightgbm_T1": {
+    "narrow": {
+     "value": 1.35,
+     "ci90": [
+      1.2793,
+      1.4259
+     ],
+     "draws_dropped": 0
+    },
+    "broad": {
+     "value": 1.4058,
+     "ci90": [
+      1.3412,
+      1.4734
+     ],
+     "draws_dropped": 0
+    },
+    "bias": [
+     270.0,
+     [
+      257.9551,
+      282.4474
+     ]
+    ],
+    "peak": [
+     540.0,
+     [
+      515.9103,
+      564.8948
+     ]
+    ]
+   },
+   "chronos_T1_narrow": {
+    "value": 1.4,
+    "ci90": [
+     1.3436,
+     1.4594
+    ],
+    "draws_dropped": 0
+   },
+   "h1_t4": {
+    "n_scored": 0,
+    "clause": "not assessed",
+    "why": "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
+   },
+   "headlines": {
+    "chronos2_A": {
+     "template": "above",
+     "sentence": "In a backtest Chronos-2 may have seen in training, it lost ground to a weather regression on the coldest tenth of days: relative to the regression, its error was 40.0% higher than on other days of the same months."
+    },
+    "lightgbm_s1": {
+     "template": "above",
+     "sentence": "On the coldest tenth of days in a 960-day backtest, LightGBM lost ground to a weather regression: relative to the regression, its error was 35.0% higher than on other days of the same months."
+    },
+    "h1": "H1 was supported: on the coldest tenth of days LightGBM S1 lost ground to the regression against other days of the same months and against all other days, and under-forecast both demand and the daily peak. The T4 clause was not assessed: no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty."
+   }
+  },
+  "B_gain_winter": {
+   "passed": true,
+   "expected": {
+    "chronos2_A": "below",
+    "lightgbm_s1": "includes",
+    "h1": [
+     "unclear",
+     "a winter effect, not a cold-day effect"
+    ]
+   },
+   "got": {
+    "chronos2_A": "below",
+    "lightgbm_s1": "includes",
+    "h1": [
+     "unclear",
+     "a winter effect, not a cold-day effect"
+    ]
+   },
+   "mismatches": [],
+   "n_mismatches": 0,
+   "days_not_scored": [],
+   "lightgbm_T1": {
+    "narrow": {
+     "value": 1.0,
+     "ci90": [
+      0.9675,
+      1.0325
+     ],
+     "draws_dropped": 0
+    },
+    "broad": {
+     "value": 1.3252,
+     "ci90": [
+      1.2793,
+      1.3738
+     ],
+     "draws_dropped": 0
+    },
+    "bias": [
+     260.0,
+     [
+      252.9939,
+      267.3277
+     ]
+    ],
+    "peak": [
+     520.0,
+     [
+      505.9879,
+      534.6555
+     ]
+    ]
+   },
+   "chronos_T1_narrow": {
+    "value": 0.7,
+    "ci90": [
+     0.6742,
+     0.7292
+    ],
+    "draws_dropped": 0
+   },
+   "h1_t4": {
+    "n_scored": 0,
+    "clause": "not assessed",
+    "why": "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
+   },
+   "headlines": {
+    "chronos2_A": {
+     "template": "below",
+     "sentence": "In a backtest Chronos-2 may have seen in training, it gained ground on a weather regression on the coldest tenth of days: relative to the regression, its error was 30.0% lower than on other days of the same months."
+    },
+    "lightgbm_s1": {
+     "template": "includes",
+     "sentence": "On the coldest tenth of days in a 960-day backtest, LightGBM did not clearly lose or gain ground against a weather regression, compared with other days of the same months (tail shift 1.000, 90% interval 0.968\u20131.032)."
+    },
+    "h1": "H1 was unclear: LightGBM S1 lost ground against all other days but not clearly against other days of the same months: a winter effect, not a cold-day effect. The T4 clause was not assessed: no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty."
+   }
+  },
+  "C_none_cold_not_broad": {
+   "passed": true,
+   "expected": {
+    "chronos2_A": "includes",
+    "lightgbm_s1": "above",
+    "h1": [
+     "unclear",
+     "a cold-day effect not seen against all other days"
+    ]
+   },
+   "got": {
+    "chronos2_A": "includes",
+    "lightgbm_s1": "above",
+    "h1": [
+     "unclear",
+     "a cold-day effect not seen against all other days"
+    ]
+   },
+   "mismatches": [],
+   "n_mismatches": 0,
+   "days_not_scored": [],
+   "lightgbm_T1": {
+    "narrow": {
+     "value": 1.5294,
+     "ci90": [
+      1.4621,
+      1.6007
+     ],
+     "draws_dropped": 0
+    },
+    "broad": {
+     "value": 1.0,
+     "ci90": [
+      0.9559,
+      1.0461
+     ],
+     "draws_dropped": 0
+    },
+    "bias": [
+     260.0,
+     [
+      250.8963,
+      269.0066
+     ]
+    ],
+    "peak": [
+     520.0,
+     [
+      501.7927,
+      538.0132
+     ]
+    ]
+   },
+   "chronos_T1_narrow": {
+    "value": 1.0,
+    "ci90": [
+     0.9579,
+     1.0428
+    ],
+    "draws_dropped": 0
+   },
+   "h1_t4": {
+    "n_scored": 0,
+    "clause": "not assessed",
+    "why": "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
+   },
+   "headlines": {
+    "chronos2_A": {
+     "template": "includes",
+     "sentence": "In a backtest Chronos-2 may have seen in training, it did not clearly lose or gain ground against a weather regression on the coldest tenth of days, compared with other days of the same months (tail shift 1.000, 90% interval 0.958\u20131.043)."
+    },
+    "lightgbm_s1": {
+     "template": "above",
+     "sentence": "On the coldest tenth of days in a 960-day backtest, LightGBM lost ground to a weather regression: relative to the regression, its error was 52.9% higher than on other days of the same months."
+    },
+    "h1": "H1 was unclear: LightGBM S1 lost ground against other days of the same months but not clearly against all other days: a cold-day effect not seen against all other days. The T4 clause was not assessed: no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty."
+   }
+  },
+  "D_not_supported": {
+   "passed": true,
+   "expected": {
+    "chronos2_A": "above",
+    "lightgbm_s1": "below",
+    "h1": [
+     "not supported",
+     "both tail shifts lie wholly below 1"
+    ]
+   },
+   "got": {
+    "chronos2_A": "above",
+    "lightgbm_s1": "below",
+    "h1": [
+     "not supported",
+     "both tail shifts lie wholly below 1"
+    ]
+   },
+   "mismatches": [],
+   "n_mismatches": 0,
+   "days_not_scored": [],
+   "lightgbm_T1": {
+    "narrow": {
+     "value": 0.8,
+     "ci90": [
+      0.7706,
+      0.83
+     ],
+     "draws_dropped": 0
+    },
+    "broad": {
+     "value": 0.8,
+     "ci90": [
+      0.7742,
+      0.828
+     ],
+     "draws_dropped": 0
+    },
+    "bias": [
+     -133.3333,
+     [
+      -137.6894,
+      -129.1264
+     ]
+    ],
+    "peak": [
+     -320.0,
+     [
+      -330.4546,
+      -309.9034
+     ]
+    ]
+   },
+   "chronos_T1_narrow": {
+    "value": 1.25,
+    "ci90": [
+     1.1989,
+     1.3076
+    ],
+    "draws_dropped": 0
+   },
+   "h1_t4": {
+    "n_scored": 0,
+    "clause": "not assessed",
+    "why": "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
+   },
+   "headlines": {
+    "chronos2_A": {
+     "template": "above",
+     "sentence": "In a backtest Chronos-2 may have seen in training, it lost ground to a weather regression on the coldest tenth of days: relative to the regression, its error was 25.0% higher than on other days of the same months."
+    },
+    "lightgbm_s1": {
+     "template": "below",
+     "sentence": "On the coldest tenth of days in a 960-day backtest, LightGBM gained ground on a weather regression: relative to the regression, its error was 20.0% lower than on other days of the same months."
+    },
+    "h1": "H1 was not supported: on the coldest tenth of days LightGBM S1 gained ground on the regression, so its relative error was lower, not higher, on the coldest days. The T4 clause was not assessed: no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty."
+   }
+  },
+  "E_unclear_peak_over": {
+   "passed": true,
+   "expected": {
+    "chronos2_A": "includes",
+    "lightgbm_s1": "above",
+    "h1": [
+     "unclear",
+     "bias or peak error not clearly positive"
+    ]
+   },
+   "got": {
+    "chronos2_A": "includes",
+    "lightgbm_s1": "above",
+    "h1": [
+     "unclear",
+     "bias or peak error not clearly positive"
+    ]
+   },
+   "mismatches": [],
+   "n_mismatches": 0,
+   "days_not_scored": [],
+   "lightgbm_T1": {
+    "narrow": {
+     "value": 1.35,
+     "ci90": [
+      1.2941,
+      1.4095
+     ],
+     "draws_dropped": 0
+    },
+    "broad": {
+     "value": 1.35,
+     "ci90": [
+      1.3087,
+      1.3927
+     ],
+     "draws_dropped": 0
+    },
+    "bias": [
+     225.0,
+     [
+      218.6329,
+      231.714
+     ]
+    ],
+    "peak": [
+     -540.0,
+     [
+      -556.1136,
+      -524.719
+     ]
+    ]
+   },
+   "chronos_T1_narrow": {
+    "value": 1.0,
+    "ci90": [
+     0.963,
+     1.0422
+    ],
+    "draws_dropped": 0
+   },
+   "h1_t4": {
+    "n_scored": 0,
+    "clause": "not assessed",
+    "why": "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
+   },
+   "headlines": {
+    "chronos2_A": {
+     "template": "includes",
+     "sentence": "In a backtest Chronos-2 may have seen in training, it did not clearly lose or gain ground against a weather regression on the coldest tenth of days, compared with other days of the same months (tail shift 1.000, 90% interval 0.963\u20131.042)."
+    },
+    "lightgbm_s1": {
+     "template": "above",
+     "sentence": "On the coldest tenth of days in a 960-day backtest, LightGBM lost ground to a weather regression: relative to the regression, its error was 35.0% higher than on other days of the same months."
+    },
+    "h1": "H1 was unclear: LightGBM S1 lost ground on the coldest tenth of days in both comparisons, but did not clearly under-forecast demand and the daily peak. The T4 clause was not assessed: no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty."
+   }
+  },
+  "F_none_not_supported": {
+   "passed": true,
+   "expected": {
+    "chronos2_A": "includes",
+    "lightgbm_s1": "includes",
+    "h1": [
+     "not supported",
+     "neither tail shift lies wholly above 1"
+    ]
+   },
+   "got": {
+    "chronos2_A": "includes",
+    "lightgbm_s1": "includes",
+    "h1": [
+     "not supported",
+     "neither tail shift lies wholly above 1"
+    ]
+   },
+   "mismatches": [],
+   "n_mismatches": 0,
+   "days_not_scored": [],
+   "lightgbm_T1": {
+    "narrow": {
+     "value": 1.0,
+     "ci90": [
+      0.9523,
+      1.05
+     ],
+     "draws_dropped": 0
+    },
+    "broad": {
+     "value": 1.0,
+     "ci90": [
+      0.9617,
+      1.0408
+     ],
+     "draws_dropped": 0
+    },
+    "bias": [
+     0.0,
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "peak": [
+     400.0,
+     [
+      385.8862,
+      414.9815
+     ]
+    ]
+   },
+   "chronos_T1_narrow": {
+    "value": 1.0,
+    "ci90": [
+     0.9678,
+     1.0346
+    ],
+    "draws_dropped": 0
+   },
+   "h1_t4": {
+    "n_scored": 0,
+    "clause": "not assessed",
+    "why": "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
+   },
+   "headlines": {
+    "chronos2_A": {
+     "template": "includes",
+     "sentence": "In a backtest Chronos-2 may have seen in training, it did not clearly lose or gain ground against a weather regression on the coldest tenth of days, compared with other days of the same months (tail shift 1.000, 90% interval 0.968\u20131.035)."
+    },
+    "lightgbm_s1": {
+     "template": "includes",
+     "sentence": "On the coldest tenth of days in a 960-day backtest, LightGBM did not clearly lose or gain ground against a weather regression, compared with other days of the same months (tail shift 1.000, 90% interval 0.952\u20131.050)."
+    },
+    "h1": "H1 was not supported: LightGBM S1 did not clearly lose ground to the regression on the coldest tenth of days, against other days of the same months or against all other days. The T4 clause was not assessed: no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty."
+   }
+  }
+ },
+ "unit_rules": {
+  "passed": true,
+  "checks": 20
+ },
+ "note_t4": "T4 has 0 days, fewer than 10: the T4-clause case (G) is not run; the clause is not assessed.",
+ "passed": true
+}
