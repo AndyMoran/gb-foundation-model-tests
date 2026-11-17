@@ -108,7 +108,7 @@ Intervals: moving-block bootstrap of the 960 days in calendar order (blocks of 7
 
 **Reading rule:** as in checkpoint 0. No p-values, and nothing is called significant. A forecaster is said to lose or gain ground only where the 90% interval of its tail shift excludes 1. Otherwise it did not clearly lose or gain ground, which is not evidence that it performed the same.
 
-**Many comparisons.** About 50 tail shifts are reported (forecasters × sets × complements). At the 90% level, roughly one in ten would exclude 1 by chance alone. Only the two headline comparisons and H1 are fixed in advance; every other result is descriptive.
+**Many comparisons.** Up to 56 tail shifts are reported (seven forecasters against the regression × four sets × two complements). At the 90% level, roughly one in ten would exclude 1 by chance alone. Only the two headline comparisons and H1 are fixed in advance; every other result is descriptive.
 
 ## 7. Prediction, written before any tail error is computed
 
