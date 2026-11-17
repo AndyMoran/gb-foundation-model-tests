@@ -34,11 +34,13 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 ## Next steps, in order
 
 1. **19 November, after 10:30:** check the weather study's first live push, with `tail -8 ~/gb-weather-data/push.log`. The live window starts on 20 November.
-2. **Tag the rules:** the brackets were settled on 17 November (`PROJECT.md` decision log). Andy reads `BENCHMARK_RULES.md` once more, then tags `benchmark-rules-v1`. Before or just after: run `.github/workflows/runner_check.yml` once from the Actions tab and record the result as A13.
-3. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
+2. **Supply `PIPELINE_RULES.md` and `WRITING.md`** from the battery repository; `PROJECT.md` §3.6 cites them and they are not yet in this repository.
+3. **Tag the rules:** the brackets were settled on 17 November (`PROJECT.md` decision log). Andy reads `BENCHMARK_RULES.md` once more, then tags `benchmark-rules-v1`. Before or just after: run `.github/workflows/runner_check.yml` once from the Actions tab and record the result as A13.
+4. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
+   - **Before G2:** backtest per-slot LightGBM under its own committed script if it is to count for the LightGBM comparator (`PROJECT.md` §4, confirmatory pairs).
    - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Where LightGBM S1 is the comparator, use S1's summer edge, not the defaults' (checkpoint 0, `results.md` tables 2 and 6): it is smaller, so power will be lower than 93.7%. Show the number.
    - **G3:** the per-test false-positive rate, one-sided at alpha 0.025, from 5,000 simulations at a true edge of zero; threshold 0.032 (`PROJECT.md`, G3).
-4. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
+5. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
    - a pre-specified per-slot LightGBM, which tests the structure hypothesis;
    - each forecaster's error on the highest-demand days (top 10% by outturn), which tests the extrapolation hypothesis.
 
@@ -50,7 +52,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
    - the input table and its gate check;
    - the 10% rationale;
    - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression.
-5. **Move the daily pipeline off Andy's laptop by 1 March 2027,** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
+6. **Move the daily pipeline off Andy's laptop by 1 March 2027,** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
    - scheduled attempts after 09:30 UK (cron is UTC: for example 09:47, 13:47 and 17:47 UTC), off the hour;
    - a concurrency group keyed to the forecast day, without cancelling runs in progress, so attempts never overlap;
    - `workflow_dispatch` for manual retries;

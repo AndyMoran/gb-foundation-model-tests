@@ -19,3 +19,14 @@ Committed files are not edited. Errors found after commit are recorded here, wit
 **Error:** The rule's last branch, "Next winter: otherwise", assumed that a later winter would be adequately powered. The results show it would not. At a true 10% edge, no feasible winter window reaches 80%: 33–51% for 120 days from December to March, and 49–62% for 150 days from November to March. The limit is winter's variance, not the year.
 
 **Fix:** The live window is summer 2027, 180 days from April to September. That window was in the committed specification. It was chosen on the strength of the power calculation, before any live data existed. Power is 93.7% at the backtest's summer edge (10.8%) and 72.2% at the low end of its interval (7.7%), with c = 0.47 (`summer_edge.py`, committed as `12d419b` before running).
+
+## 3. G2's fallback table had no row for a likely case (17 November 2026)
+
+**Where:** `PROJECT.md`, §4, "Gate fallbacks", G2 table, as committed in `0013c4a` and `b7cc0f3`.
+
+**Error:** Order 1 needed both pairs at 80% power at alpha 0.025; order 2 fired only if exactly one pair reached 80% at 0.05. If both pairs reached 80% at 0.05 but not both at 0.025, no row applied, and the table fell through to "checkpoint 1 is descriptive". That case is likely: power at the low end of the summer edge was 72.2% at 0.025 (`summer_edge.json`). Found by a reviewer.
+
+**Effect:** none. G2 has not run.
+
+**Fix:** Order 2 now reads "not order 1, and at least one pair at 80% at 0.05": the family is the pair with the higher power at 0.05, alone at 0.05, with a tie-break fixed in advance. The pairs are now named in `PROJECT.md` §4.
+

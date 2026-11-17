@@ -1,6 +1,6 @@
 # GB day-ahead demand benchmark: project
 
-Andy Moran (Heaviside Analytics) · 15 November 2026
+Andy Moran (Heaviside Analytics) · 15 November 2026, revised 17 November 2026
 
 This file says why the benchmark exists, how the work is done, and what happens before checkpoint 1. The rules themselves live in `BENCHMARK_RULES.md`, and this file cites them by number rather than restating them. Current state and next steps are in `next_study/HANDOVER.md`; claims not yet checked are in `ASSUMPTIONS.md`.
 
@@ -76,25 +76,35 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 
 | Step | Work | Gate | Target |
 |---|---|---|---|
-| 1 | Settle the three bracketed items in the rules (compute budget 3.3, standing reviewer 9.7, infrastructure 10.2); tag `benchmark-rules-v1` | **G1:** rules tagged | December 2026 |
-| 2 | Build LightGBM and backtest it on the weather study's days: checkpoint 0 (`checkpoint0/PLAN.md`) | — | December 2026 |
-| 3 | From checkpoint 0's table 6, rerun the summer power cell for the Chronos-2–LightGBM pair at alpha 0.025, at the measured edge and at c − 0.05, c and c + 0.05 (R1) | **G2:** power | January 2027 |
-| 4 | Run the power cell at a true edge of zero to check the bootstrap's false-positive rate (R12) | **G3:** size | January 2027 |
+| 1 | Settle the bracketed items in the rules (done 17 November); tag `benchmark-rules-v1` | **G1:** rules tagged | December 2026 |
+| 2 | Build LightGBM and backtest it on the weather study's days: checkpoint 0 (`checkpoint0/PLAN.md`, done). Backtest any further LightGBM configuration, such as per-slot, under its own committed script before G2 runs; none added after that counts for the comparator | — | January 2027 |
+| 3 | Compute G2's power table for both confirmatory pairs (below), at alpha 0.025 and 0.05, at each pair's measured summer edge and its interval's low end, at c − 0.05, c and c + 0.05 (R1) | **G2:** power | January 2027 |
+| 4 | Simulate at a true edge of zero to check each test's false-positive rate (R12) | **G3:** size | January 2027 |
 | 5 | Resolve Timestral's encoding (categorical route; mirror pass) and record it as a declared workaround (rule 4.2) | — | February 2027 |
 | 6 | Move daily runs off the laptop; add a missed-day alert; run unattended | **G4:** pipeline | Running by 1 March 2027 |
 | 7 | Write checkpoint 1's plan, citing rules by number; freeze and tag | **G5:** plan tagged | By 25 March 2027 |
 
+### The confirmatory pairs
+
+Checkpoint 1's confirmatory pairs are named here, before G2:
+- Chronos-2 against the weather regression;
+- Chronos-2 against the LightGBM comparator: of the LightGBM configurations backtested under committed scripts before G2 runs (step 2), the one with the lowest mean daily error on the backtest's summer days (April to September). From checkpoint 0 that is S1 unless a later configuration beats it. The comparator is chosen on error, never on power: the benchmark tests against the hardest trained opponent it has.
+
+The ratio is entrant error over baseline error, and the claim is that it lies below 1, one-sided (rules 5.1 and 7.1).
+
 ### Gate fallbacks, fixed before each gate is evaluated
 
-**G2 (power), evaluated on backtest forecasts only.** Power is reported as a table: for each pair, at its measured summer edge and at the low end of that edge's interval, at c − 0.05, c and c + 0.05, where c is the pair's measured summer error correlation. The measured c is a backtest estimate, so the decision reads the c − 0.05 column. A pair with no measured edge (ratio interval including or above 1) cannot be confirmatory.
+**G2 (power), evaluated on backtest forecasts only.** Power is reported as a table: for each pair, at its measured summer edge and at the low end of that edge's interval, at c − 0.05, c and c + 0.05, where c is the pair's measured summer error correlation. The measured c is a backtest estimate, so the decision reads the c − 0.05 column, at the measured edge. A pair with no measured edge (ratio interval including or above 1) cannot be confirmatory.
+
+The gate reads power at the measured edge, not the low end of its interval. Leakage in training (lesson 2) would make the backtest edge too large, and a true edge near the low end may go undetected. The plan states power at both. If the test then fails, the report's headline says how much power it had (rule 7.6, outcome (c)).
 
 | Order | Condition | Then |
 |---|---|---|
 | 1 | Both pairs ≥ 80% at the measured summer edge, with alpha 0.025 each | Confirmatory family is both pairs |
-| 2 | Only one pair ≥ 80% at alpha 0.05 | Family is that pair alone, at 0.05; the other pair is descriptive |
+| 2 | Not order 1, and at least one pair ≥ 80% at alpha 0.05 | Family is the pair with the higher power at 0.05, alone at 0.05; on a tie, the pair against the baseline with the lower summer error. The other pair is descriptive |
 | — | Neither | Checkpoint 1 is descriptive; plan says so before the window opens |
 
-**G3 (size):** run 5,000 simulations at a true edge of zero, summer 180 days, measured c, with the confirmatory test exactly as in rules 5.2 and 7.1: one-sided, p the share of bootstrap ratios at or above 1. The gate checks the *per-test* false-positive rate at alpha 0.025, which is what rule 7.2's Bonferroni split needs: if each test holds 0.025, the two-pair family holds 0.05 whatever the correlation between them. The joint family rate is reported beside it, descriptively.
+**G3 (size):** run 5,000 simulations at a true edge of zero, over the window's 180 days (rule 6.1), measured c, with the confirmatory test exactly as in rules 5.2 and 7.1: one-sided, p the share of bootstrap ratios at or above 1. The gate checks the *per-test* false-positive rate at alpha 0.025, which is what rule 7.2's Bonferroni split needs: if each test holds 0.025, the two-pair family holds 0.05 whatever the correlation between them. The joint family rate is reported beside it, descriptively.
 
 What the gate can see: at 5,000 simulations the Monte Carlo standard error at 0.025 is 0.0022. A correctly sized test passes the 0.032 threshold 99.9% of the time; a true rate of 0.035 fails it 87% of the time, and 0.040 almost always. A pass rules out gross undercoverage; it does not certify exact size.
 
@@ -102,14 +112,15 @@ What the gate can see: at 5,000 simulations the Monte Carlo standard error at 0.
 |---|---|---|
 | 1 | Per-test false-positive rate ≤ 0.032 | Keep 7-day blocks |
 | 2 | Above 0.032 with 7-day blocks, ≤ 0.032 with 14-day blocks | Use 14-day blocks; rerun G2 |
-| — | Above 0.032 with both | Calibrate the threshold by simulation, and record it in the plan |
+| 3 | Above 0.032 with both | Calibrate the critical value with 14-day blocks: for each test, the p-value cut-off α* is the quantile of G3's 5,000 null p-values matching that test's alpha (2.5th percentile for 0.025, 5th for 0.05). Confirm α* on 5,000 new simulations with a new seed. If the per-test rate is ≤ 0.032 there, the plan uses α*, and G2 is rerun at α* |
+| — | α* not confirmed | Checkpoint 1 is descriptive; the plan says so before the window opens |
 
-**G4 (pipeline):** at least 28 consecutive unattended days before 1 April, with no more than one missed day.
+**G4 (pipeline):** at least 28 consecutive calendar days of unattended running before 1 April, with at most one of those days missed.
 
 | Order | Condition | Then |
 |---|---|---|
 | 1 | Met | Window opens 1 April 2027 |
-| — | Not met | Window opens on the first of the month after G4 is met and runs to 30 September; the plan reports power for the shorter window; below 80%, checkpoint 1 is descriptive |
+| — | Not met | Window opens on the first of the month after G4 is met and runs to 30 September. G2 and G3 are rerun at that window's length, and the plan is revised and re-tagged before the window opens. Below 80% power, checkpoint 1 is descriptive |
 
 ## 5. Out of scope
 
@@ -169,8 +180,11 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | `ASSUMPTIONS.md` | Claims labelled GROUNDED or PROVISIONAL |
 | `next_study/HANDOVER.md` | Current state and next steps |
 | `next_study/CORRECTIONS.md` | Errors in committed files |
-| `next_study/LESSONS.md`, `weather_study/LESSONS.md` | Lessons 1–21; risks R1–R12 |
-| `next_study/*.py`, `.json`, `.md` | Power checks |
+| `next_study/LESSONS.md`, `weather_study/LESSONS.md` | Lessons 1–24; risks R1–R12 |
+| `next_study/*.py`, `.json`, `.md` | Power checks, including `pooled_winter.md` (rule 6.2) |
+| `checkpoint0/` | The LightGBM backtest: plan, revisions, results and cost |
+| `.github/workflows/runner_check.yml` | One-off check of the GitHub runner (A13) |
+| `benchmark/HARDWARE.md` | The runner and budget specification (rules 3.3, 10.2); to be written at G4 |
 
 ## 10. Decision log
 
@@ -194,5 +208,14 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-15 | Related work (TS-Arena, EnFoBench) acknowledged; the benchmark's distinct contribution stated (§1) | Live pre-registered benchmarks already exist |
 | 2026-11-15 | G2 power read at c − 0.05 | The measured c comes from backtest days the models may have seen |
 | 2026-11-15 | Checkpoint 0: a backtest first look adding LightGBM (`checkpoint0/PLAN.md`), descriptive only | A new study, not E6 of the weather backtest; it builds the LightGBM backtest gate G2 needs anyway |
-| 2026-11-17 | Rule brackets settled: compute budget (3.3), per-dispute reviewer with a fallback (9.7), GitHub-hosted runners (10.2); launch clause in 3.6; API entrants descriptive only (3.7); issue time defined by inputs, not run time (2.1) | Two reviews; GitHub's documented runner, cache, log and job limits |
+| 2026-11-17 | Compute budget: CPU only, 15 minutes, 12 GB and 5 GB of weights per entrant-day (rule 3.3) | About 85 times the slowest entrant's measured time (`checkpoint0/cost.md`); fits a 4-CPU, 16 GB runner |
+| 2026-11-17 | Daily runs on GitHub-hosted runners; run logs, not commit times, are the timestamp evidence (rules 4.7, 10.2) | Free for public repositories; server-side timestamps; logs archived weekly as GitHub keeps them 90 days |
+| 2026-11-17 | Disputes: reviewer chosen per dispute, with an objection fallback (rule 9.7) | No one has agreed to a standing role; rule 8.6 allows one later |
+| 2026-11-17 | Launch clause: checkpoint 1's named entrants may be confirmatory there (rule 3.6) | Otherwise the first confirmatory window would slip to summer 2028 |
+| 2026-11-17 | API entrants descriptive only, labelled, actual spend recorded, reviewed at checkpoint 3 (rule 3.7) | Their training cutoff cannot be verified (rule 4.4) |
+| 2026-11-17 | Issue time is defined by the inputs used (public by 09:30 on D−1), not by when the job runs (rule 2.1) | Scheduled runs come after 09:30; the weather study already works this way |
 | 2026-11-17 | G3: 5,000 simulations, per-test threshold 0.032, one-sided as rule 7.1 | 2,000 at 0.035 detected a true 0.035 only half the time; the unqualified "false-positive rate" was misread as family-wise |
+| 2026-11-17 | Confirmatory pairs named before G2: Chronos-2 against the regression and against the LightGBM comparator, chosen on summer backtest error (§4) | The comparator must be the hardest opponent, and chosen before power is seen |
+| 2026-11-17 | G2 order 2 covers "both pairs powered at 0.05, not both at 0.025"; power read at the measured edge, with the low end stated | The table had no row for that case (`CORRECTIONS.md` 3) |
+| 2026-11-17 | G3's last fallback specified: calibrated α* from the null p-values, confirmed on fresh simulations, or descriptive | "Calibrate the threshold" left the threshold to be chosen after the result |
+| 2026-11-17 | G4's fallback reruns G2 and G3 at the shorter window and re-tags the plan | Power and size depend on the window's length |
