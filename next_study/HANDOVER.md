@@ -1,6 +1,6 @@
-# Where things stand (17 November 2026)
+# Where things stand (17 November 2026, evening)
 
-Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md` and `tails/PLAN.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
+Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md` and `tails/RESULTS.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
 
 ## The project
 
@@ -35,15 +35,24 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Rules completed.** Brackets settled (3.3 budget, 9.7 per-dispute reviewer, 10.2 GitHub-hosted runners); launch clause (3.6); API entrants descriptive only (3.7); issue time defined by inputs (2.1). Two reviews; see the `PROJECT.md` decision log.
 - **Gates respecified.** G2 names both confirmatory pairs and fixes a missing row (`CORRECTIONS.md` 3); G3 is per-test, one-sided, 5,000 simulations, threshold 0.032, with a fixed calibration fallback; G4 re-tags the plan if the window moves.
 - **`PIPELINE_RULES.md` and `WRITING.md`** added, adapted from the battery project.
-- **Tails study planned** (`tails/PLAN.md`): errors on the backtest's coldest days, with tail days chosen only from forecasts and the calendar (forecaster's dilemma), narrow same-month complements, hypothesis H1 on LightGBM's extrapolation. Three reviews; ready to tag `tails-plan`. Tails 2 deferred with a trigger (step 3).
+- **Tails study planned** (`tails/PLAN.md`), tagged `tails-plan`, then run the same day (below).
+
+**Tails study** (`tails/`), 17 November:
+- **Process.** Plan frozen at `tails-plan`. `build_days.py` and `score_tails.py` were committed before they ran, and three reviews were done before scoring. Every implementation choice and review is in `tails/REVISIONS.md`. Scored at commit 0db9b84, script sha256 07b508de…, after its synthetic check passed on the real day sets.
+- **Day sets.** T1 96, T1b 96, T2 96, T3 35, **T4 0**. On no backtest day was a forecast temperature below LightGBM's training range; the closest was 0.40 °C, on 6 January 2026. 59 of T1's 96 days come from winter 2024–25.
+- **Headlines** (narrow tail shift, T1). Chronos-2 did not clearly lose or gain ground: 1.055 (0.915–1.213). LightGBM S1 did not clearly lose or gain ground: 1.102 (0.988–1.217).
+- **H1 unclear: a winter effect, not a cold-day effect.** LightGBM S1 lost ground against all other days (1.187, 1.066–1.298), but was already 10.5% worse than the regression on same-month days. The T4 clause was not assessed (T4 empty).
+- **Other results.** TimesFM 2.5 lost ground on cold days (1.302, 1.117–1.533). Chronos-2 under-forecast the cold-day peak by 511 MW (195 to 837).
+- **Note.** `tails/RESULTS.md`, committed as a draft (3ee3eb0). Christmas Day 2025 is stated as a limit, with no exploratory table, by Andy's decision.
+- **Tails 2's trigger fired** (Andy, 17 November): the trigger counts any tail shift, including the broad one. Tails 2 is back on the list, not urgent.
 - **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces (tails study, the weather study's live report), put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is open.
 
 ## Next steps, in order
 
 1. **19 November, after 10:30:** check the weather study's first live push, with `tail -8 ~/gb-weather-data/push.log`. The live window starts on 20 November.
 2. **Tag the rules:** the brackets were settled on 17 November (`PROJECT.md` decision log). Andy reads `BENCHMARK_RULES.md` once more, then tags `benchmark-rules-v1`. Before or just after: run `.github/workflows/runner_check.yml` once from the Actions tab and record the result as A13.
-3. **Tails study (`tails/PLAN.md`), by 5 December:** tag the plan (`tails-plan`), then build the day sets, run the synthetic check, have the scripts reviewed, score, and write the note. Both scripts run on Andy's machine.
-   - Tails 2 (deferred): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Comes back if tails 1 finds any cold-day effect: on T1 or T4, a tail shift whose interval excludes 1, or any forecaster's bias or peak error whose interval excludes 0. If none does, tails 2 is not pursued; that means no effect large enough for tails 1 to detect, not that the question is settled.
+3. **Publish the tails note, by 5 December:** change the header's "draft, 17 November 2026" in `tails/RESULTS.md` to the publication date, commit, and publish as for checkpoint 0. Any post leads with the three headline sentences unchanged (lesson 24).
+   - Tails 2 (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Note that tails 1 found no T4 days, so a tails-2 design cannot rely on out-of-range temperatures.
 4. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
    - **Before G2:** backtest per-slot LightGBM under its own committed script if it is to count for the LightGBM comparator (`PROJECT.md` §4, confirmatory pairs).
    - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Where LightGBM S1 is the comparator, use S1's summer edge, not the defaults' (checkpoint 0, `results.md` tables 2 and 6): it is smaller, so power will be lower than 93.7%. Show the number.
