@@ -128,7 +128,7 @@ What the gate can see: at 5,000 simulations the Monte Carlo standard error at 0.
 - **Cut: probabilistic and quantile scoring.** It may be added by amendment between windows; it is not in checkpoint 1.
 - **Cut: other horizons, series and countries.** Revisit at the checkpoint 3 review (rule 6.4).
 - **Cut: a forecasting service or consultancy** built on the benchmark.
-- **Cut: further analysis of the weather study's backtest.** E5 was its last analysis. Checkpoint 0 is a separate study with its own plan.
+- **Cut: further analysis of the weather study's backtest.** E5 was its last analysis. Checkpoint 0 and the tails study (`tails/PLAN.md`) are separate studies, each with its own plan frozen before it runs.
 - **Cut: valuing forecast error in £.** The break-even price (rule 5.6) is reported instead.
 - **Deferred: a portfolio-like demand series.** For the checkpoint 3 review (rule 6.4).
 
@@ -184,6 +184,7 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | `next_study/LESSONS.md`, `weather_study/LESSONS.md` | Lessons 1–24; risks R1–R12 |
 | `next_study/*.py`, `.json`, `.md` | Power checks, including `pooled_winter.md` (rule 6.2) |
 | `checkpoint0/` | The LightGBM backtest: plan, revisions, results and cost |
+| `tails/` | Errors on the coldest, peak and holiday days of the backtest |
 | `.github/workflows/runner_check.yml` | One-off check of the GitHub runner (A13) |
 | `benchmark/HARDWARE.md` | The runner and budget specification (rules 3.3, 10.2); to be written at G4 |
 
@@ -221,3 +222,4 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-17 | G3's last fallback specified: calibrated α* from the null p-values, confirmed on fresh simulations, or descriptive | "Calibrate the threshold" left the threshold to be chosen after the result |
 | 2026-11-17 | G4's fallback reruns G2 and G3 at the shorter window and re-tags the plan | Power and size depend on the window's length |
 | 2026-11-17 | `PIPELINE_RULES.md` and `WRITING.md` added, adapted from the battery project with this repository's examples | §3.6 cited them before they existed here |
+| 2026-11-17 | Tails study added: errors on the backtest's coldest days, descriptive, before G2 (`tails/PLAN.md`) | The cost of error concentrates on extreme days, which mean error hides; checkpoint 0 proposed the test and no tail result has been seen |
