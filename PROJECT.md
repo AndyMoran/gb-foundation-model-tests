@@ -131,6 +131,7 @@ What the gate can see: at 5,000 simulations the Monte Carlo standard error at 0.
 - **Cut: further analysis of the weather study's backtest.** E5 was its last analysis. Checkpoint 0 and the tails study (`tails/PLAN.md`) are separate studies, each with its own plan frozen before it runs.
 - **Cut: valuing forecast error in £.** The break-even price (rule 5.6) is reported instead.
 - **Deferred: a portfolio-like demand series.** For the checkpoint 3 review (rule 6.4).
+- **Deferred: tails 2,** uncertainty on the hardest days (spread–skill and interval coverage). Comes back if tails 1 finds any cold-day effect (`next_study/HANDOVER.md`, step 3).
 
 ## 6. Risks
 
@@ -223,3 +224,4 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-17 | G4's fallback reruns G2 and G3 at the shorter window and re-tags the plan | Power and size depend on the window's length |
 | 2026-11-17 | `PIPELINE_RULES.md` and `WRITING.md` added, adapted from the battery project with this repository's examples | §3.6 cited them before they existed here |
 | 2026-11-17 | Tails study added: errors on the backtest's coldest days, descriptive, before G2 (`tails/PLAN.md`) | The cost of error concentrates on extreme days, which mean error hides; checkpoint 0 proposed the test and no tail result has been seen |
+| 2026-11-17 | Tails 1 frozen as reviewed; spread–skill and interval coverage deferred to tails 2, with a trigger | Both concern uncertainty, need their own design and (for coverage) new quantile forecasts; keeps tails 1 bounded |
