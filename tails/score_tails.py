@@ -240,7 +240,9 @@ def side(iv, ref):
 def h1_outcome(narrow, broad, bias, peak, t4):
     """PLAN.md §7. narrow, broad: sides of the T1 tail-shift intervals against 1; bias, peak: sides against 0;
     t4: 'holds', 'fails' or 'not assessed'. Returns (outcome, case)."""
-    if narrow == 'below' or broad == 'below': return 'not supported', 'a tail shift lies wholly below 1'
+    if narrow == 'below' and broad == 'below': return 'not supported', 'both tail shifts lie wholly below 1'
+    if narrow == 'below': return 'not supported', 'the narrow tail shift lies wholly below 1'
+    if broad == 'below': return 'not supported', 'the broad tail shift lies wholly below 1'
     if narrow != 'above' and broad != 'above': return 'not supported', 'neither tail shift lies wholly above 1'
     if narrow == 'above' and broad == 'above':
         if bias != 'above' or peak != 'above': return 'unclear', 'bias or peak error not clearly positive'
@@ -276,8 +278,14 @@ def h1_sentence(outcome, case, t4):
         'all T1 conditions met': 'on the coldest tenth of days LightGBM S1 lost ground to the regression against other '
                                  'days of the same months and against all other days, and under-forecast both demand '
                                  'and the daily peak.',
-        'a tail shift lies wholly below 1': 'on the coldest tenth of days LightGBM S1 gained ground on the regression in '
-                                            'at least one comparison.',
+        'both tail shifts lie wholly below 1': 'on the coldest tenth of days LightGBM S1 gained ground on the regression, '
+                                               'so its relative error was lower, not higher, on the coldest days.',
+        'the narrow tail shift lies wholly below 1': 'on the coldest tenth of days LightGBM S1 gained ground on the '
+                                                     'regression against other days of the same months, so its relative '
+                                                     'error was lower, not higher, on the coldest days.',
+        'the broad tail shift lies wholly below 1': 'on the coldest tenth of days LightGBM S1 gained ground on the '
+                                                    'regression against all other days, so its relative error was '
+                                                    'lower, not higher, on the coldest days.',
         'neither tail shift lies wholly above 1': 'LightGBM S1 did not clearly lose ground to the regression on the '
                                                   'coldest tenth of days, against other days of the same months or '
                                                   'against all other days.',
@@ -526,7 +534,7 @@ def synthetic_cases(members, n_t4):
         'D_not_supported': dict(spec={'chronos2_A': dict(level=dict(set=1.25)),
                                       'lightgbm_s1': dict(level=dict(set=0.8), p={'T1': 0.3}, peak={'T1': -1, 'other': -1})},
                                 want=dict(chronos2_A='above', lightgbm_s1='below',
-                                          h1=('not supported', 'a tail shift lies wholly below 1'))),
+                                          h1=('not supported', 'both tail shifts lie wholly below 1'))),
         'E_unclear_peak_over': dict(spec={'lightgbm_s1': dict(level=dict(set=1.35), p={'T1': 0.7}, peak={'T1': -1})},
                                   want=dict(chronos2_A='includes', lightgbm_s1='above',
                                             h1=('unclear', 'bias or peak error not clearly positive'))),
@@ -570,6 +578,11 @@ def unit_rules():
     t += [h1_outcome(*a)[0] == want for a, want in cases]
     t.append(h1_outcome('includes', 'above', 'above', 'above', 'holds')[1] == 'a winter effect, not a cold-day effect')
     t.append(h1_outcome('above', 'includes', 'above', 'above', 'holds')[1] == 'a cold-day effect not seen against all other days')
+    t.append(h1_outcome('below', 'below', 'above', 'above', 'holds')[1] == 'both tail shifts lie wholly below 1')
+    t.append(h1_outcome('below', 'includes', 'above', 'above', 'holds')[1] == 'the narrow tail shift lies wholly below 1')
+    t.append(h1_outcome('includes', 'below', 'above', 'above', 'holds')[1] == 'the broad tail shift lies wholly below 1')
+    t.append(all(h1_sentence(*h1_outcome(*a), {'clause': 'holds'}) for a in
+                 [(x, y, 'above', 'above', 'holds') for x in ('above', 'below', 'includes') for y in ('above', 'below', 'includes')]))
     k, s = headline('lightgbm_s1', dict(value=1.234, ci90=[1.1, 1.4]))
     t.append(k == 'above' and '23.4% higher' in s)
     k, s = headline('chronos2_A', dict(value=0.9, ci90=[0.8, 0.95]))
