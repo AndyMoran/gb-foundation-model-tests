@@ -1,6 +1,6 @@
 # GB day-ahead demand benchmark: rules
 
-**Status: DRAFT, not in force.** These rules take effect when committed and tagged `benchmark-rules-v1`. That tag's time is the evidence that they came before checkpoint 1's plan and before any day in its window. Items in [square brackets] are open and must be settled before the tag.
+**Status: DRAFT, not in force.** These rules take effect when committed and tagged `benchmark-rules-v1`. That tag's time is the evidence that they came before checkpoint 1's plan and before any day in its window.
 
 Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules; they do not restate them.
 
@@ -14,7 +14,7 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 ## 2. Scope and non-claims
 
-2.1 **In scope:** day-ahead forecasts of GB national demand (INDO outturn), issued by 09:30 UK time on D−1 for each half-hour of day D, from the inputs in rule 4.
+2.1 **In scope:** day-ahead forecasts of GB national demand (INDO outturn), for each half-hour of day D, made only from inputs public by 09:30 UK time on D−1 (demand history to 08:30), from the inputs in rule 4. A forecast may be computed later that day; it must be published before day D begins (rule 4.7).
 
 2.2 **The benchmark does not establish:**
 - model quality in general, or on any other series, market, horizon or country;
@@ -27,20 +27,24 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 ## 3. Entrants
 
-3.1 **Classes.** An entrant is either a *foundation model*, run zero-shot (no fine-tuning on GB data), or a *trained baseline*, fitted only on data available at each issue time. The trained baselines at launch are the weather regression and LightGBM.
+3.1 **Classes.** An entrant is either a *foundation model*, run zero-shot (no fine-tuning on GB data), or a *trained baseline*, fitted only on data available at each issue time. The trained baselines are a weather regression and LightGBM, configured as stated in each checkpoint plan.
 
 3.2 **Who may propose.** Anyone, including a model's developer, may propose an entrant by opening a repository issue labelled `entry`. The maintainer may also add entrants. The reason for every inclusion, exclusion and refusal is published in `benchmark/ENTRANTS.md`.
 
 3.3 **Requirements.** An entrant must:
-- be publicly available at a pinned revision: weights identified by a hash, or a versioned API whose version is recorded with each forecast;
+- be publicly available at a pinned revision: weights identified by a hash, run with its inference package at a pinned version, or a versioned API whose version is recorded with each forecast (rule 3.7);
 - have a stated release date for that revision, and, where the developer states one, a training-data cutoff;
-- run within the benchmark's compute budget: [one forecast per day within N minutes on the benchmark hardware, stated in `benchmark/HARDWARE.md`]. The maintainer runs entrants at his own cost and may refuse those above the budget, with the reason published.
+- run within the benchmark's compute budget, on the hardware in rule 10.2 and `benchmark/HARDWARE.md`: CPU only; at most 15 minutes wall-clock per forecast day, including model load and any re-fit; peak memory at most 12 GB; weights at most 5 GB. An API entrant's charges may not exceed £0.25 per forecast day. The maintainer runs entrants at his own cost and may refuse those above the budget, with the reason published.
 
 3.4 **Notice.** A proposal must be made at least 30 days before the window it is to enter opens. Configuration, including covariate encoding, is fixed when the window opens (rule 4.3).
 
 3.5 **New revisions.** A new revision of an existing model is a new entrant. The old revision keeps running to the end of the current window; whether it continues after that is decided in the next checkpoint plan.
 
 3.6 **Entry is descriptive first.** An entrant is reported descriptively at the first checkpoint it enters. It can be in a confirmatory family (rule 7) only from a later checkpoint, and only if the plan for that checkpoint names it before its window opens.
+
+Launch: entrants named in checkpoint 1's plan, tagged before its window opens (rule 6.3), may be confirmatory at checkpoint 1. No entrant added after that tag may be, nor may an entrant's configuration change after that tag.
+
+3.7 **API entrants.** An entrant reached only through an API is descriptive only. It is never in a confirmatory family and never named in a checkpoint's headline (rule 7.6). The reason is rule 4.4: its training-data cutoff cannot be verified, and the provider may retrain it on days in the window without notice. Its results are labelled "not reproducible; endpoint may change; training cutoff unverifiable" in every table, and its actual charges are recorded each day. This rule is reviewed at checkpoint 3 (rule 6.4).
 
 ## 4. Inputs, configuration and the training-cutoff rule
 
@@ -56,7 +60,7 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 4.6 **Unequal samples across checkpoints.** Older entrants accumulate more scored days than newer ones. Any comparison across checkpoints, such as a running league table, is descriptive. It is reported on the *common window*, the days on which every compared entrant was eligible, as its primary form, and on all eligible days, with each entrant's day count stated, as a secondary form. No confirmatory claim uses days from more than one checkpoint (rule 7.3).
 
-4.7 **Publication before outturn.** Each day's forecasts are committed to the public repository before the start of day D. The commit time is the evidence that no forecast saw the outturn.
+4.7 **Publication before outturn.** Each day's forecasts are committed to the public repository before the start of day D. The run log of the scheduled job that made them (rule 10.2) is the evidence that no forecast saw the outturn; commit times are set by the committer and are not relied on alone. Because forecasts are public daily, anyone, including a model's developer, can score them during a window. That is intended; configuration stays frozen (rule 4.3).
 
 4.8 **One issue day per call.** Every entrant's forecasts, live or backtest, are made one issue day per call, so that no forecast can draw on another day's data. Before an entrant's first window, a call-mode check runs its forecasts for at least 20 days both one day per call and in any batch the harness might use. If they differ by more than 1 MW on any half-hour, only one-day-per-call forecasts are allowed. The check, and the reason for this rule, are recorded in `ENTRANTS.md`. Reason: weather study correction 1 (`weather_study/CORRECTIONS.md`). There, TimesFM 2.5 fitted one covariate regression across a 64-day batch, which let each forecast draw on later days' demand.
 
@@ -70,7 +74,7 @@ Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules;
 
 5.4 **Outturn revisions.** Scores use the outturn as first published. Later revisions are reported descriptively if they change any ratio by more than 0.005.
 
-5.5 **Cost.** Every checkpoint reports, per entrant: wall-clock time per forecast; peak memory; hardware used; and compute cost per day, priced at a published on-demand rate for equivalent cloud hardware, with the rate, its source and its date stated in the checkpoint plan. Cost covers compute only; staff time to build, tune and maintain a model is not measured, and every report says so. Cost is descriptive and is not weighed against accuracy by any rule.
+5.5 **Cost.** Every checkpoint reports, per entrant: wall-clock time per forecast; peak memory; hardware used; and compute cost per day, priced at a published on-demand rate for equivalent cloud hardware, not at a free tier, with the rate, its source and its date stated in the checkpoint plan. An API entrant's cost is its actual charges (rule 3.7). All costs are reported in pounds, at an exchange rate whose source and date the plan states. Cost covers compute only; staff time to build, tune and maintain a model is not measured, and every report says so. Cost is descriptive and is not weighed against accuracy by any rule.
 
 5.6 **Break-even price.** For each entrant against each trained baseline, every checkpoint reports, descriptively:
 - energy error saved per day, in MWh: 24 × (baseline's mean daily MAE − entrant's mean daily MAE), in MW, with its 90% interval (rule 5.2);
@@ -149,7 +153,7 @@ Outcome (b) is a positive result that missed a decision threshold, not a failure
 
 9.6 **Right of reply.** Whatever the outcome, a developer may submit a statement of up to 500 words. It is published unedited in `benchmark/RESPONSES.md` and linked beside that model's results in every later report that shows them.
 
-9.7 **Independence.** Where a dispute concerns the maintainer's own judgement rather than a reproducible error, he may ask an independent reviewer to adjudicate. The reviewer's name and opinion are published with the response. [Whether to name a standing reviewer.]
+9.7 **Independence.** Where a dispute concerns the maintainer's own judgement rather than a reproducible error, he may ask an independent reviewer to adjudicate. The reviewer is chosen for each dispute and must have had no professional connection to the maintainer or to the disputing developer in the past three years. The developer may object once to a proposed reviewer, with reasons; the maintainer and developer then agree a replacement within 10 working days. If they cannot, the dispute is published with both positions and without adjudication. The reviewer's name and opinion are published with the response.
 
 9.8 Disputes, responses and outcomes stay public, including those not upheld.
 
@@ -157,4 +161,4 @@ Outcome (b) is a positive result that missed a decision threshold, not a failure
 
 10.1 The benchmark is maintained by Andy Moran (ORCID 0009-0004-2194-8084). It has one maintainer, and its credibility rests on these rules, on publication of every forecast before outturn (rule 4.7), and on the public record of disputes and corrections.
 
-10.2 Forecasts run daily on [infrastructure independent of the maintainer's own computer]. Outages are logged publicly and count under rule 5.3.
+10.2 Forecasts run daily on GitHub-hosted runners for the public repository, as specified in `benchmark/HARDWARE.md`, not on the maintainer's own computer. Weights are fetched from their pinned revisions and checked against their hashes on every run; any cache only saves download time. If a run fails, later scheduled attempts that day forecast only the entrants still missing; attempts never overlap. Run logs are archived weekly, because GitHub keeps them for at most 90 days. A forecast made elsewhere during an outage is labelled as such. Outages are logged publicly and count under rule 5.3.
