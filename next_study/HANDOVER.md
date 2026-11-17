@@ -1,10 +1,10 @@
-# Where things stand (16 November 2026)
+# Where things stand (17 November 2026)
 
-Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, and `checkpoint0/RESULTS.md`.
+Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md` and `tails/PLAN.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
 
 ## The project
 
-A standing, preregistered benchmark. Zero-shot foundation models are tested against trained baselines for GB day-ahead demand (INDO), on equal weather and calendar inputs, on live days no model can have seen, with cost measured. It commits to a minimum of three checkpoints, reviewed at the third. Rules: `BENCHMARK_RULES.md` (draft, untagged). Why and how: `PROJECT.md`.
+A standing, preregistered benchmark. Zero-shot foundation models are tested against trained baselines for GB day-ahead demand (INDO), on equal weather and calendar inputs, on live days no model can have seen, with cost measured. It commits to a minimum of three checkpoints, reviewed at the third. Rules: `BENCHMARK_RULES.md` (complete; Andy to tag `benchmark-rules-v1`). Why and how: `PROJECT.md`.
 
 ## Done
 
@@ -30,6 +30,13 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
   - Chronos-2 shows no leakage signature (0.807 before release, 0.808 after).
 - **Cost:** the regression 0.22 s a day, Chronos-2 1.85, TimesFM one day per call 10.63.
 - **Outputs:** the note is `checkpoint0/RESULTS.md`; every change is in `checkpoint0/REVISIONS.md`. Andy posted it on LinkedIn on 16 November.
+
+**17 November:**
+- **Rules completed.** Brackets settled (3.3 budget, 9.7 per-dispute reviewer, 10.2 GitHub-hosted runners); launch clause (3.6); API entrants descriptive only (3.7); issue time defined by inputs (2.1). Two reviews; see the `PROJECT.md` decision log.
+- **Gates respecified.** G2 names both confirmatory pairs and fixes a missing row (`CORRECTIONS.md` 3); G3 is per-test, one-sided, 5,000 simulations, threshold 0.032, with a fixed calibration fallback; G4 re-tags the plan if the window moves.
+- **`PIPELINE_RULES.md` and `WRITING.md`** added, adapted from the battery project.
+- **Tails study planned** (`tails/PLAN.md`): errors on the backtest's coldest days, with tail days chosen only from forecasts and the calendar (forecaster's dilemma), narrow same-month complements, hypothesis H1 on LightGBM's extrapolation. Three reviews; ready to tag `tails-plan`. Tails 2 deferred with a trigger (step 3).
+- **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces (tails study, the weather study's live report), put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is open.
 
 ## Next steps, in order
 
