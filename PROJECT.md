@@ -94,13 +94,15 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 | 2 | Only one pair ≥ 80% at alpha 0.05 | Family is that pair alone, at 0.05; the other pair is descriptive |
 | — | Neither | Checkpoint 1 is descriptive; plan says so before the window opens |
 
-**G3 (size):** run 2,000 simulations at a true edge of zero, summer 180 days, measured c.
+**G3 (size):** run 5,000 simulations at a true edge of zero, summer 180 days, measured c, with the confirmatory test exactly as in rules 5.2 and 7.1: one-sided, p the share of bootstrap ratios at or above 1. The gate checks the *per-test* false-positive rate at alpha 0.025, which is what rule 7.2's Bonferroni split needs: if each test holds 0.025, the two-pair family holds 0.05 whatever the correlation between them. The joint family rate is reported beside it, descriptively.
+
+What the gate can see: at 5,000 simulations the Monte Carlo standard error at 0.025 is 0.0022. A correctly sized test passes the 0.032 threshold 99.9% of the time; a true rate of 0.035 fails it 87% of the time, and 0.040 almost always. A pass rules out gross undercoverage; it does not certify exact size.
 
 | Order | Condition | Then |
 |---|---|---|
-| 1 | False-positive rate ≤ 0.035 | Keep 7-day blocks |
-| 2 | Above 0.035 with 7-day blocks, ≤ 0.035 with 14-day blocks | Use 14-day blocks; rerun G2 |
-| — | Above 0.035 with both | Calibrate the threshold by simulation, and record it in the plan |
+| 1 | Per-test false-positive rate ≤ 0.032 | Keep 7-day blocks |
+| 2 | Above 0.032 with 7-day blocks, ≤ 0.032 with 14-day blocks | Use 14-day blocks; rerun G2 |
+| — | Above 0.032 with both | Calibrate the threshold by simulation, and record it in the plan |
 
 **G4 (pipeline):** at least 28 consecutive unattended days before 1 April, with no more than one missed day.
 
@@ -123,7 +125,7 @@ Checkpoint 1's window opens on 1 April 2027 (rule 6.1). Everything below happens
 
 Risks R1–R12, their warning signs and actions are in `next_study/LESSONS.md`, Part 2. R12 matters most before the freeze:
 
-**R12. The block bootstrap may undercover.** The credit project found that block-bootstrap intervals undercover. If they do here, p-values are optimistic and the confirmatory false-positive rate exceeds 0.025. *Action:* G3.
+**R12. The block bootstrap may undercover.** The credit project found that block-bootstrap intervals undercover. If they do here, p-values are optimistic and each confirmatory test's false-positive rate exceeds its 0.025 (rule 7.2). *Action:* G3.
 
 Two risks from outside the benchmark:
 
@@ -192,3 +194,5 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-15 | Related work (TS-Arena, EnFoBench) acknowledged; the benchmark's distinct contribution stated (§1) | Live pre-registered benchmarks already exist |
 | 2026-11-15 | G2 power read at c − 0.05 | The measured c comes from backtest days the models may have seen |
 | 2026-11-15 | Checkpoint 0: a backtest first look adding LightGBM (`checkpoint0/PLAN.md`), descriptive only | A new study, not E6 of the weather backtest; it builds the LightGBM backtest gate G2 needs anyway |
+| 2026-11-17 | Rule brackets settled: compute budget (3.3), per-dispute reviewer with a fallback (9.7), GitHub-hosted runners (10.2); launch clause in 3.6; API entrants descriptive only (3.7); issue time defined by inputs, not run time (2.1) | Two reviews; GitHub's documented runner, cache, log and job limits |
+| 2026-11-17 | G3: 5,000 simulations, per-test threshold 0.032, one-sided as rule 7.1 | 2,000 at 0.035 detected a true 0.035 only half the time; the unqualified "false-positive rate" was misread as family-wise |

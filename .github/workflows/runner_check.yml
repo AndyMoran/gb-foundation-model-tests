@@ -1,0 +1,19 @@
+# One-off check for ASSUMPTIONS.md A13: what a GitHub-hosted runner gives this public repository.
+# Run by hand from the Actions tab. It reads the machine only; it fetches no data and commits nothing.
+name: runner_check
+on:
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Machine
+        run: |
+          date -u
+          uname -a
+          nproc
+          lscpu | grep -E 'Model name|^CPU\(s\)|Thread|MHz' || true
+          free -h
+          df -h
+          df -h --output=avail -B1G "$GITHUB_WORKSPACE" | tail -1 | xargs echo "Free GB in workspace:"
+          python3 --version

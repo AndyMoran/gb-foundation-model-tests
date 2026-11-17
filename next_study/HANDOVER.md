@@ -34,14 +34,10 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 ## Next steps, in order
 
 1. **19 November, after 10:30:** check the weather study's first live push, with `tail -8 ~/gb-weather-data/push.log`. The live window starts on 20 November.
-2. **Settle the rules (December):**
-   - the three bracketed items: compute budget (3.3), standing reviewer (9.7), infrastructure for daily runs (10.2);
-   - which trained baselines form checkpoint 1's confirmatory family, since default LightGBM proved the weaker bar.
-
-   Then commit and tag `benchmark-rules-v1`.
+2. **Tag the rules:** the brackets were settled on 17 November (`PROJECT.md` decision log). Andy reads `BENCHMARK_RULES.md` once more, then tags `benchmark-rules-v1`. Before or just after: run `.github/workflows/runner_check.yml` once from the Actions tab and record the result as A13.
 3. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
-   - **G2:** power for the Chronos-2–LightGBM pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end (checkpoint 0, `results.md` table 6).
-   - **G3:** the 7-day bootstrap's false-positive rate at a true edge of zero.
+   - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Where LightGBM S1 is the comparator, use S1's summer edge, not the defaults' (checkpoint 0, `results.md` tables 2 and 6): it is smaller, so power will be lower than 93.7%. Show the number.
+   - **G3:** the per-test false-positive rate, one-sided at alpha 0.025, from 5,000 simulations at a true edge of zero; threshold 0.032 (`PROJECT.md`, G3).
 4. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
    - a pre-specified per-slot LightGBM, which tests the structure hypothesis;
    - each forecaster's error on the highest-demand days (top 10% by outturn), which tests the extrapolation hypothesis.
@@ -49,11 +45,18 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
    It must also settle:
    - Timestral's calendar encoding (the categorical route; `mistralai/timestral#9`);
    - LightGBM tuning, on the past only, with a fixed budget;
-   - the compute price for rule 5.5;
+   - the compute price for rule 5.5: the larger-runner rate (check GitHub's pricing page) and the dollar-to-pound rate, each with its date;
+   - the expected total of all entrants' weights against the 10 GB Actions cache;
    - the input table and its gate check;
    - the 10% rationale;
    - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression.
-5. **Move the daily pipeline off Andy's laptop by 1 March 2027.** It must then run unattended for at least 28 days before 1 April (gate G4).
+5. **Move the daily pipeline off Andy's laptop by 1 March 2027,** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
+   - scheduled attempts after 09:30 UK (cron is UTC: for example 09:47, 13:47 and 17:47 UTC), off the hour;
+   - a concurrency group keyed to the forecast day, without cancelling runs in progress, so attempts never overlap;
+   - `workflow_dispatch` for manual retries;
+   - per-entrant retries: later attempts forecast only entrants still missing;
+   - weights fetched by pinned revision and hash-checked, with the cache as a speed-up only;
+   - a weekly job archiving run IDs, times and logs (GitHub keeps logs at most 90 days).
 
 ## Watch
 

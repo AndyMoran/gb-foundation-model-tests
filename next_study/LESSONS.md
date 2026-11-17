@@ -108,6 +108,7 @@ Each risk lists the warning sign and what to do now.
 
 **R12. The block bootstrap may undercover.** The credit project found that block-bootstrap intervals undercover. If they do here, the confirmatory false-positive rate exceeds 0.025.
 *Now:* simulate at a true edge of zero before freezing checkpoint 1's plan (`PROJECT.md`, gate G3).
+*Note, 17 November:* the rate here is per test, one-sided, at alpha 0.025 (rule 7.2); a reviewer read it as family-wise.
 
 ## Part 3: what worked, and stays
 
