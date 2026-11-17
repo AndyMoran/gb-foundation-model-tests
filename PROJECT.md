@@ -64,8 +64,8 @@ Considered and not taken: pricing INDO error at imbalance cost (a valuation the 
 Own work is held to the standard applied to external critique. If two files disagree, or a file breaks a principle it states, that is a defect, recorded in `CORRECTIONS.md` (rule 8.5).
 
 ### 3.6 Pipeline and writing
-- Code follows `PIPELINE_RULES.md`: checks enforced in code, visible failure, excluded days kept and labelled, versioned formats, deterministic outputs. [Copy from the battery repository.]
-- Documentation follows `WRITING.md`: Strunk and White and Zinsser, with the point first, needless words cut, one idea per sentence, and every claim specific and sourced. [Copy from the battery repository.]
+- Code follows `PIPELINE_RULES.md`: checks enforced in code, visible failure, excluded days kept and labelled, versioned formats, deterministic outputs. Adapted from the battery project.
+- Documentation follows `WRITING.md`: Strunk and White and Zinsser, with the point first, needless words cut, one idea per sentence, and every claim specific and sourced. Adopted from the battery project.
 
 ### 3.7 Small, finished, named
 Each checkpoint is a finished, dated artifact with its own DOI (rule 6.5). Outreach is 10–15 people, not a market.
@@ -177,6 +177,7 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 |---|---|
 | `BENCHMARK_RULES.md` | The rules (draft until tagged) |
 | `PROJECT.md` | This file: why and how |
+| `PIPELINE_RULES.md`, `WRITING.md` | How code and documents are written (§3.6) |
 | `ASSUMPTIONS.md` | Claims labelled GROUNDED or PROVISIONAL |
 | `next_study/HANDOVER.md` | Current state and next steps |
 | `next_study/CORRECTIONS.md` | Errors in committed files |
@@ -219,3 +220,4 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-17 | G2 order 2 covers "both pairs powered at 0.05, not both at 0.025"; power read at the measured edge, with the low end stated | The table had no row for that case (`CORRECTIONS.md` 3) |
 | 2026-11-17 | G3's last fallback specified: calibrated α* from the null p-values, confirmed on fresh simulations, or descriptive | "Calibrate the threshold" left the threshold to be chosen after the result |
 | 2026-11-17 | G4's fallback reruns G2 and G3 at the shorter window and re-tags the plan | Power and size depend on the window's length |
+| 2026-11-17 | `PIPELINE_RULES.md` and `WRITING.md` added, adapted from the battery project with this repository's examples | §3.6 cited them before they existed here |
