@@ -226,6 +226,10 @@ def score(frame, members):
                 bs = D['set']['ratio'] / D[comp]['ratio']
                 R['shift_' + comp] = dict(value=float(R['set']['ratio'] / R[comp]['ratio']), ci90=ci(bs),
                                           draws_dropped=int((~np.isfinite(bs)).sum()))
+            n_c = R['set'].get('n_days', 0)
+            if 0 < n_c < SMALL:                                   # the small-set rule applies to each forecaster's days
+                sys.exit(f'Stopped: {c} has {n_c} scored days in {s}, fewer than {SMALL}, in a set that has '
+                         f'{n_set}. The plan does not say how to report this; resolve before scoring.')
             S['forecasters'][c] = R; keep_draws[(s, c)] = D
         out['sets'][s] = S
     out['h1'] = h1(out, keep_draws)
@@ -704,13 +708,23 @@ def synthetic(days_path):
     # day-by-day path; the constructed sets stand in for a T4 the real data did not produce
     t1 = sorted(members['T1'])
     runs = [('', members, synthetic_cases(members, n_t4))]
-    for n4 in (14, 5):
+    for n4 in (14, 10, 9, 5):
         mem = dict(members, T4=t1[:n4]); cs = synthetic_cases(mem, n4)
-        runs.append((f'T4x{n4}_', mem, {k: cs[k] for k in cs if k[0] in 'AG'}))
+        runs.append((f'T4x{n4}_', mem, {k: cs[k] for k in cs if k[0] in ('AG' if n4 in (14, 5) else 'A')}))
     ok_all &= run_cases(runs, grid, all_days, blank_day, res)
+    # NESO with fewer than 10 complete days in a set of at least 10: scoring must stop, not average them
+    frame = synth_case(grid, members, {}, seed=999)[0]
+    t1 = sorted(members['T1']); frame.loc[frame['day'].isin(t1[5:]), 'neso'] = np.nan
+    try:
+        score(frame, members); stopped = False
+    except SystemExit as e:
+        stopped = 'neso has 5 scored days in T1' in str(e)
+    res['unit_neso_small'] = dict(passed=bool(stopped)); ok_all &= stopped
+    print(('PASS ' if stopped else 'FAIL ') + 'unit_neso_small', flush=True)
     if n_t4 < SMALL:
         res['note_t4'] = (f'The real T4 has {n_t4} days, fewer than {SMALL}: on the real sets the clause is not assessed. '
-                          'The T4x14_ and T4x5_ cases use constructed T4 sets drawn from T1.')
+                          'The T4x14_, T4x10_, T4x9_ and T4x5_ cases use constructed T4 sets drawn from T1; '
+                          '10 and 9 sit either side of the threshold for assessing the clause.')
     res['passed'] = bool(ok_all)
     json.dump(round_floats(res), open(SYNTH_JSON if days_path == DAYS_CSV else os.path.join(HERE, 'synthetic_dev.json'), 'w'),
               indent=1, default=str)
