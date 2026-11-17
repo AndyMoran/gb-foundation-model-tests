@@ -1,0 +1,324 @@
+set,day,rank,value,reason
+T1,2026-01-05,1.0,-1.483,mean forecast temperature -1.48 C: rank 1 of 960 (coldest first); the set takes 96
+T1,2025-01-10,2.0,-1.4537,mean forecast temperature -1.45 C: rank 2 of 960 (coldest first); the set takes 96
+T1,2026-01-04,3.0,-0.7594,mean forecast temperature -0.76 C: rank 3 of 960 (coldest first); the set takes 96
+T1,2025-01-11,4.0,-0.5892,mean forecast temperature -0.59 C: rank 4 of 960 (coldest first); the set takes 96
+T1,2025-01-09,5.0,-0.5543,mean forecast temperature -0.55 C: rank 5 of 960 (coldest first); the set takes 96
+T1,2025-01-08,6.0,-0.067,mean forecast temperature -0.07 C: rank 6 of 960 (coldest first); the set takes 96
+T1,2026-01-03,7.0,0.0039,mean forecast temperature 0.00 C: rank 7 of 960 (coldest first); the set takes 96
+T1,2026-01-10,8.0,0.2797,mean forecast temperature 0.28 C: rank 8 of 960 (coldest first); the set takes 96
+T1,2025-01-03,9.0,0.3949,mean forecast temperature 0.39 C: rank 9 of 960 (coldest first); the set takes 96
+T1,2024-11-21,10.0,0.5467,mean forecast temperature 0.55 C: rank 10 of 960 (coldest first); the set takes 96
+T1,2025-01-02,11.0,0.7032,mean forecast temperature 0.70 C: rank 11 of 960 (coldest first); the set takes 96
+T1,2024-11-20,12.0,0.8218,mean forecast temperature 0.82 C: rank 12 of 960 (coldest first); the set takes 96
+T1,2026-01-06,13.0,0.9406,mean forecast temperature 0.94 C: rank 13 of 960 (coldest first); the set takes 96
+T1,2025-01-04,14.0,1.0536,mean forecast temperature 1.05 C: rank 14 of 960 (coldest first); the set takes 96
+T1,2025-11-20,15.0,1.1526,mean forecast temperature 1.15 C: rank 15 of 960 (coldest first); the set takes 96
+T1,2025-11-21,16.0,1.2049,mean forecast temperature 1.20 C: rank 16 of 960 (coldest first); the set takes 96
+T1,2025-12-31,17.0,1.374,mean forecast temperature 1.37 C: rank 17 of 960 (coldest first); the set takes 96
+T1,2025-01-12,18.0,1.4002,mean forecast temperature 1.40 C: rank 18 of 960 (coldest first); the set takes 96
+T1,2026-01-02,19.0,1.6664,mean forecast temperature 1.67 C: rank 19 of 960 (coldest first); the set takes 96
+T1,2025-01-18,20.0,1.7679,mean forecast temperature 1.77 C: rank 20 of 960 (coldest first); the set takes 96
+T1,2025-01-07,21.0,1.7766,mean forecast temperature 1.78 C: rank 21 of 960 (coldest first); the set takes 96
+T1,2025-02-17,22.0,1.8997,mean forecast temperature 1.90 C: rank 22 of 960 (coldest first); the set takes 96
+T1,2025-01-19,23.0,1.9498,mean forecast temperature 1.95 C: rank 23 of 960 (coldest first); the set takes 96
+T1,2026-02-14,24.0,1.967,mean forecast temperature 1.97 C: rank 24 of 960 (coldest first); the set takes 96
+T1,2025-02-14,25.0,2.0136,mean forecast temperature 2.01 C: rank 25 of 960 (coldest first); the set takes 96
+T1,2024-11-22,26.0,2.1676,mean forecast temperature 2.17 C: rank 26 of 960 (coldest first); the set takes 96
+T1,2025-02-18,27.0,2.2051,mean forecast temperature 2.21 C: rank 27 of 960 (coldest first); the set takes 96
+T1,2026-01-08,28.0,2.2254,mean forecast temperature 2.23 C: rank 28 of 960 (coldest first); the set takes 96
+T1,2026-01-09,29.0,2.2643,mean forecast temperature 2.26 C: rank 29 of 960 (coldest first); the set takes 96
+T1,2024-11-28,30.0,2.3029,mean forecast temperature 2.30 C: rank 30 of 960 (coldest first); the set takes 96
+T1,2025-11-19,31.0,2.3957,mean forecast temperature 2.40 C: rank 31 of 960 (coldest first); the set takes 96
+T1,2026-01-07,32.0,2.4243,mean forecast temperature 2.42 C: rank 32 of 960 (coldest first); the set takes 96
+T1,2024-11-19,33.0,2.4692,mean forecast temperature 2.47 C: rank 33 of 960 (coldest first); the set takes 96
+T1,2025-02-16,34.0,2.6538,mean forecast temperature 2.65 C: rank 34 of 960 (coldest first); the set takes 96
+T1,2025-01-20,35.0,2.7606,mean forecast temperature 2.76 C: rank 35 of 960 (coldest first); the set takes 96
+T1,2025-02-13,36.0,2.8057,mean forecast temperature 2.81 C: rank 36 of 960 (coldest first); the set takes 96
+T1,2025-02-06,37.0,2.9511,mean forecast temperature 2.95 C: rank 37 of 960 (coldest first); the set takes 96
+T1,2025-03-14,38.0,3.0316,mean forecast temperature 3.03 C: rank 38 of 960 (coldest first); the set takes 96
+T1,2026-02-17,39.0,3.0706,mean forecast temperature 3.07 C: rank 39 of 960 (coldest first); the set takes 96
+T1,2025-01-30,40.0,3.0936,mean forecast temperature 3.09 C: rank 40 of 960 (coldest first); the set takes 96
+T1,2025-02-07,41.0,3.1112,mean forecast temperature 3.11 C: rank 41 of 960 (coldest first); the set takes 96
+T1,2025-01-22,42.0,3.1279,mean forecast temperature 3.13 C: rank 42 of 960 (coldest first); the set takes 96
+T1,2026-01-01,43.0,3.1767,mean forecast temperature 3.18 C: rank 43 of 960 (coldest first); the set takes 96
+T1,2025-02-15,44.0,3.1834,mean forecast temperature 3.18 C: rank 44 of 960 (coldest first); the set takes 96
+T1,2025-12-26,45.0,3.2312,mean forecast temperature 3.23 C: rank 45 of 960 (coldest first); the set takes 96
+T1,2026-01-14,46.0,3.2555,mean forecast temperature 3.26 C: rank 46 of 960 (coldest first); the set takes 96
+T1,2025-03-13,47.0,3.2713,mean forecast temperature 3.27 C: rank 47 of 960 (coldest first); the set takes 96
+T1,2025-01-21,48.0,3.2984,mean forecast temperature 3.30 C: rank 48 of 960 (coldest first); the set takes 96
+T1,2026-02-18,49.0,3.3854,mean forecast temperature 3.39 C: rank 49 of 960 (coldest first); the set takes 96
+T1,2025-12-25,50.0,3.4031,mean forecast temperature 3.40 C: rank 50 of 960 (coldest first); the set takes 96
+T1,2026-02-13,51.0,3.4582,mean forecast temperature 3.46 C: rank 51 of 960 (coldest first); the set takes 96
+T1,2025-02-10,52.0,3.4858,mean forecast temperature 3.49 C: rank 52 of 960 (coldest first); the set takes 96
+T1,2025-01-13,53.0,3.4861,mean forecast temperature 3.49 C: rank 53 of 960 (coldest first); the set takes 96
+T1,2025-01-25,54.0,3.5074,mean forecast temperature 3.51 C: rank 54 of 960 (coldest first); the set takes 96
+T1,2025-02-28,55.0,3.5323,mean forecast temperature 3.53 C: rank 55 of 960 (coldest first); the set takes 96
+T1,2025-02-11,56.0,3.5707,mean forecast temperature 3.57 C: rank 56 of 960 (coldest first); the set takes 96
+T1,2025-11-25,57.0,3.6062,mean forecast temperature 3.61 C: rank 57 of 960 (coldest first); the set takes 96
+T1,2025-03-12,58.0,3.6528,mean forecast temperature 3.65 C: rank 58 of 960 (coldest first); the set takes 96
+T1,2025-11-18,59.0,3.6773,mean forecast temperature 3.68 C: rank 59 of 960 (coldest first); the set takes 96
+T1,2025-03-01,60.0,3.6801,mean forecast temperature 3.68 C: rank 60 of 960 (coldest first); the set takes 96
+T1,2025-02-08,61.0,3.6807,mean forecast temperature 3.68 C: rank 61 of 960 (coldest first); the set takes 96
+T1,2025-12-30,62.0,3.7179,mean forecast temperature 3.72 C: rank 62 of 960 (coldest first); the set takes 96
+T1,2025-03-15,63.0,3.7672,mean forecast temperature 3.77 C: rank 63 of 960 (coldest first); the set takes 96
+T1,2025-02-12,64.0,3.7962,mean forecast temperature 3.80 C: rank 64 of 960 (coldest first); the set takes 96
+T1,2024-12-03,65.0,3.8438,mean forecast temperature 3.84 C: rank 65 of 960 (coldest first); the set takes 96
+T1,2026-01-29,66.0,3.8504,mean forecast temperature 3.85 C: rank 66 of 960 (coldest first); the set takes 96
+T1,2025-03-02,67.0,3.8506,mean forecast temperature 3.85 C: rank 67 of 960 (coldest first); the set takes 96
+T1,2025-02-01,68.0,3.9766,mean forecast temperature 3.98 C: rank 68 of 960 (coldest first); the set takes 96
+T1,2025-01-23,69.0,3.9877,mean forecast temperature 3.99 C: rank 69 of 960 (coldest first); the set takes 96
+T1,2025-11-17,70.0,4.0279,mean forecast temperature 4.03 C: rank 70 of 960 (coldest first); the set takes 96
+T1,2025-11-26,71.0,4.042,mean forecast temperature 4.04 C: rank 71 of 960 (coldest first); the set takes 96
+T1,2026-01-28,72.0,4.0848,mean forecast temperature 4.08 C: rank 72 of 960 (coldest first); the set takes 96
+T1,2026-02-19,73.0,4.0966,mean forecast temperature 4.10 C: rank 73 of 960 (coldest first); the set takes 96
+T1,2024-11-27,74.0,4.1086,mean forecast temperature 4.11 C: rank 74 of 960 (coldest first); the set takes 96
+T1,2025-02-02,75.0,4.1667,mean forecast temperature 4.17 C: rank 75 of 960 (coldest first); the set takes 96
+T1,2025-03-16,76.0,4.237,mean forecast temperature 4.24 C: rank 76 of 960 (coldest first); the set takes 96
+T1,2026-02-03,77.0,4.2405,mean forecast temperature 4.24 C: rank 77 of 960 (coldest first); the set takes 96
+T1,2025-11-30,78.0,4.291,mean forecast temperature 4.29 C: rank 78 of 960 (coldest first); the set takes 96
+T1,2025-02-09,79.0,4.3102,mean forecast temperature 4.31 C: rank 79 of 960 (coldest first); the set takes 96
+T1,2025-03-03,80.0,4.311,mean forecast temperature 4.31 C: rank 80 of 960 (coldest first); the set takes 96
+T1,2025-01-06,81.0,4.3609,mean forecast temperature 4.36 C: rank 81 of 960 (coldest first); the set takes 96
+T1,2025-01-17,82.0,4.3953,mean forecast temperature 4.40 C: rank 82 of 960 (coldest first); the set takes 96
+T1,2025-01-31,83.0,4.4577,mean forecast temperature 4.46 C: rank 83 of 960 (coldest first); the set takes 96
+T1,2025-01-26,84.0,4.4778,mean forecast temperature 4.48 C: rank 84 of 960 (coldest first); the set takes 96
+T1,2026-01-26,85.0,4.4883,mean forecast temperature 4.49 C: rank 85 of 960 (coldest first); the set takes 96
+T1,2025-02-05,86.0,4.5087,mean forecast temperature 4.51 C: rank 86 of 960 (coldest first); the set takes 96
+T1,2025-03-18,87.0,4.5146,mean forecast temperature 4.51 C: rank 87 of 960 (coldest first); the set takes 96
+T1,2025-12-29,88.0,4.5413,mean forecast temperature 4.54 C: rank 88 of 960 (coldest first); the set takes 96
+T1,2024-11-18,89.0,4.5778,mean forecast temperature 4.58 C: rank 89 of 960 (coldest first); the set takes 96
+T1,2025-01-16,90.0,4.6357,mean forecast temperature 4.64 C: rank 90 of 960 (coldest first); the set takes 96
+T1,2025-12-27,91.0,4.6649,mean forecast temperature 4.66 C: rank 91 of 960 (coldest first); the set takes 96
+T1,2025-02-26,92.0,4.6665,mean forecast temperature 4.67 C: rank 92 of 960 (coldest first); the set takes 96
+T1,2026-02-15,93.0,4.7006,mean forecast temperature 4.70 C: rank 93 of 960 (coldest first); the set takes 96
+T1,2026-01-11,94.0,4.7093,mean forecast temperature 4.71 C: rank 94 of 960 (coldest first); the set takes 96
+T1,2025-12-24,95.0,4.7206,mean forecast temperature 4.72 C: rank 95 of 960 (coldest first); the set takes 96
+T1,2024-12-11,96.0,4.7407,mean forecast temperature 4.74 C: rank 96 of 960 (coldest first); the set takes 96
+T1b,2025-01-10,1.0,-3.0689,coldest forecast half-hour -3.07 C: rank 1 of 960 (coldest first); the set takes 96
+T1b,2026-01-06,2.0,-2.7527,coldest forecast half-hour -2.75 C: rank 2 of 960 (coldest first); the set takes 96
+T1b,2026-01-05,3.0,-2.5353,coldest forecast half-hour -2.54 C: rank 3 of 960 (coldest first); the set takes 96
+T1b,2025-01-11,4.0,-2.3931,coldest forecast half-hour -2.39 C: rank 4 of 960 (coldest first); the set takes 96
+T1b,2025-01-08,5.0,-2.0625,coldest forecast half-hour -2.06 C: rank 5 of 960 (coldest first); the set takes 96
+T1b,2025-01-09,6.0,-2.0343,coldest forecast half-hour -2.03 C: rank 6 of 960 (coldest first); the set takes 96
+T1b,2026-01-04,7.0,-1.8507,coldest forecast half-hour -1.85 C: rank 7 of 960 (coldest first); the set takes 96
+T1b,2026-01-03,8.0,-1.4744,coldest forecast half-hour -1.47 C: rank 8 of 960 (coldest first); the set takes 96
+T1b,2025-01-03,9.0,-1.3062,coldest forecast half-hour -1.31 C: rank 9 of 960 (coldest first); the set takes 96
+T1b,2025-01-02,10.0,-1.2537,coldest forecast half-hour -1.25 C: rank 10 of 960 (coldest first); the set takes 96
+T1b,2024-11-21,11.0,-0.9737,coldest forecast half-hour -0.97 C: rank 11 of 960 (coldest first); the set takes 96
+T1b,2026-01-10,12.0,-0.7884,coldest forecast half-hour -0.79 C: rank 12 of 960 (coldest first); the set takes 96
+T1b,2025-11-20,13.0,-0.6224,coldest forecast half-hour -0.62 C: rank 13 of 960 (coldest first); the set takes 96
+T1b,2025-01-04,14.0,-0.4928,coldest forecast half-hour -0.49 C: rank 14 of 960 (coldest first); the set takes 96
+T1b,2024-11-20,15.0,-0.4469,coldest forecast half-hour -0.45 C: rank 15 of 960 (coldest first); the set takes 96
+T1b,2025-11-21,16.0,-0.4197,coldest forecast half-hour -0.42 C: rank 16 of 960 (coldest first); the set takes 96
+T1b,2024-11-28,17.0,-0.3729,coldest forecast half-hour -0.37 C: rank 17 of 960 (coldest first); the set takes 96
+T1b,2025-01-12,18.0,-0.3586,coldest forecast half-hour -0.36 C: rank 18 of 960 (coldest first); the set takes 96
+T1b,2026-02-14,19.0,-0.3498,coldest forecast half-hour -0.35 C: rank 19 of 960 (coldest first); the set takes 96
+T1b,2025-11-19,20.0,-0.2433,coldest forecast half-hour -0.24 C: rank 20 of 960 (coldest first); the set takes 96
+T1b,2025-12-31,21.0,-0.143,coldest forecast half-hour -0.14 C: rank 21 of 960 (coldest first); the set takes 96
+T1b,2025-03-14,22.0,-0.1173,coldest forecast half-hour -0.12 C: rank 22 of 960 (coldest first); the set takes 96
+T1b,2025-03-16,23.0,-0.1059,coldest forecast half-hour -0.11 C: rank 23 of 960 (coldest first); the set takes 96
+T1b,2026-01-02,24.0,-0.0893,coldest forecast half-hour -0.09 C: rank 24 of 960 (coldest first); the set takes 96
+T1b,2025-11-26,25.0,-0.0439,coldest forecast half-hour -0.04 C: rank 25 of 960 (coldest first); the set takes 96
+T1b,2025-02-17,26.0,-0.0363,coldest forecast half-hour -0.04 C: rank 26 of 960 (coldest first); the set takes 96
+T1b,2025-02-28,27.0,-0.0053,coldest forecast half-hour -0.01 C: rank 27 of 960 (coldest first); the set takes 96
+T1b,2025-03-01,28.0,0.0603,coldest forecast half-hour 0.06 C: rank 28 of 960 (coldest first); the set takes 96
+T1b,2025-02-06,29.0,0.0662,coldest forecast half-hour 0.07 C: rank 29 of 960 (coldest first); the set takes 96
+T1b,2025-02-18,30.0,0.1155,coldest forecast half-hour 0.12 C: rank 30 of 960 (coldest first); the set takes 96
+T1b,2025-01-07,31.0,0.1986,coldest forecast half-hour 0.20 C: rank 31 of 960 (coldest first); the set takes 96
+T1b,2024-11-19,32.0,0.208,coldest forecast half-hour 0.21 C: rank 32 of 960 (coldest first); the set takes 96
+T1b,2026-01-11,33.0,0.3232,coldest forecast half-hour 0.32 C: rank 33 of 960 (coldest first); the set takes 96
+T1b,2025-03-19,34.0,0.4878,coldest forecast half-hour 0.49 C: rank 34 of 960 (coldest first); the set takes 96
+T1b,2025-02-16,35.0,0.5575,coldest forecast half-hour 0.56 C: rank 35 of 960 (coldest first); the set takes 96
+T1b,2025-01-18,36.0,0.583,coldest forecast half-hour 0.58 C: rank 36 of 960 (coldest first); the set takes 96
+T1b,2025-03-02,37.0,0.608,coldest forecast half-hour 0.61 C: rank 37 of 960 (coldest first); the set takes 96
+T1b,2026-01-14,38.0,0.6601,coldest forecast half-hour 0.66 C: rank 38 of 960 (coldest first); the set takes 96
+T1b,2025-02-14,39.0,0.721,coldest forecast half-hour 0.72 C: rank 39 of 960 (coldest first); the set takes 96
+T1b,2024-11-22,40.0,0.7234,coldest forecast half-hour 0.72 C: rank 40 of 960 (coldest first); the set takes 96
+T1b,2025-03-03,41.0,0.7641,coldest forecast half-hour 0.76 C: rank 41 of 960 (coldest first); the set takes 96
+T1b,2026-02-13,42.0,0.7766,coldest forecast half-hour 0.78 C: rank 42 of 960 (coldest first); the set takes 96
+T1b,2025-03-13,43.0,0.9025,coldest forecast half-hour 0.90 C: rank 43 of 960 (coldest first); the set takes 96
+T1b,2025-01-20,44.0,0.9058,coldest forecast half-hour 0.91 C: rank 44 of 960 (coldest first); the set takes 96
+T1b,2025-11-25,45.0,0.9098,coldest forecast half-hour 0.91 C: rank 45 of 960 (coldest first); the set takes 96
+T1b,2025-12-30,46.0,0.9401,coldest forecast half-hour 0.94 C: rank 46 of 960 (coldest first); the set takes 96
+T1b,2024-11-23,47.0,1.0503,coldest forecast half-hour 1.05 C: rank 47 of 960 (coldest first); the set takes 96
+T1b,2024-11-27,48.0,1.0609,coldest forecast half-hour 1.06 C: rank 48 of 960 (coldest first); the set takes 96
+T1b,2025-03-15,49.0,1.1259,coldest forecast half-hour 1.13 C: rank 49 of 960 (coldest first); the set takes 96
+T1b,2025-11-18,50.0,1.1523,coldest forecast half-hour 1.15 C: rank 50 of 960 (coldest first); the set takes 96
+T1b,2025-03-04,51.0,1.1628,coldest forecast half-hour 1.16 C: rank 51 of 960 (coldest first); the set takes 96
+T1b,2026-01-09,52.0,1.1703,coldest forecast half-hour 1.17 C: rank 52 of 960 (coldest first); the set takes 96
+T1b,2026-03-26,53.0,1.1871,coldest forecast half-hour 1.19 C: rank 53 of 960 (coldest first); the set takes 96
+T1b,2025-01-19,54.0,1.2096,coldest forecast half-hour 1.21 C: rank 54 of 960 (coldest first); the set takes 96
+T1b,2026-01-08,55.0,1.2177,coldest forecast half-hour 1.22 C: rank 55 of 960 (coldest first); the set takes 96
+T1b,2025-03-12,56.0,1.2404,coldest forecast half-hour 1.24 C: rank 56 of 960 (coldest first); the set takes 96
+T1b,2026-01-07,57.0,1.2848,coldest forecast half-hour 1.28 C: rank 57 of 960 (coldest first); the set takes 96
+T1b,2025-01-05,58.0,1.2883,coldest forecast half-hour 1.29 C: rank 58 of 960 (coldest first); the set takes 96
+T1b,2025-11-17,59.0,1.3911,coldest forecast half-hour 1.39 C: rank 59 of 960 (coldest first); the set takes 96
+T1b,2025-03-18,60.0,1.4011,coldest forecast half-hour 1.40 C: rank 60 of 960 (coldest first); the set takes 96
+T1b,2025-01-06,61.0,1.452,coldest forecast half-hour 1.45 C: rank 61 of 960 (coldest first); the set takes 96
+T1b,2025-01-13,62.0,1.5232,coldest forecast half-hour 1.52 C: rank 62 of 960 (coldest first); the set takes 96
+T1b,2025-01-30,63.0,1.5559,coldest forecast half-hour 1.56 C: rank 63 of 960 (coldest first); the set takes 96
+T1b,2026-02-17,64.0,1.5966,coldest forecast half-hour 1.60 C: rank 64 of 960 (coldest first); the set takes 96
+T1b,2026-02-18,65.0,1.6106,coldest forecast half-hour 1.61 C: rank 65 of 960 (coldest first); the set takes 96
+T1b,2025-02-13,66.0,1.6419,coldest forecast half-hour 1.64 C: rank 66 of 960 (coldest first); the set takes 96
+T1b,2025-01-23,67.0,1.6526,coldest forecast half-hour 1.65 C: rank 67 of 960 (coldest first); the set takes 96
+T1b,2025-01-17,68.0,1.6976,coldest forecast half-hour 1.70 C: rank 68 of 960 (coldest first); the set takes 96
+T1b,2026-01-01,69.0,1.6993,coldest forecast half-hour 1.70 C: rank 69 of 960 (coldest first); the set takes 96
+T1b,2025-02-05,70.0,1.7163,coldest forecast half-hour 1.72 C: rank 70 of 960 (coldest first); the set takes 96
+T1b,2025-03-05,71.0,1.8254,coldest forecast half-hour 1.83 C: rank 71 of 960 (coldest first); the set takes 96
+T1b,2026-03-14,72.0,1.8675,coldest forecast half-hour 1.87 C: rank 72 of 960 (coldest first); the set takes 96
+T1b,2025-01-22,73.0,1.9153,coldest forecast half-hour 1.92 C: rank 73 of 960 (coldest first); the set takes 96
+T1b,2025-02-19,74.0,1.9179,coldest forecast half-hour 1.92 C: rank 74 of 960 (coldest first); the set takes 96
+T1b,2025-02-27,75.0,1.9904,coldest forecast half-hour 1.99 C: rank 75 of 960 (coldest first); the set takes 96
+T1b,2025-01-25,76.0,2.0539,coldest forecast half-hour 2.05 C: rank 76 of 960 (coldest first); the set takes 96
+T1b,2025-12-26,77.0,2.0776,coldest forecast half-hour 2.08 C: rank 77 of 960 (coldest first); the set takes 96
+T1b,2025-02-15,78.0,2.1817,coldest forecast half-hour 2.18 C: rank 78 of 960 (coldest first); the set takes 96
+T1b,2025-12-27,79.0,2.1827,coldest forecast half-hour 2.18 C: rank 79 of 960 (coldest first); the set takes 96
+T1b,2025-01-21,80.0,2.227,coldest forecast half-hour 2.23 C: rank 80 of 960 (coldest first); the set takes 96
+T1b,2026-01-28,81.0,2.2318,coldest forecast half-hour 2.23 C: rank 81 of 960 (coldest first); the set takes 96
+T1b,2026-03-15,82.0,2.2769,coldest forecast half-hour 2.28 C: rank 82 of 960 (coldest first); the set takes 96
+T1b,2025-12-25,83.0,2.2775,coldest forecast half-hour 2.28 C: rank 83 of 960 (coldest first); the set takes 96
+T1b,2026-02-15,84.0,2.2986,coldest forecast half-hour 2.30 C: rank 84 of 960 (coldest first); the set takes 96
+T1b,2025-03-11,85.0,2.321,coldest forecast half-hour 2.32 C: rank 85 of 960 (coldest first); the set takes 96
+T1b,2025-02-09,86.0,2.3652,coldest forecast half-hour 2.37 C: rank 86 of 960 (coldest first); the set takes 96
+T1b,2024-03-16,87.0,2.3812,coldest forecast half-hour 2.38 C: rank 87 of 960 (coldest first); the set takes 96
+T1b,2025-01-26,88.0,2.4073,coldest forecast half-hour 2.41 C: rank 88 of 960 (coldest first); the set takes 96
+T1b,2025-12-16,89.0,2.4182,coldest forecast half-hour 2.42 C: rank 89 of 960 (coldest first); the set takes 96
+T1b,2024-04-26,90.0,2.4482,coldest forecast half-hour 2.45 C: rank 90 of 960 (coldest first); the set takes 96
+T1b,2026-01-29,91.0,2.4561,coldest forecast half-hour 2.46 C: rank 91 of 960 (coldest first); the set takes 96
+T1b,2024-03-24,92.0,2.494,coldest forecast half-hour 2.49 C: rank 92 of 960 (coldest first); the set takes 96
+T1b,2025-11-22,93.0,2.4955,coldest forecast half-hour 2.50 C: rank 93 of 960 (coldest first); the set takes 96
+T1b,2025-02-07,94.0,2.4986,coldest forecast half-hour 2.50 C: rank 94 of 960 (coldest first); the set takes 96
+T1b,2025-12-17,95.0,2.516,coldest forecast half-hour 2.52 C: rank 95 of 960 (coldest first); the set takes 96
+T1b,2025-02-02,96.0,2.6014,coldest forecast half-hour 2.60 C: rank 96 of 960 (coldest first); the set takes 96
+T2,2026-01-08,1.0,46820.0,NESO's forecast peak 46820.00 MW: rank 1 of 960 (highest first); the set takes 96
+T2,2026-01-05,2.0,46640.0,NESO's forecast peak 46640.00 MW: rank 2 of 960 (highest first); the set takes 96
+T2,2025-01-08,3.0,45470.0,NESO's forecast peak 45470.00 MW: rank 3 of 960 (highest first); the set takes 96
+T2,2026-01-07,4.0,45440.0,NESO's forecast peak 45440.00 MW: rank 4 of 960 (highest first); the set takes 96
+T2,2025-01-21,5.0,45210.0,NESO's forecast peak 45210.00 MW: rank 5 of 960 (highest first); the set takes 96
+T2,2025-01-09,6.0,45104.0,NESO's forecast peak 45104.00 MW: rank 6 of 960 (highest first); the set takes 96
+T2,2025-01-10,7.0,45040.0,NESO's forecast peak 45040.00 MW: rank 7 of 960 (highest first); the set takes 96
+T2,2025-01-20,8.0,44780.0,NESO's forecast peak 44780.00 MW: rank 8 of 960 (highest first); the set takes 96
+T2,2026-01-06,9.0,44390.0,NESO's forecast peak 44390.00 MW: rank 9 of 960 (highest first); the set takes 96
+T2,2025-01-22,10.0,44160.0,NESO's forecast peak 44160.00 MW: rank 10 of 960 (highest first); the set takes 96
+T2,2026-01-09,11.0,43800.0,NESO's forecast peak 43800.00 MW: rank 11 of 960 (highest first); the set takes 96
+T2,2024-12-10,12.0,43780.0,NESO's forecast peak 43780.00 MW: rank 12 of 960 (highest first); the set takes 96
+T2,2024-12-11,13.0,43710.0,NESO's forecast peak 43710.00 MW: rank 13 of 960 (highest first); the set takes 96
+T2,2024-12-12,14.0,43560.0,NESO's forecast peak 43560.00 MW: rank 14 of 960 (highest first); the set takes 96
+T2,2025-11-25,15.0,43490.0,NESO's forecast peak 43490.00 MW: rank 15 of 960 (highest first); the set takes 96
+T2,2025-02-13,16.0,43437.0,NESO's forecast peak 43437.00 MW: rank 16 of 960 (highest first); the set takes 96
+T2,2024-11-22,17.0,43333.0,NESO's forecast peak 43333.00 MW: rank 17 of 960 (highest first); the set takes 96
+T2,2025-02-11,18.0,43300.0,NESO's forecast peak 43300.00 MW: rank 18 of 960 (highest first); the set takes 96
+T2,2024-11-21,19.0,43240.0,NESO's forecast peak 43240.00 MW: rank 19 of 960 (highest first); the set takes 96
+T2,2025-01-14,20.0,43210.0,NESO's forecast peak 43210.00 MW: rank 20 of 960 (highest first); the set takes 96
+T2,2025-02-12,21.0,43210.0,NESO's forecast peak 43210.00 MW: rank 21 of 960 (highest first); the set takes 96
+T2,2025-11-20,22.0,43190.0,NESO's forecast peak 43190.00 MW: rank 22 of 960 (highest first); the set takes 96
+T2,2025-01-13,23.0,43160.0,NESO's forecast peak 43160.00 MW: rank 23 of 960 (highest first); the set takes 96
+T2,2025-01-03,24.0,43020.0,NESO's forecast peak 43020.00 MW: rank 24 of 960 (highest first); the set takes 96
+T2,2026-01-13,25.0,43000.0,NESO's forecast peak 43000.00 MW: rank 25 of 960 (highest first); the set takes 96
+T2,2025-01-06,26.0,42980.0,NESO's forecast peak 42980.00 MW: rank 26 of 960 (highest first); the set takes 96
+T2,2026-01-15,27.0,42960.0,NESO's forecast peak 42960.00 MW: rank 27 of 960 (highest first); the set takes 96
+T2,2024-11-27,28.0,42940.0,NESO's forecast peak 42940.00 MW: rank 28 of 960 (highest first); the set takes 96
+T2,2025-01-11,29.0,42880.0,NESO's forecast peak 42880.00 MW: rank 29 of 960 (highest first); the set takes 96
+T2,2025-02-14,30.0,42840.0,NESO's forecast peak 42840.00 MW: rank 30 of 960 (highest first); the set takes 96
+T2,2026-02-19,31.0,42790.0,NESO's forecast peak 42790.00 MW: rank 31 of 960 (highest first); the set takes 96
+T2,2025-02-10,32.0,42760.0,NESO's forecast peak 42760.00 MW: rank 32 of 960 (highest first); the set takes 96
+T2,2026-02-03,33.0,42760.0,NESO's forecast peak 42760.00 MW: rank 33 of 960 (highest first); the set takes 96
+T2,2026-02-17,34.0,42660.0,NESO's forecast peak 42660.00 MW: rank 34 of 960 (highest first); the set takes 96
+T2,2025-01-15,35.0,42650.0,NESO's forecast peak 42650.00 MW: rank 35 of 960 (highest first); the set takes 96
+T2,2025-02-05,36.0,42630.0,NESO's forecast peak 42630.00 MW: rank 36 of 960 (highest first); the set takes 96
+T2,2025-12-04,37.0,42630.0,NESO's forecast peak 42630.00 MW: rank 37 of 960 (highest first); the set takes 96
+T2,2024-11-26,38.0,42625.0,NESO's forecast peak 42625.00 MW: rank 38 of 960 (highest first); the set takes 96
+T2,2025-11-26,39.0,42560.0,NESO's forecast peak 42560.00 MW: rank 39 of 960 (highest first); the set takes 96
+T2,2025-01-16,40.0,42550.0,NESO's forecast peak 42550.00 MW: rank 40 of 960 (highest first); the set takes 96
+T2,2025-01-07,41.0,42500.0,NESO's forecast peak 42500.00 MW: rank 41 of 960 (highest first); the set takes 96
+T2,2026-01-10,42.0,42430.0,NESO's forecast peak 42430.00 MW: rank 42 of 960 (highest first); the set takes 96
+T2,2026-01-14,43.0,42430.0,NESO's forecast peak 42430.00 MW: rank 43 of 960 (highest first); the set takes 96
+T2,2025-02-17,44.0,42420.0,NESO's forecast peak 42420.00 MW: rank 44 of 960 (highest first); the set takes 96
+T2,2025-01-31,45.0,42320.0,NESO's forecast peak 42320.00 MW: rank 45 of 960 (highest first); the set takes 96
+T2,2024-11-20,46.0,42230.0,NESO's forecast peak 42230.00 MW: rank 46 of 960 (highest first); the set takes 96
+T2,2025-12-16,47.0,42180.0,NESO's forecast peak 42180.00 MW: rank 47 of 960 (highest first); the set takes 96
+T2,2024-11-28,48.0,42140.0,NESO's forecast peak 42140.00 MW: rank 48 of 960 (highest first); the set takes 96
+T2,2025-11-21,49.0,42100.0,NESO's forecast peak 42100.00 MW: rank 49 of 960 (highest first); the set takes 96
+T2,2025-01-30,50.0,41982.0,NESO's forecast peak 41982.00 MW: rank 50 of 960 (highest first); the set takes 96
+T2,2026-01-28,51.0,41980.0,NESO's forecast peak 41980.00 MW: rank 51 of 960 (highest first); the set takes 96
+T2,2024-11-18,52.0,41920.0,NESO's forecast peak 41920.00 MW: rank 52 of 960 (highest first); the set takes 96
+T2,2026-01-19,53.0,41903.0,NESO's forecast peak 41903.00 MW: rank 53 of 960 (highest first); the set takes 96
+T2,2025-11-19,54.0,41890.0,NESO's forecast peak 41890.00 MW: rank 54 of 960 (highest first); the set takes 96
+T2,2025-11-17,55.0,41866.0,NESO's forecast peak 41866.00 MW: rank 55 of 960 (highest first); the set takes 96
+T2,2024-12-09,56.0,41820.0,NESO's forecast peak 41820.00 MW: rank 56 of 960 (highest first); the set takes 96
+T2,2024-12-03,57.0,41790.0,NESO's forecast peak 41790.00 MW: rank 57 of 960 (highest first); the set takes 96
+T2,2025-01-17,58.0,41720.0,NESO's forecast peak 41720.00 MW: rank 58 of 960 (highest first); the set takes 96
+T2,2026-01-26,59.0,41720.0,NESO's forecast peak 41720.00 MW: rank 59 of 960 (highest first); the set takes 96
+T2,2026-01-29,60.0,41715.0,NESO's forecast peak 41715.00 MW: rank 60 of 960 (highest first); the set takes 96
+T2,2024-12-13,61.0,41660.0,NESO's forecast peak 41660.00 MW: rank 61 of 960 (highest first); the set takes 96
+T2,2025-01-19,62.0,41610.0,NESO's forecast peak 41610.00 MW: rank 62 of 960 (highest first); the set takes 96
+T2,2025-01-12,63.0,41580.0,NESO's forecast peak 41580.00 MW: rank 63 of 960 (highest first); the set takes 96
+T2,2025-01-29,64.0,41560.0,NESO's forecast peak 41560.00 MW: rank 64 of 960 (highest first); the set takes 96
+T2,2026-01-04,65.0,41540.0,NESO's forecast peak 41540.00 MW: rank 65 of 960 (highest first); the set takes 96
+T2,2026-02-12,66.0,41420.0,NESO's forecast peak 41420.00 MW: rank 66 of 960 (highest first); the set takes 96
+T2,2025-02-26,67.0,41410.0,NESO's forecast peak 41410.00 MW: rank 67 of 960 (highest first); the set takes 96
+T2,2026-02-04,68.0,41400.0,NESO's forecast peak 41400.00 MW: rank 68 of 960 (highest first); the set takes 96
+T2,2025-01-23,69.0,41390.0,NESO's forecast peak 41390.00 MW: rank 69 of 960 (highest first); the set takes 96
+T2,2025-12-03,70.0,41350.0,NESO's forecast peak 41350.00 MW: rank 70 of 960 (highest first); the set takes 96
+T2,2025-01-28,71.0,41310.0,NESO's forecast peak 41310.00 MW: rank 71 of 960 (highest first); the set takes 96
+T2,2026-01-16,72.0,41310.0,NESO's forecast peak 41310.00 MW: rank 72 of 960 (highest first); the set takes 96
+T2,2026-02-06,73.0,41290.0,NESO's forecast peak 41290.00 MW: rank 73 of 960 (highest first); the set takes 96
+T2,2025-02-06,74.0,41140.0,NESO's forecast peak 41140.00 MW: rank 74 of 960 (highest first); the set takes 96
+T2,2025-11-18,75.0,41120.0,NESO's forecast peak 41120.00 MW: rank 75 of 960 (highest first); the set takes 96
+T2,2026-02-09,76.0,41060.0,NESO's forecast peak 41060.00 MW: rank 76 of 960 (highest first); the set takes 96
+T2,2026-02-18,77.0,41010.0,NESO's forecast peak 41010.00 MW: rank 77 of 960 (highest first); the set takes 96
+T2,2024-11-19,78.0,40910.0,NESO's forecast peak 40910.00 MW: rank 78 of 960 (highest first); the set takes 96
+T2,2025-12-02,79.0,40880.0,NESO's forecast peak 40880.00 MW: rank 79 of 960 (highest first); the set takes 96
+T2,2025-02-27,80.0,40872.0,NESO's forecast peak 40872.00 MW: rank 80 of 960 (highest first); the set takes 96
+T2,2025-11-24,81.0,40850.0,NESO's forecast peak 40850.00 MW: rank 81 of 960 (highest first); the set takes 96
+T2,2026-01-12,82.0,40780.0,NESO's forecast peak 40780.00 MW: rank 82 of 960 (highest first); the set takes 96
+T2,2025-02-16,83.0,40769.0,NESO's forecast peak 40769.00 MW: rank 83 of 960 (highest first); the set takes 96
+T2,2026-02-13,84.0,40740.0,NESO's forecast peak 40740.00 MW: rank 84 of 960 (highest first); the set takes 96
+T2,2025-01-04,85.0,40730.0,NESO's forecast peak 40730.00 MW: rank 85 of 960 (highest first); the set takes 96
+T2,2025-12-15,86.0,40730.0,NESO's forecast peak 40730.00 MW: rank 86 of 960 (highest first); the set takes 96
+T2,2025-02-19,87.0,40690.0,NESO's forecast peak 40690.00 MW: rank 87 of 960 (highest first); the set takes 96
+T2,2026-02-02,88.0,40670.0,NESO's forecast peak 40670.00 MW: rank 88 of 960 (highest first); the set takes 96
+T2,2025-02-18,89.0,40640.0,NESO's forecast peak 40640.00 MW: rank 89 of 960 (highest first); the set takes 96
+T2,2024-12-02,90.0,40601.0,NESO's forecast peak 40601.00 MW: rank 90 of 960 (highest first); the set takes 96
+T2,2026-02-10,91.0,40540.0,NESO's forecast peak 40540.00 MW: rank 91 of 960 (highest first); the set takes 96
+T2,2026-02-16,92.0,40510.0,NESO's forecast peak 40510.00 MW: rank 92 of 960 (highest first); the set takes 96
+T2,2024-12-04,93.0,40420.0,NESO's forecast peak 40420.00 MW: rank 93 of 960 (highest first); the set takes 96
+T2,2025-01-27,94.0,40340.0,NESO's forecast peak 40340.00 MW: rank 94 of 960 (highest first); the set takes 96
+T2,2026-01-22,95.0,40335.0,NESO's forecast peak 40335.00 MW: rank 95 of 960 (highest first); the set takes 96
+T2,2026-02-05,96.0,40320.0,NESO's forecast peak 40320.00 MW: rank 96 of 960 (highest first); the set takes 96
+T3,2024-03-29,,,bank holiday (England and Wales)
+T3,2024-04-01,,,bank holiday (England and Wales)
+T3,2024-05-06,,,bank holiday (England and Wales)
+T3,2024-05-27,,,bank holiday (England and Wales)
+T3,2024-08-26,,,bank holiday (England and Wales)
+T3,2024-12-24,,,24 December to 2 January
+T3,2024-12-25,,,bank holiday (England and Wales); 24 December to 2 January
+T3,2024-12-26,,,bank holiday (England and Wales); 24 December to 2 January
+T3,2024-12-27,,,24 December to 2 January
+T3,2024-12-28,,,24 December to 2 January
+T3,2024-12-29,,,24 December to 2 January
+T3,2024-12-30,,,24 December to 2 January
+T3,2024-12-31,,,24 December to 2 January
+T3,2025-01-01,,,bank holiday (England and Wales); 24 December to 2 January
+T3,2025-01-02,,,24 December to 2 January
+T3,2025-04-18,,,bank holiday (England and Wales)
+T3,2025-04-21,,,bank holiday (England and Wales)
+T3,2025-05-05,,,bank holiday (England and Wales)
+T3,2025-05-26,,,bank holiday (England and Wales)
+T3,2025-08-25,,,bank holiday (England and Wales)
+T3,2025-12-24,,,24 December to 2 January
+T3,2025-12-25,,,bank holiday (England and Wales); 24 December to 2 January
+T3,2025-12-26,,,bank holiday (England and Wales); 24 December to 2 January
+T3,2025-12-27,,,24 December to 2 January
+T3,2025-12-28,,,24 December to 2 January
+T3,2025-12-29,,,24 December to 2 January
+T3,2025-12-30,,,24 December to 2 January
+T3,2025-12-31,,,24 December to 2 January
+T3,2026-01-01,,,bank holiday (England and Wales); 24 December to 2 January
+T3,2026-01-02,,,24 December to 2 January
+T3,2026-04-03,,,bank holiday (England and Wales)
+T3,2026-04-06,,,bank holiday (England and Wales)
+T3,2026-05-04,,,bank holiday (England and Wales)
+T3,2026-05-25,,,bank holiday (England and Wales)
+T3,2026-08-31,,,bank holiday (England and Wales)

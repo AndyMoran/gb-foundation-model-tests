@@ -1,0 +1,177 @@
+{
+ "schema": 1,
+ "note": "tails study day sets (PLAN.md \u00a75); chosen from forecasts and the calendar only",
+ "days_csv_sha256": "d9c6b6a5b1f7c06c168a13521484dbd957cd091510caff44c5eacfbad0a93f7c",
+ "day_inputs_csv_sha256": "4d427eb375bd58a76ef69ad6b1f74ba15d3f86ee8a2441e33b73dc8e5ca7834f",
+ "n_days": 960,
+ "share": 0.1,
+ "T1": {
+  "n_ranked": 960,
+  "k": 96,
+  "boundary_value": 4.740702083333333,
+  "tie_at_boundary": false
+ },
+ "T1b": {
+  "n_ranked": 960,
+  "k": 96,
+  "boundary_value": 2.6014,
+  "tie_at_boundary": false
+ },
+ "T2": {
+  "n_ranked": 960,
+  "k": 96,
+  "boundary_value": 40320.0,
+  "tie_at_boundary": false,
+  "left_out_no_neso": []
+ },
+ "counts": {
+  "T1": 96,
+  "T1b": 96,
+  "T2": 96,
+  "T3": 35,
+  "T4": 0
+ },
+ "by_winter": {
+  "T1": {
+   "winter 2024-25": 59,
+   "winter 2025-26": 37
+  },
+  "T1b": {
+   "Apr-Oct 2024": 1,
+   "winter 2023-24": 2,
+   "winter 2024-25": 56,
+   "winter 2025-26": 37
+  },
+  "T2": {
+   "winter 2024-25": 53,
+   "winter 2025-26": 43
+  },
+  "T3": {
+   "Apr-Oct 2024": 4,
+   "Apr-Oct 2025": 5,
+   "Apr-Oct 2026": 5,
+   "winter 2023-24": 1,
+   "winter 2024-25": 10,
+   "winter 2025-26": 10
+  },
+  "T4": {}
+ },
+ "by_month": {
+  "T1": {
+   "2024-11": 7,
+   "2024-12": 2,
+   "2025-01": 23,
+   "2025-02": 18,
+   "2025-03": 9,
+   "2025-11": 8,
+   "2025-12": 7,
+   "2026-01": 15,
+   "2026-02": 7
+  },
+  "T1b": {
+   "2024-03": 2,
+   "2024-04": 1,
+   "2024-11": 7,
+   "2025-01": 22,
+   "2025-02": 14,
+   "2025-03": 13,
+   "2025-11": 8,
+   "2025-12": 7,
+   "2026-01": 14,
+   "2026-02": 5,
+   "2026-03": 3
+  },
+  "T2": {
+   "2024-11": 8,
+   "2024-12": 8,
+   "2025-01": 24,
+   "2025-02": 13,
+   "2025-11": 8,
+   "2025-12": 5,
+   "2026-01": 17,
+   "2026-02": 13
+  },
+  "T3": {
+   "2024-03": 1,
+   "2024-04": 1,
+   "2024-05": 2,
+   "2024-08": 1,
+   "2024-12": 8,
+   "2025-01": 2,
+   "2025-04": 2,
+   "2025-05": 2,
+   "2025-08": 1,
+   "2025-12": 8,
+   "2026-01": 2,
+   "2026-04": 2,
+   "2026-05": 2,
+   "2026-08": 1
+  },
+  "T4": {}
+ },
+ "overlap": {
+  "T1&T1b": 79,
+  "T1&T2": 62,
+  "T1&T3": 10,
+  "T1&T4": 0,
+  "T1b&T2": 53,
+  "T1b&T3": 8,
+  "T1b&T4": 0,
+  "T2&T3": 0,
+  "T2&T4": 0,
+  "T3&T4": 0
+ },
+ "small_sets": {
+  "T1": false,
+  "T1b": false,
+  "T2": false,
+  "T3": false,
+  "T4": true
+ },
+ "largest_winter_share": {
+  "T1": 0.615,
+  "T1b": 0.583,
+  "T2": 0.552,
+  "T3": 0.286
+ },
+ "T4_check": {
+  "rule": "T4 uses LightGBM's training rows; t4_window uses every half-hour of D-366 .. D-2. Dropping rows can only raise the training minimum, so every t4_window day must be a T4 day.",
+  "n_t4": 0,
+  "n_t4_window": 0,
+  "t4_not_window": []
+ },
+ "neso_left_out_reasons": {},
+ "provenance": {
+  "public_commit": "dba8c7484586e9413c486835d9a8cd21763e1881",
+  "private_commit": "e501e4f9661513f9b2267ce21c77019443951193",
+  "script_sha256": "29bacf1e653def86746c4dcbee9faf5a7d9c9bb47ee182d2e114beb6ca462bdd",
+  "private_sha256": {
+   "regression_weather.py": "9dba122e53ff550d658678d96287e0c4917c2064c400beefc37d06d62a4c9e84",
+   "lightgbm_weather.py": "57c79298392ca0e880709d179b1b39b6f4619d7ec4f5798b8e64b769e7d19a85",
+   "run_weather.py": "7acc283c573f579dedf2e44a41e0504d8163d15aa4163e2c2cbace0f6c9c40a7",
+   "national.py": "1c0448f11404d3a83f90147e0500c32a5c4f2922218017863261407804907c71"
+  },
+  "code_sha256": {
+   "common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4",
+   "inputs.py": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b",
+   "baselines.py": "a7679e3a5466d23de89dbf563b662f7f2061c040c466fa2626cf87758c7c4a0d"
+  }
+ },
+ "inputs_sha256": {
+  "inputs_2024-03-16_2026-10-31.csv.gz": "1366c26c9c5ccddd37805921bd56702ae2062dc7aaf327c176fd1d2b32127cd3",
+  "days_2024-03-16_2026-10-31.jsonl": "0e7151e938576251824fe3e150d42a1e09f2faaf686c5aa57bef4fbc7273fcae",
+  "era5_halfhourly_2024-03-16_2026-10-31.csv.gz": "42de94847779b53e80474e1121d9bd16ff117fd224779fcffa80ac2b1d67e413",
+  "build_2024-03-16_2026-10-31.json": "e74aeb2401c4cc35d7226f4cba13c727def972a59b5f1a435a9406040b55e4d8",
+  "neso_dayahead_publications.csv": "3afb0faa6578f5b1859ffb6a6f556357081b41651b3ebdd82b23cbaa1aa35705",
+  "bank_holidays_ew.json": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af",
+  "indo.csv": "fefa7d160288b3827190242d86aee7c6b7f4016b2f4e230da99e41429291a819",
+  "weather_study/results/forecasts.csv": "b5f16561dcf1a26f8d7910bcca95cd137f677760c6f80153349034d4a85f7328",
+  "results/attempt2/forecasts.csv": "891ff5031935fdb095298071550c20086d68bcc49e71908ef64169deb40a6027"
+ },
+ "versions": {
+  "python": "3.11.18",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0",
+  "lightgbm": "4.7.0"
+ }
+}
