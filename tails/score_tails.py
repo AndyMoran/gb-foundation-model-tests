@@ -56,6 +56,9 @@ ATTEMPT2 = os.path.join(ROOT, 'results', 'attempt2', 'forecasts.csv')
 ATTEMPT2_SHA = '891ff5031935fdb095298071550c20086d68bcc49e71908ef64169deb40a6027'
 DAYS_CSV, DAYS_JSON = os.path.join(HERE, 'days.csv'), os.path.join(HERE, 'days.json')
 SYNTH_JSON = os.path.join(HERE, 'synthetic.json')
+DAY_INPUTS, BUILD = os.path.join(HERE, 'day_inputs.csv'), os.path.join(HERE, 'build_days.py')
+GUARDED = ['tails/score_tails.py', 'tails/build_days.py', 'tails/days.csv', 'tails/days.json', 'tails/day_inputs.csv',
+           'tails/synthetic.json', 'weather_study/WEATHER_LOCK.json', 'data/fetch_manifest.json']
 SEED, B, BLOCK = 20261117, 2000, 7
 SMALL = 10
 SCHEMA = 1
@@ -245,7 +248,9 @@ def h1_outcome(narrow, broad, bias, peak, t4):
     if broad == 'below': return 'not supported', 'the broad tail shift lies wholly below 1'
     if narrow != 'above' and broad != 'above': return 'not supported', 'neither tail shift lies wholly above 1'
     if narrow == 'above' and broad == 'above':
-        if bias != 'above' or peak != 'above': return 'unclear', 'bias or peak error not clearly positive'
+        if bias != 'above' and peak != 'above': return 'unclear', 'neither bias nor peak error clearly positive'
+        if bias != 'above': return 'unclear', 'bias not clearly positive'
+        if peak != 'above': return 'unclear', 'peak error not clearly positive'
         if t4 == 'fails': return 'unclear', 'T1 conditions met; T4 clause did not hold'
         return 'supported', 'all T1 conditions met' + ('; T4 clause held' if t4 == 'holds' else '; T4 clause not assessed')
     if broad == 'above': return 'unclear', 'a winter effect, not a cold-day effect'
@@ -254,7 +259,9 @@ def h1_outcome(narrow, broad, bias, peak, t4):
 
 def h1(out, draws):
     c = 'lightgbm_s1'; T1 = out['sets']['T1']
-    if T1['day_by_day']: return dict(outcome='not assessed', case='T1 has fewer than 10 scored days')
+    if T1['day_by_day']:
+        return dict(outcome='not assessed', case='T1 has fewer than 10 scored days',
+                    sentence=f"H1 was not assessed: T1 has {T1['n_scored']} scored days, fewer than {SMALL}.")
     R = T1['forecasters'][c]
     sides = dict(narrow=side(R['shift_narrow']['ci90'], 1), broad=side(R['shift_broad']['ci90'], 1),
                  bias=side(R['set']['bias_ci90'], 0), peak=side(R['set']['peak_ci90'], 0))
@@ -292,9 +299,13 @@ def h1_sentence(outcome, case, t4):
         'neither tail shift lies wholly above 1': 'LightGBM S1 did not clearly lose ground to the regression on the '
                                                   'coldest tenth of days, against other days of the same months or '
                                                   'against all other days.',
-        'bias or peak error not clearly positive': 'LightGBM S1 lost ground on the coldest tenth of days in both '
-                                                   'comparisons, but did not clearly under-forecast demand and the '
-                                                   'daily peak.',
+        'neither bias nor peak error clearly positive': 'LightGBM S1 lost ground on the coldest tenth of days in both '
+                                                        'comparisons, but did not clearly under-forecast demand or the '
+                                                        'daily peak.',
+        'bias not clearly positive': 'LightGBM S1 lost ground on the coldest tenth of days in both comparisons and '
+                                     'under-forecast the daily peak, but did not clearly under-forecast demand.',
+        'peak error not clearly positive': 'LightGBM S1 lost ground on the coldest tenth of days in both comparisons and '
+                                           'under-forecast demand, but did not clearly under-forecast the daily peak.',
         'T1 conditions met; T4 clause did not hold': 'every condition on T1 held, but LightGBM S1\'s bias was not '
                                                      'clearly larger on days colder than any in its training rows (T4).',
         'a winter effect, not a cold-day effect': 'LightGBM S1 lost ground against all other days but not clearly '
@@ -421,10 +432,18 @@ def round_floats(x):
 def real():
     for p in (DAYS_CSV, DAYS_JSON, SYNTH_JSON):
         if not os.path.exists(p): sys.exit(f'Refused: {os.path.relpath(p, ROOT)} is missing (build_days.py, then --synthetic).')
-    if git('status', '--porcelain', '--', 'tails/score_tails.py', 'tails/days.csv', 'tails/days.json', 'tails/synthetic.json'):
-        sys.exit('Refused: score_tails.py, days.csv, days.json and synthetic.json must be committed and unchanged.')
+    if git('status', '--porcelain', '--', *GUARDED):
+        sys.exit('Refused: these must be committed and unchanged: ' + ', '.join(GUARDED))
     dj = json.load(open(DAYS_JSON))
     if sha(DAYS_CSV) != dj['days_csv_sha256']: sys.exit('Refused: days.csv differs from the hash in days.json.')
+    if sha(DAY_INPUTS) != dj['day_inputs_csv_sha256']: sys.exit('Refused: day_inputs.csv differs from the hash in days.json.')
+    if sha(BUILD) != dj['provenance']['script_sha256']:
+        sys.exit('Refused: days.json was not made by the committed build_days.py.')
+    lock = json.load(open(os.path.join(ROOT, 'weather_study', 'WEATHER_LOCK.json')))['files_sha256']
+    man = json.load(open(os.path.join(ROOT, 'data', 'fetch_manifest.json')))['files']
+    for k, h in dj['inputs_sha256'].items():                  # the build's inputs, against the committed manifests
+        want = lock.get('~/gb-weather-data/backtest/' + k) or (man.get(k) or {}).get('sha256')
+        if want is not None and want != h: sys.exit(f'Refused: days.json records {k} with a hash the manifests do not.')
     sy = json.load(open(SYNTH_JSON))
     if not sy.get('passed') or sy.get('script_sha256') != sha(os.path.abspath(__file__)) or sy.get('days_csv_sha256') != sha(DAYS_CSV):
         sys.exit('Refused: the synthetic check has not passed with this script and this days.csv.')
@@ -542,7 +561,7 @@ def synthetic_cases(members, n_t4):
                                           h1=('not supported', 'both tail shifts lie wholly below 1'))),
         'E_unclear_peak_over': dict(spec={'lightgbm_s1': dict(level=dict(set=1.35), p={'T1': 0.7}, peak={'T1': -1})},
                                   want=dict(chronos2_A='includes', lightgbm_s1='above',
-                                            h1=('unclear', 'bias or peak error not clearly positive'))),
+                                            h1=('unclear', 'peak error not clearly positive'))),
         'F_none_not_supported': dict(spec={}, want=dict(chronos2_A='includes', lightgbm_s1='includes',
                                                         h1=('not supported', 'neither tail shift lies wholly above 1'))),
     }
@@ -584,6 +603,11 @@ def unit_rules():
     t.append(h1_outcome('includes', 'above', 'above', 'above', 'holds')[1] == 'a winter effect, not a cold-day effect')
     t.append(h1_outcome('above', 'includes', 'above', 'above', 'holds')[1] == 'a cold-day effect not seen against all other days')
     t.append(h1_outcome('below', 'below', 'above', 'above', 'holds')[1] == 'both tail shifts lie wholly below 1')
+    t.append(h1_outcome('above', 'above', 'includes', 'above', 'holds')[1] == 'bias not clearly positive')
+    t.append(h1_outcome('above', 'above', 'above', 'below', 'holds')[1] == 'peak error not clearly positive')
+    t.append(h1_outcome('above', 'above', 'includes', 'includes', 'holds')[1] == 'neither bias nor peak error clearly positive')
+    t.append(all(h1_sentence(*h1_outcome('above', 'above', b, q, 'holds'), {'clause': 'holds'})
+                 for b in ('above', 'below', 'includes') for q in ('above', 'below', 'includes')))
     t.append(h1_outcome('below', 'includes', 'above', 'above', 'holds')[1] == 'the narrow tail shift lies wholly below 1')
     t.append(h1_outcome('includes', 'below', 'above', 'above', 'holds')[1] == 'the broad tail shift lies wholly below 1')
     t.append(all(h1_sentence(*h1_outcome(*a), {'clause': 'holds'}) for a in
@@ -594,6 +618,36 @@ def unit_rules():
     t.append(k == 'below' and '10.0% lower' in s)
     k, s = headline('chronos2_A', dict(value=1.02, ci90=[0.95, 1.1]))
     t.append(k == 'includes' and 'tail shift 1.020, 90% interval 0.950–1.100' in s)
+    return all(t), len(t)
+
+
+def unit_peak():
+    """Peak error is the difference of the two daily peaks, wherever each falls (PLAN.md §6, metric 5). Hand-made days
+    where it differs from the error at the outturn's peak half-hour and from the day's largest error."""
+    rows = []
+    for d, y, f in (('2025-01-01', [10, 50, 20, 30], [10, 40, 20, 70]),    # peaks 50 and 70: -20 (not +10, not +10)
+                    ('2025-01-02', [5, 5, 9, 5], [6, 8, 1, 5])):           # peaks 9 and 8: +1 (not +8, not +8)
+        for k in range(4): rows.append(dict(day=d, start_utc=f'{d}T{k:02d}:00:00+00:00', outturn=float(y[k]),
+                                            **{c: float(f[k]) for c in FORECASTERS}))
+    P = per_day(pd.DataFrame(rows))
+    return all(np.array_equal(P['peak'][c], [-20.0, 1.0]) for c in FORECASTERS)
+
+
+def unit_bootstrap():
+    """The bootstrap's constants are the plan's; each draw is moving blocks of 7 consecutive days; the same seed gives
+    the same draws; a draw with no days in a region is dropped and counted."""
+    t = [SEED == 20261117, B == 2000, BLOCK == 7]
+    n = 960; I = boot_idx(n, np.random.default_rng(SEED)); I2 = boot_idx(n, np.random.default_rng(SEED))
+    t.append(I.shape == (B, n) and np.array_equal(I, I2) and I.min() >= 0 and I.max() < n)
+    full = (n // BLOCK) * BLOCK
+    t.append(bool((np.diff(I[:, :full].reshape(B, -1, BLOCK), axis=2) == 1).all()))
+    # dropped draws: a one-day region, counted independently
+    rows = [dict(day=f'2025-{1 + i // 28:02d}-{1 + i % 28:02d}', start_utc=f'{i:04d}', outturn=100.0,
+                 **{c: 90.0 + (i % 3) for c in FORECASTERS}) for i in range(60)]
+    P = per_day(pd.DataFrame(rows)); I3 = boot_idx(60, np.random.default_rng(1))
+    m = np.zeros(60, bool); m[17] = True
+    pt, _ = region(P, I3, 'chronos2_A', m)
+    t.append(pt['draws_dropped'] == int((~(I3 == 17).any(1)).sum()) and pt['draws_dropped'] > 0)
     return all(t), len(t)
 
 
@@ -642,10 +696,34 @@ def synthetic(days_path):
     res = dict(days_csv=os.path.relpath(days_path, ROOT), days_csv_sha256=sha(days_path),
                script_sha256=sha(os.path.abspath(__file__)), set_sizes={s: len(v) for s, v in members.items()}, cases={})
     ok_rules, n_rules = unit_rules(); res['unit_rules'] = dict(passed=ok_rules, checks=n_rules)
-    ok_all = ok_rules
-    for i, (name, case) in enumerate(synthetic_cases(members, n_t4).items()):
+    ok_peak = unit_peak(); res['unit_peak'] = dict(passed=ok_peak)
+    ok_boot, n_boot = unit_bootstrap(); res['unit_bootstrap'] = dict(passed=ok_boot, checks=n_boot)
+    for k in ('unit_rules', 'unit_peak', 'unit_bootstrap'): print(('PASS ' if res[k]['passed'] else 'FAIL ') + k)
+    ok_all = ok_rules and ok_peak and ok_boot
+    # the real sets, then two constructed T4 sets drawn from T1 (14 and 5 days) to exercise the T4 clause and the
+    # day-by-day path; the constructed sets stand in for a T4 the real data did not produce
+    t1 = sorted(members['T1'])
+    runs = [('', members, synthetic_cases(members, n_t4))]
+    for n4 in (14, 5):
+        mem = dict(members, T4=t1[:n4]); cs = synthetic_cases(mem, n4)
+        runs.append((f'T4x{n4}_', mem, {k: cs[k] for k in cs if k[0] in 'AG'}))
+    ok_all &= run_cases(runs, grid, all_days, blank_day, res)
+    if n_t4 < SMALL:
+        res['note_t4'] = (f'The real T4 has {n_t4} days, fewer than {SMALL}: on the real sets the clause is not assessed. '
+                          'The T4x14_ and T4x5_ cases use constructed T4 sets drawn from T1.')
+    res['passed'] = bool(ok_all)
+    json.dump(round_floats(res), open(SYNTH_JSON if days_path == DAYS_CSV else os.path.join(HERE, 'synthetic_dev.json'), 'w'),
+              indent=1, default=str)
+    print('synthetic: ' + ('PASS' if ok_all else 'FAIL'))
+    return ok_all
+
+
+def run_cases(runs, grid, all_days, blank_day, res):
+    ok_all = True
+    flat = [(prefix + name, name, members, case) for prefix, members, cases in runs for name, case in cases.items()]
+    for i, (name, base, members, case) in enumerate(flat):
         spec = resolve_levels({k: dict(v) for k, v in case['spec'].items()}, all_days, members)
-        if name.startswith('A'): spec['_blank'] = {'timesfm25_weather_single_day': (blank_day, 3)}
+        if base.startswith('A'): spec['_blank'] = {'timesfm25_weather_single_day': (blank_day, 3)}
         frame, design, days, Hd = synth_case(grid, members, spec, seed=1000 + i)
         unscored = {blank_day} if '_blank' in spec else set()
         out = score(frame, members)
@@ -658,7 +736,7 @@ def synthetic(days_path):
             tuple(got['h1']) == tuple(want['h1'])
         scored_ok = out['days_not_scored'] == sorted(unscored)
         passed = not bad and match and scored_ok
-        if name.startswith('A'):                                            # deterministic: the same output again
+        if base.startswith('A'):                                            # deterministic: the same output again
             again = score(synth_case(grid, members, spec, seed=1000 + i)[0], members)
             passed &= json.dumps(round_floats(again), sort_keys=True) == json.dumps(round_floats(out), sort_keys=True)
         T1 = out['sets']['T1']['forecasters']
@@ -672,12 +750,6 @@ def synthetic(days_path):
                                   headlines=out['headlines'])
         ok_all &= passed
         print(('PASS ' if passed else 'FAIL ') + name, json.dumps(got), f'{len(bad)} mismatches', flush=True)
-    if n_t4 < SMALL:
-        res['note_t4'] = f'T4 has {n_t4} days, fewer than {SMALL}: the T4-clause case (G) is not run; the clause is not assessed.'
-    res['passed'] = bool(ok_all)
-    json.dump(round_floats(res), open(SYNTH_JSON if days_path == DAYS_CSV else os.path.join(HERE, 'synthetic_dev.json'), 'w'),
-              indent=1, default=str)
-    print('synthetic: ' + ('PASS' if ok_all else 'FAIL'))
     return ok_all
 
 
