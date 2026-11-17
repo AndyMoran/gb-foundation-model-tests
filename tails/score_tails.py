@@ -261,7 +261,7 @@ def h1(out, draws):
     T4 = out['sets']['T4']; t4 = dict(n_scored=T4['n_scored'])
     if T4['n_scored'] == 0:
         t4['clause'] = 'not assessed'
-        t4['why'] = "T4 is empty: on no scored day was a forecast temperature below the lowest in LightGBM's training rows"
+        t4['why'] = "no scored day had a forecast temperature below the lowest in LightGBM's training rows, so T4 is empty"
     elif T4['n_scored'] < SMALL:
         t4['clause'] = 'not assessed'; t4['why'] = f"T4 has {T4['n_scored']} scored days, fewer than {SMALL}"
     else:
