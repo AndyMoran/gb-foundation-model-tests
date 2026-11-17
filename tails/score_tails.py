@@ -259,7 +259,10 @@ def h1(out, draws):
     sides = dict(narrow=side(R['shift_narrow']['ci90'], 1), broad=side(R['shift_broad']['ci90'], 1),
                  bias=side(R['set']['bias_ci90'], 0), peak=side(R['set']['peak_ci90'], 0))
     T4 = out['sets']['T4']; t4 = dict(n_scored=T4['n_scored'])
-    if T4['n_scored'] < SMALL:
+    if T4['n_scored'] == 0:
+        t4['clause'] = 'not assessed'
+        t4['why'] = "T4 is empty: on no scored day was a forecast temperature below the lowest in LightGBM's training rows"
+    elif T4['n_scored'] < SMALL:
         t4['clause'] = 'not assessed'; t4['why'] = f"T4 has {T4['n_scored']} scored days, fewer than {SMALL}"
     else:
         a, b = draws[('T4', c)]['set']['bias'], draws[('T1', c)]['set']['bias']
@@ -362,6 +365,8 @@ def markdown(out, meta):
         L += [f"## {SET_NAMES[s]}", '',
               f"Scored days: {S['n_scored']} (listed {S['n_listed']}; not scored: {S['listed_not_scored'] or 'none'}). "
               f"Narrow complement: {S['n_narrow']} days in {len(S['narrow_months'])} months; broad: {S['n_broad']} days.", '']
+        if S['n_scored'] == 0:
+            L += ['No days: no metrics.', '']; continue
         if S['day_by_day']:
             L += [f'Fewer than {SMALL} scored days: reported day by day, without averages or intervals (PLAN.md §5).', '',
                   '| Forecaster | Day | Daily error (MW) | Ratio to regression | Bias (MW) | Peak error (MW) |',
