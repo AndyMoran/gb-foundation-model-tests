@@ -1,6 +1,6 @@
 # GB day-ahead demand benchmark: rules
 
-**Status: DRAFT, not in force.** These rules take effect when committed and tagged `benchmark-rules-v1`. That tag's time is the evidence that they came before checkpoint 1's plan and before any day in its window.
+**Status:** these rules take effect when committed and tagged `benchmark-rules-v2`. That tag's time is the evidence that they came before checkpoint 1's plan and before any day in its window. `benchmark-rules-v1` (commit 9d1e357, 17 November 2026) marks the version before an external review; this version supersedes it under rule 8.6, before any window has opened.
 
 Rules are cited by number ("rule 4.2"). Checkpoint plans and reports cite rules; they do not restate them.
 
