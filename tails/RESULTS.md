@@ -214,6 +214,10 @@ If checkpoint 1 runs, read any result against LightGBM in a cold spring with its
 - **Changes:** every implementation choice the plan does not name, and the three reviews before the run, are in `REVISIONS.md`.
 - **Data:** the forecast files are in this repository. The day sets were built from public data that are not committed: NESO's publications, ERA5, and ECMWF's open-data forecasts. Their files are named and hashed in `days.json`.
 
+## Use of AI
+
+I used AI tools in this work: Claude, ChatGPT, Microsoft Copilot, DeepSeek, Kimi and Z.ai. The work is designed so that results are calculated numerically and checked against ground truths, and assumptions are checked against original sources. The scoring script passed a synthetic check with known answers before the real days were scored.
+
 ## Sources
 
 - Lerch, S., Thorarinsdottir, T. L., Ravazzolo, F. and Gneiting, T. (2017). [Forecaster's dilemma: extreme events and forecast evaluation](https://projecteuclid.org/euclid.ss/1491465630). *Statistical Science* 32(1), 106–127. doi:10.1214/16-STS588.
