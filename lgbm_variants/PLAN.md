@@ -12,6 +12,14 @@ In checkpoint 0, LightGBM lost to a weather regression: 11.8% more error with li
 
 That points at how LightGBM learns the heating response, not at the cold edge. The regression fits 48 half-hour models with temperature, its square and wind chill built in. LightGBM fits one model across all half-hours, from raw temperature, wind and solar, and builds any curve from steps. Each variant below changes one part of that. They were chosen after the seasonal and tails results were seen; their results have not been.
 
+**Prior work.** None of the five is new; the study claims no novelty for any of them. What it adds is a test of all five on GB demand, with equal inputs, against a regression and Chronos-2, with the choice of best fixed in advance.
+- **V1 (residual)** follows an established design. In GEFCom2012, Nedellec, Cugliari and Goude combined semi-parametric components with a short-term component estimated by a random forest, "as the factors that drive this component are unknown". Hong used a two-stage approach for holidays, "where the second stage modeled the residuals" (as described by a SAS paper on ISO New England demand). TNEI's work for NESO fitted a GAM for the mean and LightGBM for the residual quantiles.
+- **V3 (per-slot)** has mixed support. Ben Taieb and Hyndman, fifth of 105 teams in GEFCom2012, "used separate models for each hourly period", with gradient boosting of spline base learners rather than trees. A review describes a study by Hong et al. with neural networks that found "forecasting each hour, day of the week, or month separately does not help to improve the forecasting accuracy on this dataset". The plan makes no prediction for V3.
+- **V2 (linear leaves)** has little direct evidence in load forecasting. Piecewise-linear trees are usually motivated by extrapolation: they let "tree-based forecasts … extend beyond the training data range" (März and Rasul). Here the case is slopes within the range, which no source found tests. H4 is exploratory.
+- **V5 (two winters)** has thin evidence. A study of building energy found that more than two years of training data "did not significantly improve forecast accuracy"; no study of national demand was found.
+
+**The nearest study.** A public repository on German national day-ahead demand compares LightGBM (L1 objective, lags of 2, 7 and 14 days, population-weighted weather) with zero-shot Chronos-2 given the same covariates. On its main test year the two were level (MAPE 2.99% and 3.01%); Chronos-2 was "much worse than LightGBM" on holidays. It has a preregistered live test. Its LightGBM also used up to 20 months of training data and richer holiday features than this study's S1, which bears on V5 and on why its LightGBM did better against Chronos-2 than S1 did here.
+
 ## 2. Non-claims
 
 This study does not establish:
@@ -64,7 +72,7 @@ As checkpoint 0. For each forecaster:
 
 ## 6. Hypotheses, written before any variant runs
 
-- **H2:** V1 has the lowest mean daily error of the five. Reason: it gives the trees the regression's heating curve and asks them only for what the regression misses, the design TNEI used for NESO (a GAM for the mean, LightGBM for the residual quantiles).
+- **H2:** V1 has the lowest mean daily error of the five. Reason: it gives the trees the regression's heating curve and asks them only for what the regression misses, the design of several strong load forecasters (§1, prior work).
 - **H3:** every one of V1 to V5 has a lower winter ratio to the regression than S1.
 - **H4:** V2's mean daily error is lower than V2c's.
 
@@ -115,8 +123,17 @@ Any change to a script after it has run on the backtest is a deviation, logged i
 
 The study must finish before gate G2 (January 2027). If checkpoint 1 runs, its LightGBM comparator is chosen from configurations backtested under committed scripts before G2 (`PROJECT.md` §4), so the best variant here would become it.
 
+**Revision before the freeze, 19 November 2026:** literature check added §1's prior work and nearest study; H2's reason now cites prior designs; no prediction for V3; H4 marked exploratory. No variant had run.
+
 ## Sources
 
 - LightGBM 4.7.0, `include/LightGBM/config.h`, the documentation of `linear_tree` (read from the source distribution, 19 November 2026).
+- Nedellec, R., Cugliari, J. and Goude, Y. (2014). [GEFCom2012: electric load forecasting and backcasting with semi-parametric models](https://econpapers.repec.org/RePEc:eee:intfor:v:30:y:2014:i:2:p:375-381). *International Journal of Forecasting* 30(2), 375–381.
+- Ben Taieb, S. and Hyndman, R. J. (2014). [A gradient boosting approach to the Kaggle load forecasting competition](https://econpapers.repec.org/RePEc:eee:intfor:v:30:y:2014:i:2:p:382-394). *International Journal of Forecasting* 30(2), 382–394.
+- [Classification of load forecasting studies by forecasting problem](https://arxiv.org/pdf/1901.05052) (arXiv 1901.05052), Appendix B.2, describing Hong et al. on dataset D2.
+- SAS Global Forum 2016, [paper SAS3080-2016](https://support.sas.com/resources/papers/proceedings16/SAS3080-2016.pdf), on Hong's two-stage approach.
+- März, A. and Rasul, K. [Forecasting with Hyper-Trees](https://arxiv.org/pdf/2405.07836v4) (arXiv 2405.07836).
+- [Impact of data for forecasting on performance of model predictive control](https://arxiv.org/pdf/2402.12539v2.pdf) (arXiv 2402.12539).
+- [germany-load-forecast](https://github.com/hfthefeitong-dev/germany-load-forecast) (GitHub repository, read 19 November 2026).
 - TNEI (2024), the QWID FLEXER report for NESO, pp. 18–19 and 24, as cited in `checkpoint0/RESULTS.md`.
 - `checkpoint0/RESULTS.md` and `tails/RESULTS.md` for every earlier figure.
