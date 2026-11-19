@@ -46,3 +46,17 @@ The two sets of forecasts differ by up to 6,801 MW on a half-hour. The median, o
 **Reported upstream.** [google-research/timesfm#577](https://github.com/google-research/timesfm/issues/577), with a minimal reproduction (`gb-weather-private`, `weather/timesfm_batch_repro.py`). Batched with one other series, a synthetic series' forecast moved by up to 1.23, on a level of about 10 and a covariate effect of about ±2.
 
 **Release.** Version 2 of `RESULTS.md`, with this correction, was released on 16 November 2026 as tag `weather-results-backtest-v2`, DOI [10.5281/zenodo.24284719](https://doi.org/10.5281/zenodo.24284719). Version 1 stays available at [10.5281/zenodo.24161799](https://doi.org/10.5281/zenodo.24161799).
+
+## 2. An empty day from Google's ERA5 copy can be cached and reused (found 18 November 2026)
+
+**The defect.** `gb-weather-private`, `weather/sources.py`, `_arco_day` fetches a day of ERA5 from Google's copy when the CDS files lack it, and caches the result. It checks that the day has 24 hours, not that the hours hold values. Google's copy can return a day whose every value is missing: on 18 November, the cached files for 4 and 9 November held nothing else. Once cached, an empty day is reused on every later build.
+
+**How it was found.** A dry run of the live push on 18 November stopped with "ERA5 missing values" from 4 November. The CDS download, `era5_download.py`, had not run since 10 November, so November came from Google's copy, and two of its days were empty.
+
+**Effect: none on any published result.** `national.era5_national` stops on any missing value, so an empty day can stop a build but never enter one. The published backtest and every live push so far built without it: the first live push, for 20 November, took all 61 ERA5 days from CDS.
+
+**The correction.** The code is frozen under `WEATHER_LOCK.json` and is not changed. Instead:
+- the two empty files were moved out of the cache (`~/gb-weather-data/era5_arco/_to_delete/`);
+- `era5_download.py` now runs hourly from Task Scheduler, so the CDS files keep ahead of the builds and Google's copy is needed only for hours CDS lacks.
+
+If an empty day is cached again, the build stops with the same message, and the fix is the same: move the file aside and fetch the day from CDS.

@@ -1,4 +1,4 @@
-# Where things stand (17 November 2026, evening)
+# Where things stand (19 November 2026)
 
 Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md` and `tails/RESULTS.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
 
@@ -47,10 +47,21 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Tails 2's trigger fired** (Andy, 17 November): the trigger counts any tail shift, including the broad one. Tails 2 is back on the list, not urgent.
 - **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces (tails study, the weather study's live report), put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is open.
 
+**18–19 November:**
+- **Rules in force.** An external review was checked point by point; the rules were revised and tagged `benchmark-rules-v2` (d17b658). `benchmark-rules-v1` (9d1e357, 17 November) stays as the pre-review version (`PROJECT.md` decision log). G1 passed.
+- **Assumptions.** A9 (licences), A13 (runner: 4 CPUs, 15 GiB, 91 GB free) and A15 (Elexon's attribution) grounded; `ATTRIBUTION.md` added.
+- **The weather study's live pipeline was pre-tested on 18 November, and three faults were fixed before the first push:**
+  - there was no push task: `Weather push` now runs `push_daily.py` daily at 10:00 and 15:45;
+  - the ERA5 download task had stray text in its command and a start-up-only trigger, so it had not run since 10 November: it now runs hourly from 10:00;
+  - November ERA5 was missing, and two days cached from Google's copy were empty (`weather_study/CORRECTIONS.md` 2).
+- **First live push, 19 November:** inputs for 20 November, commit 6b23228, no fallback, all ERA5 from CDS. It ran at 08:55, not 10:00: yesterday's missed 15:45 run caught up when the laptop woke. The 19 November run came from a public archive copy, on time. Because a catch-up before about 07:30 would lock in a fallback, the push task's "run as soon as possible after a missed start" is to be unticked.
+- **Battery project.** It has its own handover and claude.ai project; its pre-registration is not yet locked.
+- **Parked plans** (in this claude.ai project only): `weather_value` (what perfect weather is worth; an update of National Grid's analysis) and `weather_inputs` (urban heat, terrain, downscaling; waits on `weather_value`).
+
 ## Next steps, in order
 
-1. **19 November, after 10:30:** check the weather study's first live push, with `tail -8 ~/gb-weather-data/push.log`. The live window starts on 20 November.
-2. **Tag the rules:** the brackets were settled on 17 November (`PROJECT.md` decision log). Andy reads `BENCHMARK_RULES.md` once more, then tags `benchmark-rules-v1`. Before or just after: run `.github/workflows/runner_check.yml` once from the Actions tab and record the result as A13.
+1. **Daily, as needed:** `tail -8 ~/gb-weather-data/push.log` should end `=== end …: ok`. Untick catch-up on the push task (above).
+2. **Done 18 November:** rules tagged `benchmark-rules-v2`; A13 recorded.
 3. **Publish the tails note, by 5 December:** change the header's "draft, 17 November 2026" in `tails/RESULTS.md` to the publication date, commit, and publish as for checkpoint 0. Any post leads with the three headline sentences unchanged (lesson 24).
    - Tails 2 (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Note that tails 1 found no T4 days, so a tails-2 design cannot rely on out-of-range temperatures.
 4. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
