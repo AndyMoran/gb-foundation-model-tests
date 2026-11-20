@@ -1,0 +1,1171 @@
+{
+ "schema": 1,
+ "note": "context novelty; descriptive backtest; plan version 2 at tag context-novelty-plan-v2",
+ "meta": {
+  "public_commit": "3daf6fea9cfa76f2643e15431f890390af84cca4",
+  "plan_tag_commit": "21b9a292d6f74bab07d44090cad8221d3e0efd4f",
+  "script_sha256": "2f58712cdd7aaf448acbff09ba9e2da0e8b40c9ef2bb991b9b5dd29ec5515add",
+  "tails_script_sha256": "07b508de203e595fe03c7369525b31601760e2c1cbdd76f7a47d4a9775f6f1ee",
+  "pairs_csv_sha256": "cdf2b62d1b4b37dd9f6bef76e0c7ac23bc343e5658fd27133942b59a398f6494",
+  "days_csv_sha256": "649e596f1c30506d6e41f6c5d3fbece8d17b374062c200a74490469f1c0c59c7",
+  "files_sha256": {
+   "weather_study/results/forecasts.csv": "b5f16561dcf1a26f8d7910bcca95cd137f677760c6f80153349034d4a85f7328",
+   "weather_study/results/calendar_forecasts.csv": "976e27ef28d0eef1ddf351c6557af9f771c308b94f389fe0f06b84ec86c8e2fe",
+   "checkpoint0/lightgbm_forecasts.csv": "812ffb251e7c4428ec1bb9f1e7467c51bc4f8ae55caf5b78b3fd0c840b6250cd",
+   "weather_study/correction1/timesfm25_single_day_forecasts.csv": "479ec318925cc59cd1e4f56a29ef9bc10d297fe3f8fa012482e1ce130dccd821"
+  },
+  "seed": 20261120,
+  "draws": 2000,
+  "versions": {
+   "python": "3.11.18",
+   "numpy": "2.4.6",
+   "pandas": "3.1.0"
+  }
+ },
+ "n_scored_days": 960,
+ "n_pairs": 10,
+ "n_spells": 4,
+ "n_novel": 14,
+ "unmatched": [
+  "2025-01-10",
+  "2025-11-20",
+  "2026-01-04",
+  "2026-01-05"
+ ],
+ "forecasters": {
+  "chronos2_A": {
+   "pairs": [
+    {
+     "novel": "2024-11-19",
+     "control": "2024-11-28",
+     "cluster": 1,
+     "excess_novel": 2647.597,
+     "excess_control": 1007.3629,
+     "difference": 1640.2342
+    },
+    {
+     "novel": "2024-11-20",
+     "control": "2025-11-21",
+     "cluster": 1,
+     "excess_novel": 2850.8545,
+     "excess_control": 592.2791,
+     "difference": 2258.5753
+    },
+    {
+     "novel": "2024-11-21",
+     "control": "2025-12-31",
+     "cluster": 1,
+     "excess_novel": 2216.2147,
+     "excess_control": 2591.4783,
+     "difference": -375.2635
+    },
+    {
+     "novel": "2025-01-08",
+     "control": "2026-01-10",
+     "cluster": 2,
+     "excess_novel": -428.83,
+     "excess_control": 96.7495,
+     "difference": -525.5794
+    },
+    {
+     "novel": "2025-01-09",
+     "control": "2025-01-11",
+     "cluster": 2,
+     "excess_novel": 1131.7077,
+     "excess_control": 603.8006,
+     "difference": 527.9071
+    },
+    {
+     "novel": "2025-11-17",
+     "control": "2025-11-26",
+     "cluster": 3,
+     "excess_novel": 1931.1321,
+     "excess_control": -1927.2848,
+     "difference": 3858.417
+    },
+    {
+     "novel": "2025-11-18",
+     "control": "2025-12-30",
+     "cluster": 3,
+     "excess_novel": 549.0873,
+     "excess_control": 1707.4816,
+     "difference": -1158.3943
+    },
+    {
+     "novel": "2025-11-19",
+     "control": "2024-11-22",
+     "cluster": 3,
+     "excess_novel": 2181.8631,
+     "excess_control": -412.8233,
+     "difference": 2594.6863
+    },
+    {
+     "novel": "2026-01-03",
+     "control": "2025-01-03",
+     "cluster": 4,
+     "excess_novel": 1704.3808,
+     "excess_control": -433.5292,
+     "difference": 2137.91
+    },
+    {
+     "novel": "2026-01-06",
+     "control": "2025-01-04",
+     "cluster": 4,
+     "excess_novel": 1422.8557,
+     "excess_control": -32.0261,
+     "difference": 1454.8818
+    }
+   ],
+   "delta": 1241.3374,
+   "ci90": [
+    589.0769,
+    1764.903
+   ],
+   "distinct_draws": 35,
+   "spells": {
+    "1": {
+     "pairs": 3,
+     "delta": 1174.5153
+    },
+    "2": {
+     "pairs": 2,
+     "delta": 1.1638
+    },
+    "3": {
+     "pairs": 3,
+     "delta": 1764.903
+    },
+    "4": {
+     "pairs": 2,
+     "delta": 1796.3959
+    }
+   },
+   "leave_one_spell_out": {
+    "by_spell_left_out": {
+     "1": 1269.9755,
+     "2": 1551.3808,
+     "3": 1016.9522,
+     "4": 1102.5728
+    },
+    "min": 1016.9522,
+    "max": 1551.3808
+   }
+  },
+  "timesfm25_weather_single_day": {
+   "pairs": [
+    {
+     "novel": "2024-11-19",
+     "control": "2024-11-28",
+     "cluster": 1,
+     "excess_novel": 8576.5323,
+     "excess_control": 1778.7757,
+     "difference": 6797.7567
+    },
+    {
+     "novel": "2024-11-20",
+     "control": "2025-11-21",
+     "cluster": 1,
+     "excess_novel": 7397.7538,
+     "excess_control": 1724.2066,
+     "difference": 5673.5472
+    },
+    {
+     "novel": "2024-11-21",
+     "control": "2025-12-31",
+     "cluster": 1,
+     "excess_novel": 3221.9875,
+     "excess_control": 3302.4898,
+     "difference": -80.5022
+    },
+    {
+     "novel": "2025-01-08",
+     "control": "2026-01-10",
+     "cluster": 2,
+     "excess_novel": -505.1839,
+     "excess_control": 714.5705,
+     "difference": -1219.7544
+    },
+    {
+     "novel": "2025-01-09",
+     "control": "2025-01-11",
+     "cluster": 2,
+     "excess_novel": 1347.4266,
+     "excess_control": 114.9424,
+     "difference": 1232.4841
+    },
+    {
+     "novel": "2025-11-17",
+     "control": "2025-11-26",
+     "cluster": 3,
+     "excess_novel": 5877.7542,
+     "excess_control": -1280.1274,
+     "difference": 7157.8815
+    },
+    {
+     "novel": "2025-11-18",
+     "control": "2025-12-30",
+     "cluster": 3,
+     "excess_novel": 2225.5786,
+     "excess_control": 3692.6272,
+     "difference": -1467.0486
+    },
+    {
+     "novel": "2025-11-19",
+     "control": "2024-11-22",
+     "cluster": 3,
+     "excess_novel": 8015.9908,
+     "excess_control": 825.3415,
+     "difference": 7190.6493
+    },
+    {
+     "novel": "2026-01-03",
+     "control": "2025-01-03",
+     "cluster": 4,
+     "excess_novel": 5652.7358,
+     "excess_control": 1487.2672,
+     "difference": 4165.4685
+    },
+    {
+     "novel": "2026-01-06",
+     "control": "2025-01-04",
+     "cluster": 4,
+     "excess_novel": 227.966,
+     "excess_control": 2446.2706,
+     "difference": -2218.3046
+    }
+   ],
+   "delta": 2723.2178,
+   "ci90": [
+    731.7777,
+    4171.1573
+   ],
+   "distinct_draws": 35,
+   "spells": {
+    "1": {
+     "pairs": 3,
+     "delta": 4130.2672
+    },
+    "2": {
+     "pairs": 2,
+     "delta": 6.3649
+    },
+    "3": {
+     "pairs": 3,
+     "delta": 4293.8274
+    },
+    "4": {
+     "pairs": 2,
+     "delta": 973.582
+    }
+   },
+   "leave_one_spell_out": {
+    "by_spell_left_out": {
+     "1": 2120.1966,
+     "2": 3402.431,
+     "3": 2050.0993,
+     "4": 3160.6267
+    },
+    "min": 2050.0993,
+    "max": 3402.431
+   }
+  },
+  "timestral_A": {
+   "pairs": [
+    {
+     "novel": "2024-11-19",
+     "control": "2024-11-28",
+     "cluster": 1,
+     "excess_novel": 3216.156,
+     "excess_control": -105.4571,
+     "difference": 3321.6132
+    },
+    {
+     "novel": "2024-11-20",
+     "control": "2025-11-21",
+     "cluster": 1,
+     "excess_novel": 3029.2525,
+     "excess_control": 2206.5911,
+     "difference": 822.6613
+    },
+    {
+     "novel": "2024-11-21",
+     "control": "2025-12-31",
+     "cluster": 1,
+     "excess_novel": 2248.5897,
+     "excess_control": 5226.4283,
+     "difference": -2977.8385
+    },
+    {
+     "novel": "2025-01-08",
+     "control": "2026-01-10",
+     "cluster": 2,
+     "excess_novel": 767.869,
+     "excess_control": -3809.1575,
+     "difference": 4577.0266
+    },
+    {
+     "novel": "2025-01-09",
+     "control": "2025-01-11",
+     "cluster": 2,
+     "excess_novel": -398.4373,
+     "excess_control": -1075.9804,
+     "difference": 677.5431
+    },
+    {
+     "novel": "2025-11-17",
+     "control": "2025-11-26",
+     "cluster": 3,
+     "excess_novel": 3062.1481,
+     "excess_control": -2216.4958,
+     "difference": 5278.644
+    },
+    {
+     "novel": "2025-11-18",
+     "control": "2025-12-30",
+     "cluster": 3,
+     "excess_novel": 759.7593,
+     "excess_control": 2204.9306,
+     "difference": -1445.1713
+    },
+    {
+     "novel": "2025-11-19",
+     "control": "2024-11-22",
+     "cluster": 3,
+     "excess_novel": 2212.8711,
+     "excess_control": 141.1647,
+     "difference": 2071.7063
+    },
+    {
+     "novel": "2026-01-03",
+     "control": "2025-01-03",
+     "cluster": 4,
+     "excess_novel": 4233.5958,
+     "excess_control": -270.4202,
+     "difference": 4504.016
+    },
+    {
+     "novel": "2026-01-06",
+     "control": "2025-01-04",
+     "cluster": 4,
+     "excess_novel": 3371.2067,
+     "excess_control": 388.0019,
+     "difference": 2983.2048
+    }
+   ],
+   "delta": 1981.3405,
+   "ci90": [
+    998.7753,
+    3151.8713
+   ],
+   "distinct_draws": 35,
+   "spells": {
+    "1": {
+     "pairs": 3,
+     "delta": 388.812
+    },
+    "2": {
+     "pairs": 2,
+     "delta": 2627.2848
+    },
+    "3": {
+     "pairs": 3,
+     "delta": 1968.393
+    },
+    "4": {
+     "pairs": 2,
+     "delta": 3743.6104
+    }
+   },
+   "leave_one_spell_out": {
+    "by_spell_left_out": {
+     "1": 2663.8528,
+     "2": 1819.8545,
+     "3": 1986.8895,
+     "4": 1540.7731
+    },
+    "min": 1540.7731,
+    "max": 2663.8528
+   }
+  },
+  "lightgbm_s1": {
+   "pairs": [
+    {
+     "novel": "2024-11-19",
+     "control": "2024-11-28",
+     "cluster": 1,
+     "excess_novel": 1153.78,
+     "excess_control": -933.3489,
+     "difference": 2087.1289
+    },
+    {
+     "novel": "2024-11-20",
+     "control": "2025-11-21",
+     "cluster": 1,
+     "excess_novel": 1524.2208,
+     "excess_control": -140.8615,
+     "difference": 1665.0823
+    },
+    {
+     "novel": "2024-11-21",
+     "control": "2025-12-31",
+     "cluster": 1,
+     "excess_novel": 360.7234,
+     "excess_control": -341.6875,
+     "difference": 702.411
+    },
+    {
+     "novel": "2025-01-08",
+     "control": "2026-01-10",
+     "cluster": 2,
+     "excess_novel": 1407.5919,
+     "excess_control": 857.9846,
+     "difference": 549.6073
+    },
+    {
+     "novel": "2025-01-09",
+     "control": "2025-01-11",
+     "cluster": 2,
+     "excess_novel": 1098.037,
+     "excess_control": 1985.0236,
+     "difference": -886.9867
+    },
+    {
+     "novel": "2025-11-17",
+     "control": "2025-11-26",
+     "cluster": 3,
+     "excess_novel": 145.6735,
+     "excess_control": -225.111,
+     "difference": 370.7846
+    },
+    {
+     "novel": "2025-11-18",
+     "control": "2025-12-30",
+     "cluster": 3,
+     "excess_novel": -536.1277,
+     "excess_control": 518.4169,
+     "difference": -1054.5446
+    },
+    {
+     "novel": "2025-11-19",
+     "control": "2024-11-22",
+     "cluster": 3,
+     "excess_novel": 1348.2582,
+     "excess_control": -407.9186,
+     "difference": 1756.1768
+    },
+    {
+     "novel": "2026-01-03",
+     "control": "2025-01-03",
+     "cluster": 4,
+     "excess_novel": 2241.5361,
+     "excess_control": 2480.286,
+     "difference": -238.7499
+    },
+    {
+     "novel": "2026-01-06",
+     "control": "2025-01-04",
+     "cluster": 4,
+     "excess_novel": 1858.3096,
+     "excess_control": 624.4915,
+     "difference": 1233.8181
+    }
+   ],
+   "delta": 618.4728,
+   "ci90": [
+    147.0075,
+    1184.2261
+   ],
+   "distinct_draws": 35,
+   "spells": {
+    "1": {
+     "pairs": 3,
+     "delta": 1484.8741
+    },
+    "2": {
+     "pairs": 2,
+     "delta": -168.6897
+    },
+    "3": {
+     "pairs": 3,
+     "delta": 357.4722
+    },
+    "4": {
+     "pairs": 2,
+     "delta": 497.5341
+    }
+   },
+   "leave_one_spell_out": {
+    "by_spell_left_out": {
+     "1": 247.1579,
+     "2": 815.2634,
+     "3": 730.3301,
+     "4": 648.7074
+    },
+    "min": 247.1579,
+    "max": 815.2634
+   }
+  }
+ },
+ "h5": {
+  "reading": "meaningful penalty supported",
+  "threshold_mw": 250.0,
+  "sensitivity": {
+   "100": "meaningful penalty supported",
+   "500": "meaningful penalty supported"
+  }
+ },
+ "headline": {
+  "reading": "meaningful penalty supported",
+  "sentence": "In a backtest it may have seen in training, Chronos-2 under-forecast the daily peak, relative to a weather regression, by 1,241 MW more on cold days colder than its eight-week context than on matched cold days that were not (90% interval 589\u20131,765, above the 250 MW threshold set in advance).",
+  "second": "The comparison rests on 10 pairs (5 in winter 2024-25 and 5 in winter 2025-26) in 4 cold spells. It does not estimate the difference for the 4 novel days that could not be matched (10 January 2025, 20 November 2025, 4 January 2026, 5 January 2026), which include the coldest days, or for the full cold tail."
+ },
+ "unmatched_days": [
+  {
+   "day": "2025-01-10",
+   "regression_weather": {
+    "peak": -1423.7806,
+    "excess": null
+   },
+   "chronos2_A": {
+    "peak": -551.188,
+    "excess": 872.5926
+   },
+   "timesfm25_weather_single_day": {
+    "peak": 423.5622,
+    "excess": 1847.3428
+   },
+   "timestral_A": {
+    "peak": -1238.508,
+    "excess": 185.2726
+   },
+   "lightgbm_s1": {
+    "peak": 1289.6881,
+    "excess": 2713.4686
+   }
+  },
+  {
+   "day": "2025-11-20",
+   "regression_weather": {
+    "peak": 214.2215,
+    "excess": null
+   },
+   "chronos2_A": {
+    "peak": 2340.844,
+    "excess": 2126.6225
+   },
+   "timesfm25_weather_single_day": {
+    "peak": 3340.8821,
+    "excess": 3126.6606
+   },
+   "timestral_A": {
+    "peak": 2073.191,
+    "excess": 1858.9695
+   },
+   "lightgbm_s1": {
+    "peak": 1404.9012,
+    "excess": 1190.6797
+   }
+  },
+  {
+   "day": "2026-01-04",
+   "regression_weather": {
+    "peak": -937.4656,
+    "excess": null
+   },
+   "chronos2_A": {
+    "peak": 2572.68,
+    "excess": 3510.1456
+   },
+   "timesfm25_weather_single_day": {
+    "peak": 6853.2244,
+    "excess": 7790.6899
+   },
+   "timestral_A": {
+    "peak": 3431.973,
+    "excess": 4369.4386
+   },
+   "lightgbm_s1": {
+    "peak": 1524.8798,
+    "excess": 2462.3453
+   }
+  },
+  {
+   "day": "2026-01-05",
+   "regression_weather": {
+    "peak": -858.231,
+    "excess": null
+   },
+   "chronos2_A": {
+    "peak": 3943.484,
+    "excess": 4801.715
+   },
+   "timesfm25_weather_single_day": {
+    "peak": 6412.6513,
+    "excess": 7270.8823
+   },
+   "timestral_A": {
+    "peak": 5867.27,
+    "excess": 6725.501
+   },
+   "lightgbm_s1": {
+    "peak": 2844.7534,
+    "excess": 3702.9844
+   }
+  }
+ ],
+ "unmatched_comparison": {
+  "chronos2_A": {
+   "novel_mean": 1965.567,
+   "control_pool_mean": 418.9646,
+   "difference": 1546.6024
+  },
+  "timesfm25_weather_single_day": {
+   "novel_mean": 4433.8655,
+   "control_pool_mean": 408.21,
+   "difference": 4025.6555
+  },
+  "timestral_A": {
+   "novel_mean": 2545.8709,
+   "control_pool_mean": 731.6199,
+   "difference": 1814.251
+  },
+  "lightgbm_s1": {
+   "novel_mean": 1476.5343,
+   "control_pool_mean": 313.8249,
+   "difference": 1162.7095
+  }
+ },
+ "N": {
+  "n_scored": 30,
+  "n_narrow": 276,
+  "n_broad": 930,
+  "forecasters": {
+   "regression_weather": {
+    "set": {
+     "n_days": 30,
+     "mde": 1023.106,
+     "ratio": 1.0,
+     "bias": -345.9577,
+     "peak": -258.8679,
+     "worst_day": {
+      "day": "2026-01-03",
+      "mw": 1790.2162
+     },
+     "p95": 2718.1239,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      932.4932,
+      1108.2429
+     ],
+     "ratio_ci90": [
+      1.0,
+      1.0
+     ],
+     "bias_ci90": [
+      -577.8671,
+      -96.2775
+     ],
+     "peak_ci90": [
+      -539.226,
+      29.8233
+     ]
+    },
+    "broad": {
+     "n_days": 930,
+     "mde": 1014.1181,
+     "ratio": 1.0,
+     "bias": -89.1728,
+     "peak": -305.3456,
+     "worst_day": {
+      "day": "2025-12-28",
+      "mw": 3130.1111
+     },
+     "p95": 2703.1022,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      985.257,
+      1045.7239
+     ],
+     "ratio_ci90": [
+      1.0,
+      1.0
+     ],
+     "bias_ci90": [
+      -162.0222,
+      -17.885
+     ],
+     "peak_ci90": [
+      -409.2702,
+      -204.3961
+     ]
+    },
+    "narrow": {
+     "n_days": 276,
+     "mde": 954.6848,
+     "ratio": 1.0,
+     "bias": 79.6918,
+     "peak": 284.9559,
+     "worst_day": {
+      "day": "2025-01-25",
+      "mw": 2454.8548
+     },
+     "p95": 2488.0199,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      916.5279,
+      995.9849
+     ],
+     "ratio_ci90": [
+      1.0,
+      1.0
+     ],
+     "bias_ci90": [
+      -40.821,
+      197.2749
+     ],
+     "peak_ci90": [
+      107.673,
+      448.9691
+     ]
+    },
+    "shift_broad": {
+     "value": 1.0,
+     "ci90": [
+      1.0,
+      1.0
+     ],
+     "draws_dropped": 0
+    },
+    "shift_narrow": {
+     "value": 1.0,
+     "ci90": [
+      1.0,
+      1.0
+     ],
+     "draws_dropped": 0
+    }
+   },
+   "chronos2_A": {
+    "set": {
+     "n_days": 30,
+     "mde": 1137.366,
+     "ratio": 1.1117,
+     "bias": 693.9614,
+     "peak": 1458.5523,
+     "worst_day": {
+      "day": "2026-01-05",
+      "mw": 2492.6369
+     },
+     "p95": 2897.4889,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      959.3579,
+      1292.0286
+     ],
+     "ratio_ci90": [
+      0.9159,
+      1.315
+     ],
+     "bias_ci90": [
+      434.7989,
+      929.0453
+     ],
+     "peak_ci90": [
+      1074.427,
+      1800.8614
+     ]
+    },
+    "broad": {
+     "n_days": 930,
+     "mde": 908.3712,
+     "ratio": 0.8957,
+     "bias": -131.6449,
+     "peak": 123.0167,
+     "worst_day": {
+      "day": "2025-08-25",
+      "mw": 4098.032
+     },
+     "p95": 2567.6288,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      871.8318,
+      945.1348
+     ],
+     "ratio_ci90": [
+      0.8656,
+      0.9263
+     ],
+     "bias_ci90": [
+      -183.6353,
+      -73.098
+     ],
+     "peak_ci90": [
+      49.1644,
+      210.005
+     ]
+    },
+    "narrow": {
+     "n_days": 276,
+     "mde": 896.9331,
+     "ratio": 0.9395,
+     "bias": -104.8588,
+     "peak": 318.2473,
+     "worst_day": {
+      "day": "2024-09-14",
+      "mw": 3751.6463
+     },
+     "p95": 2462.5639,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      844.323,
+      947.8715
+     ],
+     "ratio_ci90": [
+      0.8831,
+      0.9937
+     ],
+     "bias_ci90": [
+      -203.9975,
+      2.9782
+     ],
+     "peak_ci90": [
+      187.1236,
+      466.5948
+     ]
+    },
+    "shift_broad": {
+     "value": 1.2411,
+     "ci90": [
+      1.0259,
+      1.474
+     ],
+     "draws_dropped": 0
+    },
+    "shift_narrow": {
+     "value": 1.1833,
+     "ci90": [
+      0.9767,
+      1.4019
+     ],
+     "draws_dropped": 0
+    }
+   },
+   "timesfm25_weather_single_day": {
+    "set": {
+     "n_days": 30,
+     "mde": 2856.6791,
+     "ratio": 2.7922,
+     "bias": 2682.5787,
+     "peak": 3725.0879,
+     "worst_day": {
+      "day": "2024-11-19",
+      "mw": 6100.342
+     },
+     "p95": 6381.8651,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      2282.3301,
+      3348.6374
+     ],
+     "ratio_ci90": [
+      2.1634,
+      3.4382
+     ],
+     "bias_ci90": [
+      2013.9286,
+      3248.0719
+     ],
+     "peak_ci90": [
+      2829.0689,
+      4434.3507
+     ]
+    },
+    "broad": {
+     "n_days": 930,
+     "mde": 1579.8311,
+     "ratio": 1.5578,
+     "bias": -51.1763,
+     "peak": 125.7076,
+     "worst_day": {
+      "day": "2024-12-25",
+      "mw": 5995.1534
+     },
+     "p95": 4384.3902,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1518.4957,
+      1640.7435
+     ],
+     "ratio_ci90": [
+      1.4978,
+      1.6169
+     ],
+     "bias_ci90": [
+      -174.5486,
+      65.2497
+     ],
+     "peak_ci90": [
+      -28.1489,
+      268.7342
+     ]
+    },
+    "narrow": {
+     "n_days": 276,
+     "mde": 1582.1988,
+     "ratio": 1.6573,
+     "bias": 360.6236,
+     "peak": 726.2293,
+     "worst_day": {
+      "day": "2024-11-18",
+      "mw": 4535.2618
+     },
+     "p95": 4295.6943,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1494.3971,
+      1662.8608
+     ],
+     "ratio_ci90": [
+      1.5514,
+      1.7588
+     ],
+     "bias_ci90": [
+      154.2481,
+      540.4975
+     ],
+     "peak_ci90": [
+      456.0386,
+      952.5322
+     ]
+    },
+    "shift_broad": {
+     "value": 1.7923,
+     "ci90": [
+      1.3882,
+      2.2044
+     ],
+     "draws_dropped": 0
+    },
+    "shift_narrow": {
+     "value": 1.6848,
+     "ci90": [
+      1.3265,
+      2.0704
+     ],
+     "draws_dropped": 0
+    }
+   },
+   "timestral_A": {
+    "set": {
+     "n_days": 30,
+     "mde": 1543.8928,
+     "ratio": 1.509,
+     "bias": 1182.7672,
+     "peak": 1848.2277,
+     "worst_day": {
+      "day": "2026-01-05",
+      "mw": 5305.628
+     },
+     "p95": 4111.4894,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1191.38,
+      1956.0488
+     ],
+     "ratio_ci90": [
+      1.1588,
+      1.892
+     ],
+     "bias_ci90": [
+      688.3408,
+      1684.6362
+     ],
+     "peak_ci90": [
+      1212.7299,
+      2540.721
+     ]
+    },
+    "broad": {
+     "n_days": 930,
+     "mde": 1088.8303,
+     "ratio": 1.0737,
+     "bias": 84.6959,
+     "peak": 296.9062,
+     "worst_day": {
+      "day": "2026-01-02",
+      "mw": 5024.903
+     },
+     "p95": 3234.2867,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1044.4998,
+      1136.4964
+     ],
+     "ratio_ci90": [
+      1.0359,
+      1.1128
+     ],
+     "bias_ci90": [
+      16.7135,
+      159.514
+     ],
+     "peak_ci90": [
+      210.3554,
+      396.3736
+     ]
+    },
+    "narrow": {
+     "n_days": 276,
+     "mde": 1142.4395,
+     "ratio": 1.1967,
+     "bias": 254.4329,
+     "peak": 570.4928,
+     "worst_day": {
+      "day": "2026-01-02",
+      "mw": 5024.903
+     },
+     "p95": 3433.5028,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1061.241,
+      1233.797
+     ],
+     "ratio_ci90": [
+      1.1123,
+      1.2896
+     ],
+     "bias_ci90": [
+      113.7101,
+      411.8843
+     ],
+     "peak_ci90": [
+      401.6668,
+      758.0652
+     ]
+    },
+    "shift_broad": {
+     "value": 1.4055,
+     "ci90": [
+      1.0788,
+      1.7632
+     ],
+     "draws_dropped": 0
+    },
+    "shift_narrow": {
+     "value": 1.261,
+     "ci90": [
+      0.966,
+      1.5772
+     ],
+     "draws_dropped": 0
+    }
+   },
+   "lightgbm_s1": {
+    "set": {
+     "n_days": 30,
+     "mde": 1188.2727,
+     "ratio": 1.1614,
+     "bias": 232.1907,
+     "peak": 657.4018,
+     "worst_day": {
+      "day": "2025-01-08",
+      "mw": 3844.7773
+     },
+     "p95": 3116.9981,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      995.6637,
+      1384.266
+     ],
+     "ratio_ci90": [
+      1.0031,
+      1.3374
+     ],
+     "bias_ci90": [
+      -194.6771,
+      685.4052
+     ],
+     "peak_ci90": [
+      179.4945,
+      1174.2939
+     ]
+    },
+    "broad": {
+     "n_days": 930,
+     "mde": 1056.4881,
+     "ratio": 1.0418,
+     "bias": -69.2899,
+     "peak": 14.4939,
+     "worst_day": {
+      "day": "2025-12-25",
+      "mw": 4577.3123
+     },
+     "p95": 2854.2098,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1020.0733,
+      1096.2246
+     ],
+     "ratio_ci90": [
+      1.02,
+      1.064
+     ],
+     "bias_ci90": [
+      -150.2526,
+      8.6271
+     ],
+     "peak_ci90": [
+      -76.8046,
+      110.9698
+     ]
+    },
+    "narrow": {
+     "n_days": 276,
+     "mde": 1064.053,
+     "ratio": 1.1146,
+     "bias": 251.2122,
+     "peak": 544.7825,
+     "worst_day": {
+      "day": "2025-01-07",
+      "mw": 2656.8052
+     },
+     "p95": 2867.3505,
+     "draws_dropped": 0,
+     "mde_ci90": [
+      1014.4202,
+      1120.9193
+     ],
+     "ratio_ci90": [
+      1.0685,
+      1.165
+     ],
+     "bias_ci90": [
+      117.4448,
+      391.4394
+     ],
+     "peak_ci90": [
+      393.5924,
+      704.6284
+     ]
+    },
+    "shift_broad": {
+     "value": 1.1149,
+     "ci90": [
+      0.9701,
+      1.2747
+     ],
+     "draws_dropped": 0
+    },
+    "shift_narrow": {
+     "value": 1.0421,
+     "ci90": [
+      0.9114,
+      1.1836
+     ],
+     "draws_dropped": 0
+    }
+   }
+  },
+  "ratios_withheld": false
+ }
+}
