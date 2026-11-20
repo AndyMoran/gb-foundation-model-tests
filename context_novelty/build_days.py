@@ -1,17 +1,23 @@
 """
-Context novelty, step 1 (context_novelty/PLAN.md §9, frozen at tag context-novelty-plan): build the day sets.
-Committed before it runs; its outputs are committed after.
+Context novelty, step 1 (context_novelty/PLAN.md §9, version 2, frozen at tag context-novelty-plan-v2): build the
+day sets and the matched pairs. Committed before it runs; its outputs are committed after.
 
 For: a reviewer checking that every set was chosen from the covariates the foundation models received the day before,
 and from nothing else.
 
 Sets (PLAN.md §5), over the backtest days of weather_study/results/forecasts.csv (16 March 2024 to 31 October 2026):
-    N      days whose coldest target half-hour temperature is below the coldest context half-hour        primary
-    N&T1   N's days that are also in the tails study's T1                                                mechanism
-    T1-N   T1's days that are not in N                                                                   mechanism
-    Nw     days with a target half-hour's wind above the context's highest, or its solar below the        descriptive
+    N      days whose coldest target half-hour temperature is below the coldest context half-hour    counts
+    N&T1   N's days that are also in the tails study's T1                                            novel cold days
+    T1-N   T1's days that are not in N                                                               pool of controls
+    Nw     days with a target half-hour's wind above the context's highest, or its solar below the    descriptive
            context's lowest
 "Below" and "above" are strict: a target value equal to the context's extreme is not novel.
+
+Matched pairs (PLAN.md §5): each N&T1 day, in date order, takes the T1-N day with t_mean within 1.0 C and calendar
+month within one month (December and January are one apart) that has the smallest t_mean difference; ties go to the
+smaller month difference, then the earlier date. A control is used at most once. t_mean is T1's own measure, from
+tails/day_inputs.csv. Cold-spell clusters: N&T1 days less than three days apart share a cluster; each pair takes its
+novel day's cluster.
 
 What it reads, and what it does not:
     covariates   the weather study's frozen backtest inputs (inputs_*.csv.gz): for each target day D, the rows
@@ -22,7 +28,8 @@ What it reads, and what it does not:
                  horizon also holds the half-hours from the input cut-off (08:30 on D-1) to midnight; they are not
                  target half-hours and are not used for any set. Their coldest value is recorded in
                  day_inputs.csv for reference.
-    T1           tails/days.csv, checked against the SHA-256 in tails/days.json; T4 likewise
+    T1, T4       tails/days.csv, checked against the SHA-256 in tails/days.json
+    t_mean       tails/day_inputs.csv (T1's measure, and t_min for balance), checked against tails/days.json
     backtest days the `day` column of weather_study/results/forecasts.csv only
     days file    days_*.jsonl, for each day's fallback flag
 No outturn and no forecast is read.
@@ -36,9 +43,12 @@ Outputs:
     context_novelty/days.csv        one row per (set, day): set, day, margin (C, or the wind or solar margin for Nw),
                                     reason
     context_novelty/day_inputs.csv  every backtest day's selection inputs (covariates only)
+    context_novelty/pairs.csv       one row per pair: novel day, control, cluster, t_mean and t_min of each, and the
+                                    differences in t_mean, t_min and month
     context_novelty/days.json       counts per set, by winter and by month; N's overlap with T1 and T4; the margins;
-                                    which mechanism sets have fewer than 10 days; file hashes, commit and versions;
-                                    days.csv's SHA-256
+                                    eligible novel days, pairs retained, unmatched days, clusters and balance; whether
+                                    H5 can be assessed (10 pairs or more); file hashes, commit and versions; the
+                                    SHA-256 of every output
 
 Modes:
     python context_novelty/build_days.py              the real build (Andy's machine, environment gbcp0)
@@ -61,9 +71,13 @@ BACKTEST = {k: os.path.join(BT, f'{k}_{TAG}{ext}') for k, ext in
 FORECASTS = os.path.join(ROOT, 'weather_study', 'results', 'forecasts.csv')
 FORECASTS_SHA = 'b5f16561dcf1a26f8d7910bcca95cd137f677760c6f80153349034d4a85f7328'      # tails/PLAN.md §4
 TAILS_DAYS = os.path.join(ROOT, 'tails', 'days.csv'); TAILS_JSON = os.path.join(ROOT, 'tails', 'days.json')
+TAILS_INPUTS = os.path.join(ROOT, 'tails', 'day_inputs.csv')
+PLAN_TAG = 'context-novelty-plan-v2'
 SETS = ('N', 'N&T1', 'T1-N', 'Nw')
-MECHANISM = ('N&T1', 'T1-N')
-SMALL = 10                                                   # PLAN.md §5: fewer than 10 days, reported day by day
+CALIPER_C = 1.0                                              # PLAN.md §5: t_mean within 1.0 C
+MONTHS = 1                                                   # calendar month within one month
+SPELL_GAP = 3                                                # novel days less than 3 days apart share a cluster
+MIN_PAIRS = 10                                               # PLAN.md §5: fewer than 10 pairs, H5 not assessed
 SCHEMA = 1
 
 
@@ -163,22 +177,61 @@ def select(feat, t1, t4):
                              both=int((f['novel_w'] & f['novel_s']).sum()))
     m = f.loc[sorted(N), 't_margin'] if N else pd.Series(dtype=float)
     info['N_margin_C'] = dict(min=float(m.min()), median=float(m.median()), max=float(m.max())) if N else None
-    info['small_sets'] = {s: len(members[s]) < SMALL for s in MECHANISM}
-    info['mechanism_assessable'] = bool(all(len(members[s]) >= SMALL for s in MECHANISM))
-    info['rule'] = ('PLAN.md §5: if N&T1 or T1-N has fewer than 10 days, the mechanism comparison is reported day by '
-                    'day, with no averages or intervals, and H5 and H6 are not assessed (§7).')
     return out, info
+
+
+# ------------------------------------------------------------------ matching and clusters (shared by both modes) --------
+def month_gap(a, b):
+    k = abs(pd.Timestamp(a).month - pd.Timestamp(b).month)
+    return min(k, 12 - k)
+
+
+def clusters(novel):
+    """Cold-spell clusters: novel days less than SPELL_GAP days apart share one, numbered from 1 in date order."""
+    out, c, prev = {}, 0, None
+    for d in sorted(novel):
+        if prev is None or (pd.Timestamp(d) - pd.Timestamp(prev)).days >= SPELL_GAP: c += 1
+        out[d] = c; prev = d
+    return out
+
+
+def match(novel, controls, t_mean, t_min):
+    """PLAN.md §5. novel, controls: day lists; t_mean, t_min: dicts by day. Returns the pairs frame and facts."""
+    free, rows, unmatched = set(controls), [], []
+    cl = clusters(novel)
+    for d in sorted(novel):
+        # differences rounded to 1e-6 C (day_inputs.csv's precision) so that ties are exact
+        cand = [(round(abs(t_mean[c] - t_mean[d]), 6), month_gap(c, d), c) for c in free
+                if round(abs(t_mean[c] - t_mean[d]), 6) <= CALIPER_C and month_gap(c, d) <= MONTHS]
+        if not cand: unmatched.append(d); continue
+        _, mg, c = min(cand); free.discard(c)
+        rows.append(dict(novel=d, control=c, cluster=cl[d], t_mean_novel=t_mean[d], t_mean_control=t_mean[c],
+                         t_min_novel=t_min[d], t_min_control=t_min[c], d_t_mean=t_mean[d] - t_mean[c],
+                         d_t_min=t_min[d] - t_min[c], d_month=mg))
+    pairs = pd.DataFrame(rows, columns=['novel', 'control', 'cluster', 't_mean_novel', 't_mean_control',
+                                        't_min_novel', 't_min_control', 'd_t_mean', 'd_t_min', 'd_month'])
+    bal = lambda col: dict(mean=float(pairs[col].mean()), mean_abs=float(pairs[col].abs().mean()),
+                           max_abs=float(pairs[col].abs().max())) if len(pairs) else None
+    info = dict(eligible_novel_days=len(novel), controls_available=len(controls), pairs=len(pairs),
+                unmatched=unmatched, clusters=int(pairs['cluster'].nunique()) if len(pairs) else 0,
+                pairs_by_winter=dict(sorted(pd.Series([winter_of(pd.Timestamp(d)) for d in pairs['novel']],
+                                                      dtype=object).value_counts().items())),
+                balance=dict(t_mean_C=bal('d_t_mean'), t_min_C=bal('d_t_min'), month=bal('d_month')),
+                h5_assessable=bool(len(pairs) >= MIN_PAIRS),
+                rule=f'PLAN.md §5: t_mean within {CALIPER_C} C, month within {MONTHS}, date order, nearest first, '
+                     f'ties by month difference then date, no reuse; fewer than {MIN_PAIRS} pairs: H5 not assessed')
+    return pairs, info
 
 
 # ------------------------------------------------------------------ real build ------------------------------------------
 def provenance():
-    dirty = git('status', '--porcelain', '--', 'context_novelty/build_days.py', 'code', 'tails/days.csv',
-                'tails/days.json')
+    dirty = git('status', '--porcelain', '--', 'context_novelty/build_days.py', 'context_novelty/PLAN.md', 'code',
+                'tails/days.csv', 'tails/days.json', 'tails/day_inputs.csv')
     if dirty:
         sys.exit('Run refused: uncommitted changes (PLAN.md §9: committed before it runs):\n' + dirty)
-    plan_tag = git('rev-parse', 'context-novelty-plan^{commit}')
-    plan_same = not git('diff', '--name-only', 'context-novelty-plan', 'HEAD', '--', 'context_novelty/PLAN.md')
-    if not plan_same: sys.exit('Run refused: context_novelty/PLAN.md differs from tag context-novelty-plan')
+    plan_tag = git('rev-parse', PLAN_TAG + '^{commit}')
+    plan_same = not git('diff', '--name-only', PLAN_TAG, 'HEAD', '--', 'context_novelty/PLAN.md')
+    if not plan_same: sys.exit(f'Run refused: context_novelty/PLAN.md differs from tag {PLAN_TAG}')
     return dict(public_commit=git('rev-parse', 'HEAD'), plan_tag_commit=plan_tag,
                 script_sha256=sha(os.path.abspath(__file__)),
                 code_sha256={f: sha(os.path.join(ROOT, 'code', f)) for f in ('common.py',)})
@@ -196,8 +249,11 @@ def check_hashes():
         bad.append('the inputs file differs from the hash in build.json')
     h = sha(FORECASTS); got['weather_study/results/forecasts.csv'] = h
     if h != FORECASTS_SHA: bad.append(f'{FORECASTS}: {h} differs from the hash in build_days.py')
+    tj = json.load(open(TAILS_JSON))
     h = sha(TAILS_DAYS); got['tails/days.csv'] = h
-    if h != json.load(open(TAILS_JSON))['days_csv_sha256']: bad.append('tails/days.csv differs from tails/days.json')
+    if h != tj['days_csv_sha256']: bad.append('tails/days.csv differs from tails/days.json')
+    h = sha(TAILS_INPUTS); got['tails/day_inputs.csv'] = h
+    if h != tj['day_inputs_csv_sha256']: bad.append('tails/day_inputs.csv differs from tails/days.json')
     if bad: sys.exit('Run refused: input hashes differ:\n' + '\n'.join(bad))
     return got
 
@@ -207,7 +263,7 @@ def tails_sets():
     return sorted(t.loc[t.set == 'T1', 'day']), sorted(t.loc[t.set == 'T4', 'day'])
 
 
-def build(days, cov, meta, t1, t4):
+def build(days, cov, meta, t1, t4, tin):
     feats = []
     for k, d in enumerate(days):
         assert d in cov and 'dropped' not in meta.get(d, {}), f'{d}: no built weather inputs'
@@ -217,7 +273,11 @@ def build(days, cov, meta, t1, t4):
     feat = pd.DataFrame(feats)
     out, info = select(feat, t1, t4)
     info['fallback_days_in_N'] = sorted(feat.loc[feat.novel_t & feat.fallback, 'day'])
-    return out, feat, info
+    novel = sorted(out.loc[out.set == 'N&T1', 'day']); controls = sorted(out.loc[out.set == 'T1-N', 'day'])
+    t_mean, t_min = dict(zip(tin['day'], tin['t_mean'])), dict(zip(tin['day'], tin['t_min']))
+    pairs, minfo = match(novel, controls, t_mean, t_min)
+    info['matching'] = minfo
+    return out, feat, info, pairs
 
 
 def real():
@@ -227,22 +287,27 @@ def real():
     cov = load_covariates(BACKTEST['inputs'])
     meta = {json.loads(l)['target_day']: json.loads(l) for l in open(BACKTEST['days'])}
     t1, t4 = tails_sets()
-    out, feat, info = build(days, cov, meta, t1, t4)
-    write(out, feat, info, dict(provenance=prov, inputs_sha256=hashes,
+    tin = pd.read_csv(TAILS_INPUTS, usecols=['day', 't_mean', 't_min'])
+    out, feat, info, pairs = build(days, cov, meta, t1, t4, tin)
+    write(out, feat, pairs, info, dict(provenance=prov, inputs_sha256=hashes,
                                 versions=dict(python=platform.python_version(), numpy=np.__version__,
                                               pandas=pd.__version__)))
 
 
-def write(out, feat, info, extra):
+def write(out, feat, pairs, info, extra):
     p_csv = os.path.join(HERE, 'days.csv'); p_in = os.path.join(HERE, 'day_inputs.csv')
+    p_pr = os.path.join(HERE, 'pairs.csv')
     out.to_csv(p_csv, index=False)
     feat.round(6).to_csv(p_in, index=False)
-    res = dict(schema=SCHEMA, note='context novelty day sets (PLAN.md §5); chosen from the covariates the models '
-                                   'received only', days_csv_sha256=sha(p_csv), day_inputs_csv_sha256=sha(p_in),
-               **info, **extra)
+    pairs.round(6).to_csv(p_pr, index=False)
+    res = dict(schema=SCHEMA, note='context novelty day sets and pairs (PLAN.md §5); chosen from the covariates the '
+                                   'models received only', days_csv_sha256=sha(p_csv), day_inputs_csv_sha256=sha(p_in),
+               pairs_csv_sha256=sha(p_pr), **info, **extra)
     json.dump(res, open(os.path.join(HERE, 'days.json'), 'w'), indent=1, default=str)
+    m = info['matching']
     print(json.dumps(dict(counts=info['counts'], overlap=info['overlap'], by_winter=info['by_winter'],
-                          mechanism_assessable=info['mechanism_assessable']), indent=1))
+                          pairs=m['pairs'], unmatched=m['unmatched'], clusters=m['clusters'],
+                          balance=m['balance'], h5_assessable=m['h5_assessable']), indent=1))
 
 
 # ------------------------------------------------------------------ synthetic checks ------------------------------------
@@ -306,18 +371,50 @@ def synthetic():
                                       and f.at['2025-01-15', 'novel_s'] and not f.at['2025-01-15', 'novel_w']),
                           Nw=got_Nw, expected=want_Nw)
     t1 = ['2025-01-10', '2025-01-11', '2025-01-12', '2025-01-15']; t4 = []
-    out, feat, info = build(days, cov, meta, t1, t4)
+    tin = pd.DataFrame(dict(day=days, t_mean=[1.0, 1.5, 3.5, 4.0, 5.0, 2.0, 6.0, 9.0], t_min=-1.0))
+    out, feat, info, pairs = build(days, cov, meta, t1, t4, tin)
     get = lambda s: sorted(out.loc[out.set == s, 'day'])
     refused = False
     bad = cov['2025-01-10'].drop(index=5).reset_index(drop=True)            # one context half-hour missing
     try: day_inputs('2025-01-10', bad)
     except AssertionError: refused = True
     ok4 = (get('N&T1') == ['2025-01-10', '2025-01-15'] and get('T1-N') == ['2025-01-11', '2025-01-12']
-           and info['counts']['N'] == len(want_N) and info['small_sets'] == {'N&T1': True, 'T1-N': True}
-           and not info['mechanism_assessable'] and info['fallback_days_in_N'] == ['2025-01-13']
-           and info['overlap']['N&T1'] == 2 and refused)
-    checks['4_mechanism_and_refusal'] = dict(passed=bool(ok4), N_and_T1=get('N&T1'), T1_minus_N=get('T1-N'),
-                                             small_sets=info['small_sets'], malformed_day_refused=refused)
+           and info['counts']['N'] == len(want_N) and info['fallback_days_in_N'] == ['2025-01-13']
+           and info['overlap']['N&T1'] == 2 and refused
+           # through build(): 01-10 (1.0) takes 01-11 (1.5); 01-15 (2.0) has only 01-12 (3.5) left, 1.5 C away: unmatched
+           and list(zip(pairs.novel, pairs.control)) == [('2025-01-10', '2025-01-11')]
+           and info['matching']['unmatched'] == ['2025-01-15'] and not info['matching']['h5_assessable'])
+    checks['4_sets_and_refusal'] = dict(passed=bool(ok4), N_and_T1=get('N&T1'), T1_minus_N=get('T1-N'),
+                                        pairs=list(zip(pairs.novel, pairs.control)),
+                                        unmatched=info['matching']['unmatched'], malformed_day_refused=refused)
+    # 5: matching and clusters on constructed values with known answers
+    tm = {'2024-11-20': 0.0, '2024-11-21': 0.2, '2024-11-25': 0.5, '2025-02-10': -1.0,      # novel days
+          '2024-12-01': 0.3, '2024-12-02': 0.1, '2024-10-31': 0.0,                         # controls
+          '2025-01-05': -1.0, '2025-01-06': -0.4, '2025-03-01': -1.0}
+    tn = {d: v - 3 for d, v in tm.items()}
+    nov = ['2024-11-25', '2025-02-10', '2024-11-20', '2024-11-21']                         # order must not matter
+    ctl = ['2024-12-01', '2024-12-02', '2024-10-31', '2025-01-05', '2025-01-06', '2025-03-01']
+    pr, mi = match(nov, ctl, tm, tn)
+    # 11-20 (0.0): 12-02 (0.1) and 10-31 (0.0, but October is one month from November): 10-31, |d| 0 < 0.1
+    # 11-21 (0.2): 12-01 |0.1| and 12-02 |0.1| tie on temperature and month: earlier date, 12-01
+    # 11-25 (0.5): 12-02 |0.4|; 01-06 is two months away
+    # 02-10 (-1.0): 01-05 |0| and 03-01 |0| tie on temperature and month: earlier date, 01-05
+    want = [('2024-11-20', '2024-10-31'), ('2024-11-21', '2024-12-01'), ('2024-11-25', '2024-12-02'),
+            ('2025-02-10', '2025-01-05')]
+    got = list(zip(pr.novel, pr.control))
+    cl = dict(zip(pr.novel, pr.cluster))                    # 11-20, 11-21 one spell; 11-25 (4 days on) a second
+    p2, m2 = match(['2024-12-15'], ['2024-12-16', '2025-01-20'], {'2024-12-15': 0.0, '2024-12-16': 1.2,
+                                                                  '2025-01-20': 0.9}, {d: 0 for d in ['2024-12-15',
+                                                                  '2024-12-16', '2025-01-20']})
+    ok5 = (got == want and cl == {'2024-11-20': 1, '2024-11-21': 1, '2024-11-25': 2, '2025-02-10': 3}
+           and mi['pairs'] == 4 and mi['clusters'] == 3 and mi['balance']['month']['max_abs'] == 1
+           and list(zip(p2.novel, p2.control)) == [('2024-12-15', '2025-01-20')]      # 1.2 C is outside the caliper
+           and month_gap('2024-12-31', '2025-01-01') == 1 and month_gap('2024-11-01', '2025-01-01') == 2
+           # two days apart: one spell; three days apart: a new one
+           and clusters(['2024-12-01', '2024-12-03', '2024-12-06']) == {'2024-12-01': 1, '2024-12-03': 1,
+                                                                        '2024-12-06': 2})
+    checks['5_matching_and_clusters'] = dict(passed=bool(ok5), pairs=got, expected=want, clusters=cl,
+                                             caliper_case=list(zip(p2.novel, p2.control)))
     ok = all(c['passed'] for c in checks.values())
     for k, c in checks.items(): print(('PASS ' if c['passed'] else 'FAIL ') + k)
     json.dump(dict(passed=ok, script_sha256=sha(os.path.abspath(__file__)), checks=checks),

@@ -13,3 +13,12 @@ Every implementation choice the plan (`PLAN.md`, tag `context-novelty-plan`) doe
 5. **Nw's solar arm will almost never fire.** The context's lowest solar value is a night-time zero, and a target value cannot fall below zero. The arm is kept as the plan defines it. `days.json` reports each arm's count separately, so an empty solar arm is visible, not hidden.
 6. **Fallback days are flagged.** On a fallback day the horizon came from D−2's run. That is still what the models received, so these days stay in the sets. `days.json` lists any that fall in N.
 7. **The plan tag is checked.** The real build refuses to run if `PLAN.md` differs from tag `context-novelty-plan`, or if the script, `code/` or the tails study's day files have uncommitted changes.
+
+## Plan version 2, before any script ran on the backtest (20 November 2026)
+
+Two reviews of plan version 1 led to version 2 (`PLAN.md`, "Changes from version 1"). `build_days.py` (deec625) had not run on the backtest, so it was revised to match rather than run against the old plan.
+
+8. **The plan tag is now `context-novelty-plan-v2`.** The real build refuses to run if `PLAN.md` differs from it. Item 7 above stands with the new tag.
+9. **Matched pairs and cold-spell clusters are built here,** from covariates only, as `PLAN.md` §5 sets out, and written to `pairs.csv`. T1's measure, `t_mean`, and the daily minimum, `t_min`, come from `tails/day_inputs.csv`, checked against `tails/days.json`.
+10. **Temperature differences are rounded to 0.000001 °C before matching.** That is `tails/day_inputs.csv`'s precision, so ties are exact rather than decided by floating-point noise, and the plan's tie rule applies as written.
+11. **The synthetic check covers the matching.** It checks the caliper, the month rule across December and January, nearest-first choice, both tie rules, no reuse of controls, unmatched days, and the cluster boundary at two and three days apart. It failed, as it should, when each of five rules was broken in turn: reuse allowed, ties to the later date, a wider caliper, months not wrapping at the year end, and the cluster boundary moved by one day.
