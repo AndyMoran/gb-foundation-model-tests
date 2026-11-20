@@ -1,0 +1,11 @@
+{
+ "passed": true,
+ "checks": {
+  "1_twenty_three_weeks_back": true,
+  "2_thirty_weeks_back": true,
+  "3_shift_applied_to_era5": true,
+  "4_summary": true,
+  "5_refuses_short_era5": true
+ },
+ "script_sha256": "b0cdf35a7569a537464e264407da396d4331cc41ec6d27f5a7c0d1d2decaec34"
+}
