@@ -16,7 +16,7 @@ That points at how LightGBM learns the heating response, not at the cold edge. T
 - **V1 (residual)** follows an established design. In GEFCom2012, Nedellec, Cugliari and Goude combined semi-parametric components with a short-term component estimated by a random forest, "as the factors that drive this component are unknown". Hong used a two-stage approach "for electric demand forecasting including holidays, where the second stage modeled the residuals" (as described by a SAS paper on ISO New England demand). TNEI's work for NESO fitted a GAM for the mean and LightGBM for the residual quantiles.
 - **V3 (per-slot)** has mixed support. Ben Taieb and Hyndman, fifth of 105 teams in GEFCom2012, "used separate models for each hourly period", with gradient boosting of spline base learners rather than trees. A review describes a study by Hong et al. with neural networks that found "forecasting each hour, day of the week, or month separately does not help to improve the forecasting accuracy on this dataset". The plan makes no prediction for V3.
 - **V2 (linear leaves)** has little direct evidence in load forecasting. Piecewise-linear trees are usually motivated by extrapolation: they let "tree-based forecasts … extend beyond the training data range" (März and Rasul). Here the case is slopes within the range, which no source found tests. H4 is exploratory.
-- **V5 (two winters)** has thin evidence. A study of building energy found that more than two years of training data "did not significantly improve forecast accuracy"; no study of national demand was found.
+- **V5 (two winters)** has thin evidence. A study of building energy found that more than two years of training data "did not significantly improve forecast accuracy"; no study of national demand was found. Its direction is open. On German day-ahead prices, a tuned LightGBM got worse with more history: its error rose from 4.87 to 5.91 EUR/MWh with one year instead of 30 days, and nearly doubled with six, because "the market changed" as wind and solar grew (AI Horizon Forecast, Part 1). GB demand is changing too, with falling consumption and more embedded solar, so a second winter may add stale behaviour as well as more cold days.
 
 **The nearest study.** A public repository on German national day-ahead demand compares LightGBM (L1 objective, lags of 2, 7 and 14 days, population-weighted weather) with zero-shot Chronos-2 given the same covariates. On its main test year the two were level (MAPE 2.99% and 3.01%); Chronos-2 was "much worse than LightGBM" on holidays. It has a preregistered live test. Its LightGBM also used up to 20 months of training data and richer holiday features than this study's S1, which bears on V5 and on why its LightGBM did better against Chronos-2 than S1 did here.
 
@@ -123,6 +123,8 @@ Any change to a script after it has run on the backtest is a deviation, logged i
 
 The study must finish before gate G2 (January 2027). If checkpoint 1 runs, its LightGBM comparator is chosen from configurations backtested under committed scripts before G2 (`PROJECT.md` §4), so the best variant here would become it.
 
+**Revision before the freeze, 20 November 2026:** V5's prior work adds the German price result, where more history hurt LightGBM. No variant had run.
+
 **Revision before the freeze, 19 November 2026:** literature check added §1's prior work and nearest study; H2's reason now cites prior designs; no prediction for V3; H4 marked exploratory. No variant had run.
 
 ## Sources
@@ -134,6 +136,7 @@ The study must finish before gate G2 (January 2027). If checkpoint 1 runs, its L
 - SAS Global Forum 2016, [paper SAS3080-2016](https://support.sas.com/resources/papers/proceedings16/SAS3080-2016.pdf), on Hong's two-stage approach.
 - März, A. and Rasul, K. [Forecasting with Hyper-Trees](https://arxiv.org/pdf/2405.07836v4) (arXiv 2405.07836).
 - [Impact of data for forecasting on performance of model predictive control](https://arxiv.org/pdf/2402.12539v2.pdf) (arXiv 2402.12539).
+- AI Horizon Forecast, "Can foundation models beat a tuned LightGBM on electricity prices?" (Substack, 2026), Part 1 of a series; read from text supplied by Andy, as the site could not be fetched.
 - [germany-load-forecast](https://github.com/hfthefeitong-dev/germany-load-forecast) (GitHub repository, read 19 November 2026).
 - TNEI (2024), the QWID FLEXER report for NESO, pp. 18–19 and 24, as cited in `checkpoint0/RESULTS.md`.
 - `checkpoint0/RESULTS.md` and `tails/RESULTS.md` for every earlier figure.
