@@ -1,6 +1,6 @@
 # Tails: who fails on the coldest days?
 
-Andy Moran (Heaviside Analytics) · draft, 17 November 2026 · a backtest study, descriptive
+Andy Moran (Heaviside Analytics) · 20 November 2026 · a backtest study, descriptive
 
 For: a reader who wants to know whether average error hides how accurate forecasters are on the coldest days, when demand peaks, margins are tightest and an error costs most.
 
@@ -211,6 +211,7 @@ If checkpoint 1 runs, read any result against LightGBM in a cold spring with its
 - **Plan:** `PLAN.md`, frozen at tag `tails-plan` before any script ran.
 - **Day sets:** `build_days.py`, run at commit dba8c74. The sets are in `days.csv`, with counts and hashes in `days.json`.
 - **Scoring:** `score_tails.py` (sha256 07b508de…), run at commit 0db9b84, after its synthetic check passed (`synthetic.json`). Outputs: `results.json`, `results.md`.
+- **Figures:** `figures/`, two charts drawn from this note's tables, with the scripts that draw them.
 - **Changes:** every implementation choice the plan does not name, and the three reviews before the run, are in `REVISIONS.md`.
 - **Data:** the forecast files are in this repository. The day sets were built from public data that are not committed: NESO's publications, ERA5, and ECMWF's open-data forecasts. Their files are named and hashed in `days.json`.
 
