@@ -1,0 +1,120 @@
+{
+ "script_sha256": "2f58712cdd7aaf448acbff09ba9e2da0e8b40c9ef2bb991b9b5dd29ec5515add",
+ "pairs_csv_sha256": "cdf2b62d1b4b37dd9f6bef76e0c7ac23bc343e5658fd27133942b59a398f6494",
+ "n_pairs": 10,
+ "spells": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "cases": {
+  "meaningful_400": {
+   "passed": true,
+   "delta": 400.0,
+   "ci90": [
+    400.0,
+    400.0
+   ],
+   "reading": "meaningful penalty supported",
+   "sentence": "In a backtest it may have seen in training, Chronos-2 under-forecast the daily peak, relative to a weather regression, by 400 MW more on cold days colder than its eight-week context than on matched cold days that were not (90% interval 400\u2013400, above the 250 MW threshold set in advance)."
+  },
+  "at_threshold_250": {
+   "passed": true,
+   "delta": 250.0,
+   "ci90": [
+    250.0,
+    250.0
+   ],
+   "reading": "positive penalty supported; meaningful size not shown",
+   "sentence": "In a backtest it may have seen in training, Chronos-2 under-forecast the daily peak, relative to a weather regression, by 250 MW more on cold days colder than its eight-week context than on matched cold days that were not (90% interval 250\u2013250). A penalty of 250 MW, the threshold set in advance, was not shown."
+  },
+  "positive_150": {
+   "passed": true,
+   "delta": 150.0,
+   "ci90": [
+    150.0,
+    150.0
+   ],
+   "reading": "positive penalty supported; meaningful size not shown",
+   "sentence": "In a backtest it may have seen in training, Chronos-2 under-forecast the daily peak, relative to a weather regression, by 150 MW more on cold days colder than its eight-week context than on matched cold days that were not (90% interval 150\u2013150). A penalty of 250 MW, the threshold set in advance, was not shown."
+  },
+  "smaller_-300": {
+   "passed": true,
+   "delta": -300.0,
+   "ci90": [
+    -300.0,
+    -300.0
+   ],
+   "reading": "smaller on novel days",
+   "sentence": "In a backtest it may have seen in training, Chronos-2 under-forecast the daily peak, relative to a weather regression, by 300 MW less on cold days colder than its eight-week context than on matched cold days that were not (90% interval \u2212300 to \u2212300)."
+  },
+  "unclear_alternating": {
+   "passed": true,
+   "delta": 80.0,
+   "ci90": [
+    -400.0,
+    400.0
+   ],
+   "sentence": "In a backtest it may have seen in training, Chronos-2's peak error relative to a weather regression did not clearly differ between cold days colder than its eight-week context and matched cold days that were not (difference 80 MW, 90% interval \u2212400 to 400)."
+  },
+  "sensitivity_200": {
+   "passed": true,
+   "h5": {
+    "reading": "positive penalty supported; meaningful size not shown",
+    "threshold_mw": 250.0,
+    "sensitivity": {
+     "100": "meaningful penalty supported",
+     "500": "positive penalty supported; meaningful size not shown"
+    }
+   }
+  },
+  "spells_and_leave_one_out": {
+   "passed": true,
+   "spells": {
+    "1": {
+     "pairs": 3,
+     "delta": 100.0
+    },
+    "2": {
+     "pairs": 2,
+     "delta": 200.0
+    },
+    "3": {
+     "pairs": 3,
+     "delta": 300.0
+    },
+    "4": {
+     "pairs": 2,
+     "delta": 400.0
+    }
+   },
+   "loo": {
+    "by_spell_left_out": {
+     "1": 300.0,
+     "2": 250.0,
+     "3": 214.2857,
+     "4": 200.0
+    },
+    "min": 200.0,
+    "max": 300.0
+   },
+   "distinct": 29
+  },
+  "regression_subtracted": {
+   "passed": true
+  },
+  "not_assessed_9_pairs": {
+   "passed": true,
+   "sentence": "Too few cold days colder than Chronos-2's eight-week context could be matched for a comparison (9 pairs from 14 novel days)."
+  },
+  "second_sentence": {
+   "passed": true,
+   "second": "The comparison rests on 10 pairs (5 in winter 2024-25 and 5 in winter 2025-26) in 4 cold spells. It does not estimate the difference for the 4 novel days that could not be matched (10 January 2025, 20 November 2025, 4 January 2026, 5 January 2026), which include the coldest days, or for the full cold tail."
+  },
+  "formatting": {
+   "passed": true
+  }
+ },
+ "passed": true
+}
