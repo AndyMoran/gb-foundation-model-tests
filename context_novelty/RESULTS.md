@@ -8,7 +8,7 @@ For: a forecaster who wants to know whether a foundation model's bad cold days c
 - **Live performance.** The foundation models may have seen these days in training.
 - **That novelty causes the penalty.** The study compares matched days; it changes nothing. LightGBM, which novelty should not affect, also did worse on novel days (below).
 - **A blind test.** The hypothesis was written after the tails study had shown Chronos-2 under-forecasting cold-day peaks.
-- **The extremes or the whole cold tail.** The comparison covers 10 matched pairs. The four coldest novel days could not be matched.
+- **The extremes or the whole cold tail.** The comparison covers 10 matched pairs. Four novel days could not be matched; they include the three coldest days in T1.
 - **Prices, other series or other context lengths.** It covers GB national demand (INDO), a day ahead, with an eight-week context.
 
 ## Headline
@@ -88,7 +88,7 @@ Chronos-2 showed a large penalty in three spells and none in the second. Seven o
 | 2026-01-03 | 2025-01-03 | 4 | 1,704 | −434 | 2,138 | −0.39 | −0.17 | 0 |
 | 2026-01-06 | 2025-01-04 | 4 | 1,423 | −32 | 1,455 | −0.11 | −2.26 | 0 |
 
-Gaps are novel day minus control. A negative temperature gap means the novel day was colder.
+Gaps are novel day minus control. A negative temperature gap means the novel day was colder. Every figure in this note is calculated from unrounded values and then rounded to whole MW, so a displayed difference or average can differ by 1 MW from one worked out from the rounded figures shown.
 
 ### The four unmatched novel days (description only)
 
@@ -114,7 +114,7 @@ Without matching, the gaps for Chronos-2, TimesFM 2.5 and LightGBM are larger; T
 
 ### All 30 novel days, with the tails study's metrics
 
-Over all 30 novel days, in every season, Chronos-2 under-forecast the daily peak by 1,459 MW (1,074 to 1,801), while the regression's peak error was −259 MW (−539 to 30). Against the other 930 days, Chronos-2's error relative to the regression rose: tail shift 1.241 (1.026–1.474). Against days of the same months it did not clearly rise: 1.183 (0.977–1.402). The full table is in `results.md`.
+Over all 30 novel days, in every season, Chronos-2 under-forecast the daily peak by 1,459 MW (1,074 to 1,801), while the regression's peak error was −259 MW (−539 to 30). Against the other 930 days, Chronos-2's error relative to the regression rose: tail shift 1.241 (1.026–1.474). Against days of the same months it did not clearly rise: 1.183 (0.977–1.402). The full table is in `results.md`. Every interval in this note comes from the bootstrap draws in `score.py`; the values are recorded in `results.json`.
 
 ## Limits
 
