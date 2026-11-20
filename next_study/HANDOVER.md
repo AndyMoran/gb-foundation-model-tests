@@ -71,11 +71,16 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
    - Tails 2 (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Note that tails 1 found no T4 days, so a tails-2 design cannot rely on out-of-range temperatures.
 4. **Context novelty, by 4 December:** Andy reviews and tags `context-novelty-plan`; then `build_days.py` (covariates only, with `--synthetic`), committed before it runs; then `score.py`, importing the tails study's scoring functions, with its synthetic check before the real run; then the note.
 5. **LightGBM variants, by 17 December:** Andy tags `lgbm-variants-plan`; fetch and check V5's data by 3 December (Copernicus key from `~/.cdsapirc` only); `gb-weather-private/weather/lightgbm_variants.py` with the checks in its §8, committed before it runs; then `lgbm_variants/score.py` and the note. It must finish before G2, because its best variant becomes the LightGBM comparator if checkpoint 1 runs.
-6. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
+**Decision point, 8 January 2027: does checkpoint 1 run?** Andy decides, with the variants result in hand. Everything below this line is conditional on a yes; nothing in 2027 is committed except the weather study's live window (it ends in March and reports in April) and its daily push.
+- **If yes:** steps 6 to 8 as written.
+- **If no:** publish `BENCHMARK_RULES.md` as a proposal, not a commitment; offer it to the TS-Arena team and the author of the German demand repository (`PROJECT.md` §1); record the decision in the `PROJECT.md` log; the body of work is the weather study, checkpoint 0, the tails study, context novelty and the variants, plus the weather study's live result in April.
+- **Why the date:** Andy's concern (20 November) is a commitment running far into 2027, not the December workload. Checkpoint 1 means gates in January, the pipeline move by 1 March, a live window from April to September and a report in autumn 2027.
+
+6. **Gates G2 and G3 (January, only if checkpoint 1 runs):** short scripts, committed before they run, using public data.
    - **Before G2:** backtest per-slot LightGBM under its own committed script if it is to count for the LightGBM comparator (`PROJECT.md` §4, confirmatory pairs).
    - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Where LightGBM S1 is the comparator, use S1's summer edge, not the defaults' (checkpoint 0, `results.md` tables 2 and 6): it is smaller, so power will be lower than 93.7%. Show the number.
    - **G3:** the per-test false-positive rate, one-sided at alpha 0.025, from 5,000 simulations at a true edge of zero; threshold 0.032 (`PROJECT.md`, G3).
-7. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
+7. **Checkpoint 1's plan (only if it runs), frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
    - a pre-specified per-slot LightGBM, which tests the structure hypothesis;
    - each forecaster's error on the highest-demand days (top 10% by outturn), which tests the extrapolation hypothesis.
 
@@ -87,7 +92,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
    - the input table and its gate check;
    - the 10% rationale;
    - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression.
-8. **Move the daily pipeline off Andy's laptop by 1 March 2027,** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
+8. **Move the daily pipeline off Andy's laptop by 1 March 2027 (only if checkpoint 1 runs),** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
    - scheduled attempts after 09:30 UK (cron is UTC: for example 09:47, 13:47 and 17:47 UTC), off the hour;
    - a concurrency group keyed to the forecast day, without cancelling runs in progress, so attempts never overlap;
    - `workflow_dispatch` for manual retries;
