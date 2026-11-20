@@ -1,4 +1,4 @@
-# Where things stand (20 November 2026)
+# Where things stand (20 November 2026, evening)
 
 Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md`, `tails/RESULTS.md`, `context_novelty/PLAN.md` and `lgbm_variants/PLAN.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
 
@@ -43,12 +43,19 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Headlines** (narrow tail shift, T1). Chronos-2 did not clearly lose or gain ground: 1.055 (0.915–1.213). LightGBM S1 did not clearly lose or gain ground: 1.102 (0.988–1.217).
 - **H1 unclear: a winter effect, not a cold-day effect.** LightGBM S1 lost ground against all other days (1.187, 1.066–1.298), but was already 10.5% worse than the regression on same-month days. The T4 clause was not assessed (T4 empty).
 - **Other results.** TimesFM 2.5 lost ground on cold days (1.302, 1.117–1.533). Chronos-2 under-forecast the cold-day peak by 511 MW (195 to 837).
-- **Note.** `tails/RESULTS.md`, committed as a draft (3ee3eb0). Christmas Day 2025 is stated as a limit, with no exploratory table, by Andy's decision.
+- **Note.** `tails/RESULTS.md`, published 20 November (c3a0908), with the AI-use statement (af9637b) and figures in `tails/figures/`: the paired dot plot and the peak-error chart (b1a4394). Christmas Day 2025 is stated as a limit, with no exploratory table, by Andy's decision.
+- **Posts.** Andy posted a plain version (led by the headline, then what average error hid) and replied to comments from Chinmay Joshi (seasonal relationships) and Muhammed Asker (regime-aware retrieval).
 - **Tails 2's trigger fired** (Andy, 17 November): the trigger counts any tail shift, including the broad one. Tails 2 is back on the list, not urgent.
-**Two plans drafted, 19–20 November** (not yet tagged):
-- **Context novelty** (`context_novelty/PLAN.md`): are the foundation models worse on days colder than their eight-week context, among equally cold days (N∩T1 against T1∖N)? Hypotheses H5 (Chronos-2) and H6 (TimesFM 2.5 less affected); LightGBM as control. Prior work: WhatIf-Bench and CovNovBench (NeurIPS 2026), and the AI Horizon Forecast series on German prices (text supplied by Andy; Substack cannot be fetched from Claude's workspace). Risk: N∩T1 may have fewer than 10 days, in which case H5 is "not assessed".
+**Context novelty study** (`context_novelty/`), 20 November, plan to draft note in one day:
+- **Process.** Version 1 tagged `context-novelty-plan` (9e1002b). Two reviews led to version 2 before any script ran on real data: weather provenance stated; novel cold days matched to non-novel cold days on T1's mean forecast temperature (within 1 °C) and month (within one); one primary outcome; a chosen 250 MW threshold read by the interval's lower bound; a cold-spell cluster bootstrap; TimesFM exploratory and LightGBM descriptive. Tagged `context-novelty-plan-v2` (21b9a29). `build_days.py` and `score.py` were each committed before they ran, with synthetic checks that also failed when their rules were broken. Every choice and deviation is in `context_novelty/REVISIONS.md` (items 1–21).
+- **Sets.** N 30 days; 14 novel cold days (N∩T1); 10 matched pairs in 4 cold spells; 4 novel days unmatched, including the three coldest in T1. A post-build review scoped H5 to the 10 pairs and added spell results and the unmatched days as description (REVISIONS 12–16).
+- **Headline.** H5: meaningful penalty supported. Chronos-2's excess peak error was 1,241 MW greater on novel days than on matched controls (90% interval 589–1,765); leaving out any one spell keeps it between 1,017 and 1,551 MW.
+- **The caveat that matters.** LightGBM, which context novelty should not affect, also shows Δ 618 MW (147–1,184). So the result is an association, and the backtest cannot say how much is due to the eight-week context. TimesFM 2.5's Δ was the largest (2,723 MW), opposite to version 1's dropped H6.
+- **Note.** `context_novelty/RESULTS.md`, committed as a draft (625e64c). Next study suggested in it: re-forecast the same pairs with a longer context and test whether Chronos-2 improves more on novel days than on controls.
+
+**Plan drafted, 19 November** (not yet tagged):
 - **LightGBM variants** (`lgbm_variants/PLAN.md`): five pre-specified changes aimed at the heating response (V1 residual on the regression, V2 linear leaves with control V2c, V3 per-slot, V4 the regression's terms, V5 two winters); best chosen on error, as the comparator rule requires. A literature check found none is new; the nearest study is a German demand repository (LightGBM and Chronos-2 level). V5 needs INDO for March–November 2022 and ERA5 for March 2022–March 2023, fetched and checked by 3 December, or it is dropped. LightGBM does not support the L1 objective with `linear_tree` (4.7.0 source), hence V2c.
-- **Why these two.** The tails study ruled out temperatures outside LightGBM's training range and found its gap on ordinary winter days (so: variants), and found Chronos-2 under-forecasting cold-day peaks (so: context novelty).
+- **Why these two.** The tails study ruled out temperatures outside LightGBM's training range and found its gap on ordinary winter days (so: variants), and found Chronos-2 under-forecasting cold-day peaks (so: context novelty, now done).
 
 - **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces (tails study, the weather study's live report), put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is open.
 
@@ -56,20 +63,21 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Rules in force.** An external review was checked point by point; the rules were revised and tagged `benchmark-rules-v2` (d17b658). `benchmark-rules-v1` (9d1e357, 17 November) stays as the pre-review version (`PROJECT.md` decision log). G1 passed.
 - **Assumptions.** A9 (licences), A13 (runner: 4 CPUs, 15 GiB, 91 GB free) and A15 (Elexon's attribution) grounded; `ATTRIBUTION.md` added.
 - **The weather study's live pipeline was pre-tested on 18 November, and three faults were fixed before the first push:**
-  - there was no push task: `Weather push` now runs `push_daily.py` daily at 10:00 and 15:45;
+  - there was no push task: `Weather push` now runs `push_daily.py` daily at 10:00, 15:45 and 21:00;
   - the ERA5 download task had stray text in its command and a start-up-only trigger, so it had not run since 10 November: it now runs hourly from 10:00;
   - November ERA5 was missing, and two days cached from Google's copy were empty (`weather_study/CORRECTIONS.md` 2).
 - **First live push, 19 November:** inputs for 20 November, commit 6b23228, no fallback, all ERA5 from CDS. It ran at 08:55, not 10:00: yesterday's missed 15:45 run caught up when the laptop woke. The 19 November run came from a public archive copy, on time. Because a catch-up before about 07:30 would lock in a fallback, the push task's "run as soon as possible after a missed start" is to be unticked.
+- **An extra push run at 16:29 on 19 November** came from an old task, `weather inputs daily` (10:30, 16:30, 21:00), which also ran the push. Andy disabled it; `Weather push` is the only push task. Later runs report "already published; nothing to do".
 - **Battery project.** It has its own handover and claude.ai project; its pre-registration is not yet locked.
-- **Parked plans** (in this claude.ai project only): `weather_value` (what perfect weather is worth; an update of National Grid's analysis) and `weather_inputs` (urban heat, terrain, downscaling; waits on `weather_value`).
+- **Parked plans**, committed as parked (b1a4394) and in this claude.ai project: `weather_value/PLAN.md` (what perfect weather is worth; an update of National Grid's analysis) and `weather_inputs/PLAN.md` (urban heat, terrain, downscaling; waits on `weather_value`). Parked until the current studies are published.
 
 ## Next steps, in order
 
 1. **Daily, as needed:** `tail -8 ~/gb-weather-data/push.log` should end `=== end …: ok`. Untick catch-up on the push task (above).
 2. **Done 18 November:** rules tagged `benchmark-rules-v2`; A13 recorded.
-3. **Publish the tails note, by 5 December:** change the header's "draft, 17 November 2026" in `tails/RESULTS.md` to the publication date, commit, and publish as for checkpoint 0. Any post leads with the three headline sentences unchanged (lesson 24).
+3. **Done 20 November:** tails note published; figures committed.
    - Tails 2 (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Note that tails 1 found no T4 days, so a tails-2 design cannot rely on out-of-range temperatures.
-4. **Context novelty, by 4 December:** Andy reviews and tags `context-novelty-plan`; then `build_days.py` (covariates only, with `--synthetic`), committed before it runs; then `score.py`, importing the tails study's scoring functions, with its synthetic check before the real run; then the note.
+4. **Publish the context novelty note, after a review, before 4 December:** send `context_novelty/RESULTS.md` through the reviewer's figure check, set the publication date, commit and publish. Any post leads with the two headline sentences unchanged (lesson 24), and must give LightGBM's 618 MW straight after them.
 5. **LightGBM variants, by 17 December:** Andy tags `lgbm-variants-plan`; fetch and check V5's data by 3 December (Copernicus key from `~/.cdsapirc` only); `gb-weather-private/weather/lightgbm_variants.py` with the checks in its §8, committed before it runs; then `lgbm_variants/score.py` and the note. It must finish before G2, because its best variant becomes the LightGBM comparator if checkpoint 1 runs.
 **Decision point, 8 January 2027: does checkpoint 1 run?** Andy decides, with the variants result in hand. Everything below this line is conditional on a yes; nothing in 2027 is committed except the weather study's live window (it ends in March and reports in April) and its daily push.
 - **If yes:** steps 6 to 8 as written.
