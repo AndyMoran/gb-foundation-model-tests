@@ -1,6 +1,6 @@
-# Where things stand (19 November 2026)
+# Where things stand (20 November 2026)
 
-Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md` and `tails/RESULTS.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
+Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md`, `tails/RESULTS.md`, `context_novelty/PLAN.md` and `lgbm_variants/PLAN.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
 
 ## The project
 
@@ -45,6 +45,11 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Other results.** TimesFM 2.5 lost ground on cold days (1.302, 1.117–1.533). Chronos-2 under-forecast the cold-day peak by 511 MW (195 to 837).
 - **Note.** `tails/RESULTS.md`, committed as a draft (3ee3eb0). Christmas Day 2025 is stated as a limit, with no exploratory table, by Andy's decision.
 - **Tails 2's trigger fired** (Andy, 17 November): the trigger counts any tail shift, including the broad one. Tails 2 is back on the list, not urgent.
+**Two plans drafted, 19–20 November** (not yet tagged):
+- **Context novelty** (`context_novelty/PLAN.md`): are the foundation models worse on days colder than their eight-week context, among equally cold days (N∩T1 against T1∖N)? Hypotheses H5 (Chronos-2) and H6 (TimesFM 2.5 less affected); LightGBM as control. Prior work: WhatIf-Bench and CovNovBench (NeurIPS 2026), and the AI Horizon Forecast series on German prices (text supplied by Andy; Substack cannot be fetched from Claude's workspace). Risk: N∩T1 may have fewer than 10 days, in which case H5 is "not assessed".
+- **LightGBM variants** (`lgbm_variants/PLAN.md`): five pre-specified changes aimed at the heating response (V1 residual on the regression, V2 linear leaves with control V2c, V3 per-slot, V4 the regression's terms, V5 two winters); best chosen on error, as the comparator rule requires. A literature check found none is new; the nearest study is a German demand repository (LightGBM and Chronos-2 level). V5 needs INDO for March–November 2022 and ERA5 for March 2022–March 2023, fetched and checked by 3 December, or it is dropped. LightGBM does not support the L1 objective with `linear_tree` (4.7.0 source), hence V2c.
+- **Why these two.** The tails study ruled out temperatures outside LightGBM's training range and found its gap on ordinary winter days (so: variants), and found Chronos-2 under-forecasting cold-day peaks (so: context novelty).
+
 - **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces (tails study, the weather study's live report), put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is open.
 
 **18–19 November:**
@@ -64,11 +69,13 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 2. **Done 18 November:** rules tagged `benchmark-rules-v2`; A13 recorded.
 3. **Publish the tails note, by 5 December:** change the header's "draft, 17 November 2026" in `tails/RESULTS.md` to the publication date, commit, and publish as for checkpoint 0. Any post leads with the three headline sentences unchanged (lesson 24).
    - Tails 2 (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Note that tails 1 found no T4 days, so a tails-2 design cannot rely on out-of-range temperatures.
-4. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
+4. **Context novelty, by 4 December:** Andy reviews and tags `context-novelty-plan`; then `build_days.py` (covariates only, with `--synthetic`), committed before it runs; then `score.py`, importing the tails study's scoring functions, with its synthetic check before the real run; then the note.
+5. **LightGBM variants, by 17 December:** Andy tags `lgbm-variants-plan`; fetch and check V5's data by 3 December (Copernicus key from `~/.cdsapirc` only); `gb-weather-private/weather/lightgbm_variants.py` with the checks in its §8, committed before it runs; then `lgbm_variants/score.py` and the note. It must finish before G2, because its best variant becomes the LightGBM comparator if checkpoint 1 runs.
+6. **Gates G2 and G3 (January):** short scripts, committed before they run, using public data.
    - **Before G2:** backtest per-slot LightGBM under its own committed script if it is to count for the LightGBM comparator (`PROJECT.md` §4, confirmatory pairs).
    - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Where LightGBM S1 is the comparator, use S1's summer edge, not the defaults' (checkpoint 0, `results.md` tables 2 and 6): it is smaller, so power will be lower than 93.7%. Show the number.
    - **G3:** the per-test false-positive rate, one-sided at alpha 0.025, from 5,000 simulations at a true edge of zero; threshold 0.032 (`PROJECT.md`, G3).
-5. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
+7. **Checkpoint 1's plan, frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
    - a pre-specified per-slot LightGBM, which tests the structure hypothesis;
    - each forecaster's error on the highest-demand days (top 10% by outturn), which tests the extrapolation hypothesis.
 
@@ -80,7 +87,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
    - the input table and its gate check;
    - the 10% rationale;
    - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression.
-6. **Move the daily pipeline off Andy's laptop by 1 March 2027,** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
+8. **Move the daily pipeline off Andy's laptop by 1 March 2027,** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
    - scheduled attempts after 09:30 UK (cron is UTC: for example 09:47, 13:47 and 17:47 UTC), off the hour;
    - a concurrency group keyed to the forecast day, without cancelling runs in progress, so attempts never overlap;
    - `workflow_dispatch` for manual retries;
