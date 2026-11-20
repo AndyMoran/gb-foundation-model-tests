@@ -187,6 +187,7 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | `checkpoint0/` | The LightGBM backtest: plan, revisions, results and cost |
 | `tails/` | Errors on the coldest, peak and holiday days of the backtest |
 | `lgbm_variants/` | Five LightGBM variants aimed at the heating response |
+| `context_novelty/` | Foundation models on days colder than their eight-week context |
 | `.github/workflows/runner_check.yml` | One-off check of the GitHub runner (A13) |
 | `benchmark/HARDWARE.md` | The runner and budget specification (rules 3.3, 10.2); to be written at G4 |
 
@@ -230,3 +231,4 @@ The ask, before checkpoint 1 opens: "I'm running a preregistered live benchmark 
 | 2026-11-18 | The revised rules are tagged `benchmark-rules-v2`; `benchmark-rules-v1` stays where it is, at 9d1e357 | `v1` had already been tagged and pushed on 17 November, before the review. A published tag is evidence and is not moved; rule 8.6 provides a new tag for amendments before the next window opens |
 | 2026-11-19 | LightGBM variants study planned (`lgbm_variants/PLAN.md`): five pre-specified changes, best chosen on error, before G2 | The tails study ruled out temperatures outside the training range and found the gap on ordinary winter days; the comparator should be the strongest trained opponent |
 | 2026-11-19 | Literature check for the LightGBM variants plan: no variant is new; the German repository is the nearest study and is added to related work | Opened before citing |
+| 2026-11-20 | Context novelty study planned (`context_novelty/PLAN.md`): are the foundation models worse when tomorrow is colder than their context, among equally cold days? | Tails found Chronos-2's cold-peak under-forecast; WhatIf-Bench and CovNovBench (NeurIPS 2026) and a German price study point to covariates outside the context |
