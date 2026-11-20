@@ -1,0 +1,166 @@
+{
+ "schema": 1,
+ "note": "context novelty day sets and pairs (PLAN.md \u00a75); chosen from the covariates the models received only",
+ "days_csv_sha256": "649e596f1c30506d6e41f6c5d3fbece8d17b374062c200a74490469f1c0c59c7",
+ "day_inputs_csv_sha256": "4ecf032f051c479cefd43c78451c23aa55e343f55901812e7af2397050b5858a",
+ "pairs_csv_sha256": "cdf2b62d1b4b37dd9f6bef76e0c7ac23bc343e5658fd27133942b59a398f6494",
+ "n_days": 960,
+ "n_T1": 96,
+ "n_T4": 0,
+ "counts": {
+  "N": 30,
+  "N&T1": 14,
+  "T1-N": 82,
+  "Nw": 22
+ },
+ "by_winter": {
+  "N": {
+   "Apr-Oct 2024": 6,
+   "Apr-Oct 2025": 6,
+   "Apr-Oct 2026": 4,
+   "winter 2024-25": 6,
+   "winter 2025-26": 8
+  },
+  "N&T1": {
+   "winter 2024-25": 6,
+   "winter 2025-26": 8
+  },
+  "T1-N": {
+   "winter 2024-25": 53,
+   "winter 2025-26": 29
+  },
+  "Nw": {
+   "Apr-Oct 2024": 6,
+   "Apr-Oct 2025": 6,
+   "Apr-Oct 2026": 5,
+   "winter 2024-25": 1,
+   "winter 2025-26": 4
+  }
+ },
+ "by_month": {
+  "N": {
+   "2024-09": 4,
+   "2024-10": 2,
+   "2024-11": 3,
+   "2025-01": 3,
+   "2025-09": 5,
+   "2025-10": 1,
+   "2025-11": 4,
+   "2026-01": 4,
+   "2026-08": 1,
+   "2026-10": 3
+  },
+  "N&T1": {
+   "2024-11": 3,
+   "2025-01": 3,
+   "2025-11": 4,
+   "2026-01": 4
+  },
+  "T1-N": {
+   "2024-11": 4,
+   "2024-12": 2,
+   "2025-01": 20,
+   "2025-02": 18,
+   "2025-03": 9,
+   "2025-11": 4,
+   "2025-12": 7,
+   "2026-01": 11,
+   "2026-02": 7
+  },
+  "Nw": {
+   "2024-04": 2,
+   "2024-07": 1,
+   "2024-08": 2,
+   "2024-10": 1,
+   "2024-11": 1,
+   "2025-05": 2,
+   "2025-08": 2,
+   "2025-09": 1,
+   "2025-10": 1,
+   "2025-12": 2,
+   "2026-01": 1,
+   "2026-03": 1,
+   "2026-09": 1,
+   "2026-10": 4
+  }
+ },
+ "overlap": {
+  "N&T1": 14,
+  "N&T4": 0,
+  "Nw&N": 0,
+  "Nw&T1": 0
+ },
+ "Nw_by_arm": {
+  "wind": 22,
+  "solar": 0,
+  "both": 0
+ },
+ "N_margin_C": {
+  "min": 0.09649999999999981,
+  "median": 0.70125,
+  "max": 3.0845000000000002
+ },
+ "fallback_days_in_N": [
+  "2025-09-09",
+  "2025-09-14",
+  "2025-09-21",
+  "2025-09-22",
+  "2025-09-23"
+ ],
+ "matching": {
+  "eligible_novel_days": 14,
+  "controls_available": 82,
+  "pairs": 10,
+  "unmatched": [
+   "2025-01-10",
+   "2025-11-20",
+   "2026-01-04",
+   "2026-01-05"
+  ],
+  "clusters": 4,
+  "pairs_by_winter": {
+   "winter 2024-25": 5,
+   "winter 2025-26": 5
+  },
+  "balance": {
+   "t_mean_C": {
+    "mean": -0.16865160000000007,
+    "mean_abs": 0.2544990000000001,
+    "max_abs": 0.827319
+   },
+   "t_min_C": {
+    "mean": -0.29399,
+    "mean_abs": 0.8113699999999999,
+    "max_abs": 2.2599
+   },
+   "month": {
+    "mean": 0.2,
+    "mean_abs": 0.2,
+    "max_abs": 1.0
+   }
+  },
+  "h5_assessable": true,
+  "rule": "PLAN.md \u00a75: t_mean within 1.0 C, month within 1, date order, nearest first, ties by month difference then date, no reuse; fewer than 10 pairs: H5 not assessed"
+ },
+ "provenance": {
+  "public_commit": "21b9a292d6f74bab07d44090cad8221d3e0efd4f",
+  "plan_tag_commit": "21b9a292d6f74bab07d44090cad8221d3e0efd4f",
+  "script_sha256": "0a8ed5978851f3b444f3221cbf9355209b5193a56b5644e34cc81a423ea7aef8",
+  "code_sha256": {
+   "common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4"
+  }
+ },
+ "inputs_sha256": {
+  "inputs_2024-03-16_2026-10-31.csv.gz": "1366c26c9c5ccddd37805921bd56702ae2062dc7aaf327c176fd1d2b32127cd3",
+  "days_2024-03-16_2026-10-31.jsonl": "0e7151e938576251824fe3e150d42a1e09f2faaf686c5aa57bef4fbc7273fcae",
+  "build_2024-03-16_2026-10-31.json": "e74aeb2401c4cc35d7226f4cba13c727def972a59b5f1a435a9406040b55e4d8",
+  "weather_study/results/forecasts.csv": "b5f16561dcf1a26f8d7910bcca95cd137f677760c6f80153349034d4a85f7328",
+  "tails/days.csv": "d9c6b6a5b1f7c06c168a13521484dbd957cd091510caff44c5eacfbad0a93f7c",
+  "tails/day_inputs.csv": "4d427eb375bd58a76ef69ad6b1f74ba15d3f86ee8a2441e33b73dc8e5ca7834f"
+ },
+ "versions": {
+  "python": "3.11.18",
+  "numpy": "2.4.6",
+  "pandas": "3.1.0"
+ }
+}
