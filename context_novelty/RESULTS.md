@@ -1,6 +1,6 @@
 # Context novelty: does Chronos-2 fail when tomorrow is colder than its context?
 
-Andy Moran (Heaviside Analytics) · draft, 20 November 2026 · a backtest study, descriptive
+Andy Moran (Heaviside Analytics) · 20 November 2026 · a backtest study, descriptive
 
 For: a forecaster who wants to know whether a foundation model's bad cold days can be seen coming the day before.
 
