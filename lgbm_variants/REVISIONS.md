@@ -23,3 +23,13 @@ The script lives in `gb-weather-private/weather/`, as `PLAN.md` §9 says, and ch
 12. **Check 3's tolerance was set after a development run on synthetic data.** The plan asks V1 to recover a known heating curve "to a stated tolerance" without giving one. On 10 days of quiet synthetic demand (a quadratic heating curve, little noise), V1's error was 1.07 times the regression's (139 against 129 MW). The tolerance is therefore V1 at most 1.10 times the regression's error, and at most a quarter of the heating term's mean absolute size. No backtest day was involved.
 13. **Coverage is checked at the end of the run** (check 7, added): the run refuses to write forecasts if any variant misses a half-hour the regression forecast. Running every variant on every day inside the checks would double the run time.
 14. **The run is long.** On the development machine V3, with 48 separate fits a day, took about 45 seconds a day, and the other variants about 4 seconds each. The full run should take 12 to 15 hours.
+
+## `score.py`, before it ran (21 November 2026)
+
+`score.py` was written and committed before any variant forecast existed. Its synthetic check passed, and it failed, or stopped with an error, when each of four rules was broken in turn: ties sent to the later variant, V2c allowed as the best variant, overlapping intervals read as "supported", and winter cut to December–February.
+
+15. **When H3 and H4 read "unclear".** The plan offers "supported, not supported, or unclear" and says H3 and H4 compare point estimates while stating whether the intervals overlap. It does not say when "unclear" applies. The rule, fixed before scoring: not supported if a point estimate does not point the hypothesis's way; supported if every one does and no pair of intervals overlaps; unclear if every one does but some intervals overlap. H2 is a choice on point estimates, so it is supported or not supported only.
+16. **S1 is checkpoint 0's saved forecast.** `lightgbm_variants.py` check 6 showed the script's own S1 equal to it on the 20 sample days, so the variants run does not repeat S1.
+17. **Scoring reuses checkpoint 0's code unchanged.** `load`, `daily`, `boot_idx`, `ratio`, `table_vs` and `reading` are imported from `checkpoint0/score.py`. Only the seed differs (20261119, as `PLAN.md` §5 sets). A day is scored only if every forecaster in the table has every half-hour, as in checkpoint 0.
+18. **Winter is November to March,** as `PLAN.md` §5 says, not checkpoint 0's December–February.
+19. **The headline's numbers have three decimals,** as the ratios in checkpoint 0's headlines.
