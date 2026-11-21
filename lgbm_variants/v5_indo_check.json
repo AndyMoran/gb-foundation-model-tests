@@ -1,0 +1,24 @@
+{
+ "file": "data/indo_2022.csv",
+ "sha256": "aa338d736921fa54959badb2419fb2c6410fe273625150de24db688438fb536d",
+ "rows": 14686,
+ "fetched_utc": "2026-11-20T21:53:27+00:00",
+ "first": "2022-03-01 00:00:00+00:00",
+ "last": "2022-12-31 23:30:00+00:00",
+ "december_overlap": {
+  "half_hours": 1488,
+  "both_present": 1488,
+  "only_new": 0,
+  "only_frozen": 0,
+  "max_abs_diff_mw": 0.0,
+  "passed": true
+ },
+ "needed_days": "2022-03-15 .. 2022-11-30",
+ "missing_half_hours": 2,
+ "incomplete_days": [
+  "2022-04-30",
+  "2022-09-23"
+ ],
+ "public_commit": "20fa6995f88340ae07c3e7ec7f5faf9e01cb9b31",
+ "script_sha256": "111098f15f70aec250feda5cdbe7caccd44d7ff82ba50095388ef64b8e75eef8"
+}
