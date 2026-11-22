@@ -73,6 +73,19 @@ The cases, for *k* > 0 (shortfalls cost something):
 
 **Bootstrap:** the tails study's 7-day moving-block bootstrap of the 960 days (2,000 draws, seed 20261122), with each set taken within each draw as the tails study takes its sets, and the same draws for both forecasters in each comparison.
 
+## 5a. Direction and consistency (descriptive)
+
+The weighted loss says how much the misses cost at a given ratio. It does not say whether a forecaster leans one way in particular conditions, or whether its misses come in runs. Both matter to a user: a lean tied to temperature can be corrected, and a run of short days is harder to absorb than alternating ones. Published results already show Chronos-2 too high on ordinary winter days and too low on the coldest (`tails/RESULTS.md`, bias). This section measures that across all conditions. It is descriptive, with no headline and no reading.
+
+For every forecaster in §4, over the 960 days:
+- **Daily bias:** each day's mean of outturn minus forecast over its half-hours, in MW. Positive means short. Its mean over the days equals *U* − *O* for the all set (check below).
+- **Bias by temperature:** the 960 days split into ten groups of 96 by mean forecast temperature (`t_mean` in `tails/day_inputs.csv`, hash-checked against `tails/days.json`), coldest first. For each group, the mean daily bias, with a 90% interval from the same block bootstrap, group membership fixed. Chosen from forecasts, never outturn.
+- **Response to temperature:** the least-squares slope of daily bias on `t_mean`, in MW per °C, with a 90% interval. A forecaster that responds too weakly to temperature, too high when mild and too low when cold, has a negative slope. One that responds too strongly has a positive slope.
+- **Share of days short:** the share of days with positive daily bias.
+- **Persistence:** the lag-1 autocorrelation of daily bias over consecutive days; the share of short days followed by another short day, beside the overall share of short days, which is what independence would give; and the longest run of consecutive short days and of long days, with their dates.
+
+**Prediction, written before any of this is computed:** Chronos-2's slope is negative, with an interval below 0; so is TimesFM 2.5's, more steeply. The regression's slope is near 0 or slightly positive. NESO's is near 0. Every forecaster's daily bias is positively autocorrelated, because weather comes in spells.
+
 ## 6. Prediction, written before any asymmetric loss is computed
 
 **Over all half-hours,** Chronos-2 is clearly better than the regression at *k* = 1 and 2, and its break-even ratio is above 2 (case 1). **At cold-day peaks,** its break-even ratio is below 2, and possibly below 1, meaning it is already level or worse there when the two costs are equal. TimesFM 2.5 is worse than the regression at every ratio in both sets.
@@ -84,6 +97,7 @@ The cases, for *k* > 0 (shortfalls cost something):
 3. **Linearity.** For each forecaster and set, the mean weighted loss at every *k* must equal *k U* + *O* computed directly, to 0.01 MW.
 4. **Synthetic.** On invented forecasts with known shortfalls and surpluses, the script must recover each of the five cases in §5, including the *k\** = 0 and *k\** < 0 boundaries, the right *k\**, the right case shares when every draw is the same, an interval endpoint exactly at 0 labelled not clearly different, means within ε treated as equal and just outside it as unequal, a grid whose labels change more than once, and the right headline.
 5. **Hashes.** Every file read is checked against its recorded SHA-256.
+6. **Direction.** For each forecaster, the mean daily bias over all days equals *U* − *O* for the all set, to 0.01 MW; each temperature group has 96 days; and on the synthetic data a forecaster built to respond too weakly to temperature gets a negative slope, and one built with alternating signs gets a negative autocorrelation.
 
 ## 8. Headline, fixed now
 
@@ -96,7 +110,7 @@ Where the label changes across the ratios, the sentence lists them instead: the 
 ## 9. Work
 
 1. **`asymmetric/score.py`:** reuses the tails study's loader, peak-error and bootstrap functions, imported unchanged. Runs checks §7, then computes §5 and writes the headline by rule. Committed before it runs, with its synthetic check; outputs after. It needs only committed files, so it can run anywhere.
-2. **`asymmetric/RESULTS.md`:** what it does not show; the headline unchanged; the tables of paired differences; the break-even ratios and shares; and a plain reading for a reader who wants to plug in their own *k*. Its language stays exploratory: "clearly less" is an interval label, and nothing "confirms" or is "proven".
+2. **`asymmetric/RESULTS.md`:** what it does not show; the headline unchanged; the tables of paired differences; the break-even ratios and shares; the direction and consistency section (§5a); and a plain reading for a reader who wants to plug in their own *k*. Its language stays exploratory: "clearly less" is an interval label, and nothing "confirms" or is "proven".
 
 ## 10. Timing
 
