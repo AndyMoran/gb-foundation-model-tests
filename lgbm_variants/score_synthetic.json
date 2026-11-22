@@ -1,0 +1,125 @@
+{
+ "passed": true,
+ "script_sha256": "e8172eefe6716b1ac64fb3d24d7e9492d5e278a39fe8a738b9127599d67ea1f1",
+ "checks": {
+  "1_ratios_best_below": {
+   "passed": true,
+   "headline": {
+    "reading": "below",
+    "first": "In a 960-day backtest, the best of five pre-specified LightGBM variants (V1) beat a weather regression: 0.950 times its error (90% interval 0.950\u20130.950).",
+    "second": "In a backtest it may have seen in training, Chronos-2 had 0.947 times that variant's error (90% interval 0.947\u20130.947); the variant was chosen on these same days, so its figure is optimistic."
+   },
+   "hyp": {
+    "H2": {
+     "reading": "supported",
+     "best": "V1"
+    },
+    "H3": {
+     "reading": "supported",
+     "by_variant": {
+      "V1": "supported",
+      "V2": "supported",
+      "V3": "supported",
+      "V4": "supported",
+      "V5": "supported"
+     },
+     "note": ""
+    },
+    "H4": {
+     "reading": "supported"
+    }
+   }
+  },
+  "2_control_excluded_tie_trailing": {
+   "passed": true,
+   "best": {
+    "name": "V3",
+    "candidates": [
+     "V1",
+     "V2",
+     "V3",
+     "V4",
+     "V5"
+    ],
+    "column": "lgbm_v3"
+   },
+   "headline": {
+    "reading": "above",
+    "first": "In a 960-day backtest, the best of five pre-specified LightGBM variants (V3) still trailed a weather regression: 1.100 times its error (90% interval 1.100\u20131.100).",
+    "second": "In a backtest it may have seen in training, Chronos-2 had 0.818 times that variant's error (90% interval 0.818\u20130.818); the variant was chosen on these same days, so its figure is optimistic."
+   }
+  },
+  "3_level": {
+   "passed": true,
+   "ci": [
+    0.9962,
+    1.0042
+   ]
+  },
+  "4_winter_T1_H3": {
+   "passed": true,
+   "H3": [
+    {
+     "reading": "supported",
+     "by_variant": {
+      "V1": "supported",
+      "V2": "supported",
+      "V3": "supported",
+      "V4": "supported",
+      "V5": "supported"
+     },
+     "note": ""
+    },
+    {
+     "reading": "not supported",
+     "by_variant": {
+      "V1": "supported",
+      "V2": "supported",
+      "V3": "not supported",
+      "V4": "supported",
+      "V5": "supported"
+     },
+     "note": ""
+    }
+   ]
+  },
+  "5_unclear": {
+   "passed": true,
+   "V2": {
+    "ratio": 0.995,
+    "ci90": [
+     0.9895,
+     1.0011
+    ],
+    "mw_a": 995.0,
+    "mw_b": 1000.0,
+    "mw_diff": -5.0,
+    "n_days": 960
+   },
+   "V2c": {
+    "ratio": 1.005,
+    "ci90": [
+     0.9995,
+     1.0111
+    ],
+    "mw_a": 1005.0,
+    "mw_b": 1000.0,
+    "mw_diff": 5.0,
+    "n_days": 960
+   }
+  },
+  "6_v5_dropped": {
+   "passed": true,
+   "best": {
+    "name": "V1",
+    "candidates": [
+     "V1",
+     "V2",
+     "V3",
+     "V4"
+    ],
+    "column": "lgbm_v1"
+   }
+  }
+ }
+}
