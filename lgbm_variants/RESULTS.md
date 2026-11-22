@@ -38,7 +38,7 @@ The headline claims follow the pre-specified rules in `PLAN.md` §7; `score.py` 
 | **V4: regression's terms** | The regression's temperature, temperature-squared and wind-chill terms added as features. |
 | **V5: two winters** | Two years of training days instead of one. |
 
-V1 uses a decomposition related to designs in load-forecasting work. TNEI's report for NESO, the GB system operator, modelled mean demand with a smooth model (a GAM) and used LightGBM for the quantiles of the residuals around it: related to V1's split, though V1 forecasts the residual itself, not its spread.
+V1 uses a decomposition related to designs in load-forecasting work. TNEI's report for NESO, the GB system operator, modelled mean demand with a smooth model (a GAM) and used LightGBM for the quantiles of the residuals around it, to generate demand scenarios across weather years rather than day-ahead forecasts. That is related to V1's split, though V1 forecasts the residual itself, not its spread. TNEI chose the GBM knowing its "reduced effectiveness when predicting values outside the range of values provided in the original training set", and added extreme-value tails for that reason.
 
 **Everything else was fixed:** the weather study's 960 backtest days and inputs, S1's settings, one day per call, a fresh fit for each day. Five checks passed before the run (`checks.json`), including an independent rebuild of every variant's training data and an exact reproduction of checkpoint 0's S1 forecasts.
 
@@ -133,6 +133,6 @@ I used AI tools in this work: Claude, ChatGPT, Microsoft Copilot, DeepSeek, Kimi
 
 ## Sources
 
-- TNEI (2024), the QWID FLEXER report for NESO, pp. 18–19 and 24.
+- TNEI (2024), the QWID FLEXER report for NESO, p. 18, section 2.2.1.1 ("Appliance, lighting, and resistive heating demand"); read by Andy, 22 November 2026.
 - LightGBM [parameter documentation](https://lightgbm.readthedocs.io/en/latest/Parameters.html): `linear_tree` and `linear_lambda`.
 - `PLAN.md` §1 for the other prior work; `checkpoint0/RESULTS.md` and `tails/RESULTS.md` for every earlier figure.
