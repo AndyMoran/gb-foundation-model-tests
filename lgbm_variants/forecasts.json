@@ -1,0 +1,16 @@
+{
+ "forecasts_sha256": "514014dead08b0a3751135cc96bff1cb9feab621029f94dd4625284644049a22",
+ "script_sha256": "69968508e27a553c086bb6ce87958a7352c85b6f196863523b33cde28bce6671",
+ "half_hours": 46080,
+ "forecasters": [
+  "V1",
+  "V2",
+  "V2c",
+  "V3",
+  "V4",
+  "V5",
+  "REG2"
+ ],
+ "v5_dropped": false,
+ "seconds": 6396
+}
