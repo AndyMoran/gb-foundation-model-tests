@@ -1,0 +1,225 @@
+{
+ "note": "exploratory, after the scored results; REVISIONS.md item 21",
+ "h3_differences": {
+  "all_days": {
+   "V1": {
+    "difference": -0.0619,
+    "ci90": [
+     -0.0818,
+     -0.0425
+    ],
+    "n_days": 960
+   },
+   "V2": {
+    "difference": 1.9994,
+    "ci90": [
+     0.9619,
+     3.4477
+    ],
+    "n_days": 960
+   },
+   "V3": {
+    "difference": 0.1089,
+    "ci90": [
+     0.082,
+     0.139
+    ],
+    "n_days": 960
+   },
+   "V4": {
+    "difference": 0.0096,
+    "ci90": [
+     0.002,
+     0.0169
+    ],
+    "n_days": 960
+   },
+   "V5": {
+    "difference": -0.0358,
+    "ci90": [
+     -0.0493,
+     -0.0229
+    ],
+    "n_days": 960
+   },
+   "V2c": {
+    "difference": -0.0248,
+    "ci90": [
+     -0.0338,
+     -0.0163
+    ],
+    "n_days": 960
+   }
+  },
+  "winter": {
+   "V1": {
+    "difference": -0.1331,
+    "ci90": [
+     -0.1754,
+     -0.0962
+    ],
+    "n_days": 318
+   },
+   "V2": {
+    "difference": 0.9193,
+    "ci90": [
+     0.2581,
+     1.771
+    ],
+    "n_days": 318
+   },
+   "V3": {
+    "difference": 0.148,
+    "ci90": [
+     0.0843,
+     0.2206
+    ],
+    "n_days": 318
+   },
+   "V4": {
+    "difference": 0.0047,
+    "ci90": [
+     -0.0115,
+     0.0192
+    ],
+    "n_days": 318
+   },
+   "V5": {
+    "difference": -0.0743,
+    "ci90": [
+     -0.1003,
+     -0.0503
+    ],
+    "n_days": 318
+   },
+   "V2c": {
+    "difference": -0.0395,
+    "ci90": [
+     -0.0582,
+     -0.0206
+    ],
+    "n_days": 318
+   }
+  },
+  "T1": {
+   "V1": {
+    "difference": -0.2422,
+    "ci90": [
+     -0.3474,
+     -0.1445
+    ],
+    "n_days": 96
+   },
+   "V2": {
+    "difference": 1.7544,
+    "ci90": [
+     0.0141,
+     4.5643
+    ],
+    "n_days": 96
+   },
+   "V3": {
+    "difference": 0.3456,
+    "ci90": [
+     0.1912,
+     0.5223
+    ],
+    "n_days": 96
+   },
+   "V4": {
+    "difference": -0.0201,
+    "ci90": [
+     -0.0596,
+     0.0184
+    ],
+    "n_days": 96
+   },
+   "V5": {
+    "difference": -0.097,
+    "ci90": [
+     -0.1698,
+     -0.0378
+    ],
+    "n_days": 96
+   },
+   "V2c": {
+    "difference": -0.0405,
+    "ci90": [
+     -0.0897,
+     0.0085
+    ],
+    "n_days": 96
+   }
+  }
+ },
+ "v2": {
+  "measure": "each day's mean absolute error over its half-hours, MW; raw model output, no post-processing",
+  "median": 1020,
+  "p90": 2038,
+  "p99": 40910,
+  "max": 686933,
+  "days_over_5000": 39,
+  "days_over_20000": 17,
+  "v2c_median": 956,
+  "regression_median": 943,
+  "worst_days": [
+   {
+    "day": "2025-07-17",
+    "daily_mae_mw": 686933,
+    "lowest_forecast_mw": -9310998,
+    "highest_forecast_mw": 11117409,
+    "outturn_range_mw": [
+     19813,
+     29388
+    ]
+   },
+   {
+    "day": "2025-08-12",
+    "daily_mae_mw": 149312,
+    "lowest_forecast_mw": -139502,
+    "highest_forecast_mw": 1483381,
+    "outturn_range_mw": [
+     19508,
+     29694
+    ]
+   },
+   {
+    "day": "2025-02-18",
+    "daily_mae_mw": 130309,
+    "lowest_forecast_mw": -6115357,
+    "highest_forecast_mw": 59351,
+    "outturn_range_mw": [
+     25482,
+     42073
+    ]
+   },
+   {
+    "day": "2024-05-08",
+    "daily_mae_mw": 127472,
+    "lowest_forecast_mw": -6057634,
+    "highest_forecast_mw": 30054,
+    "outturn_range_mw": [
+     19797,
+     28925
+    ]
+   },
+   {
+    "day": "2024-09-07",
+    "daily_mae_mw": 89507,
+    "lowest_forecast_mw": -1459956,
+    "highest_forecast_mw": 883659,
+    "outturn_range_mw": [
+     18564,
+     28186
+    ]
+   }
+  ]
+ },
+ "meta": {
+  "script_sha256": "b2c214c4e10d36d9cdcf4eadab7081c5b9c53760dd19879dc09fddacce8774f6",
+  "forecasts_sha256": "514014dead08b0a3751135cc96bff1cb9feab621029f94dd4625284644049a22",
+  "seed": 20261119,
+  "draws": 2000,
+  "block": 7
+ }
+}
