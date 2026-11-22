@@ -19,6 +19,7 @@ The weighted error is the asymmetric piecewise-linear loss used to evaluate quan
 - **A cost.** *k* is a ratio a reader chooses, the same for every half-hour in a set. It is not a measured NESO, market or company cost, and none is estimated.
 - **Which forecaster is best for a given user.** That depends on the user's *k*, and on whether their costs vary by hour, which this study does not model.
 - **The cost of mistiming a peak.** The cold-peak measure (§4) scores the size of the daily peak, not when it falls.
+- **What Chronos-2 could do if asked for a quantile.** Under a cost ratio *k*, the best point forecast is the *k*/(1 + *k*) quantile. Chronos-2 produces quantiles natively, so a user who feared shortfalls could ask it for, say, its two-thirds quantile. The saved forecasts hold only its median, and every forecaster here is scored on the single forecast it issued. So at *k* ≠ 1 the study understates what Chronos-2 could offer such a user; the regression has no comparable option without extra modelling. Testing Chronos-2's own quantiles needs new forecasts and a separate plan.
 - **Live performance.** The foundation models may have seen these days in training.
 - **A pre-registered test.** See §3.
 
@@ -34,6 +35,7 @@ The prediction (§6) was written after seeing those results, so it is not blind.
 - **Primary:** Chronos-2 (`chronos2_A`) against the weather regression.
 - **Secondary:** Chronos-2 against V1, the best LightGBM variant. V1's forecasts exist, so this runs whether or not checkpoint 1 does.
 - **Descriptive:** TimesFM 2.5 one day per call, LightGBM S1, and NESO's day-ahead forecast, each against the regression.
+- **Descriptive, a pre-specified combination:** the equal-weight average of Chronos-2 and the regression, half-hour by half-hour, scored against both. Published biases suggest their errors lean in opposite directions with temperature (§5a), and errors that pull in opposite directions partly cancel when averaged. The weights are fixed at one half each, not fitted, so nothing is tuned on these days. Checkpoint 0's plan named such an average as a candidate combination.
 
 **Three sets, each chosen without outturn.** Error is outturn minus forecast; positive is a shortfall.
 - **All (primary):** every scored half-hour on the 960 backtest days.
@@ -84,11 +86,11 @@ For every forecaster in §4, over the 960 days:
 - **Share of days short:** the share of days with positive daily bias.
 - **Persistence:** the lag-1 autocorrelation of daily bias over consecutive days; the share of short days followed by another short day, beside the overall share of short days, which is what independence would give; and the longest run of consecutive short days and of long days, with their dates.
 
-**Prediction, written before any of this is computed:** Chronos-2's slope is negative, with an interval below 0; so is TimesFM 2.5's, more steeply. The regression's slope is near 0 or slightly positive. NESO's is near 0. Every forecaster's daily bias is positively autocorrelated, because weather comes in spells.
+**Prediction, written before any of this is computed:** Chronos-2's slope is negative, with an interval below 0; so is TimesFM 2.5's, more steeply. The regression's slope is near 0 or slightly positive. NESO's is near 0. The average of Chronos-2 and the regression has a slope between theirs, closer to 0 than Chronos-2's. Every forecaster's daily bias is positively autocorrelated, because weather comes in spells.
 
 ## 6. Prediction, written before any asymmetric loss is computed
 
-**Over all half-hours,** Chronos-2 is clearly better than the regression at *k* = 1 and 2, and its break-even ratio is above 2 (case 1). **At cold-day peaks,** its break-even ratio is below 2, and possibly below 1, meaning it is already level or worse there when the two costs are equal. TimesFM 2.5 is worse than the regression at every ratio in both sets.
+**Over all half-hours,** Chronos-2 is clearly better than the regression at *k* = 1 and 2, and its break-even ratio is above 2 (case 1). **At cold-day peaks,** its break-even ratio is below 2, and possibly below 1, meaning it is already level or worse there when the two costs are equal. TimesFM 2.5 is worse than the regression at every ratio in both sets. The average of Chronos-2 and the regression has less weighted error than Chronos-2 at cold-day peaks at every ratio from 1 upwards, and over all half-hours at *k* = 1 its error is within 3% of Chronos-2's.
 
 ## 7. Checks before the real run
 
