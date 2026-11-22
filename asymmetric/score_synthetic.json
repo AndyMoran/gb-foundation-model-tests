@@ -1,0 +1,185 @@
+{
+ "script_sha256": "190d540a7de71307e24c4e8f467748a2d76a2208d0e206120fb65204f82009df",
+ "n_days": 960,
+ "n_t1": 96,
+ "checks": {
+  "unit_rules": {
+   "passed": true,
+   "n": 22
+  },
+  "end_to_end_case1": {
+   "passed": true,
+   "case": 1,
+   "k_star": 2.0,
+   "shares": {
+    "1": 1.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case2": {
+   "passed": true,
+   "case": 2,
+   "k_star": 1.0,
+   "shares": {
+    "1": 0.0,
+    "2": 1.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case3_kneg": {
+   "passed": true,
+   "case": 3,
+   "k_star": -1.0,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 1.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case3_k0": {
+   "passed": true,
+   "case": 3,
+   "k_star": 0.0,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 1.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case3_Ueq": {
+   "passed": true,
+   "case": 3,
+   "k_star": null,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 1.0,
+    "4": 0.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case4_kneg": {
+   "passed": true,
+   "case": 4,
+   "k_star": -1.0,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 1.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case4_k0": {
+   "passed": true,
+   "case": 4,
+   "k_star": 0.0,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 1.0,
+    "5": 0.0
+   }
+  },
+  "end_to_end_case5": {
+   "passed": true,
+   "case": 5,
+   "k_star": null,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 1.0
+   }
+  },
+  "end_to_end_eps_inside": {
+   "passed": true,
+   "case": 5,
+   "k_star": null,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 0.0,
+    "5": 1.0
+   }
+  },
+  "end_to_end_eps_outside": {
+   "passed": true,
+   "case": 4,
+   "k_star": 0.0,
+   "shares": {
+    "1": 0.0,
+    "2": 0.0,
+    "3": 0.0,
+    "4": 1.0,
+    "5": 0.0
+   }
+  },
+  "endpoint_zero": {
+   "passed": true,
+   "ci90": [
+    0.0,
+    0.0
+   ]
+  },
+  "labels_change_twice": {
+   "passed": true,
+   "labels": [
+    "clearly less",
+    "clearly less",
+    "clearly less",
+    "clearly less",
+    "not clearly different",
+    "clearly more",
+    "clearly more"
+   ]
+  },
+  "headline_by_rule": {
+   "passed": true,
+   "headline": "In a backtest it may have seen in training, Chronos-2 had, over all half-hours, clearly less cost-weighted error than a weather regression where a shortfall cost 0.5 to 2 times a surplus, not clearly different at 3, and clearly more from 5 to 10; and, in the size of the daily peak on the coldest tenth of days, clearly less where a shortfall cost 0.5 to 2 times a surplus, not clearly different at 3, and clearly more from 5 to 10.",
+   "break_even": "Over all half-hours, the break-even ratio was 3.00 (Chronos-2 better below it and worse above; 100% of bootstrap draws in this case; conditional 90% interval 2.89 to 3.09); at cold-day peaks, the break-even ratio was 3.54 (Chronos-2 better below it and worse above; 100% of bootstrap draws in this case; conditional 90% interval 2.85 to 4.41)."
+  },
+  "peak_values": {
+   "passed": true,
+   "Ua": 342.8112,
+   "Oa": 231.6546
+  },
+  "direction": {
+   "passed": true,
+   "slope": -40.0,
+   "slope_ci90": [
+    -40.0,
+    -40.0
+   ],
+   "autocorr": -1.0,
+   "groups": [
+    96
+   ],
+   "runs_alt": {
+    "short": {
+     "days": 1,
+     "first": "2024-03-16",
+     "last": "2024-03-16"
+    },
+    "long": {
+     "days": 1,
+     "first": "2024-03-17",
+     "last": "2024-03-17"
+    }
+   }
+  }
+ },
+ "passed": true
+}
