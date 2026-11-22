@@ -1,0 +1,524 @@
+{
+ "note": "LightGBM variants; descriptive backtest; plan frozen at tag lgbm-variants-plan",
+ "meta": {
+  "public_commit": "3e7e5f9db8c7fcfabc379e14794de7cdb2ddf5a0",
+  "plan_tag_commit": "9e1002bf5bad9716c03f3c57b05f6c8b02382074",
+  "script_sha256": "e8172eefe6716b1ac64fb3d24d7e9492d5e278a39fe8a738b9127599d67ea1f1",
+  "lightgbm_variants_sha256": "69968508e27a553c086bb6ce87958a7352c85b6f196863523b33cde28bce6671",
+  "forecasts_sha256": "514014dead08b0a3751135cc96bff1cb9feab621029f94dd4625284644049a22",
+  "v5_dropped": false,
+  "seed": 20261119,
+  "cost_sha256": "6cdeb04c885ae81818ba56ac963d43b9d31306f819f20fad0b7cbbc6dc54cf3c"
+ },
+ "n_days": 960,
+ "days_dropped": [],
+ "mean_daily_mae_mw": {
+  "regression_weather": 1014.4,
+  "chronos2_A": 915.5,
+  "lightgbm_s1": 1060.6,
+  "lgbm_v1": 997.8,
+  "lgbm_v2": 3088.8,
+  "lgbm_v3": 1171.0,
+  "lgbm_v4": 1070.4,
+  "lgbm_v2c": 1035.5,
+  "lgbm_v5": 1024.2,
+  "lgbm_reg2": 1023.6
+ },
+ "vs_regression": {
+  "lightgbm_s1": {
+   "ratio": 1.0456,
+   "ci90": [
+    1.0222,
+    1.0684
+   ],
+   "mw_a": 1060.6,
+   "mw_b": 1014.4,
+   "mw_diff": 46.2,
+   "n_days": 960
+  },
+  "lgbm_v1": {
+   "ratio": 0.9836,
+   "ci90": [
+    0.9727,
+    0.994
+   ],
+   "mw_a": 997.8,
+   "mw_b": 1014.4,
+   "mw_diff": -16.6,
+   "n_days": 960
+  },
+  "lgbm_v2": {
+   "ratio": 3.0449,
+   "ci90": [
+    2.0076,
+    4.4923
+   ],
+   "mw_a": 3088.8,
+   "mw_b": 1014.4,
+   "mw_diff": 2074.4,
+   "n_days": 960
+  },
+  "lgbm_v3": {
+   "ratio": 1.1544,
+   "ci90": [
+    1.1157,
+    1.1944
+   ],
+   "mw_a": 1171.0,
+   "mw_b": 1014.4,
+   "mw_diff": 156.6,
+   "n_days": 960
+  },
+  "lgbm_v4": {
+   "ratio": 1.0552,
+   "ci90": [
+    1.0332,
+    1.0768
+   ],
+   "mw_a": 1070.4,
+   "mw_b": 1014.4,
+   "mw_diff": 56.0,
+   "n_days": 960
+  },
+  "lgbm_v2c": {
+   "ratio": 1.0208,
+   "ci90": [
+    1.0003,
+    1.0398
+   ],
+   "mw_a": 1035.5,
+   "mw_b": 1014.4,
+   "mw_diff": 21.1,
+   "n_days": 960
+  },
+  "lgbm_v5": {
+   "ratio": 1.0097,
+   "ci90": [
+    0.9903,
+    1.028
+   ],
+   "mw_a": 1024.2,
+   "mw_b": 1014.4,
+   "mw_diff": 9.8,
+   "n_days": 960
+  },
+  "lgbm_reg2": {
+   "ratio": 1.0091,
+   "ci90": [
+    1.0007,
+    1.0171
+   ],
+   "mw_a": 1023.6,
+   "mw_b": 1014.4,
+   "mw_diff": 9.2,
+   "n_days": 960
+  },
+  "chronos2_A": {
+   "ratio": 0.9025,
+   "ci90": [
+    0.8728,
+    0.933
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1014.4,
+   "mw_diff": -98.9,
+   "n_days": 960
+  }
+ },
+ "vs_regression_winter": {
+  "lightgbm_s1": {
+   "ratio": 1.1251,
+   "ci90": [
+    1.0817,
+    1.172
+   ],
+   "mw_a": 1220.7,
+   "mw_b": 1085.0,
+   "mw_diff": 135.7,
+   "n_days": 318
+  },
+  "lgbm_v1": {
+   "ratio": 0.992,
+   "ci90": [
+    0.9749,
+    1.0091
+   ],
+   "mw_a": 1076.3,
+   "mw_b": 1085.0,
+   "mw_diff": -8.7,
+   "n_days": 318
+  },
+  "lgbm_v2": {
+   "ratio": 2.0444,
+   "ci90": [
+    1.3812,
+    2.8944
+   ],
+   "mw_a": 2218.1,
+   "mw_b": 1085.0,
+   "mw_diff": 1133.2,
+   "n_days": 318
+  },
+  "lgbm_v3": {
+   "ratio": 1.2731,
+   "ci90": [
+    1.1889,
+    1.3752
+   ],
+   "mw_a": 1381.2,
+   "mw_b": 1085.0,
+   "mw_diff": 296.3,
+   "n_days": 318
+  },
+  "lgbm_v4": {
+   "ratio": 1.1298,
+   "ci90": [
+    1.0913,
+    1.1696
+   ],
+   "mw_a": 1225.8,
+   "mw_b": 1085.0,
+   "mw_diff": 140.8,
+   "n_days": 318
+  },
+  "lgbm_v2c": {
+   "ratio": 1.0856,
+   "ci90": [
+    1.0492,
+    1.1266
+   ],
+   "mw_a": 1177.8,
+   "mw_b": 1085.0,
+   "mw_diff": 92.9,
+   "n_days": 318
+  },
+  "lgbm_v5": {
+   "ratio": 1.0508,
+   "ci90": [
+    1.0174,
+    1.0874
+   ],
+   "mw_a": 1140.0,
+   "mw_b": 1085.0,
+   "mw_diff": 55.1,
+   "n_days": 318
+  },
+  "lgbm_reg2": {
+   "ratio": 1.0057,
+   "ci90": [
+    0.9906,
+    1.0208
+   ],
+   "mw_a": 1091.1,
+   "mw_b": 1085.0,
+   "mw_diff": 6.2,
+   "n_days": 318
+  }
+ },
+ "vs_regression_other_months": {
+  "lightgbm_s1": {
+   "ratio": 1.0019,
+   "ci90": [
+    0.9785,
+    1.0236
+   ],
+   "mw_a": 981.3,
+   "mw_b": 979.4,
+   "mw_diff": 1.9,
+   "n_days": 642
+  },
+  "lgbm_v1": {
+   "ratio": 0.979,
+   "ci90": [
+    0.9658,
+    0.9915
+   ],
+   "mw_a": 958.9,
+   "mw_b": 979.4,
+   "mw_diff": -20.5,
+   "n_days": 642
+  },
+  "lgbm_v2": {
+   "ratio": 3.5939,
+   "ci90": [
+    2.1002,
+    5.7956
+   ],
+   "mw_a": 3520.1,
+   "mw_b": 979.4,
+   "mw_diff": 2540.6,
+   "n_days": 642
+  },
+  "lgbm_v3": {
+   "ratio": 1.0893,
+   "ci90": [
+    1.0553,
+    1.1132
+   ],
+   "mw_a": 1066.9,
+   "mw_b": 979.4,
+   "mw_diff": 87.5,
+   "n_days": 642
+  },
+  "lgbm_v4": {
+   "ratio": 1.0142,
+   "ci90": [
+    0.9909,
+    1.0366
+   ],
+   "mw_a": 993.4,
+   "mw_b": 979.4,
+   "mw_diff": 13.9,
+   "n_days": 642
+  },
+  "lgbm_v2c": {
+   "ratio": 0.9852,
+   "ci90": [
+    0.9634,
+    1.0034
+   ],
+   "mw_a": 965.0,
+   "mw_b": 979.4,
+   "mw_diff": -14.5,
+   "n_days": 642
+  },
+  "lgbm_v5": {
+   "ratio": 0.9872,
+   "ci90": [
+    0.9658,
+    1.0059
+   ],
+   "mw_a": 966.9,
+   "mw_b": 979.4,
+   "mw_diff": -12.6,
+   "n_days": 642
+  },
+  "lgbm_reg2": {
+   "ratio": 1.0109,
+   "ci90": [
+    1.0009,
+    1.02
+   ],
+   "mw_a": 990.2,
+   "mw_b": 979.4,
+   "mw_diff": 10.7,
+   "n_days": 642
+  }
+ },
+ "vs_regression_T1": {
+  "lightgbm_s1": {
+   "ratio": 1.2184,
+   "ci90": [
+    1.1132,
+    1.3371
+   ],
+   "mw_a": 1248.9,
+   "mw_b": 1025.0,
+   "mw_diff": 223.9,
+   "n_days": 96
+  },
+  "lgbm_v1": {
+   "ratio": 0.9762,
+   "ci90": [
+    0.9444,
+    1.017
+   ],
+   "mw_a": 1000.7,
+   "mw_b": 1025.0,
+   "mw_diff": -24.4,
+   "n_days": 96
+  },
+  "lgbm_v2": {
+   "ratio": 2.9728,
+   "ci90": [
+    1.2873,
+    5.6405
+   ],
+   "mw_a": 3047.3,
+   "mw_b": 1025.0,
+   "mw_diff": 2022.2,
+   "n_days": 96
+  },
+  "lgbm_v3": {
+   "ratio": 1.564,
+   "ci90": [
+    1.328,
+    1.8153
+   ],
+   "mw_a": 1603.2,
+   "mw_b": 1025.0,
+   "mw_diff": 578.1,
+   "n_days": 96
+  },
+  "lgbm_v4": {
+   "ratio": 1.1983,
+   "ci90": [
+    1.1163,
+    1.2977
+   ],
+   "mw_a": 1228.3,
+   "mw_b": 1025.0,
+   "mw_diff": 203.3,
+   "n_days": 96
+  },
+  "lgbm_v2c": {
+   "ratio": 1.1779,
+   "ci90": [
+    1.1019,
+    1.2721
+   ],
+   "mw_a": 1207.4,
+   "mw_b": 1025.0,
+   "mw_diff": 182.4,
+   "n_days": 96
+  },
+  "lgbm_v5": {
+   "ratio": 1.1214,
+   "ci90": [
+    1.0345,
+    1.2128
+   ],
+   "mw_a": 1149.5,
+   "mw_b": 1025.0,
+   "mw_diff": 124.4,
+   "n_days": 96
+  },
+  "lgbm_reg2": {
+   "ratio": 1.0102,
+   "ci90": [
+    0.9674,
+    1.0422
+   ],
+   "mw_a": 1035.5,
+   "mw_b": 1025.0,
+   "mw_diff": 10.5,
+   "n_days": 96
+  }
+ },
+ "chronos_vs_variant": {
+  "lightgbm_s1": {
+   "ratio": 0.8632,
+   "ci90": [
+    0.8352,
+    0.892
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1060.6,
+   "mw_diff": -145.1,
+   "n_days": 960
+  },
+  "lgbm_v1": {
+   "ratio": 0.9176,
+   "ci90": [
+    0.887,
+    0.9484
+   ],
+   "mw_a": 915.5,
+   "mw_b": 997.8,
+   "mw_diff": -82.3,
+   "n_days": 960
+  },
+  "lgbm_v2": {
+   "ratio": 0.2964,
+   "ci90": [
+    0.2043,
+    0.45
+   ],
+   "mw_a": 915.5,
+   "mw_b": 3088.8,
+   "mw_diff": -2173.3,
+   "n_days": 960
+  },
+  "lgbm_v3": {
+   "ratio": 0.7818,
+   "ci90": [
+    0.7531,
+    0.8115
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1171.0,
+   "mw_diff": -255.5,
+   "n_days": 960
+  },
+  "lgbm_v4": {
+   "ratio": 0.8553,
+   "ci90": [
+    0.8275,
+    0.8847
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1070.4,
+   "mw_diff": -154.8,
+   "n_days": 960
+  },
+  "lgbm_v2c": {
+   "ratio": 0.8842,
+   "ci90": [
+    0.856,
+    0.9146
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1035.5,
+   "mw_diff": -120.0,
+   "n_days": 960
+  },
+  "lgbm_v5": {
+   "ratio": 0.8939,
+   "ci90": [
+    0.863,
+    0.9266
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1024.2,
+   "mw_diff": -108.7,
+   "n_days": 960
+  },
+  "lgbm_reg2": {
+   "ratio": 0.8944,
+   "ci90": [
+    0.8643,
+    0.9267
+   ],
+   "mw_a": 915.5,
+   "mw_b": 1023.6,
+   "mw_diff": -108.1,
+   "n_days": 960
+  }
+ },
+ "best_variant": {
+  "name": "V1",
+  "candidates": [
+   "V1",
+   "V2",
+   "V3",
+   "V4",
+   "V5"
+  ],
+  "column": "lgbm_v1"
+ },
+ "headline": {
+  "reading": "below",
+  "first": "In a 960-day backtest, the best of five pre-specified LightGBM variants (V1) beat a weather regression: 0.984 times its error (90% interval 0.973\u20130.994).",
+  "second": "In a backtest it may have seen in training, Chronos-2 had 0.918 times that variant's error (90% interval 0.887\u20130.948); the variant was chosen on these same days, so its figure is optimistic."
+ },
+ "hypotheses": {
+  "H2": {
+   "reading": "supported",
+   "best": "V1"
+  },
+  "H3": {
+   "reading": "not supported",
+   "by_variant": {
+    "V1": "supported",
+    "V2": "not supported",
+    "V3": "not supported",
+    "V4": "not supported",
+    "V5": "unclear"
+   },
+   "note": ""
+  },
+  "H4": {
+   "reading": "not supported"
+  }
+ }
+}
