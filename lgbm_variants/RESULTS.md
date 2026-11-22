@@ -1,6 +1,6 @@
 # LightGBM variants: can a tree model learn the heating response?
 
-Andy Moran (Heaviside Analytics) · draft, 22 November 2026 · a backtest study, descriptive
+Andy Moran (Heaviside Analytics) · 22 November 2026 · a backtest study, descriptive
 
 For: a forecaster choosing a trained benchmark for GB day-ahead demand, and anyone who wants to know why LightGBM lost to a straight line.
 
