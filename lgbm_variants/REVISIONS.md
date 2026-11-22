@@ -33,3 +33,10 @@ The script lives in `gb-weather-private/weather/`, as `PLAN.md` §9 says, and ch
 17. **Scoring reuses checkpoint 0's code unchanged.** `load`, `daily`, `boot_idx`, `ratio`, `table_vs` and `reading` are imported from `checkpoint0/score.py`. Only the seed differs (20261119, as `PLAN.md` §5 sets). A day is scored only if every forecaster in the table has every half-hour, as in checkpoint 0.
 18. **Winter is November to March,** as `PLAN.md` §5 says, not checkpoint 0's December–February.
 19. **The headline's numbers have three decimals,** as the ratios in checkpoint 0's headlines.
+
+## After scoring (22 November 2026)
+
+20. **The run took 1 hour 47 minutes on Andy's machine,** not the 12 to 15 hours item 14 estimated from the development machine. The cost check (`cost.json`) gives V3 at 2.7 seconds a day and every other forecaster under 1.2.
+21. **Two exploratory additions, written after the scored results were seen,** at a review's request. `explore.py`, committed before it ran, reads the same files as `score.py` and changes no scored result, reading or headline:
+    - **H3, compared directly.** Item 15's rule read H3 from point estimates and overlapping intervals, and overlap alone does not show whether two ratios differ. `explore.py` gives each variant's winter ratio minus S1's, with an interval on paired bootstrap draws, and the same for all days and for T1.
+    - **V2's errors.** V2's mean daily error (3,089 MW) is dominated by a few days of extreme raw output, as low as −9.3 million MW. `explore.py` reports the distribution of its daily errors and its five worst days. V2 is unstable as specified, so it did not provide a reliable test of H4, whatever the fixed rule reads. Regularising its linear leaves (`linear_lambda`, default 0) is one setting a future plan could test; changing it now would change the model after seeing the result.
