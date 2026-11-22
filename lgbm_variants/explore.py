@@ -22,8 +22,11 @@ import json, os, sys
 import numpy as np, pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
-sys.path.insert(0, HERE)
-import score as SC                                           # noqa: E402  (load_real, and checkpoint 0's functions)
+import importlib.util
+# loaded under its own name: both scoring scripts are called score.py, and `import score` here would make
+# lgbm_variants/score.py find itself, not checkpoint 0's, when it imports `score` in turn (REVISIONS.md item 22)
+_spec = importlib.util.spec_from_file_location('lgbm_variants_score', os.path.join(HERE, 'score.py'))
+SC = importlib.util.module_from_spec(_spec); _spec.loader.exec_module(SC)
 
 S0 = SC.S0
 
