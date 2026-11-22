@@ -1,0 +1,50 @@
+{
+ "note": "V5 data (lgbm_variants/PLAN.md \u00a79 step 1); the data are not committed",
+ "indo": {
+  "file": "data/indo_2022.csv",
+  "sha256": "aa338d736921fa54959badb2419fb2c6410fe273625150de24db688438fb536d",
+  "rows": 14686,
+  "december_overlap": {
+   "half_hours": 1488,
+   "both_present": 1488,
+   "only_new": 0,
+   "only_frozen": 0,
+   "max_abs_diff_mw": 0.0,
+   "passed": true
+  },
+  "missing_half_hours": 2,
+  "incomplete_days": [
+   "2022-04-30",
+   "2022-09-23"
+  ]
+ },
+ "era5": {
+  "file": "~/gb-weather-data/backtest/era5_halfhourly_v5_2022-03-15_2023-03-14.csv.gz",
+  "sha256": "7813e84af745802c61db86295a70cc418b3711a5f6793722e6f2252d3c5a6bd4",
+  "half_hours": 17520,
+  "first": "2022-03-15 00:00:00+00:00",
+  "last": "2023-03-14 23:30:00+00:00",
+  "overlap_check": {
+   "overlap": "2023-03-15 00:00:00+00:00 .. 2023-03-20 23:30:00+00:00",
+   "half_hours": 288,
+   "max_abs_diff": {
+    "t2m": 4.962406470454539e-05,
+    "wind": 4.994317286577399e-05,
+    "solar": 4.9643951570033096e-05
+   },
+   "tolerance": 5.0001000000000005e-05,
+   "passed": true
+  },
+  "days_from_google_copy": [],
+  "code_sha256": {
+   "v5_era5.py": "747dc25210dcd1754965c627fc72a46f6d6052de12ca1e329affa71e4f320430",
+   "national.py": "1c0448f11404d3a83f90147e0500c32a5c4f2922218017863261407804907c71",
+   "sources.py": "342b8cd93eb8b68ef4c0572bcc35ad55ce99f08d8523e9f58562b80b2b9fb04c",
+   "backtest_inputs.py": "2a399a74b2a9567b030df112b288c7f6ce34bf132c55223d1af9bc2aacea8dfc",
+   "era5_download.py": "7f9c658bc49fce88ace292a5c9847665f1391c0b1ac77650c6d8a14cf7ed3bbd"
+  },
+  "weights_sha256": "c3af7721b673386ef31285ff55deab71617bff774b7cb5c13e448dee543102be"
+ },
+ "build_record_sha256": "40e3d27817289e6e60b00351d1a2d6cb310fb92e50e005c49ff097b09edeefc7",
+ "written_utc": "2026-11-22T11:29:23+00:00"
+}
