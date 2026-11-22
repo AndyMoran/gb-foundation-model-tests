@@ -1,0 +1,50 @@
+{
+ "passed": true,
+ "script_sha256": "69968508e27a553c086bb6ce87958a7352c85b6f196863523b33cde28bce6671",
+ "lightgbm": "4.7.0",
+ "forecasters": [
+  "V1",
+  "V2",
+  "V2c",
+  "V3",
+  "V4",
+  "V5",
+  "REG2"
+ ],
+ "v5_dropped": false,
+ "checks": {
+  "1_leakage": {
+   "passed": true,
+   "days": 960,
+   "windows": [
+    365,
+    730
+   ],
+   "same_day_lag_refused": true
+  },
+  "2_independent": {
+   "passed": true,
+   "days": 10,
+   "mismatches": []
+  },
+  "4_determinism": {
+   "passed": true,
+   "days": 20,
+   "differing": []
+  },
+  "5_call_mode": {
+   "passed": true,
+   "days": 20,
+   "differing": []
+  },
+  "6_reproduction": {
+   "passed": true,
+   "days": 20,
+   "differing": []
+  },
+  "3_synthetic": {
+   "passed": true,
+   "note": "from lgbm_variants/synthetic.json, this script"
+  }
+ }
+}
