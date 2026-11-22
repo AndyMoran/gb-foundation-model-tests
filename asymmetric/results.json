@@ -1,0 +1,4025 @@
+{
+ "schema": 1,
+ "note": "asymmetric cost study; exploratory; plan frozen at tag asymmetric-plan",
+ "meta": {
+  "public_commit": "a3ff9521ab57421b7b1c2adb1ad1a668a420cda2",
+  "script_sha256": "190d540a7de71307e24c4e8f467748a2d76a2208d0e206120fb65204f82009df",
+  "plan_tag": "asymmetric-plan",
+  "seed": 20261122,
+  "draws": 2000,
+  "block": 7,
+  "eps_mw": 1e-06,
+  "ks": [
+   0.5,
+   1.0,
+   1.5,
+   2.0,
+   3.0,
+   5.0,
+   10.0
+  ],
+  "files_sha256": {
+   "checkpoint0/results.json": "7cae4ffa56a6b151e93a0a2a159e5e475163b7f7d00913a1d71ed380ce69b1ca",
+   "tails/results.json": "236dce97bfe77eb4c012a045bad3851b37f19f85c8f6b29f0b7bc58ccbccd5a3",
+   "lgbm_variants/results.json": "74cffdad188fad972ba98fa1318f7dcc8ed87ef38d12ce76ec168cf8fb61f58c",
+   "lgbm_variants/forecasts.json": "250b98cb903ab2892528165719f173d69bb425e14d3151cfe2ec750fe88baec8",
+   "weather_study/correction1/correction.json": "016612229b063b0e215af498435e6140f0e31a78b70dedfca6b4081af77a179f",
+   "tails/days.json": "196050a620c2bb2d916a3522712437dfbca1f3d04cd7d4f271fa27199009b181"
+  },
+  "versions": {
+   "python": "3.11.18",
+   "numpy": "2.4.6",
+   "pandas": "3.1.0"
+  }
+ },
+ "n_days": 960,
+ "n_t1": 96,
+ "comparisons": [
+  {
+   "a": "chronos2_A",
+   "b": "regression_weather",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 404.9233,
+   "Oa": 510.604,
+   "Ub": 458.5792,
+   "Ob": 555.8198,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 713.0656,
+     "b": 785.1094,
+     "diff": -72.0438,
+     "ci90": [
+      -104.1264,
+      -42.8438
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 915.5273,
+     "b": 1014.399,
+     "diff": -98.8717,
+     "ci90": [
+      -133.353,
+      -67.2269
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 1117.9889,
+     "b": 1243.6886,
+     "diff": -125.6996,
+     "ci90": [
+      -170.3132,
+      -80.6541
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1320.4506,
+     "b": 1472.9781,
+     "diff": -152.5276,
+     "ci90": [
+      -210.0619,
+      -92.6689
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1725.3739,
+     "b": 1931.5573,
+     "diff": -206.1834,
+     "ci90": [
+      -298.6135,
+      -109.5697
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 2535.2205,
+     "b": 2848.7157,
+     "diff": -313.4952,
+     "ci90": [
+      -477.5608,
+      -137.195
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 4559.837,
+     "b": 5141.6115,
+     "diff": -581.7745,
+     "ci90": [
+      -934.9008,
+      -207.1382
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 3,
+    "case_text": "better at every ratio above 0",
+    "k_star": -0.8427,
+    "shares": {
+     "1": 0.0125,
+     "2": 0.024,
+     "3": 0.9635,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "primary"
+  },
+  {
+   "a": "chronos2_A",
+   "b": "regression_weather",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 775.6909,
+   "Oa": 265.0878,
+   "Ub": 394.7841,
+   "Ob": 528.6917,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 652.9332,
+     "b": 726.0838,
+     "diff": -73.1506,
+     "ci90": [
+      -217.7233,
+      60.7316
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 1040.7787,
+     "b": 923.4759,
+     "diff": 117.3028,
+     "ci90": [
+      -96.7769,
+      335.6746
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.5,
+     "a": 1428.6242,
+     "b": 1120.8679,
+     "diff": 307.7562,
+     "ci90": [
+      -5.5456,
+      625.007
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 2.0,
+     "a": 1816.4696,
+     "b": 1318.26,
+     "diff": 498.2096,
+     "ci90": [
+      87.9747,
+      923.1124
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 2592.1606,
+     "b": 1713.0441,
+     "diff": 879.1165,
+     "ci90": [
+      252.5697,
+      1522.2024
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 4143.5425,
+     "b": 2502.6124,
+     "diff": 1640.9301,
+     "ci90": [
+      583.88,
+      2737.921
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 8021.9971,
+     "b": 4476.533,
+     "diff": 3545.4641,
+     "ci90": [
+      1458.1979,
+      5789.816
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 0.692,
+    "shares": {
+     "1": 1.0,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.3758,
+     1.5296
+    ]
+   },
+   "role": "primary"
+  },
+  {
+   "a": "chronos2_A",
+   "b": "regression_weather",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 730.2199,
+   "Oa": 338.5999,
+   "Ub": 385.7111,
+   "Ob": 588.2017,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 703.7099,
+     "b": 781.0572,
+     "diff": -77.3474,
+     "ci90": [
+      -202.4623,
+      38.5098
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 1068.8198,
+     "b": 973.9128,
+     "diff": 94.907,
+     "ci90": [
+      -100.0442,
+      287.2903
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.5,
+     "a": 1433.9297,
+     "b": 1166.7684,
+     "diff": 267.1613,
+     "ci90": [
+      -27.5388,
+      557.2224
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 2.0,
+     "a": 1799.0397,
+     "b": 1359.624,
+     "diff": 439.4157,
+     "ci90": [
+      41.1669,
+      828.6517
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 2529.2595,
+     "b": 1745.3351,
+     "diff": 783.9244,
+     "ci90": [
+      179.8153,
+      1385.1361
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 3989.6992,
+     "b": 2516.7574,
+     "diff": 1472.9418,
+     "ci90": [
+      458.3156,
+      2487.8759
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 7640.7985,
+     "b": 4445.3131,
+     "diff": 3195.4854,
+     "ci90": [
+      1110.5174,
+      5273.8388
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 0.7245,
+    "shares": {
+     "1": 0.9995,
+     "2": 0.0,
+     "3": 0.0005,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.4065,
+     1.6844
+    ]
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "chronos2_A",
+   "b": "lgbm_v1",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 404.9233,
+   "Oa": 510.604,
+   "Ub": 467.3353,
+   "Ob": 530.4509,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 713.0656,
+     "b": 764.1185,
+     "diff": -51.0529,
+     "ci90": [
+      -82.8457,
+      -21.527
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 915.5273,
+     "b": 997.7862,
+     "diff": -82.2589,
+     "ci90": [
+      -115.0408,
+      -49.9942
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 1117.9889,
+     "b": 1231.4538,
+     "diff": -113.4649,
+     "ci90": [
+      -155.7097,
+      -72.1649
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1320.4506,
+     "b": 1465.1215,
+     "diff": -144.6709,
+     "ci90": [
+      -198.3858,
+      -89.85
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1725.3739,
+     "b": 1932.4568,
+     "diff": -207.0829,
+     "ci90": [
+      -290.2448,
+      -120.1673
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 2535.2205,
+     "b": 2867.1274,
+     "diff": -331.907,
+     "ci90": [
+      -476.6952,
+      -178.2723
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 4559.837,
+     "b": 5203.804,
+     "diff": -643.967,
+     "ci90": [
+      -948.59,
+      -316.3502
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 3,
+    "case_text": "better at every ratio above 0",
+    "k_star": -0.318,
+    "shares": {
+     "1": 0.001,
+     "2": 0.171,
+     "3": 0.828,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "secondary"
+  },
+  {
+   "a": "chronos2_A",
+   "b": "lgbm_v1",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 775.6909,
+   "Oa": 265.0878,
+   "Ub": 512.4173,
+   "Ob": 389.9842,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 652.9332,
+     "b": 646.1929,
+     "diff": 6.7404,
+     "ci90": [
+      -141.3532,
+      137.4635
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 1040.7787,
+     "b": 902.4015,
+     "diff": 138.3772,
+     "ci90": [
+      -63.4811,
+      332.3319
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.5,
+     "a": 1428.6242,
+     "b": 1158.6101,
+     "diff": 270.014,
+     "ci90": [
+      -6.2695,
+      541.1571
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 2.0,
+     "a": 1816.4696,
+     "b": 1414.8188,
+     "diff": 401.6509,
+     "ci90": [
+      45.8094,
+      764.8294
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 2592.1606,
+     "b": 1927.2361,
+     "diff": 664.9245,
+     "ci90": [
+      139.5884,
+      1200.579
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 4143.5425,
+     "b": 2952.0706,
+     "diff": 1191.4718,
+     "ci90": [
+      312.9548,
+      2104.3066
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 8021.9971,
+     "b": 5514.157,
+     "diff": 2507.8401,
+     "ci90": [
+      756.9888,
+      4339.2947
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 0.4744,
+    "shares": {
+     "1": 0.9535,
+     "2": 0.001,
+     "3": 0.003,
+     "4": 0.0425,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.1063,
+     1.5514
+    ]
+   },
+   "role": "secondary"
+  },
+  {
+   "a": "chronos2_A",
+   "b": "lgbm_v1",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 730.2199,
+   "Oa": 338.5999,
+   "Ub": 507.2811,
+   "Ob": 440.5501,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 703.7099,
+     "b": 694.1907,
+     "diff": 9.5192,
+     "ci90": [
+      -109.3896,
+      115.9293
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 1068.8198,
+     "b": 947.8312,
+     "diff": 120.9886,
+     "ci90": [
+      -62.2392,
+      296.6921
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.5,
+     "a": 1433.9297,
+     "b": 1201.4718,
+     "diff": 232.458,
+     "ci90": [
+      -24.7339,
+      498.4851
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 2.0,
+     "a": 1799.0397,
+     "b": 1455.1123,
+     "diff": 343.9273,
+     "ci90": [
+      -2.5027,
+      705.0277
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 3.0,
+     "a": 2529.2595,
+     "b": 1962.3934,
+     "diff": 566.8661,
+     "ci90": [
+      35.6403,
+      1109.7546
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 3989.6992,
+     "b": 2976.9557,
+     "diff": 1012.7436,
+     "ci90": [
+      102.7897,
+      1920.1638
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 7640.7985,
+     "b": 5513.3612,
+     "diff": 2127.4373,
+     "ci90": [
+      276.9488,
+      3978.4585
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 0.4573,
+    "shares": {
+     "1": 0.9315,
+     "2": 0.0035,
+     "3": 0.017,
+     "4": 0.048,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.1164,
+     1.5841
+    ]
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "timesfm25_weather_single_day",
+   "b": "regression_weather",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 827.0712,
+   "Oa": 792.6615,
+   "Ub": 458.5792,
+   "Ob": 555.8198,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 1206.197,
+     "b": 785.1094,
+     "diff": 421.0877,
+     "ci90": [
+      368.0098,
+      477.2764
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.0,
+     "a": 1619.7326,
+     "b": 1014.399,
+     "diff": 605.3337,
+     "ci90": [
+      541.1612,
+      669.1434
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.5,
+     "a": 2033.2682,
+     "b": 1243.6886,
+     "diff": 789.5797,
+     "ci90": [
+      696.4785,
+      876.3562
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 2.0,
+     "a": 2446.8038,
+     "b": 1472.9781,
+     "diff": 973.8257,
+     "ci90": [
+      847.0442,
+      1090.5977
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 3273.875,
+     "b": 1931.5573,
+     "diff": 1342.3177,
+     "ci90": [
+      1140.3412,
+      1525.8389
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 4928.0174,
+     "b": 2848.7157,
+     "diff": 2079.3017,
+     "ci90": [
+      1722.7292,
+      2399.8779
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 9063.3733,
+     "b": 5141.6115,
+     "diff": 3921.7618,
+     "ci90": [
+      3163.8548,
+      4607.7906
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 4,
+    "case_text": "worse at every ratio above 0",
+    "k_star": -0.6427,
+    "shares": {
+     "1": 0.0,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 1.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "timesfm25_weather_single_day",
+   "b": "regression_weather",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 1540.4395,
+   "Oa": 679.0623,
+   "Ub": 394.7841,
+   "Ob": 528.6917,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 1449.282,
+     "b": 726.0838,
+     "diff": 723.1982,
+     "ci90": [
+      517.1595,
+      946.3182
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.0,
+     "a": 2219.5018,
+     "b": 923.4759,
+     "diff": 1296.0259,
+     "ci90": [
+      912.6465,
+      1713.7647
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.5,
+     "a": 2989.7215,
+     "b": 1120.8679,
+     "diff": 1868.8536,
+     "ci90": [
+      1277.8995,
+      2511.4963
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 2.0,
+     "a": 3759.9412,
+     "b": 1318.26,
+     "diff": 2441.6812,
+     "ci90": [
+      1617.2397,
+      3324.6795
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 5300.3807,
+     "b": 1713.0441,
+     "diff": 3587.3366,
+     "ci90": [
+      2310.3251,
+      4979.9636
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 8381.2597,
+     "b": 2502.6124,
+     "diff": 5878.6473,
+     "ci90": [
+      3669.9635,
+      8267.45
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 16083.457,
+     "b": 4476.533,
+     "diff": 11606.924,
+     "ci90": [
+      7112.1723,
+      16577.5203
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 4,
+    "case_text": "worse at every ratio above 0",
+    "k_star": -0.1313,
+    "shares": {
+     "1": 0.11,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.89,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "timesfm25_weather_single_day",
+   "b": "regression_weather",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 1566.8446,
+   "Oa": 591.4808,
+   "Ub": 385.7111,
+   "Ob": 588.2017,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 1374.9031,
+     "b": 781.0572,
+     "diff": 593.8459,
+     "ci90": [
+      402.3819,
+      803.4497
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.0,
+     "a": 2158.3254,
+     "b": 973.9128,
+     "diff": 1184.4126,
+     "ci90": [
+      810.3387,
+      1612.0796
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.5,
+     "a": 2941.7477,
+     "b": 1166.7684,
+     "diff": 1774.9793,
+     "ci90": [
+      1187.3953,
+      2432.099
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 2.0,
+     "a": 3725.17,
+     "b": 1359.624,
+     "diff": 2365.546,
+     "ci90": [
+      1543.9038,
+      3262.7649
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 5292.0146,
+     "b": 1745.3351,
+     "diff": 3546.6795,
+     "ci90": [
+      2270.9421,
+      4952.8391
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 8425.7037,
+     "b": 2516.7574,
+     "diff": 5908.9463,
+     "ci90": [
+      3722.235,
+      8325.4943
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 16259.9266,
+     "b": 4445.3131,
+     "diff": 11814.6135,
+     "ci90": [
+      7361.6822,
+      16698.1335
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 4,
+    "case_text": "worse at every ratio above 0",
+    "k_star": -0.0028,
+    "shares": {
+     "1": 0.501,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.499,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "lightgbm_s1",
+   "b": "regression_weather",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 500.3513,
+   "Oa": 560.2551,
+   "Ub": 458.5792,
+   "Ob": 555.8198,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 810.4308,
+     "b": 785.1094,
+     "diff": 25.3214,
+     "ci90": [
+      5.5219,
+      45.3207
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.0,
+     "a": 1060.6064,
+     "b": 1014.399,
+     "diff": 46.2074,
+     "ci90": [
+      22.0016,
+      70.7821
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.5,
+     "a": 1310.782,
+     "b": 1243.6886,
+     "diff": 67.0935,
+     "ci90": [
+      32.9042,
+      102.2678
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 2.0,
+     "a": 1560.9577,
+     "b": 1472.9781,
+     "diff": 87.9795,
+     "ci90": [
+      42.8889,
+      136.0875
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 2061.3089,
+     "b": 1931.5573,
+     "diff": 129.7516,
+     "ci90": [
+      59.2148,
+      205.4292
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 3062.0115,
+     "b": 2848.7157,
+     "diff": 213.2958,
+     "ci90": [
+      94.1613,
+      343.3975
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 5563.7678,
+     "b": 5141.6115,
+     "diff": 422.1563,
+     "ci90": [
+      170.3313,
+      691.0093
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 4,
+    "case_text": "worse at every ratio above 0",
+    "k_star": -0.1062,
+    "shares": {
+     "1": 0.4215,
+     "2": 0.0065,
+     "3": 0.0,
+     "4": 0.572,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "lightgbm_s1",
+   "b": "regression_weather",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 792.4491,
+   "Oa": 442.9701,
+   "Ub": 394.7841,
+   "Ob": 528.6917,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 839.1946,
+     "b": 726.0838,
+     "diff": 113.1108,
+     "ci90": [
+      -14.015,
+      238.6487
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 1235.4192,
+     "b": 923.4759,
+     "diff": 311.9433,
+     "ci90": [
+      106.7158,
+      510.4741
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.5,
+     "a": 1631.6437,
+     "b": 1120.8679,
+     "diff": 510.7758,
+     "ci90": [
+      213.3568,
+      800.7166
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 2.0,
+     "a": 2027.8683,
+     "b": 1318.26,
+     "diff": 709.6083,
+     "ci90": [
+      319.4976,
+      1099.7237
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 2820.3174,
+     "b": 1713.0441,
+     "diff": 1107.2733,
+     "ci90": [
+      524.7893,
+      1699.6458
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 4405.2157,
+     "b": 2502.6124,
+     "diff": 1902.6033,
+     "ci90": [
+      925.7294,
+      2903.3222
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 8367.4613,
+     "b": 4476.533,
+     "diff": 3890.9283,
+     "ci90": [
+      1914.6314,
+      5920.7566
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 0.2156,
+    "shares": {
+     "1": 0.8925,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.1075,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "lightgbm_s1",
+   "b": "regression_weather",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 733.1394,
+   "Oa": 500.286,
+   "Ub": 385.7111,
+   "Ob": 588.2017,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 866.8557,
+     "b": 781.0572,
+     "diff": 85.7985,
+     "ci90": [
+      -8.4847,
+      188.0122
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 1233.4254,
+     "b": 973.9128,
+     "diff": 259.5126,
+     "ci90": [
+      113.1732,
+      409.0818
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 1.5,
+     "a": 1599.9951,
+     "b": 1166.7684,
+     "diff": 433.2267,
+     "ci90": [
+      218.8508,
+      652.9872
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 2.0,
+     "a": 1966.5648,
+     "b": 1359.624,
+     "diff": 606.9409,
+     "ci90": [
+      319.4549,
+      903.0053
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 3.0,
+     "a": 2699.7042,
+     "b": 1745.3351,
+     "diff": 954.3691,
+     "ci90": [
+      521.0793,
+      1404.4683
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 5.0,
+     "a": 4165.9831,
+     "b": 2516.7574,
+     "diff": 1649.2257,
+     "ci90": [
+      929.6953,
+      2418.8632
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 7831.6802,
+     "b": 4445.3131,
+     "diff": 3386.3671,
+     "ci90": [
+      1914.3425,
+      4956.5496
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 0.253,
+    "shares": {
+     "1": 0.9135,
+     "2": 0.0,
+     "3": 0.0,
+     "4": 0.0865,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.0667,
+     0.5415
+    ]
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "neso",
+   "b": "regression_weather",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 347.5416,
+   "Oa": 352.5851,
+   "Ub": 458.5792,
+   "Ob": 555.8198,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 526.3559,
+     "b": 785.1094,
+     "diff": -258.7535,
+     "ci90": [
+      -289.2315,
+      -232.5663
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 700.1267,
+     "b": 1014.399,
+     "diff": -314.2723,
+     "ci90": [
+      -345.7258,
+      -287.1444
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 873.8975,
+     "b": 1243.6886,
+     "diff": -369.791,
+     "ci90": [
+      -412.8865,
+      -333.282
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1047.6683,
+     "b": 1472.9781,
+     "diff": -425.3098,
+     "ci90": [
+      -484.0842,
+      -374.6447
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1395.21,
+     "b": 1931.5573,
+     "diff": -536.3474,
+     "ci90": [
+      -630.8504,
+      -452.7735
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 2090.2932,
+     "b": 2848.7157,
+     "diff": -758.4225,
+     "ci90": [
+      -928.9178,
+      -602.3454
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 3828.0013,
+     "b": 5141.6115,
+     "diff": -1313.6102,
+     "ci90": [
+      -1677.4416,
+      -979.1252
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 3,
+    "case_text": "better at every ratio above 0",
+    "k_star": -1.8303,
+    "shares": {
+     "1": 0.0,
+     "2": 0.0,
+     "3": 1.0,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "neso",
+   "b": "regression_weather",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 415.2812,
+   "Oa": 285.6354,
+   "Ub": 394.7841,
+   "Ob": 528.6917,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 493.276,
+     "b": 726.0838,
+     "diff": -232.8078,
+     "ci90": [
+      -424.7844,
+      -67.3275
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 700.9167,
+     "b": 923.4759,
+     "diff": -222.5592,
+     "ci90": [
+      -417.1441,
+      -54.5758
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 908.5573,
+     "b": 1120.8679,
+     "diff": -212.3106,
+     "ci90": [
+      -422.9157,
+      -23.6587
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1116.1979,
+     "b": 1318.26,
+     "diff": -202.0621,
+     "ci90": [
+      -442.9576,
+      13.0926
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 3.0,
+     "a": 1531.4792,
+     "b": 1713.0441,
+     "diff": -181.565,
+     "ci90": [
+      -496.4712,
+      110.2016
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 5.0,
+     "a": 2362.0417,
+     "b": 2502.6124,
+     "diff": -140.5707,
+     "ci90": [
+      -666.2612,
+      316.9173
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 10.0,
+     "a": 4438.4479,
+     "b": 4476.533,
+     "diff": -38.0851,
+     "ci90": [
+      -1095.9094,
+      905.6277
+     ],
+     "label": "not clearly different"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 11.8581,
+    "shares": {
+     "1": 0.6085,
+     "2": 0.0055,
+     "3": 0.3835,
+     "4": 0.0025,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "neso",
+   "b": "regression_weather",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 452.3411,
+   "Oa": 300.7122,
+   "Ub": 385.7111,
+   "Ob": 588.2017,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 526.8828,
+     "b": 781.0572,
+     "diff": -254.1744,
+     "ci90": [
+      -472.6745,
+      -84.3818
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 753.0534,
+     "b": 973.9128,
+     "diff": -220.8594,
+     "ci90": [
+      -433.2372,
+      -51.5303
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 979.224,
+     "b": 1166.7684,
+     "diff": -187.5444,
+     "ci90": [
+      -408.0297,
+      -1.9185
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1205.3945,
+     "b": 1359.624,
+     "diff": -154.2294,
+     "ci90": [
+      -402.9948,
+      58.966
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 3.0,
+     "a": 1657.7357,
+     "b": 1745.3351,
+     "diff": -87.5994,
+     "ci90": [
+      -406.9012,
+      188.7946
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 5.0,
+     "a": 2562.418,
+     "b": 2516.7574,
+     "diff": 45.6606,
+     "ci90": [
+      -448.8406,
+      489.1022
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 10.0,
+     "a": 4824.1237,
+     "b": 4445.3131,
+     "diff": 378.8106,
+     "ci90": [
+      -650.1949,
+      1275.0081
+     ],
+     "label": "not clearly different"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 4.3147,
+    "shares": {
+     "1": 0.857,
+     "2": 0.0015,
+     "3": 0.1395,
+     "4": 0.002,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "avg_chronos2_regression",
+   "b": "regression_weather",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 365.9027,
+   "Oa": 467.3633,
+   "Ub": 458.5792,
+   "Ob": 555.8198,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 650.3147,
+     "b": 785.1094,
+     "diff": -134.7947,
+     "ci90": [
+      -152.0895,
+      -119.4488
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 833.266,
+     "b": 1014.399,
+     "diff": -181.133,
+     "ci90": [
+      -199.2202,
+      -165.7078
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 1016.2173,
+     "b": 1243.6886,
+     "diff": -227.4712,
+     "ci90": [
+      -250.6995,
+      -206.6929
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1199.1687,
+     "b": 1472.9781,
+     "diff": -273.8095,
+     "ci90": [
+      -303.8825,
+      -245.8288
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1565.0714,
+     "b": 1931.5573,
+     "diff": -366.486,
+     "ci90": [
+      -413.3055,
+      -320.6939
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 2296.8767,
+     "b": 2848.7157,
+     "diff": -551.8389,
+     "ci90": [
+      -636.9706,
+      -470.3602
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 4126.3901,
+     "b": 5141.6115,
+     "diff": -1015.2214,
+     "ci90": [
+      -1193.6272,
+      -839.0318
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 3,
+    "case_text": "better at every ratio above 0",
+    "k_star": -0.9545,
+    "shares": {
+     "1": 0.0,
+     "2": 0.0,
+     "3": 1.0,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "avg_chronos2_regression",
+   "b": "regression_weather",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 544.2891,
+   "Oa": 319.9703,
+   "Ub": 394.7841,
+   "Ob": 528.6917,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 592.1148,
+     "b": 726.0838,
+     "diff": -133.969,
+     "ci90": [
+      -211.7993,
+      -64.6292
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 864.2594,
+     "b": 923.4759,
+     "diff": -59.2165,
+     "ci90": [
+      -164.6793,
+      38.7542
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.5,
+     "a": 1136.404,
+     "b": 1120.8679,
+     "diff": 15.536,
+     "ci90": [
+      -129.048,
+      151.8976
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 2.0,
+     "a": 1408.5485,
+     "b": 1318.26,
+     "diff": 90.2885,
+     "ci90": [
+      -95.4621,
+      270.2287
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 3.0,
+     "a": 1952.8377,
+     "b": 1713.0441,
+     "diff": 239.7935,
+     "ci90": [
+      -36.2076,
+      514.1961
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 5.0,
+     "a": 3041.4159,
+     "b": 2502.6124,
+     "diff": 538.8035,
+     "ci90": [
+      71.2799,
+      999.0904
+     ],
+     "label": "clearly more"
+    },
+    {
+     "k": 10.0,
+     "a": 5762.8616,
+     "b": 4476.533,
+     "diff": 1286.3285,
+     "ci90": [
+      354.5853,
+      2218.5202
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 1.3961,
+    "shares": {
+     "1": 0.999,
+     "2": 0.0,
+     "3": 0.001,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.8232,
+     3.6316
+    ]
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "avg_chronos2_regression",
+   "b": "regression_weather",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 495.9041,
+   "Oa": 401.3394,
+   "Ub": 385.7111,
+   "Ob": 588.2017,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 649.2914,
+     "b": 781.0572,
+     "diff": -131.7658,
+     "ci90": [
+      -192.8932,
+      -75.4471
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 897.2434,
+     "b": 973.9128,
+     "diff": -76.6694,
+     "ci90": [
+      -160.3793,
+      1.6223
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.5,
+     "a": 1145.1955,
+     "b": 1166.7684,
+     "diff": -21.5729,
+     "ci90": [
+      -142.6035,
+      91.6012
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 2.0,
+     "a": 1393.1475,
+     "b": 1359.624,
+     "diff": 33.5236,
+     "ci90": [
+      -128.9471,
+      188.6918
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 3.0,
+     "a": 1889.0516,
+     "b": 1745.3351,
+     "diff": 143.7165,
+     "ci90": [
+      -109.0144,
+      388.2121
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 5.0,
+     "a": 2880.8597,
+     "b": 2516.7574,
+     "diff": 364.1023,
+     "ci90": [
+      -66.8675,
+      793.5898
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 10.0,
+     "a": 5360.3801,
+     "b": 4445.3131,
+     "diff": 915.067,
+     "ci90": [
+      21.475,
+      1803.1986
+     ],
+     "label": "clearly more"
+    }
+   ],
+   "break_even": {
+    "case": 1,
+    "case_text": "crossing: better below the break-even ratio, worse above",
+    "k_star": 1.6958,
+    "shares": {
+     "1": 0.982,
+     "2": 0.0,
+     "3": 0.018,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.9884,
+     6.5026
+    ]
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "avg_chronos2_regression",
+   "b": "chronos2_A",
+   "set": "all",
+   "n_days": 960,
+   "n_values": 46080,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 365.9027,
+   "Oa": 467.3633,
+   "Ub": 404.9233,
+   "Ob": 510.604,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 650.3147,
+     "b": 713.0656,
+     "diff": -62.751,
+     "ci90": [
+      -79.5777,
+      -45.774
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.0,
+     "a": 833.266,
+     "b": 915.5273,
+     "diff": -82.2613,
+     "ci90": [
+      -101.8687,
+      -63.3952
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 1016.2173,
+     "b": 1117.9889,
+     "diff": -101.7716,
+     "ci90": [
+      -128.6221,
+      -76.9875
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1199.1687,
+     "b": 1320.4506,
+     "diff": -121.2819,
+     "ci90": [
+      -156.8928,
+      -89.269
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1565.0714,
+     "b": 1725.3739,
+     "diff": -160.3025,
+     "ci90": [
+      -215.8613,
+      -111.5755
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 2296.8767,
+     "b": 2535.2205,
+     "diff": -238.3438,
+     "ci90": [
+      -335.1564,
+      -152.6782
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 4126.3901,
+     "b": 4559.837,
+     "diff": -433.4469,
+     "ci90": [
+      -637.0157,
+      -251.5455
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 3,
+    "case_text": "better at every ratio above 0",
+    "k_star": -1.1081,
+    "shares": {
+     "1": 0.0005,
+     "2": 0.0,
+     "3": 0.9995,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": null
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "avg_chronos2_regression",
+   "b": "chronos2_A",
+   "set": "peaks",
+   "n_days": 96,
+   "n_values": 96,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 544.2891,
+   "Oa": 319.9703,
+   "Ub": 775.6909,
+   "Ob": 265.0878,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 592.1148,
+     "b": 652.9332,
+     "diff": -60.8184,
+     "ci90": [
+      -138.3428,
+      22.124
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 864.2594,
+     "b": 1040.7787,
+     "diff": -176.5193,
+     "ci90": [
+      -310.0971,
+      -46.6266
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 1136.404,
+     "b": 1428.6242,
+     "diff": -292.2202,
+     "ci90": [
+      -489.0447,
+      -107.3647
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1408.5485,
+     "b": 1816.4696,
+     "diff": -407.9211,
+     "ci90": [
+      -669.1425,
+      -162.6762
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1952.8377,
+     "b": 2592.1606,
+     "diff": -639.3229,
+     "ci90": [
+      -1028.0087,
+      -271.4396
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 3041.4159,
+     "b": 4143.5425,
+     "diff": -1102.1265,
+     "ci90": [
+      -1746.7685,
+      -487.9435
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 5762.8616,
+     "b": 8021.9971,
+     "diff": -2259.1356,
+     "ci90": [
+      -3554.0056,
+      -1028.474
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 2,
+    "case_text": "crossing: worse below, better above",
+    "k_star": 0.2372,
+    "shares": {
+     "1": 0.0,
+     "2": 0.95,
+     "3": 0.05,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.0498,
+     0.6565
+    ]
+   },
+   "role": "descriptive"
+  },
+  {
+   "a": "avg_chronos2_regression",
+   "b": "chronos2_A",
+   "set": "evenings",
+   "n_days": 96,
+   "n_values": 768,
+   "days_dropped": [],
+   "draws_dropped": 0,
+   "Ua": 495.9041,
+   "Oa": 401.3394,
+   "Ub": 730.2199,
+   "Ob": 338.5999,
+   "rows": [
+    {
+     "k": 0.5,
+     "a": 649.2914,
+     "b": 703.7099,
+     "diff": -54.4185,
+     "ci90": [
+      -126.7276,
+      18.8285
+     ],
+     "label": "not clearly different"
+    },
+    {
+     "k": 1.0,
+     "a": 897.2434,
+     "b": 1068.8198,
+     "diff": -171.5764,
+     "ci90": [
+      -299.0275,
+      -47.2612
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 1.5,
+     "a": 1145.1955,
+     "b": 1433.9297,
+     "diff": -288.7342,
+     "ci90": [
+      -471.3026,
+      -106.798
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 2.0,
+     "a": 1393.1475,
+     "b": 1799.0397,
+     "diff": -405.8921,
+     "ci90": [
+      -646.9871,
+      -163.5562
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 3.0,
+     "a": 1889.0516,
+     "b": 2529.2595,
+     "diff": -640.2079,
+     "ci90": [
+      -999.9615,
+      -278.9282
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 5.0,
+     "a": 2880.8597,
+     "b": 3989.6992,
+     "diff": -1108.8395,
+     "ci90": [
+      -1714.3136,
+      -512.7908
+     ],
+     "label": "clearly less"
+    },
+    {
+     "k": 10.0,
+     "a": 5360.3801,
+     "b": 7640.7985,
+     "diff": -2280.4184,
+     "ci90": [
+      -3504.5118,
+      -1085.1476
+     ],
+     "label": "clearly less"
+    }
+   ],
+   "break_even": {
+    "case": 2,
+    "case_text": "crossing: worse below, better above",
+    "k_star": 0.2678,
+    "shares": {
+     "1": 0.0,
+     "2": 0.984,
+     "3": 0.016,
+     "4": 0.0,
+     "5": 0.0
+    },
+    "draws": 2000,
+    "k_star_ci90": [
+     0.0789,
+     0.6327
+    ]
+   },
+   "role": "descriptive"
+  }
+ ],
+ "direction": {
+  "regression_weather": {
+   "n_days": 960,
+   "mean_bias": -97.2406,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": -177.7506,
+     "ci90": [
+      -361.0562,
+      6.3843
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -11.4853,
+     "ci90": [
+      -260.3013,
+      217.7157
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -397.0495,
+     "ci90": [
+      -607.512,
+      -185.0796
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -144.8603,
+     "ci90": [
+      -311.9444,
+      51.666
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": 37.0548,
+     "ci90": [
+      -127.6215,
+      173.2973
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": 56.5912,
+     "ci90": [
+      -113.7792,
+      218.2288
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": -164.5222,
+     "ci90": [
+      -320.8276,
+      -11.7188
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": -136.787,
+     "ci90": [
+      -292.039,
+      21.0238
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -176.6246,
+     "ci90": [
+      -341.7554,
+      -8.1416
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": 143.0271,
+     "ci90": [
+      -33.057,
+      310.1548
+     ]
+    }
+   ],
+   "slope_mw_per_c": 10.8331,
+   "slope_ci90": [
+    -2.8047,
+    23.6013
+   ],
+   "share_short": 0.4458,
+   "lag1_autocorr": 0.4181,
+   "n_pairs": 959,
+   "share_short_after_short": 0.6238,
+   "longest_runs": {
+    "short": {
+     "days": 13,
+     "first": "2024-12-01",
+     "last": "2024-12-13"
+    },
+    "long": {
+     "days": 20,
+     "first": "2025-07-25",
+     "last": "2025-08-13"
+    }
+   }
+  },
+  "chronos2_A": {
+   "n_days": 960,
+   "mean_bias": -105.6807,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": 170.488,
+     "ci90": [
+      -15.2392,
+      355.6678
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -169.7708,
+     "ci90": [
+      -330.0182,
+      -16.8771
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -329.2894,
+     "ci90": [
+      -522.0763,
+      -141.0975
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -132.6121,
+     "ci90": [
+      -307.1506,
+      81.5261
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": -218.1981,
+     "ci90": [
+      -365.1644,
+      -87.6334
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": -123.0695,
+     "ci90": [
+      -306.7619,
+      68.0595
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": -10.5523,
+     "ci90": [
+      -112.0773,
+      96.7214
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": -121.7644,
+     "ci90": [
+      -250.7183,
+      10.1625
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -282.4577,
+     "ci90": [
+      -426.2405,
+      -123.7605
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": 160.4194,
+     "ci90": [
+      -13.6479,
+      332.5278
+     ]
+    }
+   ],
+   "slope_mw_per_c": 1.1912,
+   "slope_ci90": [
+    -10.8939,
+    13.6539
+   ],
+   "share_short": 0.45,
+   "lag1_autocorr": 0.2629,
+   "n_pairs": 959,
+   "share_short_after_short": 0.5602,
+   "longest_runs": {
+    "short": {
+     "days": 13,
+     "first": "2026-06-14",
+     "last": "2026-06-26"
+    },
+    "long": {
+     "days": 14,
+     "first": "2024-12-12",
+     "last": "2024-12-25"
+    }
+   }
+  },
+  "lgbm_v1": {
+   "n_days": 960,
+   "mean_bias": -63.1156,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": -46.0122,
+     "ci90": [
+      -236.6609,
+      135.3796
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -42.1306,
+     "ci90": [
+      -256.5244,
+      158.4759
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -333.0533,
+     "ci90": [
+      -530.5893,
+      -138.799
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -144.3659,
+     "ci90": [
+      -310.44,
+      44.2135
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": 63.3063,
+     "ci90": [
+      -114.9207,
+      198.2244
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": 104.4864,
+     "ci90": [
+      -56.8915,
+      256.6625
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": -9.74,
+     "ci90": [
+      -147.3065,
+      128.8664
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": -30.1884,
+     "ci90": [
+      -168.9088,
+      120.0301
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -138.8453,
+     "ci90": [
+      -295.891,
+      17.3444
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": -54.6125,
+     "ci90": [
+      -205.3301,
+      87.3024
+     ]
+    }
+   ],
+   "slope_mw_per_c": 2.1915,
+   "slope_ci90": [
+    -9.999,
+    14.4047
+   ],
+   "share_short": 0.4729,
+   "lag1_autocorr": 0.401,
+   "n_pairs": 959,
+   "share_short_after_short": 0.6123,
+   "longest_runs": {
+    "short": {
+     "days": 14,
+     "first": "2025-10-07",
+     "last": "2025-10-20"
+    },
+    "long": {
+     "days": 20,
+     "first": "2025-07-25",
+     "last": "2025-08-13"
+    }
+   }
+  },
+  "timesfm25_weather_single_day": {
+   "n_days": 960,
+   "mean_bias": 34.4097,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": 468.3121,
+     "ci90": [
+      -52.9276,
+      1012.6772
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -156.4209,
+     "ci90": [
+      -455.9618,
+      129.9795
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -360.7725,
+     "ci90": [
+      -730.4656,
+      1.5299
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -40.812,
+     "ci90": [
+      -479.8774,
+      340.9882
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": 283.168,
+     "ci90": [
+      -88.4218,
+      596.59
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": 92.067,
+     "ci90": [
+      -208.0001,
+      391.2938
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": 216.0198,
+     "ci90": [
+      -39.9814,
+      477.907
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": 49.4342,
+     "ci90": [
+      -192.5216,
+      288.8315
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -144.3502,
+     "ci90": [
+      -447.4964,
+      135.0773
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": -62.548,
+     "ci90": [
+      -351.2381,
+      187.3845
+     ]
+    }
+   ],
+   "slope_mw_per_c": -11.5486,
+   "slope_ci90": [
+    -38.6445,
+    15.7275
+   ],
+   "share_short": 0.5156,
+   "lag1_autocorr": 0.4328,
+   "n_pairs": 959,
+   "share_short_after_short": 0.6377,
+   "longest_runs": {
+    "short": {
+     "days": 11,
+     "first": "2024-07-05",
+     "last": "2024-07-15"
+    },
+    "long": {
+     "days": 11,
+     "first": "2025-08-02",
+     "last": "2025-08-12"
+    }
+   }
+  },
+  "lightgbm_s1": {
+   "n_days": 960,
+   "mean_bias": -59.9039,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": 49.4726,
+     "ci90": [
+      -269.6693,
+      370.1227
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -57.9809,
+     "ci90": [
+      -267.7437,
+      137.7498
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -320.0945,
+     "ci90": [
+      -537.6187,
+      -116.8304
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -165.5866,
+     "ci90": [
+      -384.6807,
+      74.9173
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": 51.0966,
+     "ci90": [
+      -153.8621,
+      228.5057
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": 104.5644,
+     "ci90": [
+      -69.6683,
+      275.2
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": -33.0947,
+     "ci90": [
+      -181.6421,
+      121.3681
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": -95.1274,
+     "ci90": [
+      -262.5084,
+      82.0072
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -164.8793,
+     "ci90": [
+      -346.2955,
+      20.2303
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": 32.591,
+     "ci90": [
+      -130.7343,
+      207.5418
+     ]
+    }
+   ],
+   "slope_mw_per_c": 0.3532,
+   "slope_ci90": [
+    -16.9546,
+    16.198
+   ],
+   "share_short": 0.4875,
+   "lag1_autocorr": 0.4606,
+   "n_pairs": 959,
+   "share_short_after_short": 0.6197,
+   "longest_runs": {
+    "short": {
+     "days": 12,
+     "first": "2025-10-07",
+     "last": "2025-10-18"
+    },
+    "long": {
+     "days": 21,
+     "first": "2025-07-23",
+     "last": "2025-08-12"
+    }
+   }
+  },
+  "neso": {
+   "n_days": 960,
+   "mean_bias": -5.0435,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": 45.4759,
+     "ci90": [
+      -74.1974,
+      157.2411
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -90.5353,
+     "ci90": [
+      -202.0083,
+      30.5757
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -31.2552,
+     "ci90": [
+      -137.9697,
+      77.0113
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -11.6881,
+     "ci90": [
+      -118.5196,
+      113.7226
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": 7.5953,
+     "ci90": [
+      -96.83,
+      108.905
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": 64.2737,
+     "ci90": [
+      -36.7416,
+      157.0931
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": -5.615,
+     "ci90": [
+      -108.7829,
+      102.5533
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": -4.2893,
+     "ci90": [
+      -107.0771,
+      91.0682
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -119.9957,
+     "ci90": [
+      -234.572,
+      -6.7887
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": 95.5992,
+     "ci90": [
+      -17.4096,
+      208.4114
+     ]
+    }
+   ],
+   "slope_mw_per_c": 1.0499,
+   "slope_ci90": [
+    -6.4115,
+    8.9052
+   ],
+   "share_short": 0.4875,
+   "lag1_autocorr": 0.2709,
+   "n_pairs": 959,
+   "share_short_after_short": 0.5962,
+   "longest_runs": {
+    "short": {
+     "days": 13,
+     "first": "2026-04-23",
+     "last": "2026-05-05"
+    },
+    "long": {
+     "days": 15,
+     "first": "2025-03-28",
+     "last": "2025-04-11"
+    }
+   }
+  },
+  "avg_chronos2_regression": {
+   "n_days": 960,
+   "mean_bias": -101.4607,
+   "groups": [
+    {
+     "group": 1,
+     "n_days": 96,
+     "t_mean_range": [
+      -1.483,
+      4.7407
+     ],
+     "bias": -3.6313,
+     "ci90": [
+      -156.246,
+      149.6438
+     ]
+    },
+    {
+     "group": 2,
+     "n_days": 96,
+     "t_mean_range": [
+      4.7802,
+      7.1235
+     ],
+     "bias": -90.6281,
+     "ci90": [
+      -250.5871,
+      61.5377
+     ]
+    },
+    {
+     "group": 3,
+     "n_days": 96,
+     "t_mean_range": [
+      7.1485,
+      8.7966
+     ],
+     "bias": -363.1694,
+     "ci90": [
+      -523.8971,
+      -200.4246
+     ]
+    },
+    {
+     "group": 4,
+     "n_days": 96,
+     "t_mean_range": [
+      8.8102,
+      10.2586
+     ],
+     "bias": -138.7362,
+     "ci90": [
+      -292.6107,
+      44.2768
+     ]
+    },
+    {
+     "group": 5,
+     "n_days": 96,
+     "t_mean_range": [
+      10.2605,
+      11.7514
+     ],
+     "bias": -90.5716,
+     "ci90": [
+      -221.0511,
+      17.7276
+     ]
+    },
+    {
+     "group": 6,
+     "n_days": 96,
+     "t_mean_range": [
+      11.7586,
+      13.3209
+     ],
+     "bias": -33.2391,
+     "ci90": [
+      -191.571,
+      126.6092
+     ]
+    },
+    {
+     "group": 7,
+     "n_days": 96,
+     "t_mean_range": [
+      13.3689,
+      14.8792
+     ],
+     "bias": -87.5372,
+     "ci90": [
+      -196.944,
+      22.7776
+     ]
+    },
+    {
+     "group": 8,
+     "n_days": 96,
+     "t_mean_range": [
+      14.8958,
+      16.5564
+     ],
+     "bias": -129.2757,
+     "ci90": [
+      -251.4264,
+      2.414
+     ]
+    },
+    {
+     "group": 9,
+     "n_days": 96,
+     "t_mean_range": [
+      16.5772,
+      18.3756
+     ],
+     "bias": -229.5412,
+     "ci90": [
+      -369.3239,
+      -79.4652
+     ]
+    },
+    {
+     "group": 10,
+     "n_days": 96,
+     "t_mean_range": [
+      18.3855,
+      24.9634
+     ],
+     "bias": 151.7233,
+     "ci90": [
+      -4.7106,
+      299.8089
+     ]
+    }
+   ],
+   "slope_mw_per_c": 6.0121,
+   "slope_ci90": [
+    -4.4844,
+    16.9564
+   ],
+   "share_short": 0.4635,
+   "lag1_autocorr": 0.3348,
+   "n_pairs": 959,
+   "share_short_after_short": 0.591,
+   "longest_runs": {
+    "short": {
+     "days": 13,
+     "first": "2026-06-14",
+     "last": "2026-06-26"
+    },
+    "long": {
+     "days": 13,
+     "first": "2024-12-14",
+     "last": "2024-12-26"
+    }
+   }
+  }
+ },
+ "means": {
+  "regression_weather": {
+   "all": {
+    "n_days": 960,
+    "U": 458.5792,
+    "O": 555.8198,
+    "loss": {
+     "0.5": 785.1094,
+     "1": 1014.399,
+     "1.5": 1243.6886,
+     "2": 1472.9781,
+     "3": 1931.5573,
+     "5": 2848.7157,
+     "10": 5141.6115
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 394.7841,
+    "O": 528.6917,
+    "loss": {
+     "0.5": 726.0838,
+     "1": 923.4759,
+     "1.5": 1120.8679,
+     "2": 1318.26,
+     "3": 1713.0441,
+     "5": 2502.6124,
+     "10": 4476.533
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 385.7111,
+    "O": 588.2017,
+    "loss": {
+     "0.5": 781.0572,
+     "1": 973.9128,
+     "1.5": 1166.7684,
+     "2": 1359.624,
+     "3": 1745.3351,
+     "5": 2516.7574,
+     "10": 4445.3131
+    }
+   }
+  },
+  "chronos2_A": {
+   "all": {
+    "n_days": 960,
+    "U": 404.9233,
+    "O": 510.604,
+    "loss": {
+     "0.5": 713.0656,
+     "1": 915.5273,
+     "1.5": 1117.9889,
+     "2": 1320.4506,
+     "3": 1725.3739,
+     "5": 2535.2205,
+     "10": 4559.837
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 775.6909,
+    "O": 265.0878,
+    "loss": {
+     "0.5": 652.9332,
+     "1": 1040.7787,
+     "1.5": 1428.6242,
+     "2": 1816.4696,
+     "3": 2592.1606,
+     "5": 4143.5425,
+     "10": 8021.9971
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 730.2199,
+    "O": 338.5999,
+    "loss": {
+     "0.5": 703.7099,
+     "1": 1068.8198,
+     "1.5": 1433.9297,
+     "2": 1799.0397,
+     "3": 2529.2595,
+     "5": 3989.6992,
+     "10": 7640.7985
+    }
+   }
+  },
+  "lgbm_v1": {
+   "all": {
+    "n_days": 960,
+    "U": 467.3353,
+    "O": 530.4509,
+    "loss": {
+     "0.5": 764.1185,
+     "1": 997.7862,
+     "1.5": 1231.4538,
+     "2": 1465.1215,
+     "3": 1932.4568,
+     "5": 2867.1274,
+     "10": 5203.804
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 512.4173,
+    "O": 389.9842,
+    "loss": {
+     "0.5": 646.1929,
+     "1": 902.4015,
+     "1.5": 1158.6101,
+     "2": 1414.8188,
+     "3": 1927.2361,
+     "5": 2952.0706,
+     "10": 5514.157
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 507.2811,
+    "O": 440.5501,
+    "loss": {
+     "0.5": 694.1907,
+     "1": 947.8312,
+     "1.5": 1201.4718,
+     "2": 1455.1123,
+     "3": 1962.3934,
+     "5": 2976.9557,
+     "10": 5513.3612
+    }
+   }
+  },
+  "timesfm25_weather_single_day": {
+   "all": {
+    "n_days": 960,
+    "U": 827.0712,
+    "O": 792.6615,
+    "loss": {
+     "0.5": 1206.197,
+     "1": 1619.7326,
+     "1.5": 2033.2682,
+     "2": 2446.8038,
+     "3": 3273.875,
+     "5": 4928.0174,
+     "10": 9063.3733
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 1540.4395,
+    "O": 679.0623,
+    "loss": {
+     "0.5": 1449.282,
+     "1": 2219.5018,
+     "1.5": 2989.7215,
+     "2": 3759.9412,
+     "3": 5300.3807,
+     "5": 8381.2597,
+     "10": 16083.457
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 1566.8446,
+    "O": 591.4808,
+    "loss": {
+     "0.5": 1374.9031,
+     "1": 2158.3254,
+     "1.5": 2941.7477,
+     "2": 3725.17,
+     "3": 5292.0146,
+     "5": 8425.7037,
+     "10": 16259.9266
+    }
+   }
+  },
+  "lightgbm_s1": {
+   "all": {
+    "n_days": 960,
+    "U": 500.3513,
+    "O": 560.2551,
+    "loss": {
+     "0.5": 810.4308,
+     "1": 1060.6064,
+     "1.5": 1310.782,
+     "2": 1560.9577,
+     "3": 2061.3089,
+     "5": 3062.0115,
+     "10": 5563.7678
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 792.4491,
+    "O": 442.9701,
+    "loss": {
+     "0.5": 839.1946,
+     "1": 1235.4192,
+     "1.5": 1631.6437,
+     "2": 2027.8683,
+     "3": 2820.3174,
+     "5": 4405.2157,
+     "10": 8367.4613
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 733.1394,
+    "O": 500.286,
+    "loss": {
+     "0.5": 866.8557,
+     "1": 1233.4254,
+     "1.5": 1599.9951,
+     "2": 1966.5648,
+     "3": 2699.7042,
+     "5": 4165.9831,
+     "10": 7831.6802
+    }
+   }
+  },
+  "neso": {
+   "all": {
+    "n_days": 960,
+    "U": 347.5416,
+    "O": 352.5851,
+    "loss": {
+     "0.5": 526.3559,
+     "1": 700.1267,
+     "1.5": 873.8975,
+     "2": 1047.6683,
+     "3": 1395.21,
+     "5": 2090.2932,
+     "10": 3828.0013
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 415.2812,
+    "O": 285.6354,
+    "loss": {
+     "0.5": 493.276,
+     "1": 700.9167,
+     "1.5": 908.5573,
+     "2": 1116.1979,
+     "3": 1531.4792,
+     "5": 2362.0417,
+     "10": 4438.4479
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 452.3411,
+    "O": 300.7122,
+    "loss": {
+     "0.5": 526.8828,
+     "1": 753.0534,
+     "1.5": 979.224,
+     "2": 1205.3945,
+     "3": 1657.7357,
+     "5": 2562.418,
+     "10": 4824.1237
+    }
+   }
+  },
+  "avg_chronos2_regression": {
+   "all": {
+    "n_days": 960,
+    "U": 365.9027,
+    "O": 467.3633,
+    "loss": {
+     "0.5": 650.3147,
+     "1": 833.266,
+     "1.5": 1016.2173,
+     "2": 1199.1687,
+     "3": 1565.0714,
+     "5": 2296.8767,
+     "10": 4126.3901
+    }
+   },
+   "peaks": {
+    "n_days": 96,
+    "U": 544.2891,
+    "O": 319.9703,
+    "loss": {
+     "0.5": 592.1148,
+     "1": 864.2594,
+     "1.5": 1136.404,
+     "2": 1408.5485,
+     "3": 1952.8377,
+     "5": 3041.4159,
+     "10": 5762.8616
+    }
+   },
+   "evenings": {
+    "n_days": 96,
+    "U": 495.9041,
+    "O": 401.3394,
+    "loss": {
+     "0.5": 649.2914,
+     "1": 897.2434,
+     "1.5": 1145.1955,
+     "2": 1393.1475,
+     "3": 1889.0516,
+     "5": 2880.8597,
+     "10": 5360.3801
+    }
+   }
+  }
+ },
+ "checks": {
+  "reproduction": {
+   "passed": true,
+   "all_k1": [
+    {
+     "forecaster": "regression_weather",
+     "computed": 1014.399,
+     "published": 1014.4,
+     "precision": "1 dp",
+     "passed": true
+    },
+    {
+     "forecaster": "chronos2_A",
+     "computed": 915.5273,
+     "published": 915.5,
+     "precision": "1 dp",
+     "passed": true
+    },
+    {
+     "forecaster": "lgbm_v1",
+     "computed": 997.7862,
+     "published": 997.8,
+     "precision": "1 dp",
+     "passed": true
+    },
+    {
+     "forecaster": "timesfm25_weather_single_day",
+     "computed": 1619.7326,
+     "published": 1619.7326,
+     "precision": "0.01 MW",
+     "passed": true
+    },
+    {
+     "forecaster": "lightgbm_s1",
+     "computed": 1060.6064,
+     "published": 1060.6,
+     "precision": "1 dp",
+     "passed": true
+    },
+    {
+     "forecaster": "neso",
+     "computed": 700.1267,
+     "published": null,
+     "note": "no published 960-day figure; reported only"
+    },
+    {
+     "forecaster": "avg_chronos2_regression",
+     "computed": 833.266,
+     "published": null,
+     "note": "no published 960-day figure; reported only"
+    }
+   ],
+   "t1_peaks": [
+    {
+     "forecaster": "regression_weather",
+     "signed": -133.9076,
+     "published": -133.9076,
+     "abs_mean": 923.4759,
+     "abs_mean_per_day": 923.4759,
+     "per_day_max_diff_mae": 0.0,
+     "per_day_max_diff_peak": 0.0,
+     "passed": true
+    },
+    {
+     "forecaster": "chronos2_A",
+     "signed": 510.6032,
+     "published": 510.6032,
+     "abs_mean": 1040.7787,
+     "abs_mean_per_day": 1040.7787,
+     "per_day_max_diff_mae": 0.0,
+     "per_day_max_diff_peak": 0.0,
+     "passed": true
+    },
+    {
+     "forecaster": "timesfm25_weather_single_day",
+     "signed": 861.3772,
+     "published": 861.3772,
+     "abs_mean": 2219.5018,
+     "abs_mean_per_day": 2219.5018,
+     "per_day_max_diff_mae": 0.0,
+     "per_day_max_diff_peak": 0.0,
+     "passed": true
+    },
+    {
+     "forecaster": "lightgbm_s1",
+     "signed": 349.4791,
+     "published": 349.4791,
+     "abs_mean": 1235.4192,
+     "abs_mean_per_day": 1235.4192,
+     "per_day_max_diff_mae": 0.0,
+     "per_day_max_diff_peak": 0.0,
+     "passed": true
+    },
+    {
+     "forecaster": "neso",
+     "signed": 129.6458,
+     "published": 129.6458,
+     "abs_mean": 700.9167,
+     "abs_mean_per_day": 700.9167,
+     "per_day_max_diff_mae": 0.0,
+     "per_day_max_diff_peak": 0.0,
+     "passed": true
+    }
+   ]
+  },
+  "alignment": {
+   "passed": true,
+   "rows": [
+    {
+     "a": "chronos2_A",
+     "b": "regression_weather",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "chronos2_A",
+     "b": "regression_weather",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "chronos2_A",
+     "b": "regression_weather",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    },
+    {
+     "a": "chronos2_A",
+     "b": "lgbm_v1",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "chronos2_A",
+     "b": "lgbm_v1",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "chronos2_A",
+     "b": "lgbm_v1",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    },
+    {
+     "a": "timesfm25_weather_single_day",
+     "b": "regression_weather",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "timesfm25_weather_single_day",
+     "b": "regression_weather",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "timesfm25_weather_single_day",
+     "b": "regression_weather",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    },
+    {
+     "a": "lightgbm_s1",
+     "b": "regression_weather",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "lightgbm_s1",
+     "b": "regression_weather",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "lightgbm_s1",
+     "b": "regression_weather",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    },
+    {
+     "a": "neso",
+     "b": "regression_weather",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "neso",
+     "b": "regression_weather",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "neso",
+     "b": "regression_weather",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    },
+    {
+     "a": "avg_chronos2_regression",
+     "b": "regression_weather",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "avg_chronos2_regression",
+     "b": "regression_weather",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "avg_chronos2_regression",
+     "b": "regression_weather",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    },
+    {
+     "a": "avg_chronos2_regression",
+     "b": "chronos2_A",
+     "set": "all",
+     "n_days": 960,
+     "n_values": 46080,
+     "days_dropped": []
+    },
+    {
+     "a": "avg_chronos2_regression",
+     "b": "chronos2_A",
+     "set": "peaks",
+     "n_days": 96,
+     "n_values": 96,
+     "days_dropped": []
+    },
+    {
+     "a": "avg_chronos2_regression",
+     "b": "chronos2_A",
+     "set": "evenings",
+     "n_days": 96,
+     "n_values": 768,
+     "days_dropped": []
+    }
+   ]
+  },
+  "linearity": {
+   "passed": true,
+   "max_abs_mw": 0.0
+  },
+  "direction": {
+   "passed": true,
+   "max_abs_mw": 0.0,
+   "group_sizes": [
+    96
+   ]
+  },
+  "hashes": {
+   "passed": true,
+   "note": "every file read matched its recorded SHA-256, or the run stops"
+  },
+  "synthetic": {
+   "passed": true,
+   "file": "asymmetric/score_synthetic.json"
+  }
+ },
+ "headline": "In a backtest it may have seen in training, Chronos-2 had clearly less cost-weighted error than a weather regression over all half-hours at each tested cost ratio from 0.5 to 10, and, in the size of the daily peak on the coldest tenth of days, not clearly different where a shortfall cost 0.5 to 1.5 times a surplus, and clearly more from 2 to 10.",
+ "break_even_sentence": "Over all half-hours, there was no break-even ratio above 0 (Chronos-2 better at every ratio above 0; 96% of bootstrap draws in this case); at cold-day peaks, the break-even ratio was 0.69 (Chronos-2 better below it and worse above; 100% of bootstrap draws in this case; conditional 90% interval 0.38 to 1.53).",
+ "avg_over_chronos_all_k1": 0.9101
+}
