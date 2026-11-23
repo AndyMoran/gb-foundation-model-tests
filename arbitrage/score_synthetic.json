@@ -1,0 +1,46 @@
+{
+ "script_sha256": "71e82ea37986a6adf1a0f238beb22990060916ebe6df72f64a3b5298f7e96d27",
+ "checks": {
+  "unit_rules": {
+   "passed": true,
+   "n": 18
+  },
+  "unit_trailing": {
+   "passed": true
+  },
+  "toward_gain_equals_neso_mae": {
+   "passed": true,
+   "gain": 400.6113,
+   "neso_mae": 400.6113
+  },
+  "away_gain_minus_neso_mae": {
+   "passed": true
+  },
+  "noise_interval_contains_0": {
+   "passed": true,
+   "ci90": [
+    -2.0115,
+    6.2519
+   ]
+  },
+  "exact_forecast_perfect": {
+   "passed": true
+  },
+  "shift_misses_spread": {
+   "passed": true,
+   "missed": 458.5487
+  },
+  "bias_correction_removes_constant": {
+   "passed": true,
+   "days_without_window": 29
+  },
+  "constant_shift_unchanged": {
+   "passed": true
+  },
+  "pipeline_and_headline": {
+   "passed": true,
+   "headline": "In a backtest it may have seen in training, when choosing a battery's four lowest and four highest half-hours, Chronos-2 missed clearly less of each day's demand spread than a weather regression (115 against 425 MW a day). Where it disagreed with NESO's day-ahead forecast, outturn moved clearly towards Chronos-2, by 400.6 MW on average (90% interval 398.5 to 403.0); for the regression the figure was 2.2 MW (-2.0 to 6.3)."
+  }
+ },
+ "passed": true
+}
