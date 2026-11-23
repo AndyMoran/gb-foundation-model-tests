@@ -4,7 +4,7 @@ Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, 
 
 ## The project
 
-A standing, preregistered benchmark. Zero-shot foundation models are tested against trained baselines for GB day-ahead demand (INDO), on equal weather and calendar inputs, on live days no model can have seen, with cost measured. It commits to a minimum of three checkpoints, reviewed at the third. Rules: `BENCHMARK_RULES.md` (complete; Andy to tag `benchmark-rules-v1`). Why and how: `PROJECT.md`.
+A standing, preregistered benchmark. Zero-shot foundation models are tested against trained baselines for GB day-ahead demand (INDO), on equal weather and calendar inputs, on live days no model can have seen, with cost measured. It commits to a minimum of three checkpoints, reviewed at the third. Rules: `BENCHMARK_RULES.md`, in force at tag `benchmark-rules-v2`. Why and how: `PROJECT.md`.
 
 ## Done
 
@@ -46,6 +46,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Note.** `tails/RESULTS.md`, published 20 November (c3a0908), with the AI-use statement (af9637b) and figures in `tails/figures/`: the paired dot plot and the peak-error chart (b1a4394). Christmas Day 2025 is stated as a limit, with no exploratory table, by Andy's decision.
 - **Posts.** Andy posted a plain version (led by the headline, then what average error hid) and replied to comments from Chinmay Joshi (seasonal relationships) and Muhammed Asker (regime-aware retrieval).
 - **Tails 2's trigger fired** (Andy, 17 November): the trigger counts any tail shift, including the broad one. Tails 2 is back on the list, not urgent.
+
 **Context novelty study** (`context_novelty/`), 20 November, plan to draft note in one day:
 - **Process.** Version 1 tagged `context-novelty-plan` (9e1002b). Two reviews led to version 2 before any script ran on real data: weather provenance stated; novel cold days matched to non-novel cold days on T1's mean forecast temperature (within 1 °C) and month (within one); one primary outcome; a chosen 250 MW threshold read by the interval's lower bound; a cold-spell cluster bootstrap; TimesFM exploratory and LightGBM descriptive. Tagged `context-novelty-plan-v2` (21b9a29). `build_days.py` and `score.py` were each committed before they ran, with synthetic checks that also failed when their rules were broken. Every choice and deviation is in `context_novelty/REVISIONS.md` (items 1–21).
 - **Sets.** N 30 days; 14 novel cold days (N∩T1); 10 matched pairs in 4 cold spells; 4 novel days unmatched, including the three coldest in T1. A post-build review scoped H5 to the 10 pairs and added spell results and the unmatched days as description (REVISIONS 12–16).
@@ -77,7 +78,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 
 **Posts.** LinkedIn drafts for the asymmetric and arbitrage notes exist (23 November), each led by its fixed headline; not yet posted as far as this record knows. In the arbitrage post, "best of every forecaster" should read "less than every other forecaster, NESO included, on the point figures": Chronos-2 and NESO were not compared directly.
 
-- **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces, put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is decided on 8 January 2027.
+**Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces, put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is decided on 8 January 2027.
 
 **18–19 November:**
 - **Rules in force.** An external review was checked point by point; the rules were revised and tagged `benchmark-rules-v2` (d17b658). `benchmark-rules-v1` (9d1e357, 17 November) stays as the pre-review version (`PROJECT.md` decision log). G1 passed.
@@ -101,6 +102,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 3. **Post the asymmetric and arbitrage notes** (Andy). Asymmetric first. Each post leads with its fixed headline (lesson 24); the arbitrage post keeps the paragraph on why the gain test is easy to pass straight after it.
 4. **Reopen the price study** (`imbalance_cost/PLAN.md`), with three questions to settle with Andy before redrafting: training leakage (wait for prospective days, or a backtest with a loud caveat); which prices (System Price against day-ahead for the supplier case, day-ahead spreads for the battery case); and net demand (whether a net-demand forecast is needed first). The licence check for day-ahead auction prices stands; Elexon's Market Index Price is the open proxy.
 5. **Housekeeping:** Zenodo DOIs for the notes published since the weather study's correction (tails, context novelty, LightGBM variants, asymmetric, arbitrage), or one DOI for the repository at a tagged release.
+
 **Decision point, 8 January 2027: does checkpoint 1 run?** Andy decides, with the variants result in hand. Everything below this line is conditional on a yes; nothing in 2027 is committed except the weather study's live window (it ends in March and reports in April) and its daily push.
 - **If yes:** steps 6 to 8 as written.
 - **If no:** publish `BENCHMARK_RULES.md` as a proposal, not a commitment; offer it to the TS-Arena team and the author of the German demand repository (`PROJECT.md` §1); record the decision in the `PROJECT.md` log; the body of work is the weather study, checkpoint 0, the tails study, context novelty, the variants, the asymmetric and arbitrage studies, plus the weather study's live result in April.
