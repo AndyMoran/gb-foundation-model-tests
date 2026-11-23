@@ -1,0 +1,49 @@
+{
+ "passed": true,
+ "tolerance_mw": 1.0,
+ "max_abs_diff_mw": 0.004343749998952262,
+ "days": [
+  {
+   "day": "2024-03-16",
+   "max_abs_diff_mw": 0.003968749999330612
+  },
+  {
+   "day": "2024-08-23",
+   "max_abs_diff_mw": 0.002406250001513399
+  },
+  {
+   "day": "2025-01-30",
+   "max_abs_diff_mw": 0.0043125000011059456
+  },
+  {
+   "day": "2025-07-09",
+   "max_abs_diff_mw": 0.002312500000698492
+  },
+  {
+   "day": "2025-12-16",
+   "max_abs_diff_mw": 0.004343749998952262
+  },
+  {
+   "day": "2026-05-25",
+   "max_abs_diff_mw": 0.002312500000698492
+  }
+ ],
+ "e5_forecasts_sha256": "976e27ef28d0eef1ddf351c6557af9f771c308b94f389fe0f06b84ec86c8e2fe",
+ "model": {
+  "repo": "amazon/chronos-2",
+  "revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "weights_sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42"
+ },
+ "code_sha256": {
+  "weather/calendar_live.py": "161c44340bcebf1f3bdb0c34606dd9a23d8818fb8eaf5a2642ebc68a27eaeeb5",
+  "weather/calendar_study.py": "4cbd45d34a52f613c82be2bbfb4d705a48e9406d6e795c14a9732eb0088ab0bc",
+  "weather/models_weather.py": "a2af2fcf5ec29426a8131fb9732e4d24a80b45de0731f1106b413c08dbb15e95",
+  "weather/run_weather.py": "7acc283c573f579dedf2e44a41e0504d8163d15aa4163e2c2cbace0f6c9c40a7",
+  "code/common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4",
+  "code/inputs.py": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b",
+  "code/models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416"
+ },
+ "script_sha256": "161c44340bcebf1f3bdb0c34606dd9a23d8818fb8eaf5a2642ebc68a27eaeeb5",
+ "run_utc": "2026-11-23T22:23:47+00:00",
+ "note": "confirms the code is E5's arm A; never used to tune anything (imbalance_cost/PLAN.md \u00a76)"
+}
