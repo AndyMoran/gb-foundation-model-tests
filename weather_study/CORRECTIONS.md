@@ -60,3 +60,11 @@ The two sets of forecasts differ by up to 6,801 MW on a half-hour. The median, o
 - `era5_download.py` now runs hourly from Task Scheduler, so the CDS files keep ahead of the builds and Google's copy is needed only for hours CDS lacks.
 
 If an empty day is cached again, the build stops with the same message, and the fix is the same: move the file aside and fetch the day from CDS.
+
+## 3. The live window's scoring would batch TimesFM 2.5 (found 23 November 2026, before any live day was scored)
+
+**The defect.** `gb-weather-private`, `weather/run_weather.py`, makes each model's forecasts in batches of days that share a horizon, up to rung 1's batch of 64 (`model_forecasts`). That is how the backtest was scored, and it is the cause of correction 1: TimesFM 2.5 with weather fits one in-context regression across every day in a call, so a day's forecast depends on the other days in its batch. The prospective window's scoring (§6.3) would use the same code, and this record did not say otherwise. It was found while checking the live forecasts for the imbalance study (`imbalance_cost/PLAN.md` §6).
+
+**Effect: none yet.** No live day has been scored. Chronos-2 (`cross_learning = False`) and Timestral treat each day separately, and the regression is fitted day by day, so batching does not affect them (correction 1).
+
+**The correction, fixed now.** Before the live window is scored, TimesFM 2.5 with weather is run one day per call, as in correction 1. Batched TimesFM results are not part of the live comparison. Each forecast is archived with its target day and the inputs pushed before that day. The script that does this is committed before it runs; the frozen scoring code under `WEATHER_LOCK.json` is not changed.
