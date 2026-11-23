@@ -1,6 +1,6 @@
-# Where things stand (20 November 2026, evening)
+# Where things stand (23 November 2026, evening)
 
-Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md`, `tails/RESULTS.md`, `context_novelty/PLAN.md` and `lgbm_variants/PLAN.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
+Read this first in a new session. Then read `PROJECT.md`, `BENCHMARK_RULES.md`, `ASSUMPTIONS.md`, `next_study/CORRECTIONS.md`, both `LESSONS.md` files, `checkpoint0/RESULTS.md`, `tails/PLAN.md`, `tails/RESULTS.md`, `context_novelty/RESULTS.md`, `lgbm_variants/RESULTS.md`, `asymmetric/RESULTS.md` and `arbitrage/RESULTS.md`. Code and documents follow `PIPELINE_RULES.md` and `WRITING.md`.
 
 ## The project
 
@@ -51,13 +51,33 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **Sets.** N 30 days; 14 novel cold days (N∩T1); 10 matched pairs in 4 cold spells; 4 novel days unmatched, including the three coldest in T1. A post-build review scoped H5 to the 10 pairs and added spell results and the unmatched days as description (REVISIONS 12–16).
 - **Headline.** H5: meaningful penalty supported. Chronos-2's excess peak error was 1,241 MW greater on novel days than on matched controls (90% interval 589–1,765); leaving out any one spell keeps it between 1,017 and 1,551 MW.
 - **The caveat that matters.** LightGBM, which context novelty should not affect, also shows Δ 618 MW (147–1,184). So the result is an association, and the backtest cannot say how much is due to the eight-week context. TimesFM 2.5's Δ was the largest (2,723 MW), opposite to version 1's dropped H6.
-- **Note.** `context_novelty/RESULTS.md`, committed as a draft (625e64c). Next study suggested in it: re-forecast the same pairs with a longer context and test whether Chronos-2 improves more on novel days than on controls.
+- **Note.** `context_novelty/RESULTS.md`, published 20 November (d000ae0); REVISIONS 23 (21c9f8c) explains how to read Δ.
+- **Longer-context check** (`context_check.py`, 1107ff8): a 24-week context changes no pair; about 49 weeks clears the six November pairs. This led to `context_novelty_2/PLAN.md`, drafted and parked (06e5605), not tagged.
 
-**Plan drafted, 19 November** (not yet tagged):
-- **LightGBM variants** (`lgbm_variants/PLAN.md`): five pre-specified changes aimed at the heating response (V1 residual on the regression, V2 linear leaves with control V2c, V3 per-slot, V4 the regression's terms, V5 two winters); best chosen on error, as the comparator rule requires. A literature check found none is new; the nearest study is a German demand repository (LightGBM and Chronos-2 level). V5 needs INDO for March–November 2022 and ERA5 for March 2022–March 2023, fetched and checked by 3 December, or it is dropped. LightGBM does not support the L1 objective with `linear_tree` (4.7.0 source), hence V2c.
-- **Why these two.** The tails study ruled out temperatures outside LightGBM's training range and found its gap on ordinary winter days (so: variants), and found Chronos-2 under-forecasting cold-day peaks (so: context novelty, now done).
+**LightGBM variants** (`lgbm_variants/`), published 22 November (96f8ba6):
+- **Process.** Plan tagged `lgbm-variants-plan`. V5's data fetched and checked (`fetch_v5.py`, ERA5 overlap passed). Forecasts made by `gb-weather-private/weather/lightgbm_variants.py` (sha256 69968508…) after its synthetic and real checks passed; scored by `score.py`; exploratory additions in `explore.py`, committed before it ran. Every choice is in `REVISIONS.md` (items 1–22).
+- **Headline.** The best of five pre-specified variants, V1 (LightGBM on the regression's residual), beat the regression: 0.984 times its error (0.973–0.994). Chronos-2 had 0.918 times V1's error (0.887–0.948). V1 was chosen on the same days, so its figure is optimistic.
+- **Findings.** V1 closed LightGBM's winter gap (0.992 in winter, 0.976 on the coldest tenth, against S1's 1.125 and 1.218). V2 (linear leaves) produced extreme forecasts on a few days and did not test linear leaves reliably. The TNEI description was checked against the report, p. 18.
+- **Consequence.** V1 is the LightGBM comparator if checkpoint 1 runs.
 
-- **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces (tails study, the weather study's live report), put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is open.
+**Asymmetric cost** (`asymmetric/`), 22 November:
+- **Process.** Plan after three reviews and a literature check, tagged `asymmetric-plan` (dc78a88). `score.py` committed before it ran (15a479a); synthetic output a3ff952; results 77fe107; note 53e340d; figure `figures/cost_ratio_chart.png` (cccfd60). Implementation choices in `REVISIONS.md` (items 1–11).
+- **Headline.** Over all half-hours, Chronos-2 had clearly less cost-weighted error than the regression at every cost ratio from 0.5 to 10; there is no break-even (96% of draws). On the daily peak of the coldest tenth of days it was not clearly different from 0.5 to 1.5 and clearly worse from 2 to 10; break-even 0.69 (conditional interval 0.38–1.53).
+- **Findings.** Chronos-2 sets the cold-day peak too low by 776 MW on average (regression 395). The fixed 50:50 average of Chronos-2 and the regression beat both over all half-hours (833 MW, 9% below Chronos-2) and beat Chronos-2 at cold peaks for every ratio from 1. Chronos-2's bias is not linear in temperature (slope +1.2 MW/°C): short in the coldest tenth, clearly long in the next two. Most predictions on direction failed; the note scores each.
+- **Limit worth repeating.** Only Chronos-2's median was saved; its quantiles might serve a shortfall-averse user better.
+
+**Arbitrage signal** (`arbitrage/`), 23 November:
+- **Process.** Plan tagged `arbitrage-plan` (468ccdc). `score.py` committed before it ran (000879c); synthetic output 6d2ddc7; results fe866ce; note 468b3fe; figures `figures/timing_chart.png` and `figures/combination_chart.png` (cccfd60). `REVISIONS.md` item 1 corrects the plan's sign slip in the bias correction (the code adds the recent mean of outturn minus forecast).
+- **Headline.** Choosing a two-hour battery's hours, Chronos-2 missed clearly less of each day's demand spread than the regression (219 against 409 MW a day; NESO 255). Where it disagreed with NESO, outturn moved clearly towards it (272 MW), but so it did for every forecaster, the regression included (262).
+- **The gain test is easy to pass:** any forecast whose errors differ from NESO's tends to be right when NESO is wrong (lesson 25). The stricter test is the combination: averaging with NESO cut NESO's error only for Chronos-2 (3%, 679 against 700 MW) and the 50:50 average (8%). The regression added nothing.
+- **Day-to-day direction.** NESO called the change in daily mean most often (87%); Chronos-2 less often than the regression (81% against 84%).
+- **Consequence.** Both demand-side preconditions for a trading edge appeared, so the parked price study (`imbalance_cost/PLAN.md`) is worth reopening.
+
+**A pattern to watch.** The pre-specified 50:50 average of Chronos-2 and the regression has now done well in three places: weighted error, battery timing and combination with NESO. It is descriptive each time, on days the foundation model may have seen. Checkpoint 1's plan already lists "one pre-specified combination" as a question to settle.
+
+**Posts.** LinkedIn drafts for the asymmetric and arbitrage notes exist (23 November), each led by its fixed headline; not yet posted as far as this record knows. In the arbitrage post, "best of every forecaster" should read "less than every other forecaster, NESO included, on the point figures": Chronos-2 and NESO were not compared directly.
+
+- **Scope.** Andy judged the full standing benchmark a lot for a solo researcher. Direction agreed: finish bounded pieces, put new effort into the battery work, and treat outreach as the main deliverable. Whether checkpoint 1 runs at all is decided on 8 January 2027.
 
 **18–19 November:**
 - **Rules in force.** An external review was checked point by point; the rules were revised and tagged `benchmark-rules-v2` (d17b658). `benchmark-rules-v1` (9d1e357, 17 November) stays as the pre-review version (`PROJECT.md` decision log). G1 passed.
@@ -69,27 +89,28 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
 - **First live push, 19 November:** inputs for 20 November, commit 6b23228, no fallback, all ERA5 from CDS. It ran at 08:55, not 10:00: yesterday's missed 15:45 run caught up when the laptop woke. The 19 November run came from a public archive copy, on time. Because a catch-up before about 07:30 would lock in a fallback, the push task's "run as soon as possible after a missed start" is to be unticked.
 - **An extra push run at 16:29 on 19 November** came from an old task, `weather inputs daily` (10:30, 16:30, 21:00), which also ran the push. Andy disabled it; `Weather push` is the only push task. Later runs report "already published; nothing to do".
 - **Battery project.** It has its own handover and claude.ai project; its pre-registration is not yet locked.
-- **Parked plans**, committed as parked (b1a4394) and in this claude.ai project: `weather_value/PLAN.md` (what perfect weather is worth; an update of National Grid's analysis) and `weather_inputs/PLAN.md` (urban heat, terrain, downscaling; waits on `weather_value`). Parked until the current studies are published.
+- **Parked plans**, each committed and in this claude.ai project, none tagged:
+  - `weather_value/PLAN.md` (what perfect weather is worth) and `weather_inputs/PLAN.md` (urban heat, terrain, downscaling; waits on `weather_value`), b1a4394.
+  - `context_novelty_2/PLAN.md` (Chronos-2 hourly, 8 weeks against about 49 weeks of context), 06e5605. Its unparking condition, the variants note, is met.
+  - `imbalance_cost/PLAN.md` (misses costed with System Price against the day-ahead price), 7b4ffc6. Its unparking condition, the asymmetric note, is met, and the arbitrage results support it.
 
 ## Next steps, in order
 
 1. **Daily, as needed:** `tail -8 ~/gb-weather-data/push.log` should end `=== end …: ok`. Untick catch-up on the push task (above).
-2. **Done 18 November:** rules tagged `benchmark-rules-v2`; A13 recorded.
-3. **Done 20 November:** tails note published; figures committed.
-   - Tails 2 (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool (regression, LightGBM, foundation models): measured over all days, leaving out the forecaster whose error is predicted, with the target error stated; prior work on ensemble spread–skill and on forecaster disagreement finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Note that tails 1 found no T4 days, so a tails-2 design cannot rely on out-of-range temperatures.
-4. **Publish the context novelty note, after a review, before 4 December:** send `context_novelty/RESULTS.md` through the reviewer's figure check, set the publication date, commit and publish. Any post leads with the two headline sentences unchanged (lesson 24), and must give LightGBM's 618 MW straight after them.
-5. **LightGBM variants, by 17 December:** Andy tags `lgbm-variants-plan`; fetch and check V5's data by 3 December (Copernicus key from `~/.cdsapirc` only); `gb-weather-private/weather/lightgbm_variants.py` with the checks in its §8, committed before it runs; then `lgbm_variants/score.py` and the note. It must finish before G2, because its best variant becomes the LightGBM comparator if checkpoint 1 runs.
+2. **Tails 2** (triggered, not urgent): uncertainty on the hardest days. Two parts: (1) spread–skill of a heterogeneous pool, measured over all days, leaving out the forecaster whose error is predicted; prior work finds the signal often weak, and no novelty is claimed; (2) interval coverage on tail days, which needs new quantile forecasts (arXiv 2602.10848 already reports Chronos-2 coverage on outcome-selected extremes). Tails 1 found no T4 days, so a design cannot rely on out-of-range temperatures.
+3. **Post the asymmetric and arbitrage notes** (Andy). Asymmetric first. Each post leads with its fixed headline (lesson 24); the arbitrage post keeps the paragraph on why the gain test is easy to pass straight after it.
+4. **Reopen the price study** (`imbalance_cost/PLAN.md`), with three questions to settle with Andy before redrafting: training leakage (wait for prospective days, or a backtest with a loud caveat); which prices (System Price against day-ahead for the supplier case, day-ahead spreads for the battery case); and net demand (whether a net-demand forecast is needed first). The licence check for day-ahead auction prices stands; Elexon's Market Index Price is the open proxy.
+5. **Housekeeping:** Zenodo DOIs for the notes published since the weather study's correction (tails, context novelty, LightGBM variants, asymmetric, arbitrage), or one DOI for the repository at a tagged release.
 **Decision point, 8 January 2027: does checkpoint 1 run?** Andy decides, with the variants result in hand. Everything below this line is conditional on a yes; nothing in 2027 is committed except the weather study's live window (it ends in March and reports in April) and its daily push.
 - **If yes:** steps 6 to 8 as written.
-- **If no:** publish `BENCHMARK_RULES.md` as a proposal, not a commitment; offer it to the TS-Arena team and the author of the German demand repository (`PROJECT.md` §1); record the decision in the `PROJECT.md` log; the body of work is the weather study, checkpoint 0, the tails study, context novelty and the variants, plus the weather study's live result in April.
+- **If no:** publish `BENCHMARK_RULES.md` as a proposal, not a commitment; offer it to the TS-Arena team and the author of the German demand repository (`PROJECT.md` §1); record the decision in the `PROJECT.md` log; the body of work is the weather study, checkpoint 0, the tails study, context novelty, the variants, the asymmetric and arbitrage studies, plus the weather study's live result in April.
 - **Why the date:** Andy's concern (20 November) is a commitment running far into 2027, not the December workload. Checkpoint 1 means gates in January, the pipeline move by 1 March, a live window from April to September and a report in autumn 2027.
 
 6. **Gates G2 and G3 (January, only if checkpoint 1 runs):** short scripts, committed before they run, using public data.
-   - **Before G2:** backtest per-slot LightGBM under its own committed script if it is to count for the LightGBM comparator (`PROJECT.md` §4, confirmatory pairs).
-   - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Where LightGBM S1 is the comparator, use S1's summer edge, not the defaults' (checkpoint 0, `results.md` tables 2 and 6): it is smaller, so power will be lower than 93.7%. Show the number.
+   - **Before G2:** the LightGBM comparator is V1 from the variants study; per-slot LightGBM (V3) was one of the five variants and lost to V1.
+   - **G2:** power for every family the fallback table can produce, each pair at c − 0.05, c and c + 0.05, at the central edge and the interval's low end, at the family's own alpha. Use the comparator's own summer edge (V1's), not the defaults': it is smaller, so power will be lower than 93.7%. Show the number.
    - **G3:** the per-test false-positive rate, one-sided at alpha 0.025, from 5,000 simulations at a true edge of zero; threshold 0.032 (`PROJECT.md`, G3).
 7. **Checkpoint 1's plan (only if it runs), frozen by 25 March 2027,** citing rules by number. Its first backtest analyses, before any tuning:
-   - a pre-specified per-slot LightGBM, which tests the structure hypothesis;
    - each forecaster's error on the highest-demand days (top 10% by outturn), which tests the extrapolation hypothesis.
 
    It must also settle:
@@ -99,7 +120,7 @@ A standing, preregistered benchmark. Zero-shot foundation models are tested agai
    - the expected total of all entrants' weights against the 10 GB Actions cache;
    - the input table and its gate check;
    - the 10% rationale;
-   - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression.
+   - whether to add one pre-specified combination, such as the average of Chronos-2 and the regression, which did well descriptively in the asymmetric and arbitrage studies.
 8. **Move the daily pipeline off Andy's laptop by 1 March 2027 (only if checkpoint 1 runs),** onto GitHub Actions (rule 10.2). It must then run unattended for at least 28 days before 1 April (gate G4). The workflow needs:
    - scheduled attempts after 09:30 UK (cron is UTC: for example 09:47, 13:47 and 17:47 UTC), off the hour;
    - a concurrency group keyed to the forecast day, without cancelling runs in progress, so attempts never overlap;

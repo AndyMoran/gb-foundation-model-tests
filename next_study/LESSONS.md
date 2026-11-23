@@ -69,6 +69,14 @@ Two more were real but said less than claimed. The pattern matches lesson 15: co
 Once checkpoint 0's result was known, three separate suggestions would have led with something other than the plan's fixed headline: the regression comparison, LightGBM's credentials, a "confirmation, not discovery" framing. Each was reasonable as context, and each would have made the opening a choice made after seeing the result.
 *Fix:* the fixed headline leads, quoted if need be, and context follows straight after. Quoting it with a link to the tagged plan turned the constraint into a credibility point.
 
+**25. A prediction rested on a measure nobody had worked through.**
+The arbitrage plan predicted that where a forecaster disagreed with NESO, outturn would side with NESO, because NESO is more accurate. Every forecaster gained instead, even TimesFM 2.5. The direction of a disagreement depends on both forecasters' errors, so any forecast whose errors differ from NESO's tends to be right when NESO is wrong. The synthetic check tested a forecaster equal to NESO plus noise, which scores zero, but not one equal to outturn plus independent noise, which scores well.
+*Fix:* before predicting from a new measure, work out what it gives for an uninformative forecaster and for an independent one, and put both in the synthetic check. A measure that almost anything passes is a precondition, not a result.
+
+**26. A sign slipped in a frozen plan.**
+The arbitrage plan said to correct each forecast by "subtracting its own recent bias: its mean error, *y* minus forecast", which would double the bias. Review did not catch it; writing the code did, and the synthetic check would have failed with the wrong sign.
+*Fix:* write every correction as a formula with its sign, as well as in words, before tagging. Record a slip found after tagging in `REVISIONS.md`, and do not edit the tagged plan.
+
 ## Part 2: where it is most likely to go wrong next
 
 Each risk lists the warning sign and what to do now.
