@@ -1,0 +1,45 @@
+{
+ "script_sha256": "390173c3527f6dd47a56abeeadfe987337e9e0d17c9ffe40119ff23a615dffa4",
+ "checks": {
+  "unit_rules": {
+   "passed": true,
+   "n": 9
+  },
+  "aligned forecaster: known losses": {
+   "passed": true,
+   "loss": 80.0104,
+   "want": 80.0104
+  },
+  "aligned forecaster: effective ratio 3": {
+   "passed": true,
+   "ratio": 3.0
+  },
+  "independent forecaster: net 0, interval contains 0": {
+   "passed": true,
+   "ci90": [
+    -0.0,
+    0.0
+   ]
+  },
+  "perfect forecast: zero exposure": {
+   "passed": true
+  },
+  "dispatch: perfect demand and price-shaped picks": {
+   "passed": true
+  },
+  "labels on a clear difference": {
+   "passed": true
+  },
+  "missing MIP drops its day": {
+   "passed": true
+  },
+  "net equals losses plus gains": {
+   "passed": true
+  },
+  "pipeline and headline": {
+   "passed": true,
+   "headline": "In a backtest the foundation models may have seen in training, a price-taking supplier using Chronos-2's day-ahead demand forecast would have had clearly higher net imbalance exposure than one using a weather regression (80 against 0 \u00a3 per GWh of demand)."
+  }
+ },
+ "passed": true
+}
