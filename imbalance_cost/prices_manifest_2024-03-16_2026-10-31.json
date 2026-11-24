@@ -1,0 +1,61 @@
+{
+ "note": "imbalance exposure, data step (PLAN.md \u00a77); prices only, no exposure computed",
+ "first_day": "2024-03-16",
+ "last_day": "2026-10-31",
+ "fetched_utc": "2026-11-24T15:32:32+00:00",
+ "endpoints": {
+  "system_price": "https://data.elexon.co.uk/bmrs/api/v1/balancing/settlement/system-prices/{date}",
+  "market_index": "https://data.elexon.co.uk/bmrs/api/v1/balancing/pricing/market-index",
+  "providers": [
+   "APXMIDP",
+   "N2EXMIDP"
+  ]
+ },
+ "files": {
+  "raw_system_prices": {
+   "path": "data/prices/raw_system_prices_2024-03-16_2026-10-31.csv",
+   "sha256": "988bfcf93fe4a6c370a709288f8f399f1511258a4d074f4ec325ba3499a86cec",
+   "rows": 46080
+  },
+  "raw_market_index": {
+   "path": "data/prices/raw_market_index_2024-03-16_2026-10-31.csv",
+   "sha256": "0f940ba8e932e8d06d9915a17f77a64d568e0b66ea730e941e841ac36c112db8",
+   "rows": 91924
+  },
+  "prices": {
+   "path": "data/prices/prices_2024-03-16_2026-10-31.csv",
+   "sha256": "e73cbec2702b5c306ce7c8db3582e3884a63647d45a90faab61cb3638a9618e4",
+   "rows": 46080
+  }
+ },
+ "checks": {
+  "periods": 46080,
+  "days": 960,
+  "system_price_missing": 0,
+  "system_price_missing_by_month": {},
+  "sell_buy_differ": 0,
+  "sell_buy_differ_periods": [],
+  "mip_missing": 20,
+  "mip_missing_by_month": {
+   "2024-04": 1,
+   "2025-06": 10,
+   "2026-07": 6,
+   "2026-09": 3
+  },
+  "mip_providers": {
+   "APXMIDP": 45938,
+   "APXMIDP+N2EXMIDP": 118,
+   "none": 20,
+   "N2EXMIDP": 4
+  },
+  "provider_records_defaulted_to_zero": 45746,
+  "mip_zero_with_volume": 2,
+  "start_time_mismatches": 0,
+  "sp_created_utc": {
+   "first": "2024-03-17T00:44:26Z",
+   "last": "2026-11-02T00:14:22Z"
+  }
+ },
+ "script_sha256": "8e18e417a9ed14a9efe5f3017e84dd3fb09f39da87b695674f5d0c9cf50a26e0",
+ "attribution": "Contains BMRS data \u00a9 Elexon Limited copyright and database right."
+}
