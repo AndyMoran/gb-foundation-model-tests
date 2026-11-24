@@ -1,0 +1,3358 @@
+{
+ "schema": 1,
+ "note": "imbalance exposure, stage 1 (backtest pilot); plan frozen at tag imbalance-cost-plan",
+ "meta": {
+  "public_commit": "4a528017a7ce9eb5bdd3995f1bed95618d83be94",
+  "script_sha256": "390173c3527f6dd47a56abeeadfe987337e9e0d17c9ffe40119ff23a615dffa4",
+  "plan_tag": "imbalance-cost-plan",
+  "seed": 20261124,
+  "draws": 2000,
+  "block": 7,
+  "price_manifest_sha256": "77323a69a4f6e0b08e27dfef2a62942114d7c7c747b2fa1abd8d21c867fa5380",
+  "versions": {
+   "python": "3.13.11",
+   "numpy": "2.4.3",
+   "pandas": "3.0.2"
+  }
+ },
+ "sets": {
+  "all": {
+   "n_days": 953,
+   "scope": "day",
+   "forecasters": {
+    "regression_weather": {
+     "net": {
+      "value": 85.8742,
+      "ci90": [
+       61.0105,
+       115.8167
+      ]
+     },
+     "loss": {
+      "value": 470.684,
+      "ci90": [
+       439.8199,
+       504.5364
+      ]
+     },
+     "gain": {
+      "value": -384.8098,
+      "ci90": [
+       -404.4744,
+       -365.7936
+      ]
+     },
+     "per_mwh": {
+      "value": 2.0892,
+      "ci90": [
+       1.4138,
+       2.9524
+      ]
+     },
+     "mae": 1014.33,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 1.9251,
+      "surplus_cost_per_mwh": 2.2247,
+      "value": 0.8653,
+      "ci90": [
+       0.2567,
+       1.815
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 47.9011,
+      "ci90": [
+       44.8229,
+       51.2479
+      ]
+     }
+    },
+    "chronos2_A": {
+     "net": {
+      "value": 75.2318,
+      "ci90": [
+       52.0846,
+       101.8923
+      ]
+     },
+     "loss": {
+      "value": 430.087,
+      "ci90": [
+       401.7436,
+       461.8196
+      ]
+     },
+     "gain": {
+      "value": -354.8552,
+      "ci90": [
+       -375.2015,
+       -334.1973
+      ]
+     },
+     "per_mwh": {
+      "value": 1.966,
+      "ci90": [
+       1.3301,
+       2.6722
+      ]
+     },
+     "mae": 915.4213,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 1.7995,
+      "surplus_cost_per_mwh": 2.0982,
+      "value": 0.8576,
+      "ci90": [
+       0.2756,
+       1.9556
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 48.9423,
+      "ci90": [
+       45.7459,
+       52.3819
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -10.6424,
+       "ci90": [
+        -35.8018,
+        12.3489
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -40.597,
+       "ci90": [
+        -64.3856,
+        -19.4424
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 29.9546,
+       "ci90": [
+        14.1786,
+        47.002
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": -0.1232,
+       "ci90": [
+        -0.806,
+        0.4847
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 1.0412,
+       "ci90": [
+        0.4782,
+        1.5681
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "lgbm_v1": {
+     "net": {
+      "value": 92.9475,
+      "ci90": [
+       67.1188,
+       124.3994
+      ]
+     },
+     "loss": {
+      "value": 466.7383,
+      "ci90": [
+       434.8849,
+       502.495
+      ]
+     },
+     "gain": {
+      "value": -373.7907,
+      "ci90": [
+       -391.5751,
+       -356.8593
+      ]
+     },
+     "per_mwh": {
+      "value": 2.3273,
+      "ci90": [
+       1.5828,
+       3.2634
+      ]
+     },
+     "mae": 997.4067,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 2.2434,
+      "surplus_cost_per_mwh": 2.4013,
+      "value": 0.9343,
+      "ci90": [
+       0.3237,
+       1.8723
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 46.6967,
+      "ci90": [
+       43.6844,
+       49.8474
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 7.0733,
+       "ci90": [
+        -0.5301,
+        14.3491
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -3.9458,
+       "ci90": [
+        -11.6981,
+        3.346
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 11.0191,
+       "ci90": [
+        5.4561,
+        16.8864
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.2381,
+       "ci90": [
+        0.0331,
+        0.4348
+       ],
+       "label": "clearly higher"
+      },
+      "dispatch": {
+       "value": -1.2044,
+       "ci90": [
+        -1.6654,
+        -0.7795
+       ],
+       "label": "clearly lower"
+      }
+     }
+    },
+    "lightgbm_s1": {
+     "net": {
+      "value": 134.7206,
+      "ci90": [
+       87.8207,
+       199.1177
+      ]
+     },
+     "loss": {
+      "value": 524.1986,
+      "ci90": [
+       470.2372,
+       596.2691
+      ]
+     },
+     "gain": {
+      "value": -389.478,
+      "ci90": [
+       -407.6944,
+       -371.5264
+      ]
+     },
+     "per_mwh": {
+      "value": 3.4003,
+      "ci90": [
+       1.9745,
+       5.5044
+      ]
+     },
+     "mae": 1060.3588,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 4.2029,
+      "surplus_cost_per_mwh": 2.6839,
+      "value": 1.566,
+      "ci90": [
+       0.4753,
+       3.2858
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 47.5562,
+      "ci90": [
+       44.4916,
+       50.962
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 48.8464,
+       "ci90": [
+        18.7096,
+        91.3484
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 53.5146,
+       "ci90": [
+        19.2306,
+        102.112
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -4.6682,
+       "ci90": [
+        -16.0697,
+        6.9414
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 1.3111,
+       "ci90": [
+        0.3674,
+        2.7274
+       ],
+       "label": "clearly higher"
+      },
+      "dispatch": {
+       "value": -0.3449,
+       "ci90": [
+        -0.9055,
+        0.218
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "timesfm25_weather_single_day": {
+     "net": {
+      "value": 112.5489,
+      "ci90": [
+       71.1984,
+       151.8074
+      ]
+     },
+     "loss": {
+      "value": 735.6161,
+      "ci90": [
+       688.1017,
+       782.7059
+      ]
+     },
+     "gain": {
+      "value": -623.0672,
+      "ci90": [
+       -661.7679,
+       -588.5278
+      ]
+     },
+     "per_mwh": {
+      "value": 1.7455,
+      "ci90": [
+       1.0611,
+       2.3744
+      ]
+     },
+     "mae": 1623.8706,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 1.3779,
+      "surplus_cost_per_mwh": 2.1292,
+      "value": 0.6471,
+      "ci90": [
+       0.1261,
+       1.7051
+      ],
+      "draws_undefined": 1
+     },
+     "dispatch": {
+      "value": 46.9056,
+      "ci90": [
+       43.7596,
+       50.3405
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 26.6747,
+       "ci90": [
+        -11.5381,
+        56.6874
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 264.9321,
+       "ci90": [
+        230.5118,
+        296.5558
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -238.2574,
+       "ci90": [
+        -271.1339,
+        -208.6046
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": -0.3437,
+       "ci90": [
+        -1.07,
+        0.2486
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": -0.9955,
+       "ci90": [
+        -1.9109,
+        -0.1391
+       ],
+       "label": "clearly lower"
+      }
+     }
+    },
+    "avg_chronos2_regression": {
+     "net": {
+      "value": 80.553,
+      "ci90": [
+       59.5519,
+       105.371
+      ]
+     },
+     "loss": {
+      "value": 393.8223,
+      "ci90": [
+       367.7967,
+       423.2815
+      ]
+     },
+     "gain": {
+      "value": -313.2692,
+      "ci90": [
+       -329.3439,
+       -298.0
+      ]
+     },
+     "per_mwh": {
+      "value": 2.3524,
+      "ci90": [
+       1.6798,
+       3.1712
+      ]
+     },
+     "mae": 832.9603,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 2.1057,
+      "surplus_cost_per_mwh": 2.5457,
+      "value": 0.8272,
+      "ci90": [
+       0.3053,
+       1.6267
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 48.7516,
+      "ci90": [
+       45.5923,
+       52.1082
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -5.3212,
+       "ci90": [
+        -17.9009,
+        6.1745
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -76.8618,
+       "ci90": [
+        -89.2786,
+        -66.0745
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 71.5406,
+       "ci90": [
+        63.9061,
+        80.2412
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.2632,
+       "ci90": [
+        -0.0515,
+        0.5586
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.8505,
+       "ci90": [
+        0.5481,
+        1.1608
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "neso": {
+     "net": {
+      "value": 84.6352,
+      "ci90": [
+       67.5348,
+       105.3053
+      ]
+     },
+     "loss": {
+      "value": 344.874,
+      "ci90": [
+       324.1118,
+       367.3976
+      ]
+     },
+     "gain": {
+      "value": -260.2389,
+      "ci90": [
+       -272.0743,
+       -248.0807
+      ]
+     },
+     "per_mwh": {
+      "value": 2.9987,
+      "ci90": [
+       2.3278,
+       3.8319
+      ]
+     },
+     "mae": 700.2762,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 2.8189,
+      "surplus_cost_per_mwh": 3.1759,
+      "value": 0.8876,
+      "ci90": [
+       0.4775,
+       1.4556
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 49.4896,
+      "ci90": [
+       46.3166,
+       52.9989
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -1.239,
+       "ci90": [
+        -20.154,
+        16.9141
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -125.81,
+       "ci90": [
+        -145.1532,
+        -107.4492
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 124.5709,
+       "ci90": [
+        111.0523,
+        139.652
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.9095,
+       "ci90": [
+        0.4316,
+        1.4048
+       ],
+       "label": "clearly higher"
+      },
+      "dispatch": {
+       "value": 1.5885,
+       "ci90": [
+        1.0154,
+        2.1955
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "chronos2_weather": {
+     "net": {
+      "value": 83.003,
+      "ci90": [
+       54.6002,
+       116.4575
+      ]
+     },
+     "loss": {
+      "value": 462.2714,
+      "ci90": [
+       426.8323,
+       500.609
+      ]
+     },
+     "gain": {
+      "value": -379.2683,
+      "ci90": [
+       -399.7808,
+       -356.7122
+      ]
+     },
+     "per_mwh": {
+      "value": 2.1153,
+      "ci90": [
+       1.2803,
+       3.1812
+      ]
+     },
+     "mae": 979.5986,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 2.034,
+      "surplus_cost_per_mwh": 2.1874,
+      "value": 0.9299,
+      "ci90": [
+       0.1911,
+       2.2723
+      ],
+      "draws_undefined": 0
+     },
+     "dispatch": {
+      "value": 48.6486,
+      "ci90": [
+       45.4285,
+       52.0569
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -2.8712,
+       "ci90": [
+        -26.8831,
+        20.4558
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -8.4126,
+       "ci90": [
+        -32.7504,
+        14.7372
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 5.5415,
+       "ci90": [
+        -11.4054,
+        25.3586
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 0.0261,
+       "ci90": [
+        -0.5936,
+        0.642
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.7475,
+       "ci90": [
+        0.1768,
+        1.3112
+       ],
+       "label": "clearly higher"
+      }
+     }
+    }
+   },
+   "dispatch_references": {
+    "perfect_price": {
+     "value": 70.2219,
+     "ci90": [
+      66.4232,
+      74.3267
+     ]
+    },
+    "perfect_demand": {
+     "value": 49.2952,
+     "ci90": [
+      46.1884,
+      52.6392
+     ]
+    }
+   }
+  },
+  "winter": {
+   "n_days": 180,
+   "scope": "day",
+   "forecasters": {
+    "regression_weather": {
+     "net": {
+      "value": 65.2845,
+      "ci90": [
+       -8.5351,
+       162.1594
+      ]
+     },
+     "loss": {
+      "value": 374.386,
+      "ci90": [
+       290.3268,
+       483.9549
+      ]
+     },
+     "gain": {
+      "value": -309.1015,
+      "ci90": [
+       -358.9496,
+       -264.8453
+      ]
+     },
+     "per_mwh": {
+      "value": 2.0713,
+      "ci90": [
+       -0.3638,
+       5.4114
+      ]
+     },
+     "mae": 1065.18,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 2.4174,
+      "surplus_cost_per_mwh": 1.6692,
+      "value": 1.4482,
+      "ci90": [
+       -1.3286,
+       10.378
+      ],
+      "draws_undefined": 100
+     },
+     "dispatch": {
+      "value": 52.9873,
+      "ci90": [
+       42.7276,
+       65.8415
+      ]
+     }
+    },
+    "chronos2_A": {
+     "net": {
+      "value": 65.4663,
+      "ci90": [
+       14.8814,
+       122.7975
+      ]
+     },
+     "loss": {
+      "value": 344.5158,
+      "ci90": [
+       270.2486,
+       426.7391
+      ]
+     },
+     "gain": {
+      "value": -279.0494,
+      "ci90": [
+       -316.8064,
+       -242.5272
+      ]
+     },
+     "per_mwh": {
+      "value": 2.2723,
+      "ci90": [
+       0.4879,
+       4.3272
+      ]
+     },
+     "mae": 972.3317,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 3.7244,
+      "surplus_cost_per_mwh": 1.3133,
+      "value": 2.8359,
+      "ci90": [
+       -0.7511,
+       17.8447
+      ],
+      "draws_undefined": 134
+     },
+     "dispatch": {
+      "value": 53.7765,
+      "ci90": [
+       43.4016,
+       66.6723
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 0.1818,
+       "ci90": [
+        -60.894,
+        60.088
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -29.8703,
+       "ci90": [
+        -88.6899,
+        27.3727
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 30.0521,
+       "ci90": [
+        -2.0404,
+        66.5035
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 0.201,
+       "ci90": [
+        -1.7481,
+        2.1109
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.7891,
+       "ci90": [
+        0.3768,
+        1.2378
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "lgbm_v1": {
+     "net": {
+      "value": 73.8219,
+      "ci90": [
+       -8.1568,
+       186.1072
+      ]
+     },
+     "loss": {
+      "value": 373.405,
+      "ci90": [
+       277.2698,
+       503.6661
+      ]
+     },
+     "gain": {
+      "value": -299.5831,
+      "ci90": [
+       -342.7355,
+       -258.8114
+      ]
+     },
+     "per_mwh": {
+      "value": 2.4445,
+      "ci90": [
+       -0.3184,
+       6.3632
+      ]
+     },
+     "mae": 1039.4868,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 3.1183,
+      "surplus_cost_per_mwh": 1.6514,
+      "value": 1.8882,
+      "ci90": [
+       -1.3591,
+       11.1806
+      ],
+      "draws_undefined": 70
+     },
+     "dispatch": {
+      "value": 52.1601,
+      "ci90": [
+       42.274,
+       64.2267
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 8.5373,
+       "ci90": [
+        -12.0287,
+        30.6236
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -0.981,
+       "ci90": [
+        -20.9875,
+        23.6512
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 9.5184,
+       "ci90": [
+        -4.1835,
+        24.4818
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 0.3732,
+       "ci90": [
+        -0.3323,
+        1.1041
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": -0.8272,
+       "ci90": [
+        -1.7856,
+        -0.1039
+       ],
+       "label": "clearly lower"
+      }
+     }
+    },
+    "lightgbm_s1": {
+     "net": {
+      "value": 213.2282,
+      "ci90": [
+       16.6999,
+       512.4908
+      ]
+     },
+     "loss": {
+      "value": 568.5359,
+      "ci90": [
+       340.9343,
+       911.0065
+      ]
+     },
+     "gain": {
+      "value": -355.3077,
+      "ci90": [
+       -416.2569,
+       -299.0697
+      ]
+     },
+     "per_mwh": {
+      "value": 6.1226,
+      "ci90": [
+       0.424,
+       14.6017
+      ]
+     },
+     "mae": 1232.2954,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 10.2372,
+      "surplus_cost_per_mwh": 2.0379,
+      "value": 5.0235,
+      "ci90": [
+       -0.4897,
+       21.638
+      ],
+      "draws_undefined": 28
+     },
+     "dispatch": {
+      "value": 52.6609,
+      "ci90": [
+       42.2696,
+       65.5606
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 147.9437,
+       "ci90": [
+        12.4569,
+        359.8684
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 194.1499,
+       "ci90": [
+        40.523,
+        434.9081
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -46.2062,
+       "ci90": [
+        -82.7351,
+        -14.9418
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": 4.0513,
+       "ci90": [
+        0.2452,
+        9.3706
+       ],
+       "label": "clearly higher"
+      },
+      "dispatch": {
+       "value": -0.3264,
+       "ci90": [
+        -0.7519,
+        0.0625
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "timesfm25_weather_single_day": {
+     "net": {
+      "value": 159.5848,
+      "ci90": [
+       36.3524,
+       296.7135
+      ]
+     },
+     "loss": {
+      "value": 653.217,
+      "ci90": [
+       516.7993,
+       796.5353
+      ]
+     },
+     "gain": {
+      "value": -493.6322,
+      "ci90": [
+       -560.909,
+       -427.8877
+      ]
+     },
+     "per_mwh": {
+      "value": 2.9168,
+      "ci90": [
+       0.6681,
+       5.2701
+      ]
+     },
+     "mae": 1771.0951,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 4.2194,
+      "surplus_cost_per_mwh": 2.0373,
+      "value": 2.0711,
+      "ci90": [
+       -0.2404,
+       13.3441
+      ],
+      "draws_undefined": 88
+     },
+     "dispatch": {
+      "value": 51.6691,
+      "ci90": [
+       41.2828,
+       64.4968
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 94.3002,
+       "ci90": [
+        7.4466,
+        197.4851
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 278.8309,
+       "ci90": [
+        185.0535,
+        384.4688
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -184.5307,
+       "ci90": [
+        -240.3066,
+        -130.0236
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": 0.8455,
+       "ci90": [
+        -1.1331,
+        2.8307
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": -1.3183,
+       "ci90": [
+        -2.621,
+        -0.1631
+       ],
+       "label": "clearly lower"
+      }
+     }
+    },
+    "avg_chronos2_regression": {
+     "net": {
+      "value": 65.3754,
+      "ci90": [
+       8.5136,
+       137.8228
+      ]
+     },
+     "loss": {
+      "value": 315.6372,
+      "ci90": [
+       242.4029,
+       404.8856
+      ]
+     },
+     "gain": {
+      "value": -250.2618,
+      "ci90": [
+       -286.7328,
+       -216.0309
+      ]
+     },
+     "per_mwh": {
+      "value": 2.5216,
+      "ci90": [
+       0.2873,
+       5.5344
+      ]
+     },
+     "mae": 875.5766,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 3.2295,
+      "surplus_cost_per_mwh": 1.9039,
+      "value": 1.6962,
+      "ci90": [
+       -0.7767,
+       10.6344
+      ],
+      "draws_undefined": 41
+     },
+     "dispatch": {
+      "value": 53.4297,
+      "ci90": [
+       43.0908,
+       66.3266
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 0.0909,
+       "ci90": [
+        -30.447,
+        30.044
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -58.7488,
+       "ci90": [
+        -86.8003,
+        -33.3006
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 58.8397,
+       "ci90": [
+        39.4559,
+        80.7697
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.4503,
+       "ci90": [
+        -0.2474,
+        1.2474
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.4424,
+       "ci90": [
+        0.1552,
+        0.7261
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "neso": {
+     "net": {
+      "value": 75.1828,
+      "ci90": [
+       24.497,
+       139.4314
+      ]
+     },
+     "loss": {
+      "value": 278.7635,
+      "ci90": [
+       215.1353,
+       355.8935
+      ]
+     },
+     "gain": {
+      "value": -203.5808,
+      "ci90": [
+       -230.2447,
+       -179.3183
+      ]
+     },
+     "per_mwh": {
+      "value": 3.6101,
+      "ci90": [
+       1.0416,
+       6.9432
+      ]
+     },
+     "mae": 705.2545,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 4.7711,
+      "surplus_cost_per_mwh": 2.5808,
+      "value": 1.8487,
+      "ci90": [
+       0.0096,
+       9.2651
+      ],
+      "draws_undefined": 25
+     },
+     "dispatch": {
+      "value": 53.8253,
+      "ci90": [
+       43.5884,
+       66.6251
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 9.8982,
+       "ci90": [
+        -38.4681,
+        57.2357
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -95.6225,
+       "ci90": [
+        -153.1258,
+        -44.3723
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 105.5208,
+       "ci90": [
+        68.282,
+        145.095
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 1.5388,
+       "ci90": [
+        0.2268,
+        3.0044
+       ],
+       "label": "clearly higher"
+      },
+      "dispatch": {
+       "value": 0.838,
+       "ci90": [
+        0.1522,
+        1.5437
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "chronos2_weather": {
+     "net": {
+      "value": 114.5889,
+      "ci90": [
+       20.3477,
+       240.7556
+      ]
+     },
+     "loss": {
+      "value": 422.7459,
+      "ci90": [
+       296.6203,
+       575.8513
+      ]
+     },
+     "gain": {
+      "value": -308.157,
+      "ci90": [
+       -356.1938,
+       -261.6907
+      ]
+     },
+     "per_mwh": {
+      "value": 3.6244,
+      "ci90": [
+       0.6278,
+       7.6884
+      ]
+     },
+     "mae": 1088.3715,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 6.2714,
+      "surplus_cost_per_mwh": 1.3922,
+      "value": 4.5047,
+      "ci90": [
+       -0.3346,
+       26.8504
+      ],
+      "draws_undefined": 94
+     },
+     "dispatch": {
+      "value": 53.5622,
+      "ci90": [
+       43.1709,
+       66.4538
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 49.3044,
+       "ci90": [
+        -6.1028,
+        109.0482
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 48.3599,
+       "ci90": [
+        -13.8606,
+        117.6729
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 0.9445,
+       "ci90": [
+        -41.2673,
+        46.8633
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 1.5531,
+       "ci90": [
+        -0.0766,
+        3.2641
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.5749,
+       "ci90": [
+        0.1852,
+        1.0417
+       ],
+       "label": "clearly higher"
+      }
+     }
+    }
+   },
+   "dispatch_references": {
+    "perfect_price": {
+     "value": 66.9138,
+     "ci90": [
+      55.7359,
+      80.265
+     ]
+    },
+    "perfect_demand": {
+     "value": 53.2462,
+     "ci90": [
+      43.0273,
+      66.0351
+     ]
+    }
+   }
+  },
+  "T1": {
+   "n_days": 96,
+   "scope": "day",
+   "forecasters": {
+    "regression_weather": {
+     "net": {
+      "value": 121.618,
+      "ci90": [
+       7.1502,
+       285.2198
+      ]
+     },
+     "loss": {
+      "value": 409.1187,
+      "ci90": [
+       285.4452,
+       589.9837
+      ]
+     },
+     "gain": {
+      "value": -287.5007,
+      "ci90": [
+       -332.6964,
+       -244.4047
+      ]
+     },
+     "per_mwh": {
+      "value": 4.1489,
+      "ci90": [
+       0.0674,
+       10.0864
+      ]
+     },
+     "mae": 1025.0481,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 7.1412,
+      "surplus_cost_per_mwh": 2.0409,
+      "value": 3.4991,
+      "ci90": [
+       -1.2932,
+       17.1332
+      ],
+      "draws_undefined": 46
+     },
+     "dispatch": {
+      "value": 55.6544,
+      "ci90": [
+       39.7277,
+       76.8983
+      ]
+     }
+    },
+    "chronos2_A": {
+     "net": {
+      "value": 89.7887,
+      "ci90": [
+       8.7318,
+       185.734
+      ]
+     },
+     "loss": {
+      "value": 378.7096,
+      "ci90": [
+       268.1982,
+       500.8942
+      ]
+     },
+     "gain": {
+      "value": -288.9209,
+      "ci90": [
+       -333.9096,
+       -240.0611
+      ]
+     },
+     "per_mwh": {
+      "value": 3.3022,
+      "ci90": [
+       0.251,
+       6.9057
+      ]
+     },
+     "mae": 967.6623,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 4.5349,
+      "surplus_cost_per_mwh": 1.5423,
+      "value": 2.9403,
+      "ci90": [
+       -0.5788,
+       27.0829
+      ],
+      "draws_undefined": 386
+     },
+     "dispatch": {
+      "value": 56.5681,
+      "ci90": [
+       40.4138,
+       78.0226
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -31.8293,
+       "ci90": [
+        -126.2238,
+        61.4829
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -30.4091,
+       "ci90": [
+        -134.2986,
+        64.4836
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": -1.4203,
+       "ci90": [
+        -42.7054,
+        46.6909
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": -0.8466,
+       "ci90": [
+        -4.0852,
+        2.2601
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.9137,
+       "ci90": [
+        0.3659,
+        1.4851
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "lgbm_v1": {
+     "net": {
+      "value": 144.4827,
+      "ci90": [
+       14.2184,
+       335.7675
+      ]
+     },
+     "loss": {
+      "value": 421.9392,
+      "ci90": [
+       277.5697,
+       639.7591
+      ]
+     },
+     "gain": {
+      "value": -277.4565,
+      "ci90": [
+       -318.2905,
+       -237.4275
+      ]
+     },
+     "per_mwh": {
+      "value": 5.0404,
+      "ci90": [
+       0.2766,
+       12.102
+      ]
+     },
+     "mae": 1000.6701,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 7.6482,
+      "surplus_cost_per_mwh": 2.6619,
+      "value": 2.8732,
+      "ci90": [
+       -0.9599,
+       10.9998
+      ],
+      "draws_undefined": 8
+     },
+     "dispatch": {
+      "value": 54.6615,
+      "ci90": [
+       39.6094,
+       74.6655
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 22.8647,
+       "ci90": [
+        -9.9814,
+        57.9809
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 12.8206,
+       "ci90": [
+        -19.842,
+        52.283
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 10.0441,
+       "ci90": [
+        -8.5625,
+        30.3208
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 0.8915,
+       "ci90": [
+        -0.312,
+        2.1288
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": -0.9929,
+       "ci90": [
+        -2.7107,
+        0.2456
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "lightgbm_s1": {
+     "net": {
+      "value": 379.1891,
+      "ci90": [
+       44.0919,
+       919.0266
+      ]
+     },
+     "loss": {
+      "value": 734.4694,
+      "ci90": [
+       347.9366,
+       1337.816
+      ]
+     },
+     "gain": {
+      "value": -355.2803,
+      "ci90": [
+       -434.0305,
+       -284.5577
+      ]
+     },
+     "per_mwh": {
+      "value": 10.9684,
+      "ci90": [
+       1.1539,
+       25.4769
+      ]
+     },
+     "mae": 1248.9484,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 18.4537,
+      "surplus_cost_per_mwh": 2.8655,
+      "value": 6.4399,
+      "ci90": [
+       -0.2757,
+       21.1853
+      ],
+      "draws_undefined": 1
+     },
+     "dispatch": {
+      "value": 55.7235,
+      "ci90": [
+       39.7299,
+       77.2674
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 257.5711,
+       "ci90": [
+        8.8302,
+        635.4816
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 325.3508,
+       "ci90": [
+        46.0539,
+        751.252
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -67.7796,
+       "ci90": [
+        -122.9884,
+        -18.5013
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": 6.8195,
+       "ci90": [
+        0.1225,
+        15.5026
+       ],
+       "label": "clearly higher"
+      },
+      "dispatch": {
+       "value": 0.0691,
+       "ci90": [
+        -0.4012,
+        0.5415
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "timesfm25_weather_single_day": {
+     "net": {
+      "value": 197.3023,
+      "ci90": [
+       32.5451,
+       368.0508
+      ]
+     },
+     "loss": {
+      "value": 784.567,
+      "ci90": [
+       617.3478,
+       955.8034
+      ]
+     },
+     "gain": {
+      "value": -587.2648,
+      "ci90": [
+       -696.7015,
+       -487.005
+      ]
+     },
+     "per_mwh": {
+      "value": 3.303,
+      "ci90": [
+       0.487,
+       6.4971
+      ]
+     },
+     "mae": 2074.5452,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 4.0189,
+      "surplus_cost_per_mwh": 2.1696,
+      "value": 1.8524,
+      "ci90": [
+       -0.3146,
+       10.3099
+      ],
+      "draws_undefined": 99
+     },
+     "dispatch": {
+      "value": 53.6874,
+      "ci90": [
+       37.7447,
+       75.3763
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 75.6843,
+       "ci90": [
+        -39.1375,
+        186.5674
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 375.4483,
+       "ci90": [
+        251.9032,
+        503.8463
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -299.7641,
+       "ci90": [
+        -410.9585,
+        -205.6791
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": -0.8458,
+       "ci90": [
+        -4.4805,
+        2.4705
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": -1.967,
+       "ci90": [
+        -3.6672,
+        -0.5049
+       ],
+       "label": "clearly lower"
+      }
+     }
+    },
+    "avg_chronos2_regression": {
+     "net": {
+      "value": 105.7033,
+      "ci90": [
+       16.5573,
+       229.1206
+      ]
+     },
+     "loss": {
+      "value": 351.7268,
+      "ci90": [
+       246.2521,
+       495.5774
+      ]
+     },
+     "gain": {
+      "value": -246.0235,
+      "ci90": [
+       -281.8296,
+       -211.6152
+      ]
+     },
+     "per_mwh": {
+      "value": 4.3177,
+      "ci90": [
+       0.5373,
+       9.7109
+      ]
+     },
+     "mae": 862.5258,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 6.3058,
+      "surplus_cost_per_mwh": 2.3462,
+      "value": 2.6877,
+      "ci90": [
+       -0.635,
+       18.2144
+      ],
+      "draws_undefined": 52
+     },
+     "dispatch": {
+      "value": 56.077,
+      "ci90": [
+       39.9314,
+       77.6287
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -15.9147,
+       "ci90": [
+        -63.1119,
+        30.7415
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -57.3919,
+       "ci90": [
+        -105.0676,
+        -17.7494
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 41.4772,
+       "ci90": [
+        20.6318,
+        65.5466
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.1688,
+       "ci90": [
+        -1.0573,
+        1.4666
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.4226,
+       "ci90": [
+        0.1201,
+        0.7561
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "neso": {
+     "net": {
+      "value": 106.0704,
+      "ci90": [
+       19.9349,
+       212.37
+      ]
+     },
+     "loss": {
+      "value": 328.8002,
+      "ci90": [
+       231.6624,
+       448.6783
+      ]
+     },
+     "gain": {
+      "value": -222.7298,
+      "ci90": [
+       -259.3804,
+       -186.3522
+      ]
+     },
+     "per_mwh": {
+      "value": 5.0853,
+      "ci90": [
+       0.8111,
+       10.7053
+      ]
+     },
+     "mae": 738.7537,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 6.5511,
+      "surplus_cost_per_mwh": 3.4272,
+      "value": 1.9115,
+      "ci90": [
+       -0.2316,
+       13.4124
+      ],
+      "draws_undefined": 68
+     },
+     "dispatch": {
+      "value": 55.6317,
+      "ci90": [
+       39.6142,
+       77.2527
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": -15.5476,
+       "ci90": [
+        -81.353,
+        46.8769
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -80.3185,
+       "ci90": [
+        -162.0119,
+        -8.7436
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 64.7709,
+       "ci90": [
+        23.6541,
+        110.5117
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.9365,
+       "ci90": [
+        -0.8891,
+        2.9174
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": -0.0227,
+       "ci90": [
+        -0.8587,
+        0.6484
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "chronos2_weather": {
+     "net": {
+      "value": 174.2453,
+      "ci90": [
+       12.7865,
+       390.1055
+      ]
+     },
+     "loss": {
+      "value": 502.1503,
+      "ci90": [
+       299.1787,
+       745.7714
+      ]
+     },
+     "gain": {
+      "value": -327.9049,
+      "ci90": [
+       -389.5597,
+       -264.4949
+      ]
+     },
+     "per_mwh": {
+      "value": 5.5693,
+      "ci90": [
+       0.2876,
+       12.6241
+      ]
+     },
+     "mae": 1120.2268,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 8.1647,
+      "surplus_cost_per_mwh": 1.766,
+      "value": 4.6233,
+      "ci90": [
+       -0.4839,
+       29.7453
+      ],
+      "draws_undefined": 200
+     },
+     "dispatch": {
+      "value": 56.5553,
+      "ci90": [
+       40.3573,
+       78.0812
+      ]
+     },
+     "minus_regression": {
+      "net": {
+       "value": 52.6273,
+       "ci90": [
+        -29.2698,
+        142.5152
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 93.0316,
+       "ci90": [
+        -10.0002,
+        199.7892
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": -40.4043,
+       "ci90": [
+        -88.0085,
+        16.1492
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 1.4204,
+       "ci90": [
+        -1.026,
+        3.8321
+       ],
+       "label": "not clearly different"
+      },
+      "dispatch": {
+       "value": 0.901,
+       "ci90": [
+        0.3276,
+        1.5335
+       ],
+       "label": "clearly higher"
+      }
+     }
+    }
+   },
+   "dispatch_references": {
+    "perfect_price": {
+     "value": 70.0534,
+     "ci90": [
+      53.1652,
+      91.6482
+     ]
+    },
+    "perfect_demand": {
+     "value": 56.0437,
+     "ci90": [
+      40.2001,
+      77.3879
+     ]
+    }
+   }
+  },
+  "evenings": {
+   "n_days": 953,
+   "scope": "eve",
+   "forecasters": {
+    "regression_weather": {
+     "net": {
+      "value": 89.3818,
+      "ci90": [
+       24.3815,
+       166.5266
+      ]
+     },
+     "loss": {
+      "value": 571.2733,
+      "ci90": [
+       508.0066,
+       650.8303
+      ]
+     },
+     "gain": {
+      "value": -481.8915,
+      "ci90": [
+       -522.8906,
+       -445.5378
+      ]
+     },
+     "per_mwh": {
+      "value": 2.2042,
+      "ci90": [
+       0.3278,
+       4.6788
+      ]
+     },
+     "mae": 1215.7095,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 5.2032,
+      "surplus_cost_per_mwh": 0.0723,
+      "value": 71.9392,
+      "ci90": [
+       1.2424,
+       92.3605
+      ],
+      "draws_undefined": 929
+     }
+    },
+    "chronos2_A": {
+     "net": {
+      "value": 94.0336,
+      "ci90": [
+       32.8612,
+       157.7233
+      ]
+     },
+     "loss": {
+      "value": 487.8444,
+      "ci90": [
+       426.9017,
+       556.4159
+      ]
+     },
+     "gain": {
+      "value": -393.8108,
+      "ci90": [
+       -423.9319,
+       -364.3893
+      ]
+     },
+     "per_mwh": {
+      "value": 2.8487,
+      "ci90": [
+       0.8955,
+       4.9717
+      ]
+     },
+     "mae": 1032.6123,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 5.2939,
+      "surplus_cost_per_mwh": 0.4611,
+      "value": 11.481,
+      "ci90": [
+       1.6594,
+       55.3734
+      ],
+      "draws_undefined": 664
+     },
+     "minus_regression": {
+      "net": {
+       "value": 4.6518,
+       "ci90": [
+        -49.3237,
+        58.9803
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -83.4289,
+       "ci90": [
+        -135.8212,
+        -34.1381
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 88.0807,
+       "ci90": [
+        60.5947,
+        119.5058
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.6445,
+       "ci90": [
+        -0.9708,
+        2.3157
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "lgbm_v1": {
+     "net": {
+      "value": 99.6408,
+      "ci90": [
+       33.5139,
+       181.4749
+      ]
+     },
+     "loss": {
+      "value": 561.9613,
+      "ci90": [
+       495.8186,
+       643.0928
+      ]
+     },
+     "gain": {
+      "value": -462.3204,
+      "ci90": [
+       -500.9228,
+       -427.1042
+      ]
+     },
+     "per_mwh": {
+      "value": 2.5735,
+      "ci90": [
+       0.587,
+       5.1826
+      ]
+     },
+     "mae": 1182.9482,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 5.3266,
+      "surplus_cost_per_mwh": 0.3168,
+      "value": 16.8161,
+      "ci90": [
+       1.3052,
+       69.3553
+      ],
+      "draws_undefined": 738
+     },
+     "minus_regression": {
+      "net": {
+       "value": 10.259,
+       "ci90": [
+        -2.269,
+        23.5687
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -9.312,
+       "ci90": [
+        -19.9244,
+        0.6281
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 19.571,
+       "ci90": [
+        10.9576,
+        28.664
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.3693,
+       "ci90": [
+        0.0292,
+        0.7388
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "lightgbm_s1": {
+     "net": {
+      "value": 178.0575,
+      "ci90": [
+       64.0163,
+       339.4683
+      ]
+     },
+     "loss": {
+      "value": 630.9453,
+      "ci90": [
+       517.6358,
+       799.8666
+      ]
+     },
+     "gain": {
+      "value": -452.8879,
+      "ci90": [
+       -488.5822,
+       -420.814
+      ]
+     },
+     "per_mwh": {
+      "value": 5.1756,
+      "ci90": [
+       1.4112,
+       11.0877
+      ]
+     },
+     "mae": 1203.8324,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 9.2753,
+      "surplus_cost_per_mwh": 1.1785,
+      "value": 7.8704,
+      "ci90": [
+       1.2485,
+       46.4556
+      ],
+      "draws_undefined": 216
+     },
+     "minus_regression": {
+      "net": {
+       "value": 88.6756,
+       "ci90": [
+        17.3527,
+        184.9719
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 59.6721,
+       "ci90": [
+        -10.7915,
+        160.6045
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 29.0036,
+       "ci90": [
+        10.4152,
+        47.2664
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 2.9713,
+       "ci90": [
+        0.5567,
+        6.4874
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "timesfm25_weather_single_day": {
+     "net": {
+      "value": 146.4686,
+      "ci90": [
+       65.9493,
+       228.7176
+      ]
+     },
+     "loss": {
+      "value": 786.3651,
+      "ci90": [
+       709.2968,
+       867.0128
+      ]
+     },
+     "gain": {
+      "value": -639.8965,
+      "ci90": [
+       -693.6563,
+       -588.8583
+      ]
+     },
+     "per_mwh": {
+      "value": 2.7349,
+      "ci90": [
+       1.189,
+       4.4308
+      ]
+     },
+     "mae": 1724.617,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 3.7194,
+      "surplus_cost_per_mwh": 1.4482,
+      "value": 2.5682,
+      "ci90": [
+       0.7362,
+       14.5541
+      ],
+      "draws_undefined": 105
+     },
+     "minus_regression": {
+      "net": {
+       "value": 57.0868,
+       "ci90": [
+        -16.9078,
+        133.5719
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 215.0918,
+       "ci90": [
+        147.7825,
+        281.5679
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -158.005,
+       "ci90": [
+        -202.5532,
+        -108.7283
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": 0.5306,
+       "ci90": [
+        -1.4383,
+        2.5148
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "avg_chronos2_regression": {
+     "net": {
+      "value": 91.7077,
+      "ci90": [
+       35.0737,
+       156.1509
+      ]
+     },
+     "loss": {
+      "value": 454.4515,
+      "ci90": [
+       399.32,
+       521.5352
+      ]
+     },
+     "gain": {
+      "value": -362.7437,
+      "ci90": [
+       -391.312,
+       -336.3252
+      ]
+     },
+     "per_mwh": {
+      "value": 2.939,
+      "ci90": [
+       0.912,
+       5.5065
+      ]
+     },
+     "mae": 956.3432,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 5.464,
+      "surplus_cost_per_mwh": 0.9301,
+      "value": 5.8746,
+      "ci90": [
+       1.1146,
+       33.6127
+      ],
+      "draws_undefined": 337
+     },
+     "minus_regression": {
+      "net": {
+       "value": 2.3259,
+       "ci90": [
+        -24.6618,
+        29.4902
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -116.8218,
+       "ci90": [
+        -142.0201,
+        -93.2153
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 119.1477,
+       "ci90": [
+        101.6159,
+        139.3788
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.7347,
+       "ci90": [
+        0.0009,
+        1.5639
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "neso": {
+     "net": {
+      "value": 74.5259,
+      "ci90": [
+       32.0992,
+       121.0728
+      ]
+     },
+     "loss": {
+      "value": 382.7767,
+      "ci90": [
+       342.2926,
+       429.6593
+      ]
+     },
+     "gain": {
+      "value": -308.2508,
+      "ci90": [
+       -334.1686,
+       -284.527
+      ]
+     },
+     "per_mwh": {
+      "value": 2.7718,
+      "ci90": [
+       1.0131,
+       4.8217
+      ]
+     },
+     "mae": 775.8082,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 4.3555,
+      "surplus_cost_per_mwh": 1.1589,
+      "value": 3.7582,
+      "ci90": [
+       0.8478,
+       24.6083
+      ],
+      "draws_undefined": 303
+     },
+     "minus_regression": {
+      "net": {
+       "value": -14.8559,
+       "ci90": [
+        -69.0149,
+        31.9838
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -188.4965,
+       "ci90": [
+        -236.0934,
+        -146.8758
+       ],
+       "label": "clearly lower"
+      },
+      "gain": {
+       "value": 173.6406,
+       "ci90": [
+        141.7275,
+        206.9411
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 0.5676,
+       "ci90": [
+        -0.8338,
+        1.9658
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "chronos2_weather": {
+     "net": {
+      "value": 122.0709,
+      "ci90": [
+       41.6195,
+       215.1306
+      ]
+     },
+     "loss": {
+      "value": 546.7371,
+      "ci90": [
+       464.3576,
+       645.292
+      ]
+     },
+     "gain": {
+      "value": -424.6662,
+      "ci90": [
+       -458.2822,
+       -393.2015
+      ]
+     },
+     "per_mwh": {
+      "value": 3.6902,
+      "ci90": [
+       1.015,
+       7.0484
+      ]
+     },
+     "mae": 1129.7847,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 6.64,
+      "surplus_cost_per_mwh": 0.51,
+      "value": 13.0196,
+      "ci90": [
+       1.4112,
+       86.0848
+      ],
+      "draws_undefined": 650
+     },
+     "minus_regression": {
+      "net": {
+       "value": 32.6891,
+       "ci90": [
+        -22.763,
+        93.3265
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -24.5362,
+       "ci90": [
+        -79.7579,
+        32.2833
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 57.2252,
+       "ci90": [
+        27.7609,
+        89.4715
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 1.4859,
+       "ci90": [
+        -0.2258,
+        3.4295
+       ],
+       "label": "not clearly different"
+      }
+     }
+    }
+   }
+  },
+  "evenings_T1": {
+   "n_days": 96,
+   "scope": "eve",
+   "forecasters": {
+    "regression_weather": {
+     "net": {
+      "value": 271.4232,
+      "ci90": [
+       -99.4714,
+       852.0791
+      ]
+     },
+     "loss": {
+      "value": 594.7437,
+      "ci90": [
+       231.5415,
+       1185.299
+      ]
+     },
+     "gain": {
+      "value": -323.3204,
+      "ci90": [
+       -403.592,
+       -249.6071
+      ]
+     },
+     "per_mwh": {
+      "value": 12.1878,
+      "ci90": [
+       -4.8327,
+       39.8467
+      ]
+     },
+     "mae": 973.9128,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 34.9858,
+      "surplus_cost_per_mwh": -2.7619,
+      "value": null,
+      "ci90": [
+       -8.7102,
+       290.8573
+      ],
+      "draws_undefined": 1600
+     }
+    },
+    "chronos2_A": {
+     "net": {
+      "value": 345.544,
+      "ci90": [
+       10.329,
+       722.3206
+      ]
+     },
+     "loss": {
+      "value": 642.6726,
+      "ci90": [
+       275.8751,
+       1041.2105
+      ]
+     },
+     "gain": {
+      "value": -297.1286,
+      "ci90": [
+       -361.6947,
+       -230.6877
+      ]
+     },
+     "per_mwh": {
+      "value": 14.205,
+      "ci90": [
+       0.1689,
+       29.131
+      ]
+     },
+     "mae": 1068.8198,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 19.0916,
+      "surplus_cost_per_mwh": 3.6666,
+      "value": 5.2069,
+      "ci90": [
+       -0.5329,
+       37.0508
+      ],
+      "draws_undefined": 378
+     },
+     "minus_regression": {
+      "net": {
+       "value": 74.1207,
+       "ci90": [
+        -265.2027,
+        416.4615
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 47.9289,
+       "ci90": [
+        -277.6333,
+        375.6721
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 26.1918,
+       "ci90": [
+        -47.6517,
+        106.179
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 2.0172,
+       "ci90": [
+        -13.6335,
+        16.6143
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "lgbm_v1": {
+     "net": {
+      "value": 311.582,
+      "ci90": [
+       -74.4077,
+       929.7498
+      ]
+     },
+     "loss": {
+      "value": 605.0477,
+      "ci90": [
+       226.6392,
+       1233.1005
+      ]
+     },
+     "gain": {
+      "value": -293.4657,
+      "ci90": [
+       -357.396,
+       -231.4109
+      ]
+     },
+     "per_mwh": {
+      "value": 14.3079,
+      "ci90": [
+       -3.8301,
+       43.9692
+      ]
+     },
+     "mae": 947.8312,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 28.3387,
+      "surplus_cost_per_mwh": -1.8481,
+      "value": null,
+      "ci90": [
+       -7.1833,
+       151.098
+      ],
+      "draws_undefined": 1350
+     },
+     "minus_regression": {
+      "net": {
+       "value": 40.1588,
+       "ci90": [
+        -5.5194,
+        88.2502
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 10.304,
+       "ci90": [
+        -30.4284,
+        54.7833
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 29.8547,
+       "ci90": [
+        7.9058,
+        54.3958
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 2.1201,
+       "ci90": [
+        -0.3279,
+        5.1288
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "lightgbm_s1": {
+     "net": {
+      "value": 911.2145,
+      "ci90": [
+       18.0273,
+       2340.0707
+      ]
+     },
+     "loss": {
+      "value": 1266.6864,
+      "ci90": [
+       334.8694,
+       2745.0949
+      ]
+     },
+     "gain": {
+      "value": -355.4719,
+      "ci90": [
+       -436.5018,
+       -276.4876
+      ]
+     },
+     "per_mwh": {
+      "value": 32.5332,
+      "ci90": [
+       0.4183,
+       82.4852
+      ]
+     },
+     "mae": 1233.4254,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 53.1556,
+      "surplus_cost_per_mwh": 2.3123,
+      "value": 22.9883,
+      "ci90": [
+       -0.6286,
+       171.7025
+      ],
+      "draws_undefined": 284
+     },
+     "minus_regression": {
+      "net": {
+       "value": 639.7912,
+       "ci90": [
+        34.0083,
+        1495.0449
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 671.9427,
+       "ci90": [
+        66.8246,
+        1558.9158
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -32.1514,
+       "ci90": [
+        -78.1495,
+        10.1483
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 20.3454,
+       "ci90": [
+        1.1584,
+        43.2916
+       ],
+       "label": "clearly higher"
+      }
+     }
+    },
+    "timesfm25_weather_single_day": {
+     "net": {
+      "value": 518.1156,
+      "ci90": [
+       67.8177,
+       1008.3959
+      ]
+     },
+     "loss": {
+      "value": 1070.9876,
+      "ci90": [
+       631.6257,
+       1540.4496
+      ]
+     },
+     "gain": {
+      "value": -552.872,
+      "ci90": [
+       -723.8297,
+       -412.8975
+      ]
+     },
+     "per_mwh": {
+      "value": 10.4501,
+      "ci90": [
+       1.1851,
+       20.8549
+      ]
+     },
+     "mae": 2158.3254,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 12.8729,
+      "surplus_cost_per_mwh": 4.032,
+      "value": 3.1927,
+      "ci90": [
+       -0.0928,
+       25.0551
+      ],
+      "draws_undefined": 309
+     },
+     "minus_regression": {
+      "net": {
+       "value": 246.6923,
+       "ci90": [
+        -217.5585,
+        753.9181
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": 476.2439,
+       "ci90": [
+        20.15,
+        961.8591
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -229.5516,
+       "ci90": [
+        -418.095,
+        -74.37
+       ],
+       "label": "clearly lower"
+      },
+      "per_mwh": {
+       "value": -1.7378,
+       "ci90": [
+        -24.244,
+        15.9885
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "avg_chronos2_regression": {
+     "net": {
+      "value": 308.4836,
+      "ci90": [
+       -7.0613,
+       762.626
+      ]
+     },
+     "loss": {
+      "value": 566.3122,
+      "ci90": [
+       233.6935,
+       1042.536
+      ]
+     },
+     "gain": {
+      "value": -257.8286,
+      "ci90": [
+       -311.2713,
+       -207.8982
+      ]
+     },
+     "per_mwh": {
+      "value": 15.0753,
+      "ci90": [
+       -0.5738,
+       38.8823
+      ]
+     },
+     "mae": 897.2434,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 25.984,
+      "surplus_cost_per_mwh": 1.5963,
+      "value": 16.2779,
+      "ci90": [
+       -1.3695,
+       96.0093
+      ],
+      "draws_undefined": 631
+     },
+     "minus_regression": {
+      "net": {
+       "value": 37.0604,
+       "ci90": [
+        -132.6014,
+        208.2307
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -28.4315,
+       "ci90": [
+        -173.4856,
+        111.7426
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 65.4919,
+       "ci90": [
+        17.4713,
+        118.0477
+       ],
+       "label": "clearly higher"
+      },
+      "per_mwh": {
+       "value": 2.8875,
+       "ci90": [
+        -3.6144,
+        10.4058
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "neso": {
+     "net": {
+      "value": 145.0725,
+      "ci90": [
+       -56.9908,
+       407.9026
+      ]
+     },
+     "loss": {
+      "value": 426.6066,
+      "ci90": [
+       206.8653,
+       705.1355
+      ]
+     },
+     "gain": {
+      "value": -281.534,
+      "ci90": [
+       -388.2441,
+       -193.3032
+      ]
+     },
+     "per_mwh": {
+      "value": 8.795,
+      "ci90": [
+       -3.0667,
+       24.6514
+      ]
+     },
+     "mae": 753.0534,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 14.9173,
+      "surplus_cost_per_mwh": -0.4145,
+      "value": null,
+      "ci90": [
+       -1.2803,
+       41.1737
+      ],
+      "draws_undefined": 1112
+     },
+     "minus_regression": {
+      "net": {
+       "value": -126.3507,
+       "ci90": [
+        -459.6349,
+        135.2861
+       ],
+       "label": "not clearly different"
+      },
+      "loss": {
+       "value": -168.1371,
+       "ci90": [
+        -506.9356,
+        72.3132
+       ],
+       "label": "not clearly different"
+      },
+      "gain": {
+       "value": 41.7864,
+       "ci90": [
+        -67.8017,
+        144.5463
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": -3.3929,
+       "ci90": [
+        -16.324,
+        7.2063
+       ],
+       "label": "not clearly different"
+      }
+     }
+    },
+    "chronos2_weather": {
+     "net": {
+      "value": 634.4657,
+      "ci90": [
+       41.9175,
+       1348.4893
+      ]
+     },
+     "loss": {
+      "value": 995.6006,
+      "ci90": [
+       349.445,
+       1773.6315
+      ]
+     },
+     "gain": {
+      "value": -361.1349,
+      "ci90": [
+       -444.1034,
+       -275.3897
+      ]
+     },
+     "per_mwh": {
+      "value": 20.9215,
+      "ci90": [
+       1.0033,
+       45.5811
+      ]
+     },
+     "mae": 1331.9072,
+     "effective_ratio": {
+      "shortfall_cost_per_mwh": 29.7491,
+      "surplus_cost_per_mwh": 1.6812,
+      "value": 17.6952,
+      "ci90": [
+       -0.1683,
+       102.3154
+      ],
+      "draws_undefined": 664
+     },
+     "minus_regression": {
+      "net": {
+       "value": 363.0425,
+       "ci90": [
+        48.3626,
+        732.1277
+       ],
+       "label": "clearly higher"
+      },
+      "loss": {
+       "value": 400.8569,
+       "ci90": [
+        73.3785,
+        754.9948
+       ],
+       "label": "clearly higher"
+      },
+      "gain": {
+       "value": -37.8144,
+       "ci90": [
+        -114.9057,
+        46.8905
+       ],
+       "label": "not clearly different"
+      },
+      "per_mwh": {
+       "value": 8.7337,
+       "ci90": [
+        -0.8487,
+        19.7546
+       ],
+       "label": "not clearly different"
+      }
+     }
+    }
+   }
+  }
+ },
+ "dropped_days": [
+  "2024-04-13",
+  "2025-06-27",
+  "2025-06-28",
+  "2025-06-29",
+  "2026-07-27",
+  "2026-09-11",
+  "2026-09-12"
+ ],
+ "days_missing_a_market_index_price": [
+  "2024-04-13",
+  "2025-06-27",
+  "2025-06-28",
+  "2025-06-29",
+  "2026-07-27",
+  "2026-09-11",
+  "2026-09-12"
+ ],
+ "checks": {
+  "reproduction": {
+   "passed": true,
+   "rows": [
+    {
+     "forecaster": "regression_weather",
+     "computed": 1014.399,
+     "arbitrage": 1014.399,
+     "passed": true
+    },
+    {
+     "forecaster": "chronos2_A",
+     "computed": 915.5273,
+     "arbitrage": 915.5273,
+     "passed": true
+    },
+    {
+     "forecaster": "lgbm_v1",
+     "computed": 997.7862,
+     "arbitrage": 997.7862,
+     "passed": true
+    },
+    {
+     "forecaster": "lightgbm_s1",
+     "computed": 1060.6064,
+     "arbitrage": 1060.6064,
+     "passed": true
+    },
+    {
+     "forecaster": "timesfm25_weather_single_day",
+     "computed": 1619.7326,
+     "arbitrage": 1619.7326,
+     "passed": true
+    },
+    {
+     "forecaster": "avg_chronos2_regression",
+     "computed": 833.266,
+     "arbitrage": 833.266,
+     "passed": true
+    },
+    {
+     "forecaster": "neso",
+     "computed": 700.1267,
+     "arbitrage": 700.1267,
+     "passed": true
+    },
+    {
+     "forecaster": "chronos2_weather",
+     "computed": 980.3061,
+     "note": "not in the arbitrage study; reported only"
+    }
+   ]
+  },
+  "prices": {
+   "passed": true,
+   "mip_missing": 20,
+   "priced_without_volume": 0,
+   "system_price_missing": 0,
+   "rows": 46080
+  },
+  "arithmetic": {
+   "passed": true,
+   "net_minus_parts_max": 0.0,
+   "perfect_forecast_zero": true,
+   "doubling_doubles": true
+  },
+  "hashes": {
+   "passed": true,
+   "note": "every file read matched its recorded SHA-256, or the run stops"
+  },
+  "synthetic": {
+   "passed": true,
+   "file": "imbalance_cost/score_synthetic.json"
+  }
+ },
+ "headline": "In a backtest the foundation models may have seen in training, a price-taking supplier using Chronos-2's day-ahead demand forecast would have had net imbalance exposure not clearly different from one using a weather regression (75 against 86 \u00a3 per GWh of demand)."
+}
