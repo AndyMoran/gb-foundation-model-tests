@@ -1,0 +1,67 @@
+{
+ "script_sha256": "310c4d1f5c6c923f40b06e3f89a43fccc14d928b2cb605c6cefc76c306ee885b",
+ "draws": 400,
+ "checks": {
+  "unit rules: labels, headline, groups, bands": {
+   "passed": true,
+   "n": 18
+  },
+  "same as NESO: v = 0 everywhere, direction undefined": {
+   "passed": true
+  },
+  "noise: value 0, interval contains 0, flat across groups, hit rate 1/2": {
+   "passed": true,
+   "groups": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "follow: known value, clearly positive, hit rate 1, \u00a320 per MWh in every group": {
+   "passed": true,
+   "value": 399.5795,
+   "want": 399.5795
+  },
+  "bigonly: value per MWh rises across groups": {
+   "passed": true,
+   "groups": [
+    0.0,
+    0.0,
+    20.0,
+    20.0
+   ]
+  },
+  "bands: fixed edges, an empty band is undefined": {
+   "passed": true
+  },
+  "null: noise within chance, follow beyond chance (by day and by 7-day block)": {
+   "passed": true
+  },
+  "null: flipping every day negates the figures": {
+   "passed": true
+  },
+  "reconciliation identity": {
+   "passed": true
+  },
+  "value equals NESO exposure minus own (imbalance_cost/score.py sums)": {
+   "passed": true
+  },
+  "days: equal as a set, periods partition every day": {
+   "passed": true,
+   "periods": [
+    365,
+    365,
+    230
+   ]
+  },
+  "pipeline and headline with the real names": {
+   "passed": true,
+   "headline": "In a backtest the foundation models may have seen in training, Chronos-2's day-ahead demand forecast had 1.78 times the daily error of NESO's (90% interval 1.68 to 1.88), and a supplier that bought it instead of NESO's would have **clearly gained** (400 \u00a3 per GWh of demand, 90% interval 371 to 427); for the weather regression the figure was 0 \u00a3 per GWh (0 to 0). Where Chronos-2 disagreed with NESO most (the largest quarter of its disagreements), each MWh of disagreement was worth 20.00 \u00a3 (20.00 to 20.00), against 20.00 \u00a3 (20.00 to 20.00) in the smallest quarter."
+  },
+  "bootstrap equals the tails study's": {
+   "passed": true
+  }
+ },
+ "passed": true
+}
