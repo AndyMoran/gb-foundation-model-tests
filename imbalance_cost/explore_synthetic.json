@@ -1,0 +1,31 @@
+{
+ "script_sha256": "2dc308fb5da57888602c8065ed9b4018e97701c792f38012ad06dffb4a5310f8",
+ "checks": {
+  "top_share on a known array": {
+   "passed": true
+  },
+  "es on a known array": {
+   "passed": true
+  },
+  "aligned: every half-hour costly": {
+   "passed": true
+  },
+  "independent: half the half-hours costly": {
+   "passed": true
+  },
+  "perfect forecast: no costly half-hour": {
+   "passed": true
+  },
+  "winter share of losses": {
+   "passed": true,
+   "want": 0.1875
+  },
+  "demand-weighted average": {
+   "passed": true
+  },
+  "paired labels": {
+   "passed": true
+  }
+ },
+ "passed": true
+}
