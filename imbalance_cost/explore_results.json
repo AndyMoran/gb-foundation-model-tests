@@ -1,0 +1,1958 @@
+{
+ "note": "exploratory, added after stage 1 results; descriptive only",
+ "meta": {
+  "public_commit": "bfb5ca81b40217765f5c63904d361d919aec5f8b",
+  "script_sha256": "2dc308fb5da57888602c8065ed9b4018e97701c792f38012ad06dffb4a5310f8",
+  "seed": 20261125,
+  "draws": 2000,
+  "block": 7,
+  "versions": {
+   "python": "3.13.11",
+   "numpy": "2.4.3",
+   "pandas": "3.0.2"
+  }
+ },
+ "n_days": 953,
+ "n_halfhours": 45744,
+ "stress_threshold_gbp_per_mwh": 40.327,
+ "forecasters": {
+  "regression_weather": {
+   "share_costly_halfhours": {
+    "value": 0.4695,
+    "ci90": [
+     0.4621,
+     0.4768
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.4459,
+    "ci90": [
+     0.4391,
+     0.4533
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5708,
+    "ci90": [
+     0.5425,
+     0.5981
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.1951,
+    "ci90": [
+     0.1663,
+     0.2353
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6507,
+    "ci90": [
+     0.6331,
+     0.6701
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5084,
+    "ci90": [
+     0.4909,
+     0.5282
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 4781.1459,
+    "ci90": [
+     1781.3263,
+     8297.4311
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.3454,
+    "ci90": [
+     0.3038,
+     0.3885
+    ]
+   },
+   "daily_p95": {
+    "value": 688.522,
+    "ci90": [
+     612.5208,
+     827.8319
+    ]
+   },
+   "daily_p99": {
+    "value": 1471.1802,
+    "ci90": [
+     1111.8047,
+     1847.9149
+    ]
+   },
+   "daily_es5": {
+    "value": 1330.8782,
+    "ci90": [
+     1039.6809,
+     1664.6127
+    ]
+   },
+   "day_weighted": {
+    "value": 85.8742,
+    "ci90": [
+     60.8989,
+     113.6601
+    ]
+   },
+   "demand_weighted": {
+    "value": 82.7649,
+    "ci90": [
+     55.2159,
+     113.5959
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.192,
+    "ci90": [
+     0.1248,
+     0.2613
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 9047.6633
+    },
+    {
+     "day": "2024-10-27",
+     "net_gbp_per_gwh": 2804.3192
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 2594.7738
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 2415.3146
+    },
+    {
+     "day": "2026-10-24",
+     "net_gbp_per_gwh": 2070.3365
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 2064.6149
+    },
+    {
+     "day": "2026-04-05",
+     "net_gbp_per_gwh": 1647.8841
+    },
+    {
+     "day": "2026-09-18",
+     "net_gbp_per_gwh": 1620.8423
+    },
+    {
+     "day": "2025-02-22",
+     "net_gbp_per_gwh": 1579.9178
+    },
+    {
+     "day": "2026-03-15",
+     "net_gbp_per_gwh": 1475.3845
+    }
+   ]
+  },
+  "chronos2_A": {
+   "share_costly_halfhours": {
+    "value": 0.4658,
+    "ci90": [
+     0.4589,
+     0.473
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.4495,
+    "ci90": [
+     0.4423,
+     0.4563
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5425,
+    "ci90": [
+     0.5173,
+     0.5687
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.2073,
+    "ci90": [
+     0.1804,
+     0.2358
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.671,
+    "ci90": [
+     0.655,
+     0.6863
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5178,
+    "ci90": [
+     0.5004,
+     0.5373
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 5002.3375,
+    "ci90": [
+     2329.4373,
+     8028.5469
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.361,
+    "ci90": [
+     0.3214,
+     0.3978
+    ]
+   },
+   "daily_p95": {
+    "value": 689.6566,
+    "ci90": [
+     599.6525,
+     742.8744
+    ]
+   },
+   "daily_p99": {
+    "value": 1507.284,
+    "ci90": [
+     1192.2855,
+     2291.7678
+    ]
+   },
+   "daily_es5": {
+    "value": 1348.1631,
+    "ci90": [
+     1073.4594,
+     1651.5402
+    ]
+   },
+   "day_weighted": {
+    "value": 75.2318,
+    "ci90": [
+     51.6967,
+     101.4442
+    ]
+   },
+   "demand_weighted": {
+    "value": 70.2934,
+    "ci90": [
+     46.4048,
+     97.2428
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.1932,
+    "ci90": [
+     0.1267,
+     0.2627
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 5141.0489
+    },
+    {
+     "day": "2024-10-27",
+     "net_gbp_per_gwh": 4703.867
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 4161.5138
+    },
+    {
+     "day": "2026-04-04",
+     "net_gbp_per_gwh": 3296.1715
+    },
+    {
+     "day": "2026-01-05",
+     "net_gbp_per_gwh": 2547.3635
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 2291.7678
+    },
+    {
+     "day": "2026-06-23",
+     "net_gbp_per_gwh": 2117.3809
+    },
+    {
+     "day": "2026-06-28",
+     "net_gbp_per_gwh": 1738.7711
+    },
+    {
+     "day": "2024-03-31",
+     "net_gbp_per_gwh": 1590.9879
+    },
+    {
+     "day": "2026-03-15",
+     "net_gbp_per_gwh": 1564.708
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": -0.0037,
+     "ci90": [
+      -0.0104,
+      0.0036
+     ],
+     "label": "not clearly different"
+    },
+    "share_earning_halfhours": {
+     "value": 0.0037,
+     "ci90": [
+      -0.0036,
+      0.0104
+     ],
+     "label": "not clearly different"
+    },
+    "share_days_net_loss": {
+     "value": -0.0283,
+     "ci90": [
+      -0.0556,
+      0.001
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_1pct": {
+     "value": 0.0122,
+     "ci90": [
+      -0.0078,
+      0.032
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_10pct": {
+     "value": 0.0203,
+     "ci90": [
+      0.0066,
+      0.0335
+     ],
+     "label": "clearly higher"
+    },
+    "stress_share_costly": {
+     "value": 0.0094,
+     "ci90": [
+      -0.0114,
+      0.0298
+     ],
+     "label": "not clearly different"
+    },
+    "stress_mean_x_gbp": {
+     "value": 221.1916,
+     "ci90": [
+      -2532.9277,
+      3051.7642
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_of_losses": {
+     "value": 0.0156,
+     "ci90": [
+      -0.0081,
+      0.0392
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": 1.1345,
+     "ci90": [
+      -119.491,
+      62.9061
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p99": {
+     "value": 36.1038,
+     "ci90": [
+      -285.2531,
+      577.6356
+     ],
+     "label": "not clearly different"
+    },
+    "daily_es5": {
+     "value": 17.285,
+     "ci90": [
+      -208.374,
+      252.2285
+     ],
+     "label": "not clearly different"
+    },
+    "day_weighted": {
+     "value": -10.6424,
+     "ci90": [
+      -33.3125,
+      13.1669
+     ],
+     "label": "not clearly different"
+    },
+    "demand_weighted": {
+     "value": -12.4715,
+     "ci90": [
+      -35.9902,
+      12.8406
+     ],
+     "label": "not clearly different"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0012,
+     "ci90": [
+      -0.0234,
+      0.0306
+     ],
+     "label": "not clearly different"
+    }
+   }
+  },
+  "lgbm_v1": {
+   "share_costly_halfhours": {
+    "value": 0.4725,
+    "ci90": [
+     0.465,
+     0.4798
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.4429,
+    "ci90": [
+     0.436,
+     0.4502
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5666,
+    "ci90": [
+     0.5383,
+     0.5929
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.198,
+    "ci90": [
+     0.1642,
+     0.2463
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6505,
+    "ci90": [
+     0.631,
+     0.6725
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5143,
+    "ci90": [
+     0.4975,
+     0.5346
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 5066.7594,
+    "ci90": [
+     1762.2743,
+     8965.6121
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.3462,
+    "ci90": [
+     0.3016,
+     0.3942
+    ]
+   },
+   "daily_p95": {
+    "value": 730.0493,
+    "ci90": [
+     607.6583,
+     835.7001
+    ]
+   },
+   "daily_p99": {
+    "value": 1361.6797,
+    "ci90": [
+     1110.6687,
+     1840.2769
+    ]
+   },
+   "daily_es5": {
+    "value": 1357.8505,
+    "ci90": [
+     1033.6641,
+     1746.5842
+    ]
+   },
+   "day_weighted": {
+    "value": 92.9475,
+    "ci90": [
+     66.5856,
+     122.517
+    ]
+   },
+   "demand_weighted": {
+    "value": 90.6586,
+    "ci90": [
+     60.8463,
+     124.4624
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.1933,
+    "ci90": [
+     0.1212,
+     0.2689
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 10631.2771
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 2943.4647
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 2740.1723
+    },
+    {
+     "day": "2024-10-27",
+     "net_gbp_per_gwh": 2039.5057
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 1963.5741
+    },
+    {
+     "day": "2026-04-04",
+     "net_gbp_per_gwh": 1840.2769
+    },
+    {
+     "day": "2025-04-01",
+     "net_gbp_per_gwh": 1789.0115
+    },
+    {
+     "day": "2026-10-25",
+     "net_gbp_per_gwh": 1667.822
+    },
+    {
+     "day": "2026-10-24",
+     "net_gbp_per_gwh": 1644.3051
+    },
+    {
+     "day": "2025-02-22",
+     "net_gbp_per_gwh": 1391.651
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": 0.003,
+     "ci90": [
+      -0.0007,
+      0.0066
+     ],
+     "label": "not clearly different"
+    },
+    "share_earning_halfhours": {
+     "value": -0.003,
+     "ci90": [
+      -0.0066,
+      0.0007
+     ],
+     "label": "not clearly different"
+    },
+    "share_days_net_loss": {
+     "value": -0.0042,
+     "ci90": [
+      -0.022,
+      0.0126
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_1pct": {
+     "value": 0.0029,
+     "ci90": [
+      -0.0052,
+      0.0109
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_10pct": {
+     "value": -0.0002,
+     "ci90": [
+      -0.0059,
+      0.0051
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_costly": {
+     "value": 0.0059,
+     "ci90": [
+      -0.0037,
+      0.0147
+     ],
+     "label": "not clearly different"
+    },
+    "stress_mean_x_gbp": {
+     "value": 285.6135,
+     "ci90": [
+      -570.8672,
+      1119.779
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_of_losses": {
+     "value": 0.0008,
+     "ci90": [
+      -0.0084,
+      0.0091
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": 41.5273,
+     "ci90": [
+      -35.7805,
+      86.498
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p99": {
+     "value": -109.5005,
+     "ci90": [
+      -281.9441,
+      192.3929
+     ],
+     "label": "not clearly different"
+    },
+    "daily_es5": {
+     "value": 26.9723,
+     "ci90": [
+      -50.0818,
+      103.2162
+     ],
+     "label": "not clearly different"
+    },
+    "day_weighted": {
+     "value": 7.0733,
+     "ci90": [
+      -0.8056,
+      14.085
+     ],
+     "label": "not clearly different"
+    },
+    "demand_weighted": {
+     "value": 7.8938,
+     "ci90": [
+      -0.2069,
+      15.444
+     ],
+     "label": "not clearly different"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0013,
+     "ci90": [
+      -0.0087,
+      0.0116
+     ],
+     "label": "not clearly different"
+    }
+   }
+  },
+  "lightgbm_s1": {
+   "share_costly_halfhours": {
+    "value": 0.4793,
+    "ci90": [
+     0.4717,
+     0.487
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.436,
+    "ci90": [
+     0.4289,
+     0.4436
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5855,
+    "ci90": [
+     0.5593,
+     0.6128
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.2489,
+    "ci90": [
+     0.1687,
+     0.3554
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6702,
+    "ci90": [
+     0.6301,
+     0.7164
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5196,
+    "ci90": [
+     0.5015,
+     0.5385
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 9910.0628,
+    "ci90": [
+     2879.3208,
+     20149.1845
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.3888,
+    "ci90": [
+     0.3079,
+     0.4765
+    ]
+   },
+   "daily_p95": {
+    "value": 850.0586,
+    "ci90": [
+     700.9258,
+     987.3229
+    ]
+   },
+   "daily_p99": {
+    "value": 1708.5186,
+    "ci90": [
+     1291.3855,
+     2163.4565
+    ]
+   },
+   "daily_es5": {
+    "value": 1947.9965,
+    "ci90": [
+     1210.7282,
+     3058.4396
+    ]
+   },
+   "day_weighted": {
+    "value": 134.7206,
+    "ci90": [
+     88.1968,
+     192.6221
+    ]
+   },
+   "demand_weighted": {
+    "value": 140.8083,
+    "ci90": [
+     81.0222,
+     221.1989
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.2635,
+    "ci90": [
+     0.1404,
+     0.3876
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 29372.412
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 3450.5074
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 3377.8422
+    },
+    {
+     "day": "2025-02-22",
+     "net_gbp_per_gwh": 2540.5942
+    },
+    {
+     "day": "2026-10-24",
+     "net_gbp_per_gwh": 2457.0248
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 2294.0404
+    },
+    {
+     "day": "2025-04-01",
+     "net_gbp_per_gwh": 2042.9175
+    },
+    {
+     "day": "2026-04-04",
+     "net_gbp_per_gwh": 1856.8497
+    },
+    {
+     "day": "2025-10-13",
+     "net_gbp_per_gwh": 1744.8293
+    },
+    {
+     "day": "2025-06-30",
+     "net_gbp_per_gwh": 1733.8535
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": 0.0099,
+     "ci90": [
+      0.0051,
+      0.0148
+     ],
+     "label": "clearly higher"
+    },
+    "share_earning_halfhours": {
+     "value": -0.0099,
+     "ci90": [
+      -0.0148,
+      -0.0051
+     ],
+     "label": "clearly lower"
+    },
+    "share_days_net_loss": {
+     "value": 0.0147,
+     "ci90": [
+      -0.0084,
+      0.0389
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_1pct": {
+     "value": 0.0538,
+     "ci90": [
+      -0.0011,
+      0.1187
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_10pct": {
+     "value": 0.0195,
+     "ci90": [
+      -0.0081,
+      0.0476
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_costly": {
+     "value": 0.0111,
+     "ci90": [
+      -0.0026,
+      0.0235
+     ],
+     "label": "not clearly different"
+    },
+    "stress_mean_x_gbp": {
+     "value": 5128.9169,
+     "ci90": [
+      262.8523,
+      12312.7639
+     ],
+     "label": "clearly higher"
+    },
+    "stress_share_of_losses": {
+     "value": 0.0434,
+     "ci90": [
+      -0.005,
+      0.0934
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": 161.5366,
+     "ci90": [
+      15.914,
+      235.8086
+     ],
+     "label": "clearly higher"
+    },
+    "daily_p99": {
+     "value": 237.3384,
+     "ci90": [
+      -54.4169,
+      515.5724
+     ],
+     "label": "not clearly different"
+    },
+    "daily_es5": {
+     "value": 617.1183,
+     "ci90": [
+      116.6661,
+      1393.8433
+     ],
+     "label": "clearly higher"
+    },
+    "day_weighted": {
+     "value": 48.8464,
+     "ci90": [
+      18.5937,
+      86.5051
+     ],
+     "label": "clearly higher"
+    },
+    "demand_weighted": {
+     "value": 58.0434,
+     "ci90": [
+      18.1236,
+      114.8225
+     ],
+     "label": "clearly higher"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0715,
+     "ci90": [
+      0.0093,
+      0.1359
+     ],
+     "label": "clearly higher"
+    }
+   }
+  },
+  "timesfm25_weather_single_day": {
+   "share_costly_halfhours": {
+    "value": 0.4658,
+    "ci90": [
+     0.4578,
+     0.4729
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.4495,
+    "ci90": [
+     0.4425,
+     0.458
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5289,
+    "ci90": [
+     0.4995,
+     0.5551
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.1924,
+    "ci90": [
+     0.1687,
+     0.2185
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6595,
+    "ci90": [
+     0.6452,
+     0.6754
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5095,
+    "ci90": [
+     0.4877,
+     0.5282
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 6735.1638,
+    "ci90": [
+     2132.8125,
+     10948.6733
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.345,
+    "ci90": [
+     0.3068,
+     0.3787
+    ]
+   },
+   "daily_p95": {
+    "value": 1267.0865,
+    "ci90": [
+     996.2647,
+     1436.626
+    ]
+   },
+   "daily_p99": {
+    "value": 2620.8486,
+    "ci90": [
+     1973.7496,
+     3654.3265
+    ]
+   },
+   "daily_es5": {
+    "value": 2212.9734,
+    "ci90": [
+     1819.175,
+     2584.324
+    ]
+   },
+   "day_weighted": {
+    "value": 112.5489,
+    "ci90": [
+     69.3989,
+     151.2441
+    ]
+   },
+   "demand_weighted": {
+    "value": 110.7008,
+    "ci90": [
+     65.4593,
+     151.8322
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.21,
+    "ci90": [
+     0.1416,
+     0.2815
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 8709.1089
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 4769.0028
+    },
+    {
+     "day": "2026-01-05",
+     "net_gbp_per_gwh": 4696.2234
+    },
+    {
+     "day": "2025-02-22",
+     "net_gbp_per_gwh": 4548.869
+    },
+    {
+     "day": "2024-05-11",
+     "net_gbp_per_gwh": 3788.893
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 3718.0196
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 3595.5328
+    },
+    {
+     "day": "2026-03-29",
+     "net_gbp_per_gwh": 3122.0391
+    },
+    {
+     "day": "2026-10-26",
+     "net_gbp_per_gwh": 2817.4792
+    },
+    {
+     "day": "2025-04-01",
+     "net_gbp_per_gwh": 2655.6807
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": -0.0037,
+     "ci90": [
+      -0.012,
+      0.0039
+     ],
+     "label": "not clearly different"
+    },
+    "share_earning_halfhours": {
+     "value": 0.0037,
+     "ci90": [
+      -0.0039,
+      0.012
+     ],
+     "label": "not clearly different"
+    },
+    "share_days_net_loss": {
+     "value": -0.042,
+     "ci90": [
+      -0.0735,
+      -0.0126
+     ],
+     "label": "clearly lower"
+    },
+    "loss_share_worst_1pct": {
+     "value": -0.0027,
+     "ci90": [
+      -0.0243,
+      0.0211
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_10pct": {
+     "value": 0.0088,
+     "ci90": [
+      -0.0049,
+      0.025
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_costly": {
+     "value": 0.0011,
+     "ci90": [
+      -0.0245,
+      0.021
+     ],
+     "label": "not clearly different"
+    },
+    "stress_mean_x_gbp": {
+     "value": 1954.0178,
+     "ci90": [
+      -1654.5568,
+      4978.154
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_of_losses": {
+     "value": -0.0004,
+     "ci90": [
+      -0.0253,
+      0.0232
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": 578.5645,
+     "ci90": [
+      300.1881,
+      725.4284
+     ],
+     "label": "clearly higher"
+    },
+    "daily_p99": {
+     "value": 1149.6684,
+     "ci90": [
+      591.1061,
+      2003.4321
+     ],
+     "label": "clearly higher"
+    },
+    "daily_es5": {
+     "value": 882.0953,
+     "ci90": [
+      632.9254,
+      1121.9096
+     ],
+     "label": "clearly higher"
+    },
+    "day_weighted": {
+     "value": 26.6747,
+     "ci90": [
+      -11.0544,
+      56.5975
+     ],
+     "label": "not clearly different"
+    },
+    "demand_weighted": {
+     "value": 27.9359,
+     "ci90": [
+      -9.8191,
+      58.3694
+     ],
+     "label": "not clearly different"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0179,
+     "ci90": [
+      -0.0124,
+      0.0509
+     ],
+     "label": "not clearly different"
+    }
+   }
+  },
+  "avg_chronos2_regression": {
+   "share_costly_halfhours": {
+    "value": 0.4723,
+    "ci90": [
+     0.4653,
+     0.4795
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.443,
+    "ci90": [
+     0.4362,
+     0.45
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5645,
+    "ci90": [
+     0.5373,
+     0.5918
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.2019,
+    "ci90": [
+     0.1712,
+     0.239
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6592,
+    "ci90": [
+     0.6419,
+     0.6782
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5185,
+    "ci90": [
+     0.5005,
+     0.5403
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 4891.7417,
+    "ci90": [
+     2389.858,
+     7908.2042
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.3536,
+    "ci90": [
+     0.313,
+     0.3954
+    ]
+   },
+   "daily_p95": {
+    "value": 633.4936,
+    "ci90": [
+     561.6392,
+     716.6799
+    ]
+   },
+   "daily_p99": {
+    "value": 1289.6202,
+    "ci90": [
+     1029.1033,
+     1849.2684
+    ]
+   },
+   "daily_es5": {
+    "value": 1208.6347,
+    "ci90": [
+     942.5069,
+     1513.9421
+    ]
+   },
+   "day_weighted": {
+    "value": 80.553,
+    "ci90": [
+     58.6989,
+     105.0276
+    ]
+   },
+   "demand_weighted": {
+    "value": 76.5291,
+    "ci90": [
+     53.4513,
+     103.1827
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.1934,
+    "ci90": [
+     0.1241,
+     0.2643
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 7094.3561
+    },
+    {
+     "day": "2024-10-27",
+     "net_gbp_per_gwh": 3754.0931
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 3113.0644
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 2353.5412
+    },
+    {
+     "day": "2026-04-04",
+     "net_gbp_per_gwh": 2205.9258
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 1777.8157
+    },
+    {
+     "day": "2026-03-15",
+     "net_gbp_per_gwh": 1520.0462
+    },
+    {
+     "day": "2026-06-28",
+     "net_gbp_per_gwh": 1336.4647
+    },
+    {
+     "day": "2024-03-31",
+     "net_gbp_per_gwh": 1329.2048
+    },
+    {
+     "day": "2025-02-22",
+     "net_gbp_per_gwh": 1314.9436
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": 0.0028,
+     "ci90": [
+      -0.0013,
+      0.0071
+     ],
+     "label": "not clearly different"
+    },
+    "share_earning_halfhours": {
+     "value": -0.0028,
+     "ci90": [
+      -0.0071,
+      0.0013
+     ],
+     "label": "not clearly different"
+    },
+    "share_days_net_loss": {
+     "value": -0.0063,
+     "ci90": [
+      -0.0252,
+      0.0136
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_1pct": {
+     "value": 0.0068,
+     "ci90": [
+      -0.0012,
+      0.0151
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_10pct": {
+     "value": 0.0085,
+     "ci90": [
+      0.0015,
+      0.0152
+     ],
+     "label": "clearly higher"
+    },
+    "stress_share_costly": {
+     "value": 0.0101,
+     "ci90": [
+      -0.0032,
+      0.0234
+     ],
+     "label": "not clearly different"
+    },
+    "stress_mean_x_gbp": {
+     "value": 110.5958,
+     "ci90": [
+      -1266.4639,
+      1525.8821
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_of_losses": {
+     "value": 0.0083,
+     "ci90": [
+      -0.0034,
+      0.0193
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": -55.0284,
+     "ci90": [
+      -142.8561,
+      0.6335
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p99": {
+     "value": -181.56,
+     "ci90": [
+      -413.6034,
+      129.769
+     ],
+     "label": "not clearly different"
+    },
+    "daily_es5": {
+     "value": -122.2434,
+     "ci90": [
+      -240.2121,
+      -1.517
+     ],
+     "label": "clearly lower"
+    },
+    "day_weighted": {
+     "value": -5.3212,
+     "ci90": [
+      -16.6562,
+      6.5835
+     ],
+     "label": "not clearly different"
+    },
+    "demand_weighted": {
+     "value": -6.2357,
+     "ci90": [
+      -17.9951,
+      6.4203
+     ],
+     "label": "not clearly different"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0014,
+     "ci90": [
+      -0.0096,
+      0.0132
+     ],
+     "label": "not clearly different"
+    }
+   }
+  },
+  "neso": {
+   "share_costly_halfhours": {
+    "value": 0.4691,
+    "ci90": [
+     0.4624,
+     0.4764
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.4456,
+    "ci90": [
+     0.4387,
+     0.4524
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.5498,
+    "ci90": [
+     0.5257,
+     0.5771
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.196,
+    "ci90": [
+     0.1666,
+     0.2333
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6642,
+    "ci90": [
+     0.6478,
+     0.6818
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5412,
+    "ci90": [
+     0.5236,
+     0.56
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 5330.4382,
+    "ci90": [
+     3336.0835,
+     7730.2277
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.3663,
+    "ci90": [
+     0.3238,
+     0.4085
+    ]
+   },
+   "daily_p95": {
+    "value": 615.9474,
+    "ci90": [
+     563.8666,
+     732.6571
+    ]
+   },
+   "daily_p99": {
+    "value": 1119.4268,
+    "ci90": [
+     1001.0593,
+     1337.9275
+    ]
+   },
+   "daily_es5": {
+    "value": 1064.5611,
+    "ci90": [
+     868.5005,
+     1282.2649
+    ]
+   },
+   "day_weighted": {
+    "value": 84.6352,
+    "ci90": [
+     67.6726,
+     104.8921
+    ]
+   },
+   "demand_weighted": {
+    "value": 82.0011,
+    "ci90": [
+     63.6263,
+     104.0352
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.1979,
+    "ci90": [
+     0.1257,
+     0.2685
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 6146.3732
+    },
+    {
+     "day": "2026-04-04",
+     "net_gbp_per_gwh": 2717.8774
+    },
+    {
+     "day": "2026-03-29",
+     "net_gbp_per_gwh": 1689.3445
+    },
+    {
+     "day": "2025-04-01",
+     "net_gbp_per_gwh": 1566.5653
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 1368.7365
+    },
+    {
+     "day": "2024-08-04",
+     "net_gbp_per_gwh": 1310.6861
+    },
+    {
+     "day": "2024-06-09",
+     "net_gbp_per_gwh": 1309.4884
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 1159.8915
+    },
+    {
+     "day": "2025-10-12",
+     "net_gbp_per_gwh": 1137.8333
+    },
+    {
+     "day": "2026-06-28",
+     "net_gbp_per_gwh": 1122.6071
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": -0.0003,
+     "ci90": [
+      -0.0074,
+      0.0071
+     ],
+     "label": "not clearly different"
+    },
+    "share_earning_halfhours": {
+     "value": -0.0003,
+     "ci90": [
+      -0.0077,
+      0.0068
+     ],
+     "label": "not clearly different"
+    },
+    "share_days_net_loss": {
+     "value": -0.021,
+     "ci90": [
+      -0.0504,
+      0.0105
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_1pct": {
+     "value": 0.0009,
+     "ci90": [
+      -0.0096,
+      0.0122
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_10pct": {
+     "value": 0.0135,
+     "ci90": [
+      0.0015,
+      0.0253
+     ],
+     "label": "clearly higher"
+    },
+    "stress_share_costly": {
+     "value": 0.0328,
+     "ci90": [
+      0.0095,
+      0.0564
+     ],
+     "label": "clearly higher"
+    },
+    "stress_mean_x_gbp": {
+     "value": 549.2923,
+     "ci90": [
+      -1643.7911,
+      2816.8558
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_of_losses": {
+     "value": 0.0209,
+     "ci90": [
+      -0.0011,
+      0.0428
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": -72.5747,
+     "ci90": [
+      -185.4609,
+      38.3495
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p99": {
+     "value": -351.7534,
+     "ci90": [
+      -678.2166,
+      -54.4193
+     ],
+     "label": "clearly lower"
+    },
+    "daily_es5": {
+     "value": -266.3171,
+     "ci90": [
+      -429.925,
+      -107.5438
+     ],
+     "label": "clearly lower"
+    },
+    "day_weighted": {
+     "value": -1.239,
+     "ci90": [
+      -20.2683,
+      17.2954
+     ],
+     "label": "not clearly different"
+    },
+    "demand_weighted": {
+     "value": -0.7637,
+     "ci90": [
+      -19.8347,
+      18.4564
+     ],
+     "label": "not clearly different"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0059,
+     "ci90": [
+      -0.0149,
+      0.0293
+     ],
+     "label": "not clearly different"
+    }
+   }
+  },
+  "chronos2_weather": {
+   "share_costly_halfhours": {
+    "value": 0.4693,
+    "ci90": [
+     0.4625,
+     0.4764
+    ]
+   },
+   "share_earning_halfhours": {
+    "value": 0.446,
+    "ci90": [
+     0.4386,
+     0.4529
+    ]
+   },
+   "share_days_net_loss": {
+    "value": 0.553,
+    "ci90": [
+     0.5278,
+     0.5792
+    ]
+   },
+   "loss_share_worst_1pct": {
+    "value": 0.2246,
+    "ci90": [
+     0.1816,
+     0.2734
+    ]
+   },
+   "loss_share_worst_10pct": {
+    "value": 0.6808,
+    "ci90": [
+     0.6587,
+     0.7036
+    ]
+   },
+   "stress_share_costly": {
+    "value": 0.5165,
+    "ci90": [
+     0.5003,
+     0.5353
+    ]
+   },
+   "stress_mean_x_gbp": {
+    "value": 5283.8263,
+    "ci90": [
+     1494.4959,
+     10025.722
+    ]
+   },
+   "stress_share_of_losses": {
+    "value": 0.3625,
+    "ci90": [
+     0.3117,
+     0.4141
+    ]
+   },
+   "daily_p95": {
+    "value": 739.1825,
+    "ci90": [
+     663.5068,
+     797.4483
+    ]
+   },
+   "daily_p99": {
+    "value": 1650.1497,
+    "ci90": [
+     1239.1608,
+     1963.642
+    ]
+   },
+   "daily_es5": {
+    "value": 1538.153,
+    "ci90": [
+     1146.4569,
+     2013.9154
+    ]
+   },
+   "day_weighted": {
+    "value": 83.003,
+    "ci90": [
+     54.8774,
+     116.6278
+    ]
+   },
+   "demand_weighted": {
+    "value": 80.9317,
+    "ci90": [
+     49.1832,
+     120.2611
+    ]
+   },
+   "winter_share_of_losses": {
+    "value": 0.2218,
+    "ci90": [
+     0.1358,
+     0.3088
+    ]
+   },
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "net_gbp_per_gwh": 12006.1159
+    },
+    {
+     "day": "2024-09-14",
+     "net_gbp_per_gwh": 4566.2152
+    },
+    {
+     "day": "2024-10-27",
+     "net_gbp_per_gwh": 4058.9448
+    },
+    {
+     "day": "2026-01-05",
+     "net_gbp_per_gwh": 3533.1332
+    },
+    {
+     "day": "2026-04-06",
+     "net_gbp_per_gwh": 2372.7084
+    },
+    {
+     "day": "2026-03-15",
+     "net_gbp_per_gwh": 1993.3899
+    },
+    {
+     "day": "2026-06-23",
+     "net_gbp_per_gwh": 1936.1825
+    },
+    {
+     "day": "2026-03-29",
+     "net_gbp_per_gwh": 1747.474
+    },
+    {
+     "day": "2026-04-04",
+     "net_gbp_per_gwh": 1718.0969
+    },
+    {
+     "day": "2025-03-30",
+     "net_gbp_per_gwh": 1689.6187
+    }
+   ],
+   "minus_regression": {
+    "share_costly_halfhours": {
+     "value": -0.0002,
+     "ci90": [
+      -0.0066,
+      0.0068
+     ],
+     "label": "not clearly different"
+    },
+    "share_earning_halfhours": {
+     "value": 0.0002,
+     "ci90": [
+      -0.0068,
+      0.0066
+     ],
+     "label": "not clearly different"
+    },
+    "share_days_net_loss": {
+     "value": -0.0178,
+     "ci90": [
+      -0.0462,
+      0.0116
+     ],
+     "label": "not clearly different"
+    },
+    "loss_share_worst_1pct": {
+     "value": 0.0295,
+     "ci90": [
+      0.0094,
+      0.0476
+     ],
+     "label": "clearly higher"
+    },
+    "loss_share_worst_10pct": {
+     "value": 0.0301,
+     "ci90": [
+      0.0167,
+      0.042
+     ],
+     "label": "clearly higher"
+    },
+    "stress_share_costly": {
+     "value": 0.0081,
+     "ci90": [
+      -0.0125,
+      0.0283
+     ],
+     "label": "not clearly different"
+    },
+    "stress_mean_x_gbp": {
+     "value": 502.6804,
+     "ci90": [
+      -2283.436,
+      3141.9761
+     ],
+     "label": "not clearly different"
+    },
+    "stress_share_of_losses": {
+     "value": 0.0171,
+     "ci90": [
+      -0.0076,
+      0.0369
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p95": {
+     "value": 50.6605,
+     "ci90": [
+      -62.9182,
+      122.9674
+     ],
+     "label": "not clearly different"
+    },
+    "daily_p99": {
+     "value": 178.9695,
+     "ci90": [
+      -225.7675,
+      465.0023
+     ],
+     "label": "not clearly different"
+    },
+    "daily_es5": {
+     "value": 207.2749,
+     "ci90": [
+      5.4952,
+      415.7798
+     ],
+     "label": "clearly higher"
+    },
+    "day_weighted": {
+     "value": -2.8712,
+     "ci90": [
+      -27.1102,
+      22.1686
+     ],
+     "label": "not clearly different"
+    },
+    "demand_weighted": {
+     "value": -1.8331,
+     "ci90": [
+      -26.7405,
+      23.824
+     ],
+     "label": "not clearly different"
+    },
+    "winter_share_of_losses": {
+     "value": 0.0297,
+     "ci90": [
+      -0.0001,
+      0.0593
+     ],
+     "label": "not clearly different"
+    }
+   }
+  }
+ },
+ "check_day_weighted_matches_score": {
+  "passed": true,
+  "max_abs_diff": 0.0
+ }
+}
