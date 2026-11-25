@@ -1,0 +1,64 @@
+{
+ "target_day": "2026-11-26",
+ "mode": "issued",
+ "configuration": "chronos2_A (weather study E5, arm A: calendar + weather)",
+ "issue_time_utc": "2026-11-25 09:30:00+00:00",
+ "input_cut_utc": "2026-11-25 08:30:00+00:00",
+ "issue_deadline_uk": "2026-11-26 00:00:00+00:00",
+ "run_started_utc": "2026-11-25T11:45:00+00:00",
+ "written_utc": "2026-11-25T11:45:08+00:00",
+ "demand_sha256": "09165e917dc2c472971ca8d5c6db8ce685fdcd0bdcaafa0df553fd4fc3461199",
+ "prospective_record": "prospective/forecasts/days/2026-11-26.json",
+ "prospective_record_sha256": "01b364f86e57f4262442982da08a1c40b196caa4e8e3f9dcc6689ea73afcea02",
+ "last_input_halfhour_start_utc": "2026-11-25 08:00:00+00:00",
+ "context_fills_utc": [],
+ "weather_inputs": "weather_study/inputs/2026-11-26.csv",
+ "weather_inputs_sha256": "6615a25d588c95cb15e9b14c524f0339a9aede41510f17ec1c7a84398742831f",
+ "weather_inputs_commit": "ae9e3dd80b16e100899a34b78a596d9c9a35be63",
+ "calendar_days_flagged": {
+  "bank_holiday": false,
+  "christmas": false
+ },
+ "settings": {
+  "context_length": 2688,
+  "cross_learning": false,
+  "limit_prediction_length": false,
+  "batch_size": 64,
+  "device_map": "cpu",
+  "quantile_levels": [
+   0.5
+  ]
+ },
+ "model": {
+  "repo": "amazon/chronos-2",
+  "revision": "29ec3766d36d6f73f0696f85560a422f50e8498c",
+  "weights_sha256": "ddcda3c7508bf2528087723e98a20707cc04b7f370ae275a9fd88078ddba4f42"
+ },
+ "calendar_terms": [
+  "dow_tue",
+  "dow_wed",
+  "dow_thu",
+  "dow_fri",
+  "dow_sat",
+  "dow_sun",
+  "bank_holiday",
+  "christmas"
+ ],
+ "weather_terms": [
+  "t2m",
+  "wind",
+  "solar"
+ ],
+ "code_sha256": {
+  "weather/calendar_live.py": "161c44340bcebf1f3bdb0c34606dd9a23d8818fb8eaf5a2642ebc68a27eaeeb5",
+  "weather/calendar_study.py": "4cbd45d34a52f613c82be2bbfb4d705a48e9406d6e795c14a9732eb0088ab0bc",
+  "weather/models_weather.py": "a2af2fcf5ec29426a8131fb9732e4d24a80b45de0731f1106b413c08dbb15e95",
+  "weather/run_weather.py": "7acc283c573f579dedf2e44a41e0504d8163d15aa4163e2c2cbace0f6c9c40a7",
+  "code/common.py": "a8d33f3ebfad4bedce614f6e35e41fddb188757f337e7c2bc27860659018c9e4",
+  "code/inputs.py": "17f067bb496adadbcf0b0f452fcfc82979330a5d063db3c511c4ae92360cf16b",
+  "code/models.py": "14bedcda350e0ea44eaa80a77840e43a79a2e1a014dce73eb799cd89b6a61416"
+ },
+ "script_sha256": "161c44340bcebf1f3bdb0c34606dd9a23d8818fb8eaf5a2642ebc68a27eaeeb5",
+ "attribution": "Contains BMRS data \u00a9 Elexon Limited copyright and database right. Contains modified Copernicus Climate Change Service information (ERA5) and modified Copernicus/ECMWF data (open-data forecasts).",
+ "forecasts_sha256": "f9af33862345f488b52dccabec85fcab85389269b94bb238073a1475d77ab225"
+}
