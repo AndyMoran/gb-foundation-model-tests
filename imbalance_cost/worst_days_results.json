@@ -1,0 +1,4216 @@
+{
+ "note": "exploratory, added after stage 1 and explore.py results; descriptive only",
+ "meta": {
+  "public_commit": "7683283faeeef55323984c72f27fbcee1b375d00",
+  "script_sha256": "c79c2238a9760b6f1f3b050e22f98ff8a79f15ebb554b6878dd0385bf7af3a8f",
+  "holidays_sha256": "5a83ee90121c7e5d729e16e626099e93acdb78d1a352583d3fac4092096915af",
+  "explore_sha256": "7a65a30f98baa9eafbc13247b2998a60a5b1b907ec06023725e1105e77d95042",
+  "versions": {
+   "python": "3.13.11",
+   "numpy": "2.4.3",
+   "pandas": "3.0.2"
+  }
+ },
+ "n_days": 953,
+ "base_rates": {
+  "clock_change": 0.0063,
+  "bank_holiday": 0.022,
+  "easter": 0.0126,
+  "christmas": 0.0189,
+  "calendar": 0.0462,
+  "cold": 0.1007,
+  "weekend": 0.2844
+ },
+ "forecasters": {
+  "regression_weather": {
+   "k": 48,
+   "worst_5pct_mean": 1330.8782,
+   "calendar_share_of_worst_total": 0.2142,
+   "worst_5pct_mean_non_calendar": 1179.131,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0833,
+    "bank_holiday": 0.0417,
+    "easter": 0.0833,
+    "christmas": 0.0208,
+    "calendar": 0.1667,
+    "cold": 0.0417,
+    "weekend": 0.4375
+   },
+   "mae_ratio_worst_to_all": 1.5349,
+   "abs_spread_ratio_worst_to_all": 1.6976,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 9047.6633,
+     "mae_mw": 1650.4783,
+     "mean_error_mw": 1646.9701,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 2804.3192,
+     "mae_mw": 1520.9399,
+     "mean_error_mw": -1271.9587,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 2594.7738,
+     "mae_mw": 1816.1214,
+     "mean_error_mw": -1467.8876,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2415.3146,
+     "mae_mw": 1709.6547,
+     "mean_error_mw": -1259.1537,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2026-10-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2070.3365,
+     "mae_mw": 1238.9986,
+     "mean_error_mw": 1174.9877,
+     "abs_spread_gbp_per_mwh": 43.8089,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2064.6149,
+     "mae_mw": 2245.3036,
+     "mean_error_mw": -2239.7452,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-05",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1647.8841,
+     "mae_mw": 2150.8977,
+     "mean_error_mw": -2005.5825,
+     "abs_spread_gbp_per_mwh": 19.6219,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-18",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1620.8423,
+     "mae_mw": 1666.8399,
+     "mean_error_mw": -1620.2077,
+     "abs_spread_gbp_per_mwh": 29.4118,
+     "flags": []
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1579.9178,
+     "mae_mw": 1282.932,
+     "mean_error_mw": -1220.4617,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1475.3845,
+     "mae_mw": 2552.2556,
+     "mean_error_mw": -2552.2556,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1467.2993,
+     "mae_mw": 1923.5348,
+     "mean_error_mw": -1888.6562,
+     "abs_spread_gbp_per_mwh": 33.8192,
+     "flags": []
+    },
+    {
+     "day": "2025-04-01",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1464.8865,
+     "mae_mw": 1432.1662,
+     "mean_error_mw": -1290.5663,
+     "abs_spread_gbp_per_mwh": 26.953,
+     "flags": []
+    },
+    {
+     "day": "2026-08-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1397.4737,
+     "mae_mw": 1356.5034,
+     "mean_error_mw": -1149.1679,
+     "abs_spread_gbp_per_mwh": 23.4793,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-04-16",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1322.4354,
+     "mae_mw": 2491.0917,
+     "mean_error_mw": -2456.9795,
+     "abs_spread_gbp_per_mwh": 29.3605,
+     "flags": []
+    },
+    {
+     "day": "2026-08-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1298.2628,
+     "mae_mw": 1474.2768,
+     "mean_error_mw": -1450.3297,
+     "abs_spread_gbp_per_mwh": 27.2095,
+     "flags": []
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1237.1117,
+     "mae_mw": 1152.8978,
+     "mean_error_mw": -1094.8817,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1115.6802,
+     "mae_mw": 1044.705,
+     "mean_error_mw": 13.537,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-10",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1108.2274,
+     "mae_mw": 1381.5955,
+     "mean_error_mw": -999.8803,
+     "abs_spread_gbp_per_mwh": 33.0843,
+     "flags": []
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1067.4217,
+     "mae_mw": 1081.2832,
+     "mean_error_mw": -208.8156,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-25",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1040.0933,
+     "mae_mw": 678.599,
+     "mean_error_mw": 165.5461,
+     "abs_spread_gbp_per_mwh": 70.1663,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-02",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1028.1507,
+     "mae_mw": 2527.0753,
+     "mean_error_mw": -2527.0753,
+     "abs_spread_gbp_per_mwh": 15.3876,
+     "flags": []
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1000.5008,
+     "mae_mw": 2420.7385,
+     "mean_error_mw": -1820.3175,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-12-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 994.8339,
+     "mae_mw": 1427.4281,
+     "mean_error_mw": -1040.7561,
+     "abs_spread_gbp_per_mwh": 22.1754,
+     "flags": []
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 971.0137,
+     "mae_mw": 910.9417,
+     "mean_error_mw": -148.5865,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2026-07-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 966.5084,
+     "mae_mw": 967.6328,
+     "mean_error_mw": 733.5661,
+     "abs_spread_gbp_per_mwh": 22.388,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 962.0652,
+     "mae_mw": 1694.4103,
+     "mean_error_mw": -1673.4341,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2025-04-06",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 948.5338,
+     "mae_mw": 1230.4565,
+     "mean_error_mw": -833.5545,
+     "abs_spread_gbp_per_mwh": 24.6802,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-09-22",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 934.6689,
+     "mae_mw": 1419.2737,
+     "mean_error_mw": -769.4483,
+     "abs_spread_gbp_per_mwh": 19.0533,
+     "flags": []
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 934.1582,
+     "mae_mw": 1330.1077,
+     "mean_error_mw": -769.6983,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-10-12",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 891.6892,
+     "mae_mw": 1445.4976,
+     "mean_error_mw": 1338.5138,
+     "abs_spread_gbp_per_mwh": 28.2008,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 884.6794,
+     "mae_mw": 1311.2994,
+     "mean_error_mw": -1039.3875,
+     "abs_spread_gbp_per_mwh": 25.0622,
+     "flags": []
+    },
+    {
+     "day": "2026-04-16",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 879.4105,
+     "mae_mw": 1084.1456,
+     "mean_error_mw": -803.032,
+     "abs_spread_gbp_per_mwh": 21.8104,
+     "flags": []
+    },
+    {
+     "day": "2024-03-23",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 876.0502,
+     "mae_mw": 2413.8362,
+     "mean_error_mw": -2413.8362,
+     "abs_spread_gbp_per_mwh": 19.9605,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 873.4489,
+     "mae_mw": 1436.2582,
+     "mean_error_mw": 1430.6421,
+     "abs_spread_gbp_per_mwh": 21.726,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-20",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 851.9408,
+     "mae_mw": 1569.3412,
+     "mean_error_mw": -1385.3982,
+     "abs_spread_gbp_per_mwh": 16.8081,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-18",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 840.1401,
+     "mae_mw": 1273.2446,
+     "mean_error_mw": 1115.4712,
+     "abs_spread_gbp_per_mwh": 14.8097,
+     "flags": []
+    },
+    {
+     "day": "2026-04-21",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 834.7356,
+     "mae_mw": 1698.7528,
+     "mean_error_mw": -1603.0478,
+     "abs_spread_gbp_per_mwh": 28.7556,
+     "flags": []
+    },
+    {
+     "day": "2026-03-04",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 827.691,
+     "mae_mw": 1298.4486,
+     "mean_error_mw": 1129.9863,
+     "abs_spread_gbp_per_mwh": 21.0941,
+     "flags": []
+    },
+    {
+     "day": "2025-02-02",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 812.8498,
+     "mae_mw": 1667.128,
+     "mean_error_mw": -1588.5916,
+     "abs_spread_gbp_per_mwh": 29.3468,
+     "flags": [
+      "cold",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 796.9333,
+     "mae_mw": 1521.8694,
+     "mean_error_mw": 1349.9401,
+     "abs_spread_gbp_per_mwh": 20.7903,
+     "flags": []
+    },
+    {
+     "day": "2025-06-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 772.5888,
+     "mae_mw": 1023.4818,
+     "mean_error_mw": 689.4257,
+     "abs_spread_gbp_per_mwh": 49.6744,
+     "flags": []
+    },
+    {
+     "day": "2026-03-11",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 762.3372,
+     "mae_mw": 2306.5259,
+     "mean_error_mw": -2306.5259,
+     "abs_spread_gbp_per_mwh": 19.8894,
+     "flags": []
+    },
+    {
+     "day": "2024-06-29",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 751.5683,
+     "mae_mw": 963.5012,
+     "mean_error_mw": 377.4477,
+     "abs_spread_gbp_per_mwh": 26.549,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-26",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 749.515,
+     "mae_mw": 1473.6731,
+     "mean_error_mw": -211.4991,
+     "abs_spread_gbp_per_mwh": 16.2089,
+     "flags": []
+    },
+    {
+     "day": "2026-04-07",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 742.6536,
+     "mae_mw": 1615.6919,
+     "mean_error_mw": -1494.5241,
+     "abs_spread_gbp_per_mwh": 21.9566,
+     "flags": []
+    },
+    {
+     "day": "2026-04-10",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 735.4148,
+     "mae_mw": 1788.9498,
+     "mean_error_mw": -1630.7074,
+     "abs_spread_gbp_per_mwh": 23.8844,
+     "flags": []
+    },
+    {
+     "day": "2026-03-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 722.7979,
+     "mae_mw": 1773.0057,
+     "mean_error_mw": -1769.564,
+     "abs_spread_gbp_per_mwh": 23.1053,
+     "flags": []
+    },
+    {
+     "day": "2025-05-15",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 695.3306,
+     "mae_mw": 1285.4016,
+     "mean_error_mw": 710.8323,
+     "abs_spread_gbp_per_mwh": 18.6424,
+     "flags": []
+    }
+   ]
+  },
+  "chronos2_A": {
+   "k": 48,
+   "worst_5pct_mean": 1348.1631,
+   "calendar_share_of_worst_total": 0.2988,
+   "worst_5pct_mean_non_calendar": 1114.381,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0833,
+    "bank_holiday": 0.1042,
+    "easter": 0.0833,
+    "christmas": 0.0417,
+    "calendar": 0.2292,
+    "cold": 0.0625,
+    "weekend": 0.5
+   },
+   "mae_ratio_worst_to_all": 1.719,
+   "abs_spread_ratio_worst_to_all": 1.7188,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 5141.0489,
+     "mae_mw": 565.0559,
+     "mean_error_mw": 419.9711,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 4703.867,
+     "mae_mw": 2036.9016,
+     "mean_error_mw": -1914.8765,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 4161.5138,
+     "mae_mw": 3751.6462,
+     "mean_error_mw": -3751.6462,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 3296.1715,
+     "mae_mw": 1650.8274,
+     "mean_error_mw": 1336.8214,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-01-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2547.3635,
+     "mae_mw": 2492.6369,
+     "mean_error_mw": 2287.6714,
+     "abs_spread_gbp_per_mwh": 55.6678,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2291.7678,
+     "mae_mw": 1877.9486,
+     "mean_error_mw": -1831.724,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2026-06-23",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 2117.3809,
+     "mae_mw": 1554.4945,
+     "mean_error_mw": 1554.4945,
+     "abs_spread_gbp_per_mwh": 45.4397,
+     "flags": []
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1738.7711,
+     "mae_mw": 1708.8475,
+     "mean_error_mw": -1665.3661,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1590.9879,
+     "mae_mw": 1734.4804,
+     "mean_error_mw": -493.989,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1564.708,
+     "mae_mw": 2499.5581,
+     "mean_error_mw": -2499.5581,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1454.2772,
+     "mae_mw": 792.8355,
+     "mean_error_mw": 600.7166,
+     "abs_spread_gbp_per_mwh": 49.6744,
+     "flags": []
+    },
+    {
+     "day": "2024-05-27",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1448.826,
+     "mae_mw": 2321.1418,
+     "mean_error_mw": -2321.1418,
+     "abs_spread_gbp_per_mwh": 24.907,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2026-03-29",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1408.3278,
+     "mae_mw": 1727.8474,
+     "mean_error_mw": 887.3512,
+     "abs_spread_gbp_per_mwh": 32.6883,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1295.3778,
+     "mae_mw": 1322.5579,
+     "mean_error_mw": -1162.9572,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-26",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1268.6146,
+     "mae_mw": 1335.5132,
+     "mean_error_mw": -1335.5132,
+     "abs_spread_gbp_per_mwh": 24.179,
+     "flags": []
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1215.4773,
+     "mae_mw": 3419.5529,
+     "mean_error_mw": -3418.6307,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-04-06",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1202.2682,
+     "mae_mw": 949.9985,
+     "mean_error_mw": 571.2525,
+     "abs_spread_gbp_per_mwh": 23.5431,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-10-13",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1170.8777,
+     "mae_mw": 1227.0498,
+     "mean_error_mw": 1224.2782,
+     "abs_spread_gbp_per_mwh": 31.4409,
+     "flags": []
+    },
+    {
+     "day": "2026-09-26",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1108.668,
+     "mae_mw": 1376.7271,
+     "mean_error_mw": -948.1177,
+     "abs_spread_gbp_per_mwh": 26.8564,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-29",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1057.4164,
+     "mae_mw": 1021.4327,
+     "mean_error_mw": -939.1349,
+     "abs_spread_gbp_per_mwh": 26.549,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1049.9693,
+     "mae_mw": 1282.9777,
+     "mean_error_mw": -794.3262,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-07-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1026.8714,
+     "mae_mw": 1720.3314,
+     "mean_error_mw": -1720.3314,
+     "abs_spread_gbp_per_mwh": 21.4058,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-08-10",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1022.1744,
+     "mae_mw": 1087.6601,
+     "mean_error_mw": -488.3236,
+     "abs_spread_gbp_per_mwh": 21.3306,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 984.9961,
+     "mae_mw": 800.417,
+     "mean_error_mw": -623.0651,
+     "abs_spread_gbp_per_mwh": 23.4793,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 960.8577,
+     "mae_mw": 919.4294,
+     "mean_error_mw": -724.3064,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-26",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 925.1171,
+     "mae_mw": 1343.5712,
+     "mean_error_mw": 607.9434,
+     "abs_spread_gbp_per_mwh": 32.3008,
+     "flags": []
+    },
+    {
+     "day": "2026-04-03",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 912.4027,
+     "mae_mw": 2985.0854,
+     "mean_error_mw": -2985.0854,
+     "abs_spread_gbp_per_mwh": 21.1355,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2025-01-22",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 878.681,
+     "mae_mw": 571.8358,
+     "mean_error_mw": -562.4452,
+     "abs_spread_gbp_per_mwh": 60.5383,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-10-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 843.2136,
+     "mae_mw": 890.7459,
+     "mean_error_mw": -680.1676,
+     "abs_spread_gbp_per_mwh": 33.8192,
+     "flags": []
+    },
+    {
+     "day": "2024-08-12",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 836.1455,
+     "mae_mw": 656.1523,
+     "mean_error_mw": 600.4913,
+     "abs_spread_gbp_per_mwh": 23.2805,
+     "flags": []
+    },
+    {
+     "day": "2025-06-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 831.643,
+     "mae_mw": 1560.553,
+     "mean_error_mw": -1550.3038,
+     "abs_spread_gbp_per_mwh": 25.0622,
+     "flags": []
+    },
+    {
+     "day": "2025-10-12",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 819.6073,
+     "mae_mw": 1134.2686,
+     "mean_error_mw": 1015.8393,
+     "abs_spread_gbp_per_mwh": 28.2008,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 809.2658,
+     "mae_mw": 646.6563,
+     "mean_error_mw": -597.7603,
+     "abs_spread_gbp_per_mwh": 36.2031,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 805.6275,
+     "mae_mw": 2904.7068,
+     "mean_error_mw": -2904.7068,
+     "abs_spread_gbp_per_mwh": 21.9188,
+     "flags": [
+      "christmas"
+     ]
+    },
+    {
+     "day": "2026-09-20",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 801.4213,
+     "mae_mw": 1359.6971,
+     "mean_error_mw": -1188.4432,
+     "abs_spread_gbp_per_mwh": 16.8081,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 800.4979,
+     "mae_mw": 644.7025,
+     "mean_error_mw": 27.7175,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2025-08-18",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 750.9982,
+     "mae_mw": 1112.5689,
+     "mean_error_mw": 1026.4218,
+     "abs_spread_gbp_per_mwh": 19.4693,
+     "flags": []
+    },
+    {
+     "day": "2026-04-02",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 737.4585,
+     "mae_mw": 1994.6753,
+     "mean_error_mw": -1094.9134,
+     "abs_spread_gbp_per_mwh": 15.3876,
+     "flags": []
+    },
+    {
+     "day": "2026-09-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 735.0498,
+     "mae_mw": 1614.7828,
+     "mean_error_mw": -1575.1146,
+     "abs_spread_gbp_per_mwh": 17.6763,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-05-25",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 730.4693,
+     "mae_mw": 1932.8343,
+     "mean_error_mw": -1932.8343,
+     "abs_spread_gbp_per_mwh": 16.4854,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 719.5899,
+     "mae_mw": 591.0326,
+     "mean_error_mw": -310.9196,
+     "abs_spread_gbp_per_mwh": 27.2095,
+     "flags": []
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 717.5966,
+     "mae_mw": 1297.259,
+     "mean_error_mw": -1297.259,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2026-03-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 715.2884,
+     "mae_mw": 2400.6452,
+     "mean_error_mw": 2382.4693,
+     "abs_spread_gbp_per_mwh": 12.9437,
+     "flags": []
+    },
+    {
+     "day": "2025-09-07",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 711.6924,
+     "mae_mw": 1387.5866,
+     "mean_error_mw": 747.5985,
+     "abs_spread_gbp_per_mwh": 27.5044,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-08",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 711.4766,
+     "mae_mw": 1284.4218,
+     "mean_error_mw": 1279.6406,
+     "abs_spread_gbp_per_mwh": 13.6171,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-08-25",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 700.763,
+     "mae_mw": 4098.032,
+     "mean_error_mw": -4098.032,
+     "abs_spread_gbp_per_mwh": 16.2044,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2026-05-29",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 697.5973,
+     "mae_mw": 940.6209,
+     "mean_error_mw": -877.6331,
+     "abs_spread_gbp_per_mwh": 17.6553,
+     "flags": []
+    },
+    {
+     "day": "2025-08-02",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 691.6472,
+     "mae_mw": 1003.6894,
+     "mean_error_mw": -704.4019,
+     "abs_spread_gbp_per_mwh": 19.0991,
+     "flags": [
+      "weekend"
+     ]
+    }
+   ]
+  },
+  "lgbm_v1": {
+   "k": 48,
+   "worst_5pct_mean": 1357.8505,
+   "calendar_share_of_worst_total": 0.2186,
+   "worst_5pct_mean_non_calendar": 1198.0304,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0833,
+    "bank_holiday": 0.0417,
+    "easter": 0.0833,
+    "christmas": 0.0208,
+    "calendar": 0.1667,
+    "cold": 0.0417,
+    "weekend": 0.5
+   },
+   "mae_ratio_worst_to_all": 1.4645,
+   "abs_spread_ratio_worst_to_all": 1.7427,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 10631.2771,
+     "mae_mw": 1955.6452,
+     "mean_error_mw": 1949.424,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2943.4647,
+     "mae_mw": 2299.4131,
+     "mean_error_mw": -1558.0739,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 2740.1723,
+     "mae_mw": 1970.7259,
+     "mean_error_mw": -1422.7001,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 2039.5057,
+     "mae_mw": 1349.9629,
+     "mean_error_mw": -1032.9303,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1963.5741,
+     "mae_mw": 2173.1938,
+     "mean_error_mw": -2160.5947,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1840.2769,
+     "mae_mw": 1205.2357,
+     "mean_error_mw": 230.4283,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-04-01",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1789.0115,
+     "mae_mw": 1773.8206,
+     "mean_error_mw": -1593.3288,
+     "abs_spread_gbp_per_mwh": 26.953,
+     "flags": []
+    },
+    {
+     "day": "2026-10-25",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1667.822,
+     "mae_mw": 768.6864,
+     "mean_error_mw": 355.9207,
+     "abs_spread_gbp_per_mwh": 70.1663,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1644.3051,
+     "mae_mw": 964.1024,
+     "mean_error_mw": 782.5334,
+     "abs_spread_gbp_per_mwh": 43.8089,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1391.651,
+     "mae_mw": 1106.9266,
+     "mean_error_mw": -975.9505,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1334.0138,
+     "mae_mw": 1113.647,
+     "mean_error_mw": -1053.3265,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-18",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1325.3937,
+     "mae_mw": 1331.5393,
+     "mean_error_mw": -1286.7703,
+     "abs_spread_gbp_per_mwh": 29.4118,
+     "flags": []
+    },
+    {
+     "day": "2025-04-06",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1186.372,
+     "mae_mw": 1368.3282,
+     "mean_error_mw": -1017.9407,
+     "abs_spread_gbp_per_mwh": 24.6802,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1184.4165,
+     "mae_mw": 2087.8926,
+     "mean_error_mw": -2065.6607,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1155.2927,
+     "mae_mw": 959.1928,
+     "mean_error_mw": -546.4442,
+     "abs_spread_gbp_per_mwh": 23.4793,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1117.405,
+     "mae_mw": 1505.432,
+     "mean_error_mw": -1171.8474,
+     "abs_spread_gbp_per_mwh": 22.1754,
+     "flags": []
+    },
+    {
+     "day": "2026-08-12",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1111.7947,
+     "mae_mw": 1723.8611,
+     "mean_error_mw": -1675.3321,
+     "abs_spread_gbp_per_mwh": 33.7206,
+     "flags": []
+    },
+    {
+     "day": "2025-04-16",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1109.6294,
+     "mae_mw": 1981.4785,
+     "mean_error_mw": -1847.572,
+     "abs_spread_gbp_per_mwh": 29.3605,
+     "flags": []
+    },
+    {
+     "day": "2026-09-10",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1084.2489,
+     "mae_mw": 1404.7237,
+     "mean_error_mw": -676.2355,
+     "abs_spread_gbp_per_mwh": 33.0843,
+     "flags": []
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1068.7728,
+     "mae_mw": 1099.8873,
+     "mean_error_mw": -193.6618,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-10-12",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1052.4535,
+     "mae_mw": 1558.5193,
+     "mean_error_mw": 1414.9425,
+     "abs_spread_gbp_per_mwh": 28.2008,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-06",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1042.2344,
+     "mae_mw": 945.3824,
+     "mean_error_mw": -785.0366,
+     "abs_spread_gbp_per_mwh": 40.4488,
+     "flags": []
+    },
+    {
+     "day": "2026-08-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1041.0327,
+     "mae_mw": 1236.7167,
+     "mean_error_mw": -1086.1569,
+     "abs_spread_gbp_per_mwh": 27.2095,
+     "flags": []
+    },
+    {
+     "day": "2026-10-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1026.9774,
+     "mae_mw": 1500.8644,
+     "mean_error_mw": -1386.5637,
+     "abs_spread_gbp_per_mwh": 33.8192,
+     "flags": []
+    },
+    {
+     "day": "2026-04-05",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 992.257,
+     "mae_mw": 1584.0006,
+     "mean_error_mw": -1297.8431,
+     "abs_spread_gbp_per_mwh": 19.6219,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-04",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 978.2312,
+     "mae_mw": 1584.0508,
+     "mean_error_mw": 1451.8007,
+     "abs_spread_gbp_per_mwh": 21.0941,
+     "flags": []
+    },
+    {
+     "day": "2024-04-06",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 971.7831,
+     "mae_mw": 1311.4765,
+     "mean_error_mw": 501.6462,
+     "abs_spread_gbp_per_mwh": 23.5431,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-21",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 967.203,
+     "mae_mw": 1421.9927,
+     "mean_error_mw": -1319.2806,
+     "abs_spread_gbp_per_mwh": 28.7556,
+     "flags": []
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 958.6522,
+     "mae_mw": 2046.1993,
+     "mean_error_mw": -2046.1993,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 957.3012,
+     "mae_mw": 2359.4622,
+     "mean_error_mw": -1606.6243,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 952.4142,
+     "mae_mw": 824.3958,
+     "mean_error_mw": -343.2019,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2025-10-13",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 918.7667,
+     "mae_mw": 1007.4952,
+     "mean_error_mw": 938.9899,
+     "abs_spread_gbp_per_mwh": 31.4409,
+     "flags": []
+    },
+    {
+     "day": "2026-04-02",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 906.3054,
+     "mae_mw": 2497.2947,
+     "mean_error_mw": -2497.2947,
+     "abs_spread_gbp_per_mwh": 15.3876,
+     "flags": []
+    },
+    {
+     "day": "2025-09-22",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 883.6604,
+     "mae_mw": 1413.2595,
+     "mean_error_mw": -801.793,
+     "abs_spread_gbp_per_mwh": 19.0533,
+     "flags": []
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 871.5429,
+     "mae_mw": 1312.1533,
+     "mean_error_mw": -919.7459,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 860.3107,
+     "mae_mw": 1345.7644,
+     "mean_error_mw": 1345.7644,
+     "abs_spread_gbp_per_mwh": 21.726,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-20",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 835.7001,
+     "mae_mw": 1370.5189,
+     "mean_error_mw": -1044.9428,
+     "abs_spread_gbp_per_mwh": 16.8081,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-29",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 824.2645,
+     "mae_mw": 872.058,
+     "mean_error_mw": 12.9717,
+     "abs_spread_gbp_per_mwh": 26.549,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-07-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 816.2443,
+     "mae_mw": 778.2418,
+     "mean_error_mw": 551.745,
+     "abs_spread_gbp_per_mwh": 22.388,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 803.7206,
+     "mae_mw": 1432.9426,
+     "mean_error_mw": -1174.849,
+     "abs_spread_gbp_per_mwh": 25.0622,
+     "flags": []
+    },
+    {
+     "day": "2025-09-07",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 799.6672,
+     "mae_mw": 1339.6544,
+     "mean_error_mw": 328.1866,
+     "abs_spread_gbp_per_mwh": 27.5044,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-16",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 792.4334,
+     "mae_mw": 1061.3724,
+     "mean_error_mw": -574.9814,
+     "abs_spread_gbp_per_mwh": 21.8104,
+     "flags": []
+    },
+    {
+     "day": "2025-02-02",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 786.359,
+     "mae_mw": 1269.0669,
+     "mean_error_mw": -1187.1303,
+     "abs_spread_gbp_per_mwh": 29.3468,
+     "flags": [
+      "cold",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-10",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 780.3369,
+     "mae_mw": 1881.8923,
+     "mean_error_mw": -1555.5778,
+     "abs_spread_gbp_per_mwh": 23.8844,
+     "flags": []
+    },
+    {
+     "day": "2024-08-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 768.2853,
+     "mae_mw": 1003.4467,
+     "mean_error_mw": -815.7765,
+     "abs_spread_gbp_per_mwh": 36.2031,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 761.1528,
+     "mae_mw": 1463.6522,
+     "mean_error_mw": 1279.6426,
+     "abs_spread_gbp_per_mwh": 20.7903,
+     "flags": []
+    },
+    {
+     "day": "2026-03-08",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 754.0133,
+     "mae_mw": 1666.0798,
+     "mean_error_mw": 1666.0798,
+     "abs_spread_gbp_per_mwh": 13.6171,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-07",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 745.1189,
+     "mae_mw": 1884.1453,
+     "mean_error_mw": -1749.15,
+     "abs_spread_gbp_per_mwh": 21.9566,
+     "flags": []
+    }
+   ]
+  },
+  "lightgbm_s1": {
+   "k": 48,
+   "worst_5pct_mean": 1947.9965,
+   "calendar_share_of_worst_total": 0.1999,
+   "worst_5pct_mean_non_calendar": 1775.7915,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.1042,
+    "bank_holiday": 0.0625,
+    "easter": 0.0833,
+    "christmas": 0.0625,
+    "calendar": 0.2292,
+    "cold": 0.0833,
+    "weekend": 0.5
+   },
+   "mae_ratio_worst_to_all": 1.6012,
+   "abs_spread_ratio_worst_to_all": 1.7942,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 29372.412,
+     "mae_mw": 3844.7773,
+     "mean_error_mw": 3844.7773,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 3450.5074,
+     "mae_mw": 2365.4207,
+     "mean_error_mw": -2011.1183,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 3377.8422,
+     "mae_mw": 2592.9986,
+     "mean_error_mw": -1957.948,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2540.5942,
+     "mae_mw": 2220.3007,
+     "mean_error_mw": -2220.3007,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2457.0248,
+     "mae_mw": 1673.7072,
+     "mean_error_mw": 1511.4599,
+     "abs_spread_gbp_per_mwh": 43.8089,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2294.0404,
+     "mae_mw": 2241.8187,
+     "mean_error_mw": -2241.8187,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-04-01",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 2042.9175,
+     "mae_mw": 1947.2723,
+     "mean_error_mw": -1814.3889,
+     "abs_spread_gbp_per_mwh": 26.953,
+     "flags": []
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1856.8497,
+     "mae_mw": 1341.2774,
+     "mean_error_mw": 249.7495,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-10-13",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1744.8293,
+     "mae_mw": 1532.2876,
+     "mean_error_mw": 1532.2876,
+     "abs_spread_gbp_per_mwh": 31.4409,
+     "flags": []
+    },
+    {
+     "day": "2025-06-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1733.8535,
+     "mae_mw": 1326.5205,
+     "mean_error_mw": 1326.5205,
+     "abs_spread_gbp_per_mwh": 49.6744,
+     "flags": []
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1685.1326,
+     "mae_mw": 1188.5281,
+     "mean_error_mw": -753.7777,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-01-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1594.2024,
+     "mae_mw": 2003.2309,
+     "mean_error_mw": 2000.2787,
+     "abs_spread_gbp_per_mwh": 55.6678,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-10-25",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1559.0854,
+     "mae_mw": 684.947,
+     "mean_error_mw": 288.6373,
+     "abs_spread_gbp_per_mwh": 70.1663,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1521.0091,
+     "mae_mw": 2311.4095,
+     "mean_error_mw": -2303.0953,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-10-12",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1510.4471,
+     "mae_mw": 1760.9319,
+     "mean_error_mw": 1742.2382,
+     "abs_spread_gbp_per_mwh": 28.2008,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-29",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1349.527,
+     "mae_mw": 1555.0499,
+     "mean_error_mw": 1007.1003,
+     "abs_spread_gbp_per_mwh": 32.6883,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1325.8,
+     "mae_mw": 1090.4184,
+     "mean_error_mw": -858.6853,
+     "abs_spread_gbp_per_mwh": 23.4793,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-13",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1237.7166,
+     "mae_mw": 2147.0789,
+     "mean_error_mw": -2056.0146,
+     "abs_spread_gbp_per_mwh": 17.8312,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-18",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1222.2143,
+     "mae_mw": 1130.5274,
+     "mean_error_mw": -1116.9904,
+     "abs_spread_gbp_per_mwh": 29.4118,
+     "flags": []
+    },
+    {
+     "day": "2026-04-05",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1201.5061,
+     "mae_mw": 1918.1794,
+     "mean_error_mw": -1909.9086,
+     "abs_spread_gbp_per_mwh": 19.6219,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1200.3988,
+     "mae_mw": 1263.4418,
+     "mean_error_mw": -1008.9477,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1199.7325,
+     "mae_mw": 1192.8704,
+     "mean_error_mw": 7.7335,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-02",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1184.6093,
+     "mae_mw": 1553.2439,
+     "mean_error_mw": -1419.9968,
+     "abs_spread_gbp_per_mwh": 29.3468,
+     "flags": [
+      "cold",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-06",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1164.8974,
+     "mae_mw": 899.9507,
+     "mean_error_mw": -838.5941,
+     "abs_spread_gbp_per_mwh": 40.4488,
+     "flags": []
+    },
+    {
+     "day": "2025-04-06",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1122.8433,
+     "mae_mw": 1238.9955,
+     "mean_error_mw": -1110.3193,
+     "abs_spread_gbp_per_mwh": 24.6802,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-12-26",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1121.1947,
+     "mae_mw": 3354.6015,
+     "mean_error_mw": -3354.6015,
+     "abs_spread_gbp_per_mwh": 12.5979,
+     "flags": [
+      "bank_holiday",
+      "christmas",
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-03-04",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1095.6245,
+     "mae_mw": 1783.7667,
+     "mean_error_mw": 1652.354,
+     "abs_spread_gbp_per_mwh": 21.0941,
+     "flags": []
+    },
+    {
+     "day": "2026-09-10",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1075.9781,
+     "mae_mw": 1320.2693,
+     "mean_error_mw": -584.1491,
+     "abs_spread_gbp_per_mwh": 33.0843,
+     "flags": []
+    },
+    {
+     "day": "2025-08-10",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1073.0213,
+     "mae_mw": 1192.9462,
+     "mean_error_mw": -1048.4283,
+     "abs_spread_gbp_per_mwh": 21.3306,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1068.0629,
+     "mae_mw": 1794.937,
+     "mean_error_mw": -1434.2184,
+     "abs_spread_gbp_per_mwh": 22.1754,
+     "flags": []
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1040.6726,
+     "mae_mw": 776.4877,
+     "mean_error_mw": -416.513,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2026-04-07",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1031.8301,
+     "mae_mw": 2357.4246,
+     "mean_error_mw": -2270.5657,
+     "abs_spread_gbp_per_mwh": 21.9566,
+     "flags": []
+    },
+    {
+     "day": "2026-08-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1007.803,
+     "mae_mw": 1124.4399,
+     "mean_error_mw": -1041.6038,
+     "abs_spread_gbp_per_mwh": 27.2095,
+     "flags": []
+    },
+    {
+     "day": "2024-05-11",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1006.7654,
+     "mae_mw": 983.0659,
+     "mean_error_mw": -782.3295,
+     "abs_spread_gbp_per_mwh": 27.9463,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1005.1695,
+     "mae_mw": 1418.8761,
+     "mean_error_mw": -1291.5092,
+     "abs_spread_gbp_per_mwh": 33.8192,
+     "flags": []
+    },
+    {
+     "day": "2026-09-13",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 998.1272,
+     "mae_mw": 1102.5737,
+     "mean_error_mw": 1102.5737,
+     "abs_spread_gbp_per_mwh": 21.4931,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-21",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 980.1201,
+     "mae_mw": 1359.6927,
+     "mean_error_mw": -1187.9788,
+     "abs_spread_gbp_per_mwh": 28.7556,
+     "flags": []
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 955.8262,
+     "mae_mw": 2692.3098,
+     "mean_error_mw": -2680.8543,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 939.7827,
+     "mae_mw": 2004.5451,
+     "mean_error_mw": -2002.7024,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2024-04-06",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 939.4718,
+     "mae_mw": 1031.0046,
+     "mean_error_mw": 321.8596,
+     "abs_spread_gbp_per_mwh": 23.5431,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 935.4571,
+     "mae_mw": 3084.4031,
+     "mean_error_mw": -3084.4031,
+     "abs_spread_gbp_per_mwh": 21.9188,
+     "flags": [
+      "christmas"
+     ]
+    },
+    {
+     "day": "2026-09-20",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 928.2605,
+     "mae_mw": 1746.4216,
+     "mean_error_mw": -1536.9992,
+     "abs_spread_gbp_per_mwh": 16.8081,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-27",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 913.2036,
+     "mae_mw": 1270.7278,
+     "mean_error_mw": 1245.4645,
+     "abs_spread_gbp_per_mwh": 30.5144,
+     "flags": []
+    },
+    {
+     "day": "2026-04-02",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 902.6553,
+     "mae_mw": 2509.9794,
+     "mean_error_mw": -2500.8272,
+     "abs_spread_gbp_per_mwh": 15.3876,
+     "flags": []
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 894.3753,
+     "mae_mw": 882.3868,
+     "mean_error_mw": -776.9183,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-04-14",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 888.2996,
+     "mae_mw": 1366.6283,
+     "mean_error_mw": -1179.9701,
+     "abs_spread_gbp_per_mwh": 28.2933,
+     "flags": []
+    },
+    {
+     "day": "2025-04-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 882.2079,
+     "mae_mw": 1775.4734,
+     "mean_error_mw": -1735.0939,
+     "abs_spread_gbp_per_mwh": 22.7991,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-04-16",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 869.9287,
+     "mae_mw": 1536.0942,
+     "mean_error_mw": -1448.384,
+     "abs_spread_gbp_per_mwh": 29.3605,
+     "flags": []
+    }
+   ]
+  },
+  "timesfm25_weather_single_day": {
+   "k": 48,
+   "worst_5pct_mean": 2212.9734,
+   "calendar_share_of_worst_total": 0.2123,
+   "worst_5pct_mean_non_calendar": 1993.5391,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0625,
+    "bank_holiday": 0.1042,
+    "easter": 0.0417,
+    "christmas": 0.0208,
+    "calendar": 0.1875,
+    "cold": 0.1042,
+    "weekend": 0.4167
+   },
+   "mae_ratio_worst_to_all": 1.7219,
+   "abs_spread_ratio_worst_to_all": 1.6962,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 8709.1089,
+     "mae_mw": 1073.3406,
+     "mean_error_mw": 859.3218,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 4769.0028,
+     "mae_mw": 3723.4806,
+     "mean_error_mw": -3413.3303,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2026-01-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 4696.2234,
+     "mae_mw": 4965.8347,
+     "mean_error_mw": 4965.8347,
+     "abs_spread_gbp_per_mwh": 55.6678,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 4548.869,
+     "mae_mw": 4591.0677,
+     "mean_error_mw": -4591.0677,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-05-11",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 3788.893,
+     "mae_mw": 3433.4247,
+     "mean_error_mw": -3433.4247,
+     "abs_spread_gbp_per_mwh": 27.9463,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 3718.0196,
+     "mae_mw": 2936.0331,
+     "mean_error_mw": -2936.0331,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 3595.5328,
+     "mae_mw": 3099.9147,
+     "mean_error_mw": -3045.6235,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-29",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 3122.0391,
+     "mae_mw": 3412.2604,
+     "mean_error_mw": 2969.6508,
+     "abs_spread_gbp_per_mwh": 32.6883,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-26",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2817.4792,
+     "mae_mw": 2489.1246,
+     "mean_error_mw": 1905.8428,
+     "abs_spread_gbp_per_mwh": 32.3008,
+     "flags": []
+    },
+    {
+     "day": "2025-04-01",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 2655.6807,
+     "mae_mw": 2417.5648,
+     "mean_error_mw": -1852.9032,
+     "abs_spread_gbp_per_mwh": 26.953,
+     "flags": []
+    },
+    {
+     "day": "2024-05-27",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2588.6958,
+     "mae_mw": 3412.935,
+     "mean_error_mw": -3412.935,
+     "abs_spread_gbp_per_mwh": 24.907,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 2576.8205,
+     "mae_mw": 1430.3266,
+     "mean_error_mw": -820.2937,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2377.3611,
+     "mae_mw": 2665.8406,
+     "mean_error_mw": -751.9008,
+     "abs_spread_gbp_per_mwh": 20.9333,
+     "flags": []
+    },
+    {
+     "day": "2026-02-24",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 2239.0314,
+     "mae_mw": 2913.0768,
+     "mean_error_mw": -2797.3941,
+     "abs_spread_gbp_per_mwh": 16.9947,
+     "flags": []
+    },
+    {
+     "day": "2026-06-23",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 2065.6234,
+     "mae_mw": 897.5516,
+     "mean_error_mw": 784.0527,
+     "abs_spread_gbp_per_mwh": 45.4397,
+     "flags": []
+    },
+    {
+     "day": "2025-02-25",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 2046.5592,
+     "mae_mw": 3350.7732,
+     "mean_error_mw": -3270.2311,
+     "abs_spread_gbp_per_mwh": 20.835,
+     "flags": []
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 2030.0024,
+     "mae_mw": 3011.1493,
+     "mean_error_mw": -3011.1493,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-02",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1923.9377,
+     "mae_mw": 2616.6429,
+     "mean_error_mw": -2545.7468,
+     "abs_spread_gbp_per_mwh": 29.3468,
+     "flags": [
+      "cold",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-02",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1848.7824,
+     "mae_mw": 2337.9992,
+     "mean_error_mw": -2083.2051,
+     "abs_spread_gbp_per_mwh": 20.7913,
+     "flags": []
+    },
+    {
+     "day": "2025-08-10",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1834.2268,
+     "mae_mw": 1917.0347,
+     "mean_error_mw": -1378.6868,
+     "abs_spread_gbp_per_mwh": 21.3306,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-05-24",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1793.4089,
+     "mae_mw": 3438.1069,
+     "mean_error_mw": -3438.1069,
+     "abs_spread_gbp_per_mwh": 23.1899,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1788.3251,
+     "mae_mw": 2790.9053,
+     "mean_error_mw": 2174.8507,
+     "abs_spread_gbp_per_mwh": 43.8089,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-29",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1782.4583,
+     "mae_mw": 2825.6133,
+     "mean_error_mw": 2733.9933,
+     "abs_spread_gbp_per_mwh": 23.7227,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-13",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1778.0937,
+     "mae_mw": 2277.2313,
+     "mean_error_mw": 1999.9309,
+     "abs_spread_gbp_per_mwh": 21.4931,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1728.0251,
+     "mae_mw": 5995.1534,
+     "mean_error_mw": -5995.1534,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2025-04-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1614.7598,
+     "mae_mw": 3409.034,
+     "mean_error_mw": -3409.034,
+     "abs_spread_gbp_per_mwh": 22.7991,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-11",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1606.5467,
+     "mae_mw": 5715.6326,
+     "mean_error_mw": -5715.6326,
+     "abs_spread_gbp_per_mwh": 19.8894,
+     "flags": []
+    },
+    {
+     "day": "2026-06-13",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1580.9875,
+     "mae_mw": 2482.0243,
+     "mean_error_mw": -2371.7128,
+     "abs_spread_gbp_per_mwh": 17.8312,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1555.6668,
+     "mae_mw": 2548.9807,
+     "mean_error_mw": -2548.9807,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2026-09-30",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1550.6628,
+     "mae_mw": 2544.5115,
+     "mean_error_mw": -2517.3722,
+     "abs_spread_gbp_per_mwh": 39.6644,
+     "flags": []
+    },
+    {
+     "day": "2026-10-31",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1528.283,
+     "mae_mw": 2199.4084,
+     "mean_error_mw": 2199.4084,
+     "abs_spread_gbp_per_mwh": 34.0198,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-09-14",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1519.138,
+     "mae_mw": 2770.1847,
+     "mean_error_mw": 2086.0812,
+     "abs_spread_gbp_per_mwh": 18.8014,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-08-18",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1510.0891,
+     "mae_mw": 2503.8313,
+     "mean_error_mw": 2441.3758,
+     "abs_spread_gbp_per_mwh": 19.4693,
+     "flags": []
+    },
+    {
+     "day": "2024-07-09",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1484.1735,
+     "mae_mw": 2084.9583,
+     "mean_error_mw": 1022.9878,
+     "abs_spread_gbp_per_mwh": 20.219,
+     "flags": []
+    },
+    {
+     "day": "2026-06-11",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1480.4718,
+     "mae_mw": 2995.2594,
+     "mean_error_mw": 2973.2457,
+     "abs_spread_gbp_per_mwh": 21.0579,
+     "flags": []
+    },
+    {
+     "day": "2026-04-28",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1470.4021,
+     "mae_mw": 2090.7732,
+     "mean_error_mw": 1576.466,
+     "abs_spread_gbp_per_mwh": 14.6101,
+     "flags": []
+    },
+    {
+     "day": "2026-05-25",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1453.427,
+     "mae_mw": 2988.1167,
+     "mean_error_mw": -2965.5166,
+     "abs_spread_gbp_per_mwh": 16.7292,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2025-06-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1444.3135,
+     "mae_mw": 2247.3881,
+     "mean_error_mw": -2247.3881,
+     "abs_spread_gbp_per_mwh": 26.9718,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-27",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1431.501,
+     "mae_mw": 1821.2544,
+     "mean_error_mw": 1184.6797,
+     "abs_spread_gbp_per_mwh": 30.5144,
+     "flags": []
+    },
+    {
+     "day": "2026-05-28",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1404.8421,
+     "mae_mw": 1519.7162,
+     "mean_error_mw": -1484.5088,
+     "abs_spread_gbp_per_mwh": 18.554,
+     "flags": []
+    },
+    {
+     "day": "2026-05-29",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1403.1645,
+     "mae_mw": 2029.2918,
+     "mean_error_mw": -1881.997,
+     "abs_spread_gbp_per_mwh": 17.6553,
+     "flags": []
+    },
+    {
+     "day": "2024-03-30",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1377.6534,
+     "mae_mw": 4392.6474,
+     "mean_error_mw": -4392.6474,
+     "abs_spread_gbp_per_mwh": 14.1654,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-01-22",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1341.8932,
+     "mae_mw": 736.0307,
+     "mean_error_mw": -653.1576,
+     "abs_spread_gbp_per_mwh": 60.5383,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2025-02-08",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1341.2062,
+     "mae_mw": 3212.8642,
+     "mean_error_mw": 3212.8642,
+     "abs_spread_gbp_per_mwh": 18.7933,
+     "flags": [
+      "cold",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1337.0032,
+     "mae_mw": 3214.8248,
+     "mean_error_mw": -3205.9872,
+     "abs_spread_gbp_per_mwh": 23.1053,
+     "flags": []
+    },
+    {
+     "day": "2025-05-26",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1336.5083,
+     "mae_mw": 2166.5044,
+     "mean_error_mw": -2140.2816,
+     "abs_spread_gbp_per_mwh": 24.9139,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2024-12-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1317.8373,
+     "mae_mw": 2229.8767,
+     "mean_error_mw": -2219.0905,
+     "abs_spread_gbp_per_mwh": 22.1754,
+     "flags": []
+    },
+    {
+     "day": "2026-08-12",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1309.9939,
+     "mae_mw": 2288.4843,
+     "mean_error_mw": -2259.3173,
+     "abs_spread_gbp_per_mwh": 33.7206,
+     "flags": []
+    }
+   ]
+  },
+  "avg_chronos2_regression": {
+   "k": 48,
+   "worst_5pct_mean": 1208.6347,
+   "calendar_share_of_worst_total": 0.2579,
+   "worst_5pct_mean_non_calendar": 1028.3675,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0625,
+    "bank_holiday": 0.0625,
+    "easter": 0.0833,
+    "christmas": 0.0417,
+    "calendar": 0.1875,
+    "cold": 0.0625,
+    "weekend": 0.5
+   },
+   "mae_ratio_worst_to_all": 1.5883,
+   "abs_spread_ratio_worst_to_all": 1.7209,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 7094.3561,
+     "mae_mw": 1056.2408,
+     "mean_error_mw": 1033.4706,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 3754.0931,
+     "mae_mw": 1608.26,
+     "mean_error_mw": -1593.4176,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 3113.0644,
+     "mae_mw": 2995.6957,
+     "mean_error_mw": -2995.6957,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2353.5412,
+     "mae_mw": 1675.363,
+     "mean_error_mw": -1545.4388,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2205.9258,
+     "mae_mw": 1131.6862,
+     "mean_error_mw": 675.1792,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1777.8157,
+     "mae_mw": 1232.9301,
+     "mean_error_mw": -1096.097,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1520.0462,
+     "mae_mw": 2525.9069,
+     "mean_error_mw": -2525.9069,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1336.4647,
+     "mae_mw": 1362.2851,
+     "mean_error_mw": -1217.5322,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1329.2048,
+     "mae_mw": 1352.9466,
+     "mean_error_mw": -351.4023,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1314.9436,
+     "mae_mw": 1209.1098,
+     "mean_error_mw": -1007.3939,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1266.2447,
+     "mae_mw": 1174.8311,
+     "mean_error_mw": -1128.9194,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1191.2349,
+     "mae_mw": 1023.4685,
+     "mean_error_mw": -886.1165,
+     "abs_spread_gbp_per_mwh": 23.4793,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-10-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1155.2564,
+     "mae_mw": 1343.7872,
+     "mean_error_mw": -1284.4119,
+     "abs_spread_gbp_per_mwh": 33.8192,
+     "flags": []
+    },
+    {
+     "day": "2025-06-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1113.433,
+     "mae_mw": 724.5354,
+     "mean_error_mw": 645.0712,
+     "abs_spread_gbp_per_mwh": 49.6744,
+     "flags": []
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1107.9891,
+     "mae_mw": 2696.0975,
+     "mean_error_mw": -2619.4741,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2026-04-05",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1076.6439,
+     "mae_mw": 1401.4294,
+     "mean_error_mw": -1332.042,
+     "abs_spread_gbp_per_mwh": 19.6219,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-01-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1029.1033,
+     "mae_mw": 1109.1692,
+     "mean_error_mw": 964.6856,
+     "abs_spread_gbp_per_mwh": 55.6678,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-08-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1008.9263,
+     "mae_mw": 942.0277,
+     "mean_error_mw": -880.6247,
+     "abs_spread_gbp_per_mwh": 27.2095,
+     "flags": []
+    },
+    {
+     "day": "2025-04-01",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 928.1301,
+     "mae_mw": 1046.2537,
+     "mean_error_mw": -610.6591,
+     "abs_spread_gbp_per_mwh": 26.953,
+     "flags": []
+    },
+    {
+     "day": "2025-10-13",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 926.9112,
+     "mae_mw": 1106.0942,
+     "mean_error_mw": 1104.6383,
+     "abs_spread_gbp_per_mwh": 31.4409,
+     "flags": []
+    },
+    {
+     "day": "2024-06-29",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 904.4924,
+     "mae_mw": 759.5037,
+     "mean_error_mw": -280.8436,
+     "abs_spread_gbp_per_mwh": 26.549,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 885.7558,
+     "mae_mw": 687.1616,
+     "mean_error_mw": -60.4345,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2026-04-02",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 882.8046,
+     "mae_mw": 1998.1465,
+     "mean_error_mw": -1810.9944,
+     "abs_spread_gbp_per_mwh": 15.3876,
+     "flags": []
+    },
+    {
+     "day": "2025-06-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 858.1612,
+     "mae_mw": 1348.5186,
+     "mean_error_mw": -1294.8456,
+     "abs_spread_gbp_per_mwh": 25.0622,
+     "flags": []
+    },
+    {
+     "day": "2025-10-12",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 855.6482,
+     "mae_mw": 1220.1551,
+     "mean_error_mw": 1177.1766,
+     "abs_spread_gbp_per_mwh": 28.2008,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-18",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 846.5507,
+     "mae_mw": 1012.085,
+     "mean_error_mw": -941.2845,
+     "abs_spread_gbp_per_mwh": 29.4118,
+     "flags": []
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 839.8309,
+     "mae_mw": 1491.729,
+     "mean_error_mw": -1485.3465,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2025-08-10",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 836.7088,
+     "mae_mw": 1104.4279,
+     "mean_error_mw": -498.0167,
+     "abs_spread_gbp_per_mwh": 21.3306,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-26",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 835.1741,
+     "mae_mw": 1085.3838,
+     "mean_error_mw": -943.9793,
+     "abs_spread_gbp_per_mwh": 26.8564,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-20",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 826.681,
+     "mae_mw": 1447.7436,
+     "mean_error_mw": -1286.9207,
+     "abs_spread_gbp_per_mwh": 16.8081,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-19",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 791.7192,
+     "mae_mw": 1172.4512,
+     "mean_error_mw": -899.1037,
+     "abs_spread_gbp_per_mwh": 22.1754,
+     "flags": []
+    },
+    {
+     "day": "2026-06-23",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 790.1334,
+     "mae_mw": 969.7589,
+     "mean_error_mw": 967.4199,
+     "abs_spread_gbp_per_mwh": 45.4397,
+     "flags": []
+    },
+    {
+     "day": "2024-04-06",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 788.2669,
+     "mae_mw": 810.8061,
+     "mean_error_mw": 325.9745,
+     "abs_spread_gbp_per_mwh": 23.5431,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-10",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 780.5143,
+     "mae_mw": 927.885,
+     "mean_error_mw": -455.1251,
+     "abs_spread_gbp_per_mwh": 33.0843,
+     "flags": []
+    },
+    {
+     "day": "2025-04-16",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 767.0846,
+     "mae_mw": 2005.1223,
+     "mean_error_mw": -1978.501,
+     "abs_spread_gbp_per_mwh": 29.3605,
+     "flags": []
+    },
+    {
+     "day": "2026-03-04",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 744.0002,
+     "mae_mw": 1257.9496,
+     "mean_error_mw": 1257.9496,
+     "abs_spread_gbp_per_mwh": 21.0941,
+     "flags": []
+    },
+    {
+     "day": "2025-06-18",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 736.5542,
+     "mae_mw": 1148.1615,
+     "mean_error_mw": 1077.9474,
+     "abs_spread_gbp_per_mwh": 14.8097,
+     "flags": []
+    },
+    {
+     "day": "2026-09-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 698.4663,
+     "mae_mw": 1246.5693,
+     "mean_error_mw": -1238.486,
+     "abs_spread_gbp_per_mwh": 17.6763,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 695.6754,
+     "mae_mw": 1050.884,
+     "mean_error_mw": 1007.3107,
+     "abs_spread_gbp_per_mwh": 21.726,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-08",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 692.6798,
+     "mae_mw": 1428.4819,
+     "mean_error_mw": 1428.4819,
+     "abs_spread_gbp_per_mwh": 13.6171,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-02",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 688.2687,
+     "mae_mw": 1313.6653,
+     "mean_error_mw": -1251.1157,
+     "abs_spread_gbp_per_mwh": 29.3468,
+     "flags": [
+      "cold",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-13",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 681.014,
+     "mae_mw": 977.1779,
+     "mean_error_mw": -776.0361,
+     "abs_spread_gbp_per_mwh": 17.8312,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 679.7581,
+     "mae_mw": 3003.4346,
+     "mean_error_mw": -3003.4346,
+     "abs_spread_gbp_per_mwh": 21.9188,
+     "flags": [
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-08-12",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 677.4426,
+     "mae_mw": 774.3167,
+     "mean_error_mw": 744.7071,
+     "abs_spread_gbp_per_mwh": 23.2805,
+     "flags": []
+    },
+    {
+     "day": "2024-05-27",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 675.9399,
+     "mae_mw": 1237.7982,
+     "mean_error_mw": -1237.7982,
+     "abs_spread_gbp_per_mwh": 24.907,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2026-10-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 662.2896,
+     "mae_mw": 602.2494,
+     "mean_error_mw": 397.586,
+     "abs_spread_gbp_per_mwh": 43.8089,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 653.8447,
+     "mae_mw": 1525.2711,
+     "mean_error_mw": -1501.2193,
+     "abs_spread_gbp_per_mwh": 23.1053,
+     "flags": []
+    },
+    {
+     "day": "2025-09-07",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 635.6792,
+     "mae_mw": 1178.4636,
+     "mean_error_mw": 551.9798,
+     "abs_spread_gbp_per_mwh": 27.5044,
+     "flags": [
+      "weekend"
+     ]
+    }
+   ]
+  },
+  "neso": {
+   "k": 48,
+   "worst_5pct_mean": 1064.5611,
+   "calendar_share_of_worst_total": 0.1774,
+   "worst_5pct_mean_non_calendar": 966.7791,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0833,
+    "bank_holiday": 0.0208,
+    "easter": 0.0625,
+    "christmas": 0.0,
+    "calendar": 0.125,
+    "cold": 0.0625,
+    "weekend": 0.5
+   },
+   "mae_ratio_worst_to_all": 1.54,
+   "abs_spread_ratio_worst_to_all": 1.7785,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 6146.3732,
+     "mae_mw": 608.5625,
+     "mean_error_mw": 558.2708,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 2717.8774,
+     "mae_mw": 1017.7083,
+     "mean_error_mw": 710.4583,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-29",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1689.3445,
+     "mae_mw": 2094.087,
+     "mean_error_mw": 2066.6522,
+     "abs_spread_gbp_per_mwh": 32.6883,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-04-01",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1566.5653,
+     "mae_mw": 1497.75,
+     "mean_error_mw": -1372.125,
+     "abs_spread_gbp_per_mwh": 26.953,
+     "flags": []
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1368.7365,
+     "mae_mw": 1218.6304,
+     "mean_error_mw": -540.7174,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1310.6861,
+     "mae_mw": 959.2292,
+     "mean_error_mw": -959.2292,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-06-09",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1309.4884,
+     "mae_mw": 996.7083,
+     "mean_error_mw": 942.7917,
+     "abs_spread_gbp_per_mwh": 21.0334,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1159.8915,
+     "mae_mw": 1090.8333,
+     "mean_error_mw": 38.9167,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2025-10-12",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1137.8333,
+     "mae_mw": 1252.9167,
+     "mean_error_mw": 1113.75,
+     "abs_spread_gbp_per_mwh": 28.2008,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1122.6071,
+     "mae_mw": 1323.5833,
+     "mean_error_mw": -1202.0833,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1116.4911,
+     "mae_mw": 785.4167,
+     "mean_error_mw": -780.0,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1098.1138,
+     "mae_mw": 1657.5,
+     "mean_error_mw": -247.5,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-26",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1048.456,
+     "mae_mw": 993.6667,
+     "mean_error_mw": -821.4583,
+     "abs_spread_gbp_per_mwh": 24.179,
+     "flags": []
+    },
+    {
+     "day": "2026-08-27",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1046.7815,
+     "mae_mw": 1350.6875,
+     "mean_error_mw": 1344.4375,
+     "abs_spread_gbp_per_mwh": 30.5144,
+     "flags": []
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1028.6931,
+     "mae_mw": 639.66,
+     "mean_error_mw": -405.22,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-01-21",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1001.8857,
+     "mae_mw": 1249.3333,
+     "mean_error_mw": -1249.3333,
+     "abs_spread_gbp_per_mwh": 42.5351,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2025-01-22",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1000.3665,
+     "mae_mw": 584.6042,
+     "mean_error_mw": -564.6458,
+     "abs_spread_gbp_per_mwh": 60.5383,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-06-23",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 979.0315,
+     "mae_mw": 706.875,
+     "mean_error_mw": 653.375,
+     "abs_spread_gbp_per_mwh": 45.4397,
+     "flags": []
+    },
+    {
+     "day": "2026-08-24",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 960.8028,
+     "mae_mw": 883.3542,
+     "mean_error_mw": -640.3542,
+     "abs_spread_gbp_per_mwh": 27.2095,
+     "flags": []
+    },
+    {
+     "day": "2025-06-30",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 933.805,
+     "mae_mw": 554.7708,
+     "mean_error_mw": 437.4375,
+     "abs_spread_gbp_per_mwh": 49.6744,
+     "flags": []
+    },
+    {
+     "day": "2024-08-12",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 916.6155,
+     "mae_mw": 688.0625,
+     "mean_error_mw": 667.8125,
+     "abs_spread_gbp_per_mwh": 23.2805,
+     "flags": []
+    },
+    {
+     "day": "2024-08-17",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 913.2532,
+     "mae_mw": 654.4792,
+     "mean_error_mw": 440.3958,
+     "abs_spread_gbp_per_mwh": 29.1075,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 910.7979,
+     "mae_mw": 554.7708,
+     "mean_error_mw": -459.3125,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2026-04-26",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 894.7473,
+     "mae_mw": 1020.5208,
+     "mean_error_mw": 963.1042,
+     "abs_spread_gbp_per_mwh": 16.7584,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-05-29",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 889.235,
+     "mae_mw": 1189.1667,
+     "mean_error_mw": -442.625,
+     "abs_spread_gbp_per_mwh": 17.6553,
+     "flags": []
+    },
+    {
+     "day": "2025-09-08",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 844.0532,
+     "mae_mw": 714.8333,
+     "mean_error_mw": -609.125,
+     "abs_spread_gbp_per_mwh": 36.5707,
+     "flags": []
+    },
+    {
+     "day": "2024-05-11",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 805.7561,
+     "mae_mw": 551.3958,
+     "mean_error_mw": -428.9792,
+     "abs_spread_gbp_per_mwh": 27.9463,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-07-15",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 803.5712,
+     "mae_mw": 944.9792,
+     "mean_error_mw": -64.3125,
+     "abs_spread_gbp_per_mwh": 23.0287,
+     "flags": []
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 801.3357,
+     "mae_mw": 1260.1875,
+     "mean_error_mw": -1125.8958,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-03-08",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 788.9201,
+     "mae_mw": 1322.5417,
+     "mean_error_mw": 1039.1667,
+     "abs_spread_gbp_per_mwh": 13.6171,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 776.5154,
+     "mae_mw": 2989.0833,
+     "mean_error_mw": 2937.7083,
+     "abs_spread_gbp_per_mwh": 11.0301,
+     "flags": []
+    },
+    {
+     "day": "2024-06-29",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 766.4654,
+     "mae_mw": 613.3958,
+     "mean_error_mw": -234.8958,
+     "abs_spread_gbp_per_mwh": 26.549,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-07",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 765.0855,
+     "mae_mw": 1256.3333,
+     "mean_error_mw": -1184.5833,
+     "abs_spread_gbp_per_mwh": 20.6499,
+     "flags": []
+    },
+    {
+     "day": "2024-08-11",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 755.0501,
+     "mae_mw": 652.5833,
+     "mean_error_mw": -560.0417,
+     "abs_spread_gbp_per_mwh": 18.9229,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-13",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 746.3944,
+     "mae_mw": 1254.875,
+     "mean_error_mw": 426.4167,
+     "abs_spread_gbp_per_mwh": 17.8312,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-09-22",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 738.6852,
+     "mae_mw": 934.6667,
+     "mean_error_mw": 716.1667,
+     "abs_spread_gbp_per_mwh": 22.9302,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-12",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 737.9777,
+     "mae_mw": 1020.3958,
+     "mean_error_mw": -1014.0625,
+     "abs_spread_gbp_per_mwh": 75.882,
+     "flags": []
+    },
+    {
+     "day": "2026-04-09",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 732.6543,
+     "mae_mw": 1308.9375,
+     "mean_error_mw": 402.8958,
+     "abs_spread_gbp_per_mwh": 17.6091,
+     "flags": []
+    },
+    {
+     "day": "2025-02-25",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 728.7258,
+     "mae_mw": 1964.1667,
+     "mean_error_mw": -1964.1667,
+     "abs_spread_gbp_per_mwh": 20.835,
+     "flags": []
+    },
+    {
+     "day": "2026-09-08",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 722.7989,
+     "mae_mw": 1274.2292,
+     "mean_error_mw": 1218.7708,
+     "abs_spread_gbp_per_mwh": 26.5557,
+     "flags": []
+    },
+    {
+     "day": "2025-06-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 714.2783,
+     "mae_mw": 1058.9167,
+     "mean_error_mw": -978.25,
+     "abs_spread_gbp_per_mwh": 25.0622,
+     "flags": []
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 687.7899,
+     "mae_mw": 748.4167,
+     "mean_error_mw": -488.625,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-05-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 686.2003,
+     "mae_mw": 973.3125,
+     "mean_error_mw": 7.6458,
+     "abs_spread_gbp_per_mwh": 20.0654,
+     "flags": []
+    },
+    {
+     "day": "2026-10-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 680.3119,
+     "mae_mw": 809.6875,
+     "mean_error_mw": 422.7708,
+     "abs_spread_gbp_per_mwh": 43.8089,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 678.5025,
+     "mae_mw": 1234.5208,
+     "mean_error_mw": 926.9375,
+     "abs_spread_gbp_per_mwh": 21.1703,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-09-07",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 633.4919,
+     "mae_mw": 1140.9583,
+     "mean_error_mw": 1131.6667,
+     "abs_spread_gbp_per_mwh": 27.5044,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-07-01",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 618.3721,
+     "mae_mw": 1332.3125,
+     "mean_error_mw": -1276.2292,
+     "abs_spread_gbp_per_mwh": 18.7523,
+     "flags": []
+    },
+    {
+     "day": "2026-07-19",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 617.517,
+     "mae_mw": 832.4583,
+     "mean_error_mw": -607.875,
+     "abs_spread_gbp_per_mwh": 21.1979,
+     "flags": [
+      "weekend"
+     ]
+    }
+   ]
+  },
+  "chronos2_weather": {
+   "k": 48,
+   "worst_5pct_mean": 1538.153,
+   "calendar_share_of_worst_total": 0.2755,
+   "worst_5pct_mean_non_calendar": 1315.8969,
+   "flag_share_of_worst_days": {
+    "clock_change": 0.0833,
+    "bank_holiday": 0.1042,
+    "easter": 0.1042,
+    "christmas": 0.0417,
+    "calendar": 0.25,
+    "cold": 0.0625,
+    "weekend": 0.5417
+   },
+   "mae_ratio_worst_to_all": 1.8596,
+   "abs_spread_ratio_worst_to_all": 1.66,
+   "worst_days": [
+    {
+     "day": "2025-01-08",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 12006.1159,
+     "mae_mw": 1046.6642,
+     "mean_error_mw": 1032.9916,
+     "abs_spread_gbp_per_mwh": 434.1132,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2024-09-14",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 4566.2152,
+     "mae_mw": 3963.6029,
+     "mean_error_mw": -3963.6029,
+     "abs_spread_gbp_per_mwh": 24.256,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-10-27",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 4058.9448,
+     "mae_mw": 1782.7185,
+     "mean_error_mw": -1595.4197,
+     "abs_spread_gbp_per_mwh": 40.2103,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-01-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 3533.1332,
+     "mae_mw": 3692.2077,
+     "mean_error_mw": 3662.9677,
+     "abs_spread_gbp_per_mwh": 55.6678,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2026-04-06",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 2372.7084,
+     "mae_mw": 2988.3559,
+     "mean_error_mw": -2988.3559,
+     "abs_spread_gbp_per_mwh": 23.2575,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2026-03-15",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1993.3899,
+     "mae_mw": 2917.1796,
+     "mean_error_mw": -2907.0629,
+     "abs_spread_gbp_per_mwh": 22.1649,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-23",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 1936.1825,
+     "mae_mw": 1392.7471,
+     "mean_error_mw": 1388.8637,
+     "abs_spread_gbp_per_mwh": 45.4397,
+     "flags": []
+    },
+    {
+     "day": "2026-03-29",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1747.474,
+     "mae_mw": 1981.8446,
+     "mean_error_mw": 1139.4801,
+     "abs_spread_gbp_per_mwh": 32.6883,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-04",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1718.0969,
+     "mae_mw": 954.165,
+     "mean_error_mw": 576.5574,
+     "abs_spread_gbp_per_mwh": 43.5939,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-03-30",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1689.6187,
+     "mae_mw": 1485.4569,
+     "mean_error_mw": -1470.2542,
+     "abs_spread_gbp_per_mwh": 22.8407,
+     "flags": [
+      "clock_change",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-06-28",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1613.7168,
+     "mae_mw": 1593.5955,
+     "mean_error_mw": -1585.4153,
+     "abs_spread_gbp_per_mwh": 23.3864,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-05-27",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1563.259,
+     "mae_mw": 2559.436,
+     "mean_error_mw": -2559.436,
+     "abs_spread_gbp_per_mwh": 24.907,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2026-04-05",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1539.8976,
+     "mae_mw": 2223.9534,
+     "mean_error_mw": -2223.9534,
+     "abs_spread_gbp_per_mwh": 19.6219,
+     "flags": [
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-12-25",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 1394.8829,
+     "mae_mw": 4360.9203,
+     "mean_error_mw": -4360.9203,
+     "abs_spread_gbp_per_mwh": 18.1251,
+     "flags": [
+      "bank_holiday",
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-12-27",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1314.6768,
+     "mae_mw": 5072.6525,
+     "mean_error_mw": 5072.6525,
+     "abs_spread_gbp_per_mwh": 18.0812,
+     "flags": [
+      "christmas"
+     ]
+    },
+    {
+     "day": "2024-03-31",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1312.7835,
+     "mae_mw": 1472.9722,
+     "mean_error_mw": 50.4408,
+     "abs_spread_gbp_per_mwh": 22.0688,
+     "flags": [
+      "clock_change",
+      "easter",
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-08-10",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1250.8391,
+     "mae_mw": 1292.6811,
+     "mean_error_mw": -824.1352,
+     "abs_spread_gbp_per_mwh": 21.3306,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-08-23",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1228.3808,
+     "mae_mw": 990.0474,
+     "mean_error_mw": -859.5072,
+     "abs_spread_gbp_per_mwh": 23.4793,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-26",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1143.1201,
+     "mae_mw": 1624.2647,
+     "mean_error_mw": -1183.6485,
+     "abs_spread_gbp_per_mwh": 26.8564,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-26",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 1122.3396,
+     "mae_mw": 1203.7973,
+     "mean_error_mw": -1203.7973,
+     "abs_spread_gbp_per_mwh": 24.179,
+     "flags": []
+    },
+    {
+     "day": "2025-07-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1116.0489,
+     "mae_mw": 2004.2828,
+     "mean_error_mw": -2004.2828,
+     "abs_spread_gbp_per_mwh": 21.4058,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-08-04",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 1093.4838,
+     "mae_mw": 1171.537,
+     "mean_error_mw": -1075.7833,
+     "abs_spread_gbp_per_mwh": 21.2857,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-02-22",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1093.1678,
+     "mae_mw": 1493.7956,
+     "mean_error_mw": -750.2538,
+     "abs_spread_gbp_per_mwh": 24.5035,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-05-11",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1071.3156,
+     "mae_mw": 1072.9932,
+     "mean_error_mw": -593.1897,
+     "abs_spread_gbp_per_mwh": 27.9463,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-01-02",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 1062.4193,
+     "mae_mw": 3944.2365,
+     "mean_error_mw": 3944.2365,
+     "abs_spread_gbp_per_mwh": 12.0647,
+     "flags": [
+      "cold"
+     ]
+    },
+    {
+     "day": "2024-08-12",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1030.8822,
+     "mae_mw": 817.6327,
+     "mean_error_mw": 752.333,
+     "abs_spread_gbp_per_mwh": 23.2805,
+     "flags": []
+    },
+    {
+     "day": "2024-06-29",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 1029.7952,
+     "mae_mw": 957.4157,
+     "mean_error_mw": -886.9181,
+     "abs_spread_gbp_per_mwh": 26.549,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-10-13",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 1011.0318,
+     "mae_mw": 1138.3758,
+     "mean_error_mw": 1131.5583,
+     "abs_spread_gbp_per_mwh": 31.4409,
+     "flags": []
+    },
+    {
+     "day": "2026-10-26",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 899.3264,
+     "mae_mw": 1356.4672,
+     "mean_error_mw": 585.0619,
+     "abs_spread_gbp_per_mwh": 32.3008,
+     "flags": []
+    },
+    {
+     "day": "2024-08-29",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 895.4524,
+     "mae_mw": 758.8731,
+     "mean_error_mw": 48.6808,
+     "abs_spread_gbp_per_mwh": 27.9871,
+     "flags": []
+    },
+    {
+     "day": "2024-08-24",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 884.2551,
+     "mae_mw": 654.3894,
+     "mean_error_mw": -467.363,
+     "abs_spread_gbp_per_mwh": 36.2031,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-09-05",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 876.782,
+     "mae_mw": 2141.1615,
+     "mean_error_mw": -2120.6782,
+     "abs_spread_gbp_per_mwh": 17.6763,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-04-03",
+     "weekday": "Fri",
+     "net_gbp_per_gwh": 864.8922,
+     "mae_mw": 3410.0931,
+     "mean_error_mw": -3410.0931,
+     "abs_spread_gbp_per_mwh": 21.1355,
+     "flags": [
+      "bank_holiday",
+      "easter"
+     ]
+    },
+    {
+     "day": "2026-09-20",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 858.6916,
+     "mae_mw": 1665.9454,
+     "mean_error_mw": -1586.8891,
+     "abs_spread_gbp_per_mwh": 16.8081,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-06-10",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 819.1377,
+     "mae_mw": 1541.12,
+     "mean_error_mw": -1477.0242,
+     "abs_spread_gbp_per_mwh": 25.0622,
+     "flags": []
+    },
+    {
+     "day": "2024-08-27",
+     "weekday": "Tue",
+     "net_gbp_per_gwh": 819.1054,
+     "mae_mw": 1287.5901,
+     "mean_error_mw": 986.8851,
+     "abs_spread_gbp_per_mwh": 23.5907,
+     "flags": []
+    },
+    {
+     "day": "2024-06-05",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 797.4483,
+     "mae_mw": 1139.238,
+     "mean_error_mw": -1108.1077,
+     "abs_spread_gbp_per_mwh": 27.0444,
+     "flags": []
+    },
+    {
+     "day": "2025-08-18",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 795.4539,
+     "mae_mw": 1253.1742,
+     "mean_error_mw": 1008.4589,
+     "abs_spread_gbp_per_mwh": 19.4693,
+     "flags": []
+    },
+    {
+     "day": "2026-04-02",
+     "weekday": "Thu",
+     "net_gbp_per_gwh": 794.2203,
+     "mae_mw": 1869.0779,
+     "mean_error_mw": -1476.7984,
+     "abs_spread_gbp_per_mwh": 15.3876,
+     "flags": []
+    },
+    {
+     "day": "2025-08-02",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 791.2485,
+     "mae_mw": 1261.9805,
+     "mean_error_mw": -1002.9495,
+     "abs_spread_gbp_per_mwh": 19.0991,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2024-04-06",
+     "weekday": "Sat",
+     "net_gbp_per_gwh": 789.963,
+     "mae_mw": 809.3771,
+     "mean_error_mw": 156.7462,
+     "abs_spread_gbp_per_mwh": 23.5431,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-05-10",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 784.9262,
+     "mae_mw": 1972.8139,
+     "mean_error_mw": -1972.8139,
+     "abs_spread_gbp_per_mwh": 19.7439,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-05-25",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 778.9319,
+     "mae_mw": 2178.9231,
+     "mean_error_mw": -2178.9231,
+     "abs_spread_gbp_per_mwh": 16.4854,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2025-05-26",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 765.1373,
+     "mae_mw": 1699.9124,
+     "mean_error_mw": -1634.2555,
+     "abs_spread_gbp_per_mwh": 24.9139,
+     "flags": [
+      "bank_holiday"
+     ]
+    },
+    {
+     "day": "2026-10-05",
+     "weekday": "Mon",
+     "net_gbp_per_gwh": 756.0304,
+     "mae_mw": 823.3759,
+     "mean_error_mw": -505.169,
+     "abs_spread_gbp_per_mwh": 33.8192,
+     "flags": []
+    },
+    {
+     "day": "2026-03-04",
+     "weekday": "Wed",
+     "net_gbp_per_gwh": 755.3436,
+     "mae_mw": 1543.9526,
+     "mean_error_mw": 1535.9485,
+     "abs_spread_gbp_per_mwh": 21.0941,
+     "flags": []
+    },
+    {
+     "day": "2025-09-07",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 749.9447,
+     "mae_mw": 1421.4843,
+     "mean_error_mw": 1060.9947,
+     "abs_spread_gbp_per_mwh": 27.5044,
+     "flags": [
+      "weekend"
+     ]
+    },
+    {
+     "day": "2026-05-24",
+     "weekday": "Sun",
+     "net_gbp_per_gwh": 741.1349,
+     "mae_mw": 1451.5821,
+     "mean_error_mw": -1147.677,
+     "abs_spread_gbp_per_mwh": 23.1899,
+     "flags": [
+      "weekend"
+     ]
+    }
+   ]
+  }
+ },
+ "pairs": [
+  {
+   "a": "chronos2_A",
+   "b": "regression_weather",
+   "shared_worst_days": 23,
+   "k": 48,
+   "a_on_own_worst": 1348.1631,
+   "b_on_a_worst": 915.9855,
+   "b_on_own_worst": 1330.8782,
+   "a_on_b_worst": 859.5277
+  },
+  {
+   "a": "neso",
+   "b": "regression_weather",
+   "shared_worst_days": 19,
+   "k": 48,
+   "a_on_own_worst": 1064.5611,
+   "b_on_a_worst": 878.7809,
+   "b_on_own_worst": 1330.8782,
+   "a_on_b_worst": 697.9511
+  }
+ ],
+ "checks": {
+  "worst_5pct_mean_matches_explore": {
+   "passed": true,
+   "max_abs_diff": 0.0
+  },
+  "day_mean_matches_score": {
+   "passed": true,
+   "max_abs_diff": 0.0
+  },
+  "clock_changes_found": {
+   "passed": true,
+   "n": 6
+  }
+ }
+}
