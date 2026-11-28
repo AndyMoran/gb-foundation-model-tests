@@ -1,0 +1,97 @@
+{
+ "script_sha256": "bdec372e5e778d5c3c3586f02c3b98a46fd2a5bcbc46362d01925cbffa19b52a",
+ "checks": {
+  "unit rules, labels and headline": {
+   "passed": true,
+   "n": 30
+  },
+  "bands at 1.0 x the true width: consistent with its level": {
+   "passed": true,
+   "coverage": 0.801,
+   "ci90": [
+    0.7983,
+    0.8041
+   ]
+  },
+  "dressed bands of an honest forecaster: consistent with their level": {
+   "passed": true,
+   "coverage": 0.7968
+  },
+  "days scored after the first month; T1 and calendar sets present": {
+   "passed": true,
+   "n": 931
+  },
+  "headline written": {
+   "passed": true,
+   "headline": "In a backtest the foundation model may have seen in training, a day-ahead position on GB demand set from Chronos-2's quantile forecasts, averaged with equal weight over quantile levels 0.10 to 0.90 (cost ratios from 1:9 to 9:1), cost clearly less than one set from its own median with a band built from its recent errors (score 159 against 159 MW, ratio 0.999, 90% interval 0.998 to 0.999; practically equal), and clearly less than one set from NESO's forecast with a band built the same way (ratio 0.999, 90% interval 0.998 to 0.999; practically equal). Chronos-2's 80% intervals contained outturn 80.1% of the time (consistent with their level; practically consistent)."
+  },
+  "stage 2 power estimate computed": {
+   "passed": true,
+   "power": {
+    "smallest_detectable_difference": {
+     "lower": 0.005,
+     "higher": 0.005
+    },
+    "windows": 500,
+    "window_days": 130,
+    "season_days": 264
+   }
+  },
+  "no look-ahead in the dressing": {
+   "passed": true
+  },
+  "arithmetic": {
+   "passed": true
+  },
+  "check 1 on exact medians": {
+   "passed": true
+  },
+  "a forecaster equal to its dressed version scores exactly 1 under every variant": {
+   "passed": true
+  },
+  "bands at 0.5 x the true width: too narrow": {
+   "passed": true,
+   "coverage": 0.4787,
+   "ci90": [
+    0.4748,
+    0.4829
+   ]
+  },
+  "bands at 2.0 x the true width: too wide": {
+   "passed": true,
+   "coverage": 0.9893,
+   "ci90": [
+    0.9886,
+    0.9901
+   ]
+  },
+  "a median 0.02 MW out is mismatched and fails check 1": {
+   "passed": true
+  },
+  "a median 0.005 MW out is close and passes": {
+   "passed": true
+  },
+  "width that tracks the error: widest over narrowest above 1": {
+   "passed": true,
+   "ratio": 3.5536
+  },
+  "constant width: ratio about 1, correlation undefined": {
+   "passed": true,
+   "ratio": 1.0219
+  },
+  "shared season only: above 1 over the year, about 1 within months": {
+   "passed": true,
+   "year": 2.8697,
+   "month": 1.0308
+  },
+  "a crossed half-hour is sorted and counted; nothing else moves": {
+   "passed": true,
+   "crossing": {
+    "halfhours_sorted": 1,
+    "largest_move_mw": 30.0,
+    "median_moved": []
+   }
+  }
+ },
+ "passed": true
+}
